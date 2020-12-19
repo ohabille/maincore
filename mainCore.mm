@@ -103,15 +103,15 @@
 <node TEXT="class ParseConfs&#xa;implements \MainPorts\ImplementsFuncs, \MainPorts\ImplementSingleTon" STYLE_REF="function" ID="ID_1131807612" CREATED="1606729923991" MODIFIED="1607929129886" LINK="#ID_861476354">
 <node TEXT="use \MainTraits\MainFuncs" STYLE_REF="code" ID="ID_1524128688" CREATED="1606729945224" MODIFIED="1607166243696"/>
 <node TEXT="private static $instance" STYLE_REF="property" ID="ID_573100557" CREATED="1606730242985" MODIFIED="1607166251011"/>
-<node TEXT="public function parseJson ( string $filePath ) : \stdClass" STYLE_REF="function" ID="ID_1045242682" CREATED="1606730278136" MODIFIED="1607166807025">
+<node TEXT="public function parseConf ( string $filePath ) : \stdClass" STYLE_REF="function" ID="ID_1045242682" CREATED="1606730278136" MODIFIED="1607166807025">
 <node TEXT="$file = ROOTDIRS/$filePath.json" STYLE_REF="code" ID="ID_447564186" CREATED="1606730355776" MODIFIED="1606730407740"/>
 <node TEXT="if (!file_exists ( $file ) )" STYLE_REF="function" ID="ID_1733120646" CREATED="1606730463048" MODIFIED="1606730486101">
 <node TEXT="return json_decode ( array )" STYLE_REF="code" ID="ID_1247022309" CREATED="1606730492161" MODIFIED="1606730530573"/>
 </node>
 <node TEXT="return json_decode ( file_get_contents ( $file ) )" STYLE_REF="code" ID="ID_1243070946" CREATED="1606730533296" MODIFIED="1606730578670"/>
 </node>
-<node TEXT="public function getJsConf (string $filePath ) : \stdClass" STYLE_REF="function" ID="ID_993466250" CREATED="1606730584336" MODIFIED="1607166822985">
-<node TEXT="return parseJson ( confs/$filePath )" STYLE_REF="code" ID="ID_747126607" CREATED="1606730622897" MODIFIED="1606730669885"/>
+<node TEXT="public function getConf (string $filePath ) : \stdClass" STYLE_REF="function" ID="ID_993466250" CREATED="1606730584336" MODIFIED="1607166822985">
+<node TEXT="return parseConf ( confs/$filePath )" STYLE_REF="code" ID="ID_747126607" CREATED="1606730622897" MODIFIED="1606730669885"/>
 </node>
 </node>
 </node>
@@ -395,8 +395,8 @@
 <node TEXT="\MainLib\\ParseConfs" STYLE_REF="code" ID="ID_1281298806" CREATED="1606778443319" MODIFIED="1607240768687"/>
 </node>
 <node TEXT="methods" STYLE_REF="function" ID="ID_1445117943" CREATED="1606778296572" MODIFIED="1606778581929">
-<node TEXT="parseJson" STYLE_REF="code" ID="ID_925453276" CREATED="1606778327533" MODIFIED="1606778340359"/>
-<node TEXT="getJsConf" STYLE_REF="code" ID="ID_683338300" CREATED="1606778341093" MODIFIED="1606778350997"/>
+<node TEXT="parseConf" STYLE_REF="code" ID="ID_925453276" CREATED="1606778327533" MODIFIED="1606778340359"/>
+<node TEXT="getConf" STYLE_REF="code" ID="ID_683338300" CREATED="1606778341093" MODIFIED="1606778350997"/>
 </node>
 </node>
 <node TEXT="dumps :" STYLE_REF="function" ID="ID_1679718093" CREATED="1606778355371" MODIFIED="1606778547107">

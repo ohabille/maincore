@@ -2,8 +2,8 @@
     "parseConfs" : {
         "namespace" : "\\MainLib\\ParseConfs",
         "methods" : [
-            "parseJson",
-            "getJsConf"
+            "parseConf",
+            "getConf"
         ]
     },
     "dumps" : {

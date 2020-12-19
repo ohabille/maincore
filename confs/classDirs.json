@@ -4,7 +4,7 @@
         "MainTraits",
         "MainLib",
         "User",
-        "App",
+        "App"
     ],
     "MainPorts" : "core/Ports/",
     "MainTraits" : "core/Traits/",
