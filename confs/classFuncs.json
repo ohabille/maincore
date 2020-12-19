@@ -1,0 +1,25 @@
+{
+    "parseConfs" : {
+        "namespace" : "\\MainLib\\ParseConfs",
+        "methods" : [
+            "parseJson",
+            "getJsConf"
+        ]
+    },
+    "dumps" : {
+        "namespace" : "\\MainLib\\Dumps",
+        "methods" : [
+            "dump"
+        ]
+    },
+    "shellColors" : {
+        "namespace" : "\\MainLib\\ShellColors",
+        "methods" : [
+            "shellLightGreen",
+            "shellBrown",
+            "shellLightRed",
+            "shellRed",
+            "getShellColor"
+        ]
+    }
+}

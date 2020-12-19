@@ -1,0 +1,14 @@
+{
+    "paths" : [
+        "MainPorts",
+        "MainTraits",
+        "MainLib",
+        "User",
+        "App",
+    ],
+    "MainPorts" : "core/Ports/",
+    "MainTraits" : "core/Traits/",
+    "MainLib" : "core/libs/",
+    "User" : "devs/",
+    "App" : "devs/App/"
+}
