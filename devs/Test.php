@@ -2,28 +2,40 @@
 
 namespace User;
 
-class Test implements \MainPorts\SingleTonImplement
+class Test
 {
-    use \MainTraits\Instance;
-
     /**
-     * Instance de la classe
-     * @var \MainPorts\SingleTonImplement
+     * @var array
      */
-    private static $instance;
+    private $_conf;
 
-    private function __construct(string $prout)
+    public function __construct()
     {
-        dump($prout);
+        $this->_conf = $this->readStdClass(
+            parseConf('devs/test')
+        );
     }
 
-    /**
-     * Retourne l'instance de la classe
-     * @return MainPortsSingleTonImplement : instance de la classe
-     */
-    public static function setInstance(string $prout = "")
-    : \MainPorts\SingleTonImplement
+    private function readStdClass(\stdClass $std) : array
     {
-        return new Test($prout);
+        while ( false !== current($std) ) {
+            $conf[key($std)] = $this->getCurrent($std);
+
+            next($std);
+        }
+
+        return $conf;
+    }
+
+    private function getCurrent(\stdClass $std)
+    {
+        return is_a(current($std), '\stdClass') ?
+            $this->readStdClass(current($std)):
+            current($std);
+    }
+
+    public function getConf()
+    {
+        return $this->_conf;
     }
 }

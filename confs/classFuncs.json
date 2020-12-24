@@ -1,6 +1,6 @@
 {
     "parseConfs" : {
-        "namespace" : "\\MainLib\\ParseConfs",
+        "namespace" : "\\MainLib\\ParseJsConfs",
         "methods" : [
             "parseConf",
             "getConf"

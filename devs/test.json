@@ -1,0 +1,11 @@
+{
+    "class" : "\\User\\Test",
+    "arguments" : {
+        "foo" : "test",
+        "bar" : "ok"
+    },
+    "argsValue" : [
+        "$foo",
+        "$bar"
+    ]
+}

@@ -4,7 +4,7 @@
  * Chargement du fichier autoLoad.php
  * @var string : Le fichier
  */
-include_once('autoLoad.php');
+require_once 'autoLoad.php';
 
 // Lecture des classes de function
 $classes = json_decode(

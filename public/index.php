@@ -1,11 +1,15 @@
 <?php
 
+
 // Déclaration du fichier racine
 define('ROOTDIRS', '../');
 
 // chargement du fichier d'initialisation
-include_once(ROOTDIRS.'core/init.php');
+require_once ROOTDIRS.'core/initCore.php';
 
-\User\Test::setInstance('caca');
+// \User\Test::setInstance('prout');
 
+$conf = new \User\Test;
+
+dump($conf->getConf());
 ?>
