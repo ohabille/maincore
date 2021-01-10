@@ -29,7 +29,6 @@ class ClassAutoLoad
         $this->formatClassPath($className);
         $this->setAutoLoadJson();
         $this->setDirClass();
-
         $this->setClassPath();
     }
 
