@@ -39,17 +39,25 @@ implements  \MainPorts\FuncsImplement,
     /**
      * affiche les propriétées d'une variable
      * @param $var  : la variable à analiser
-     * @param $exit : signal d'arret du script
      */
-    public function dump($var, bool $exit = true) : void
+    public function dump($var) : void
     {
         echo preg_replace(
             $this->_patts,
             $this->getRempls(),
             $this->getDump($var)
         );
+    }
 
-        if ($exit) exit();
+    /**
+     * affiche les propriétées d'une variable
+     * et arrête le script
+     * @param $var  : la variable à analiser
+     */
+    public function dd($var) : void
+    {
+        $this->dump($var);
+        exit();
     }
 
     /**

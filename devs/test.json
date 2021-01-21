@@ -7,5 +7,15 @@
     "argsValue" : [
         "$foo",
         "$bar"
+    ],
+    "classArray" : [
+        {
+            "stdvar" : "foo",
+            "stdval" : "bar"
+        },
+        {
+            "stdvar" : "caca",
+            "stdval" : "boudin"
+        }
     ]
 }

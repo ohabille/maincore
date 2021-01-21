@@ -9,5 +9,7 @@ require_once ROOTDIRS.'core/initCore.php';
 
 $conf = new \User\Test;
 
-dump($conf->getConf());
+// echo 'test';
+dump($conf->getUri());
+dd($conf->getConf());
 ?>

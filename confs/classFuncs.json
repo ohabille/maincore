@@ -9,7 +9,8 @@
     "dumps" : {
         "namespace" : "\\MainLib\\Dumps",
         "methods" : [
-            "dump"
+            "dump",
+            "dd"
         ]
     },
     "shellColors" : {
