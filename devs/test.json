@@ -1,21 +1,14 @@
 {
-    "class" : "\\User\\Test",
-    "arguments" : {
-        "foo" : "test",
-        "bar" : "ok"
-    },
-    "argsValue" : [
-        "$foo",
-        "$bar"
-    ],
-    "classArray" : [
-        {
-            "stdvar" : "foo",
-            "stdval" : "bar"
+    "routes" : {
+        "index" : {
+            "name" : "index",
+            "patt" : "(index|naccueil)",
+            "slug" : null
         },
-        {
-            "stdvar" : "caca",
-            "stdval" : "boudin"
+        "test" : {
+            "name" : "test",
+            "patt" : "(test)",
+            "slug" : "article-([0-9]+)"
         }
-    ]
+    }
 }
