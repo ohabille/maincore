@@ -6,6 +6,12 @@
             "getConf"
         ]
     },
+    "stdToArray" : {
+        "namespace" : "\\MainLib\\ArrayConverter",
+        "methods" : [
+            "stdToArray"
+        ]
+    },
     "dumps" : {
         "namespace" : "\\MainLib\\Dumps",
         "methods" : [
