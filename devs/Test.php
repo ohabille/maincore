@@ -5,61 +5,77 @@ namespace User;
 class Test
 {
     /**
-     * @var \stdClass
+     * @var array
      */
-    private $_routes;
-    private $_requests;
-    private $_request;
+    private $_shema;
     /**
      * @var string
      */
-    private $_uri;
+    private $_pattern;
+    /**
+     * @var \stdClass
+     */
+    private $_routes;
+    /**
+     * @var array
+     */
+    private $_requests;
 
     public function __construct()
     {
-        $this->_routes = parseConf('devs/test')->{'routes'};
-        $this->_uri = strip_tags(
-            htmlentities($_SERVER['REQUEST_URI'], ENT_QUOTES)
-        );
-        $this->_requests = explode('/', $this->_uri);
-        $this->_request = false === $this->isIndex() ?
-            $this->parseUri():
-            $this->_routes->{'index'}->{'name'};
-    }
+        $conf = parseConf('devs/test');
 
-    private function isIndex()
-    {
+        $this->_shema = $conf->{'shema'};
+        $this->_routes = $conf->{'routes'};
+        $this->_pattern = $conf->{'pattern'};
 
-        return (
-            empty($this->_requests[1])
-            ||
-            $this->matchRequest($this->_routes->{'index'}->{'patt'})
-        );
-    }
+        $this->setRequests($this->readStepsUri());
 
-    private function parseUri()
-    {
-        foreach ($this->_routes as $route) {
-            if ($this->matchRequest($route->{'patt'})) {
-                return $route->{'name'};
-            }
+        if (is_null($this->_requests)) {
+            $this->_requests[current($this->_shema)] = key($this->_routes);
         }
-
-        return $this->_routes->{'index'}->{'name'};
     }
 
-    private function matchRequest(string $patt)
+    private function readStepsUri() : array
     {
-        return 0 != preg_match("#".$patt."#", $this->_requests[1]);
+        preg_match_all(
+            "#".$this->_pattern."#",
+            strip_tags(htmlentities($_SERVER['REQUEST_URI'], ENT_QUOTES)),
+            $match
+        );
+
+        return $match[count($this->_shema)];
     }
 
-    public function getUri()
+    private function setRequests(array $rMatch) : void
     {
-        return $this->_uri;
+        foreach ($rMatch as $k=>$val)
+            $this->readStep($rMatch[0], $k, $val);
     }
 
-    public function getRequest()
+    private function readStep(string $match, int $step, string $val) : void
     {
-        return $this->_request;
+        if($this->isRoute($match)) {
+            if ($this->readRoute($match, $step, $val))
+                $this->_requests[$this->_shema[$step]] = $val;
+        }
+    }
+
+    private function isRoute(string $route) : bool
+    {
+        return isset($this->_routes->{$route});
+    }
+
+    private function readRoute(string $route, int $step, string $val) : bool
+    {
+        return 0 != preg_match(
+            "#^".$this->_routes->{$route}->{$this->_shema[$step]}."$#",
+            $val
+        );
+    }
+
+    public function getRequests() : array
+    {
+        return $this->_requests;
     }
   }

@@ -1,14 +1,18 @@
 {
+    "shema" : ["request", "slug"],
+    "pattern" : "(\\/([_\\-a-zA-Z0-9]+))",
     "routes" : {
         "index" : {
-            "name" : "index",
-            "patt" : "(index|naccueil)",
+            "request" : "index",
             "slug" : null
         },
-        "test" : {
-            "name" : "test",
-            "patt" : "(test)",
-            "slug" : "article-([0-9]+)"
+        "articles" : {
+            "request" : "articles",
+            "slug" : "page-([0-9]*)"
+        },
+        "article" : {
+            "request" : "article",
+            "slug" : "([_a-zA-Z0-9]+)"
         }
     }
 }
