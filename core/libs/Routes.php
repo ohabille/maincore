@@ -1,8 +1,8 @@
 <?php
 
-namespace User;
+namespace MainLib;
 
-class Test
+class Routes
 {
     /**
      * @var array

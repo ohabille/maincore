@@ -7,8 +7,11 @@ define('ROOTDIRS', '../');
 // chargement du fichier d'initialisation
 require_once ROOTDIRS.'core/initCore.php';
 
-$conf = new \User\Test;
+$servicesConf = parseConf('devs/injection');
+dd($servicesConf);
 
-dump($conf->getRequests());
+$routes = new \MainLib\Routes(getConf('routes'));
+
+dump($routes->getRequests());
 
 ?>
