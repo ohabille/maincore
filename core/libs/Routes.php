@@ -28,9 +28,6 @@ class Routes
         $this->_pattern = $conf->{'pattern'};
 
         $this->setRequests($this->readStepsUri());
-
-        if (is_null($this->_requests))
-            $this->_requests[current($this->_shema)] = key($this->_routes);
     }
 
     private function readStepsUri() : array
@@ -46,29 +43,30 @@ class Routes
 
     private function setRequests(array $rMatch) : void
     {
-        foreach ($rMatch as $k=>$val)
-            $this->readStep($rMatch[0], $k, $val);
-    }
-
-    private function readStep(string $match, int $step, string $val) : void
-    {
-        if($this->isRoute($match)) {
-            if ($this->readRoute($match, $step, $val))
-                $this->_requests[$this->_shema[$step]] = $val;
+        if (!empty($rMatch)) {
+            $this->readStep($rMatch);
         }
     }
 
-    private function isRoute(string $route) : bool
+    private function readStep(array $rMatch) : void
     {
-        return isset($this->_routes->{$route});
+        while (false !== current($this->_routes)) {
+            if (!$this->readRoute($rMatch[0])) {
+                next($this->_routes);
+
+                continue;
+            }
+
+            $this->_requests[current($this->_shema)] = $rMatch[0];
+            break;
+        }
     }
 
-    private function readRoute(string $route, int $step, string $val) : bool
+    private function readRoute(string $route) : bool
     {
-        return 0 != preg_match(
-            "#^".$this->_routes->{$route}->{$this->_shema[$step]}."$#",
-            $val
-        );
+        $pattern = current($this->_routes)->{current($this->_shema)};
+
+        return 0 != preg_match("#^".$pattern."$#", $route);
     }
 
     public function getRequests() : array
