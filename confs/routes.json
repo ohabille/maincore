@@ -1,10 +1,8 @@
 {
-    "shema" : ["request", "slug"],
     "pattern" : "(\\/([_\\-a-zA-Z0-9]+))",
     "routes" : {
         "home" : {
-            "request" : "home",
-            "slug" : null
+            "request" : "home"
         },
         "articles" : {
             "request" : "articles",
@@ -13,6 +11,9 @@
         "article" : {
             "request" : "article",
             "slug" : "([_a-zA-Z0-9]+)"
+        },
+        "notFound" : {
+            "request" : "notFound"
         }
     }
 }

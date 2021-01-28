@@ -8,10 +8,13 @@ define('ROOTDIRS', '../');
 require_once ROOTDIRS.'core/initCore.php';
 
 $servicesConf = parseConf('devs/injection');
-// dd($servicesConf);
 
-$routes = new \MainLib\Routes(getConf('routes'));
+$routes = new \MainLib\Request(
+    new \MainLib\MatchRequests(
+        new \MainLib\Routes
+    )
+);
 
-dump($routes->getRequests());
+dump($routes->getRequest());
 
 ?>
