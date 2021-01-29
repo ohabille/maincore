@@ -2,7 +2,7 @@
 
 namespace MainLib;
 
-class Routes
+class Routes implements \MainPorts\RoutesImplement
 {
     /**
      * @var \stdClass

@@ -2,7 +2,7 @@
 
 namespace MainLib;
 
-class Request
+class Request implements \MainPorts\RequestImplement
 {
     /**
      * @var \MainLib\Requests
@@ -13,13 +13,16 @@ class Request
      */
     private $_request;
 
-    public function __construct(\MainLib\MatchRequests $requests)
+    public function __construct(\MainPorts\MatchRequestsImplement $requests)
     {
         $this->_matches = $requests;
 
         $this->setRequest();
     }
 
+    /**
+     * 
+     */
     private function setRequest() : void
     {
         $this->_request =
