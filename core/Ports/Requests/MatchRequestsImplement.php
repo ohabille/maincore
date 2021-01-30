@@ -6,9 +6,9 @@ interface MatchRequestsImplement
 {
     /**
      * Retourne l'instance de la class Routes
-     * @return \MainPorts\Requests\RoutesImplements
+     * @return \MainPorts\Requests\RoutesImplement
      */
-    public function getConf() : \MainPorts\Requests\RoutesImplements;
+    public function getConf() : \MainPorts\Requests\RoutesImplement;
 
     /**
      * Retourne le résultat de la recherche de route

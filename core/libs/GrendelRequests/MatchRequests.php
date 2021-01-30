@@ -14,7 +14,7 @@ namespace GrendelRequests;
 class MatchRequests implements \MainPorts\Requests\MatchRequestsImplement
 {
     /**
-     * @var \MainPorts\Requests\RoutesImplements
+     * @var \MainPorts\Requests\RoutesImplement
      */
     private $_conf;
     /**
@@ -46,9 +46,9 @@ class MatchRequests implements \MainPorts\Requests\MatchRequestsImplement
 
     /**
      * Retourne l'instance de la class Routes
-     * @return stdClass $_conf
+     * @return \MainPorts\Requests\RoutesImplement
      */
-    public function getConf() : \MainPorts\Requests\RoutesImplements
+    public function getConf() : \MainPorts\Requests\RoutesImplement
     {
         return $this->_conf;
     }
