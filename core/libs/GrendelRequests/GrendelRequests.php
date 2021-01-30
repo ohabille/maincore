@@ -19,7 +19,7 @@ implements  \MainPorts\SingleTonImplement
     private function __construct()
     {
         self::$Routes = Routes::getInstance();
-        self::$MatchRequest =  MatchRequests::getInstance(self::$Routes);
+        self::$MatchRequest = MatchRequests::getInstance(self::$Routes);
         self::$Request = Request::getInstance(self::$MatchRequest);
     }
 
