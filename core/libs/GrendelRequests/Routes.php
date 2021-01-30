@@ -18,14 +18,23 @@
 
 namespace GrendelRequests;
 
-class Routes implements \MainPorts\Requests\RoutesImplement
+class Routes
+implements  \MainPorts\Requests\RoutesImplement,
+            \MainPorts\SingleTonImplement
 {
+    use \MainTraits\Instance;
+
+    /**
+     * Instance de la classe
+     * @var \MainPorts\SingleTonImplement
+     */
+    private static $instance;
     /**
      * @var \stdClass
      */
     private $_conf;
 
-    public function __construct()
+    private function __construct()
     {
         $this->_conf = getConf('routes');
     }
@@ -38,5 +47,30 @@ class Routes implements \MainPorts\Requests\RoutesImplement
     public function getRoutes() : \stdClass
     {
         return $this->_conf->{'routes'};
+    }
+
+    public function getCurrentRoute()
+    {
+        return current($this->_conf->{'routes'});
+    }
+
+    public function nextRoute() : void
+    {
+        next($this->_conf->{'routes'});
+    }
+
+    public function resetRoutes() : void
+    {
+        reset($this->_conf->{'routes'});
+    }
+
+    public function getDefaultRoute() : string
+    {
+        return $this->_conf->{'default'};
+    }
+
+    public function getNotFound() : string
+    {
+        return 'notFound';
     }
 }

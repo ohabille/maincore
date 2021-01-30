@@ -11,8 +11,17 @@
 
 namespace GrendelRequests;
 
-class MatchRequests implements \MainPorts\Requests\MatchRequestsImplement
+class MatchRequests
+implements  \MainPorts\Requests\MatchRequestsImplement,
+            \MainPorts\SingleTonImplement
 {
+    use \MainTraits\Instance;
+
+    /**
+     * @var \MainPorts\SingleTonImplement
+     */
+    private static $instance;
+
     /**
      * @var \MainPorts\Requests\RoutesImplement
      */
@@ -22,10 +31,17 @@ class MatchRequests implements \MainPorts\Requests\MatchRequestsImplement
      */
     private $_matches;
 
-    public function __construct(\MainPorts\Requests\RoutesImplement $conf)
+    private function __construct(\MainPorts\Requests\RoutesImplement $conf)
     {
         $this->_conf = $conf;
         $this->_matches = $this->readStepsUri();
+    }
+
+    public static function constructClass(
+        \MainPorts\Requests\RoutesImplement $conf
+    ) : \MainPorts\SingleTonImplement
+    {
+        return new self::$class($conf);
     }
 
     /**

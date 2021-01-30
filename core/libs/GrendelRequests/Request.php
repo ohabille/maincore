@@ -6,8 +6,17 @@
 
 namespace GrendelRequests;
 
-class Request implements \MainPorts\Requests\RequestImplement
+class Request
+implements  \MainPorts\Requests\RequestImplement,
+            \MainPorts\SingleTonImplement
 {
+    use \MainTraits\Instance;
+
+    /**
+     * @var \MainPorts\SingleTonImplement
+     */
+    private static $instance;
+
     /**
      * Instance de classe
      * @var \MainPorts\MatchRequestsImplement
@@ -19,13 +28,20 @@ class Request implements \MainPorts\Requests\RequestImplement
      */
     private $_request;
 
-    public function __construct(
+    private function __construct(
         \MainPorts\Requests\MatchRequestsImplement $requests
     )
     {
         $this->_matches = $requests;
 
         $this->setRequest();
+    }
+
+    public static function constructClass(
+        \MainPorts\Requests\MatchRequestsImplement $requests
+    ) : \MainPorts\SingleTonImplement
+    {
+        return new self::$class($requests);
     }
 
     /**
@@ -36,7 +52,7 @@ class Request implements \MainPorts\Requests\RequestImplement
         $this->_request =
             !empty($this->_matches->getMatches()) ?
             $this->findRequest():
-            'home';
+            $this->_matches->getConf()->getDefaultRoute();
     }
 
     /**
@@ -45,18 +61,16 @@ class Request implements \MainPorts\Requests\RequestImplement
      */
     private function findRequest() : string
     {
-        while (false !== current($this->_matches->getConf()->getRoutes())) {
+        while (false !== $this->_matches->getConf()->getCurrentRoute()) {
             if (!$this->readRoutes()) {
-                next($this->_matches->getConf()->getRoutes());
+                $this->_matches->getConf()->nextRoute();
                 continue;
             }
 
-            return current(
-                $this->_matches->getConf()->getRoutes()
-            )->{'request'};
+            return key($this->_matches->getConf()->getRoutes());
         }
 
-        return 'notFound';
+        return $this->_matches->getConf()->getNotFound();
     }
 
     /**

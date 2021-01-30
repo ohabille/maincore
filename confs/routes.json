@@ -1,8 +1,16 @@
 {
+    "config" : [
+        "request",
+        "slug"
+    ],
     "pattern" : "(\\/([_\\-a-zA-Z0-9]+))",
+    "default" : "home",
     "routes" : {
         "home" : {
-            "request" : "home"
+            "request" : "(home|accueil)"
+        },
+        "notFound" : {
+            "request" : "notFound"
         },
         "articles" : {
             "request" : "articles",
@@ -11,9 +19,6 @@
         "article" : {
             "request" : "article",
             "slug" : "([_a-zA-Z0-9]+)"
-        },
-        "notFound" : {
-            "request" : "notFound"
         }
     }
 }

@@ -27,4 +27,33 @@ interface RoutesImplement
      * @return stdClass
      */
     public function getRoutes() : \stdClass;
+
+    /**
+     * Retourne la route par défaut
+     * ex : home
+     * @return string
+     */
+    public function getDefaultRoute() : string;
+
+    /**
+     * Retourne la route norFound
+     * @return string [description]
+     */
+    public function getNotFound() : string;
+
+    /**
+     * Retourne la route courante
+     * @return stdClass|bool
+     */
+    public function getCurrentRoute();
+
+    /**
+     * Avance le pointeur dans la configuration des routes
+     */
+    public function nextRoute() : void;
+
+    /**
+     * Remet le pointeur au départ de la configuration des routes
+     */
+    public function resetRoutes() : void;
 }

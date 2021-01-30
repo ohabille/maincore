@@ -11,7 +11,7 @@ interface SingleTonImplement
     public static function getInstance() : \MainPorts\SingleTonImplement;
 
     /**
-     * Créer des alias des méthodes de la classe
+     * Initialise l'instance de la classe
      */
     public static function setInstance() : \MainPorts\SingleTonImplement;
 }

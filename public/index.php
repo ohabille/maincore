@@ -1,16 +1,16 @@
 <?php
 
-
-// Déclaration du fichier racine
-define('ROOTDIRS', '../');
+use \GrendelRequests\GrendelRequests;
 
 // chargement du fichier d'initialisation
-require_once ROOTDIRS.'core/initCore.php';
+require_once '../core/initCore.php';
 
 $servicesConf = parseConf('devs/injection');
 
-$route = new \GrendelRequests\MatchUri();
+$grendelRequest = GrendelRequests::getInstance();
 
-dump($route->getRoute());
+dump($grendelRequest->instanceOf('Routes')->getRoutes());
+dump($grendelRequest->instanceOf('MatchRequest')->getMatches());
+dump($grendelRequest->instanceOf('Request')->getRequest());
 
 ?>

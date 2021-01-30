@@ -1,5 +1,8 @@
 <?php
 
+// Déclaration du fichier racine
+define('ROOTDIRS', '../');
+
 /**
  * Chargement du fichier autoLoad.php
  * @var string : Le fichier
