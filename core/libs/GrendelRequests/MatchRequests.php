@@ -1,11 +1,20 @@
 <?php
 
-namespace MainLib;
+/**
+ * Analise la requete url et retourne le résultat sous forme d'array
+ * ex :
+ * array = [
+ *     0=>articles,
+ *     1=>page-2
+ * ]
+ */
 
-class MatchRequests implements \MainPorts\MatchRequestsImplement
+namespace GrendelRequests;
+
+class MatchRequests implements \MainPorts\Requests\MatchRequestsImplement
 {
     /**
-     * @var \stdClass
+     * @var \MainPorts\Requests\RoutesImplements
      */
     private $_conf;
     /**
@@ -13,9 +22,9 @@ class MatchRequests implements \MainPorts\MatchRequestsImplement
      */
     private $_matches;
 
-    public function __construct(\MainPorts\RoutesImplement $conf)
+    public function __construct(\MainPorts\Requests\RoutesImplement $conf)
     {
-        $this->_conf = $conf->getConf();
+        $this->_conf = $conf;
         $this->_matches = $this->readStepsUri();
     }
 
@@ -27,7 +36,7 @@ class MatchRequests implements \MainPorts\MatchRequestsImplement
     private function readStepsUri() : array
     {
         preg_match_all(
-            "#".$this->_conf->{'pattern'}."#",
+            "#".$this->_conf->getMatchPattern()."#",
             strip_tags(htmlentities($_SERVER['REQUEST_URI'], ENT_QUOTES)),
             $match
         );
@@ -36,10 +45,10 @@ class MatchRequests implements \MainPorts\MatchRequestsImplement
     }
 
     /**
-     * Retourne la configuration des routes
+     * Retourne l'instance de la class Routes
      * @return stdClass $_conf
      */
-    public function getConf() : \stdClass
+    public function getConf() : \MainPorts\Requests\RoutesImplements
     {
         return $this->_conf;
     }

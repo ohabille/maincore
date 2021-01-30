@@ -1,12 +1,13 @@
 <?php
 
-namespace MainPorts;
+namespace MainPorts\Requests;
 
 interface RequestImplement
 {
     /**
      * Retourne la requete
-     * @return string $_request
+     * ex : 'article'
+     * @return string
      */
     public function getRequest() : string;
 }

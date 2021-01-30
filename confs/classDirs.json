@@ -3,12 +3,14 @@
         "MainPorts",
         "MainTraits",
         "MainLib",
+        "GrendelRequests",
         "User",
         "App"
     ],
     "MainPorts" : "core/Ports/",
     "MainTraits" : "core/Traits/",
     "MainLib" : "core/libs/",
+    "GrendelRequests" : "core/libs/GrendelRequests/",
     "User" : "devs/",
     "App" : "devs/App/"
 }

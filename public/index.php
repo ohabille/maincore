@@ -9,12 +9,8 @@ require_once ROOTDIRS.'core/initCore.php';
 
 $servicesConf = parseConf('devs/injection');
 
-$routes = new \MainLib\Request(
-    new \MainLib\MatchRequests(
-        new \MainLib\Routes
-    )
-);
+$route = new \GrendelRequests\MatchUri();
 
-dump($routes->getRequest());
+dump($route->getRoute());
 
 ?>
