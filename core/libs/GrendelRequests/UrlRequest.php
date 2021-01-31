@@ -35,21 +35,21 @@ implements  \MainPorts\Requests\UrlRequestImplement,
 
     private function __construct(
         \MainPorts\Requests\RoutesImplement $routes,
-        \MainPorts\Requests\UrlMatchImplement $requests
+        \MainPorts\Requests\UrlMatchImplement $matches
     )
     {
         $this->_routes = $routes;
-        $this->_matches = $requests;
+        $this->_matches = $matches;
 
         $this->setRequest();
     }
 
     public static function constructClass(
         \MainPorts\Requests\RoutesImplement $routes,
-        \MainPorts\Requests\UrlMatchImplement $requests
+        \MainPorts\Requests\UrlMatchImplement $matches
     ) : \MainPorts\SingleTonImplement
     {
-        return new self::$class($routes, $requests);
+        return new self::$class($routes, $matches);
     }
 
     /**

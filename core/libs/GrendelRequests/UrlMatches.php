@@ -34,7 +34,8 @@ implements  \MainPorts\Requests\UrlMatchImplement,
     private function __construct(\MainPorts\Requests\RoutesImplement $routes)
     {
         $this->_routes = $routes;
-        $this->_matches = $this->readStepsUri();
+        $this->setMatches();
+        // $this->_matches = $this->readStepsUri();
     }
 
     public static function constructClass(
@@ -42,6 +43,15 @@ implements  \MainPorts\Requests\UrlMatchImplement,
     ) : \MainPorts\SingleTonImplement
     {
         return new self::$class($routes);
+    }
+
+    private function setMatches() : void
+    {
+        $matches = $this->readStepsUri();
+        $keys = $this->_routes->getArgs()->{'keys'};
+
+        foreach ($matches as $k=>$val)
+            $this->_matches[$keys[$k]] = $val;
     }
 
     /**
@@ -57,16 +67,9 @@ implements  \MainPorts\Requests\UrlMatchImplement,
             $match
         );
 
-        return $match[count($match) - 1];
-    }
 
-    /**
-     * Retourne l'instance de la class Routes
-     * @return \MainPorts\Requests\RoutesImplement
-     */
-    public function getRoutes() : \MainPorts\Requests\RoutesImplement
-    {
-        return $this->_routes;
+
+        return $match[count($match) - 1];
     }
 
     /**

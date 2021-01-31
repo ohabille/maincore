@@ -40,4 +40,6 @@ trait Instance
 
         return new self::$class;
     }
+
+    public static function constructClass() {}
 }

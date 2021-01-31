@@ -5,38 +5,28 @@ namespace MainPorts\Requests;
 interface RoutesImplement
 {
     /**
+     * Retourne les noms des arguments des routes
+     * @return stdClass $_conf->{'args'}
+     */
+    public function getArgs() : \stdClass;
+
+    /**
      * Retourne le pattern de recherche des routes
-     * ex : "(\\/([_\\-a-zA-Z0-9]+))"
-     * @return string
+     * @return string $_conf->{'pattern'}
      */
     public function getMatchPattern() : string;
 
     /**
-     * ex :
-     *  "home" : {
-     *      "request" : "home"
-     *  },
-     *  "article" : {
-     *      "request" : "article"
-     *         "slug" : ([_a-zA-Z0-9]+)
-     *  }
      * Retourne les routes disponibles
-     * @return stdClass
+     * @return stdClass $_routes
      */
     public function getRoutes() : \stdClass;
 
     /**
      * Retourne la route par défaut
-     * ex : home
-     * @return string
+     * @return string $_conf->{'default'}
      */
     public function getDefaultRoute() : string;
-
-    /**
-     * Retourne la route norFound
-     * @return string [description]
-     */
-    public function getNotFound() : string;
 
     /**
      * Retourne la route courante
@@ -53,4 +43,10 @@ interface RoutesImplement
      * Remet le pointeur au départ de la configuration des routes
      */
     public function resetRoutes() : void;
+
+    /**
+     * Retourne la route norFound
+     * @return string $_conf->{'notFound'}
+     */
+    public function getNotFound() : string;
 }

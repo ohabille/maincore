@@ -15,6 +15,7 @@ implements  \MainPorts\SingleTonImplement
     private static $Routes;
     private static $UrlMatches;
     private static $UrlRequest;
+    private static $UrlArgs;
 
     private function __construct()
     {
@@ -23,6 +24,11 @@ implements  \MainPorts\SingleTonImplement
         self::$UrlRequest = UrlRequest::getInstance(
             self::$Routes,
             self::$UrlMatches
+        );
+        self::$UrlArgs = UrlArgs::getInstance(
+            self::$Routes,
+            self::$UrlMatches->getMatches(),
+            self::$UrlRequest->getRequest()
         );
 
         if (!empty($_POST)) {
