@@ -2,7 +2,7 @@
 
 namespace MainPorts\Requests;
 
-interface RequestImplement
+interface UrlRequestImplement
 {
     /**
      * Retourne la requete

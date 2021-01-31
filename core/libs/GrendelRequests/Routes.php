@@ -36,7 +36,13 @@ implements  \MainPorts\Requests\RoutesImplement,
 
     private function __construct()
     {
-        $this->_conf = getConf('routes');
+        $this->_conf = getConf('routesConf');
+        $this->_routes = getConf('routes');
+    }
+
+    public function getArgs() : \stdClass
+    {
+        return $this->_conf->{'args'};
     }
 
     public function getMatchPattern() : string
@@ -46,22 +52,22 @@ implements  \MainPorts\Requests\RoutesImplement,
 
     public function getRoutes() : \stdClass
     {
-        return $this->_conf->{'routes'};
+        return $this->_routes;
     }
 
     public function getCurrentRoute()
     {
-        return current($this->_conf->{'routes'});
+        return current($this->_routes);
     }
 
     public function nextRoute() : void
     {
-        next($this->_conf->{'routes'});
+        next($this->_routes);
     }
 
     public function resetRoutes() : void
     {
-        reset($this->_conf->{'routes'});
+        reset($this->_routes);
     }
 
     public function getDefaultRoute() : string
@@ -71,6 +77,6 @@ implements  \MainPorts\Requests\RoutesImplement,
 
     public function getNotFound() : string
     {
-        return 'notFound';
+        return $this->_conf->{'notFound'};
     }
 }

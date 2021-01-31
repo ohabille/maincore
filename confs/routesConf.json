@@ -1,0 +1,8 @@
+{
+    "args" : {
+        "slug" : "([_a-zA-Z0-9]+)"
+    },
+    "pattern" : "(\\/([_\\-a-zA-Z0-9]+))",
+    "default" : "home",
+    "notFound" : "notFound"
+}

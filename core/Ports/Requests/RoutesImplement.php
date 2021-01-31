@@ -13,16 +13,13 @@ interface RoutesImplement
 
     /**
      * ex :
-     * {
-     *  "routes" : {
-     *     "home" : {
-     *         "request" : "home"
-     *      },
-     *      "article" : {
-     *          "request" : "article"
-     *          "slug" : ([_a-zA-Z0-9]+)
-     *      }
-     * }
+     *  "home" : {
+     *      "request" : "home"
+     *  },
+     *  "article" : {
+     *      "request" : "article"
+     *         "slug" : ([_a-zA-Z0-9]+)
+     *  }
      * Retourne les routes disponibles
      * @return stdClass
      */

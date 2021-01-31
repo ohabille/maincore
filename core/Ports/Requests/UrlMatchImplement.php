@@ -2,13 +2,13 @@
 
 namespace MainPorts\Requests;
 
-interface MatchRequestsImplement
+interface UrlMatchImplement
 {
     /**
      * Retourne l'instance de la class Routes
      * @return \MainPorts\Requests\RoutesImplement
      */
-    public function getConf() : \MainPorts\Requests\RoutesImplement;
+    public function getRoutes() : \MainPorts\Requests\RoutesImplement;
 
     /**
      * Retourne le résultat de la recherche de route

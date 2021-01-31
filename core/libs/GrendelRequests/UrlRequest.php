@@ -6,8 +6,8 @@
 
 namespace GrendelRequests;
 
-class Request
-implements  \MainPorts\Requests\RequestImplement,
+class UrlRequest
+implements  \MainPorts\Requests\UrlRequestImplement,
             \MainPorts\SingleTonImplement
 {
     use \MainTraits\Instance;
@@ -19,7 +19,12 @@ implements  \MainPorts\Requests\RequestImplement,
 
     /**
      * Instance de classe
-     * @var \MainPorts\MatchRequestsImplement
+     * @var \MainPorts\Requests\RoutesImplement
+     */
+    private $_routes;
+    /**
+     * Instance de classe
+     * @var \MainPorts\Requests\UrlMatchImplement
      */
     private $_matches;
     /**
@@ -29,19 +34,22 @@ implements  \MainPorts\Requests\RequestImplement,
     private $_request;
 
     private function __construct(
-        \MainPorts\Requests\MatchRequestsImplement $requests
+        \MainPorts\Requests\RoutesImplement $routes,
+        \MainPorts\Requests\UrlMatchImplement $requests
     )
     {
+        $this->_routes = $routes;
         $this->_matches = $requests;
 
         $this->setRequest();
     }
 
     public static function constructClass(
-        \MainPorts\Requests\MatchRequestsImplement $requests
+        \MainPorts\Requests\RoutesImplement $routes,
+        \MainPorts\Requests\UrlMatchImplement $requests
     ) : \MainPorts\SingleTonImplement
     {
-        return new self::$class($requests);
+        return new self::$class($routes, $requests);
     }
 
     /**
@@ -52,7 +60,7 @@ implements  \MainPorts\Requests\RequestImplement,
         $this->_request =
             !empty($this->_matches->getMatches()) ?
             $this->findRequest():
-            $this->_matches->getConf()->getDefaultRoute();
+            $this->_routes->getDefaultRoute();
     }
 
     /**
@@ -61,16 +69,16 @@ implements  \MainPorts\Requests\RequestImplement,
      */
     private function findRequest() : string
     {
-        while (false !== $this->_matches->getConf()->getCurrentRoute()) {
+        while (false !== $this->_routes->getCurrentRoute()) {
             if (!$this->readRoutes()) {
-                $this->_matches->getConf()->nextRoute();
+                $this->_routes->nextRoute();
                 continue;
             }
 
-            return key($this->_matches->getConf()->getRoutes());
+            return key($this->_routes->getRoutes());
         }
 
-        return $this->_matches->getConf()->getNotFound();
+        return $this->_routes->getNotFound();
     }
 
     /**
@@ -80,7 +88,7 @@ implements  \MainPorts\Requests\RequestImplement,
     private function readRoutes() : bool
     {
         $pattern = current(
-            $this->_matches->getConf()->getRoutes()
+            $this->_routes->getRoutes()
         )->{'request'};
 
         return 0 != preg_match(

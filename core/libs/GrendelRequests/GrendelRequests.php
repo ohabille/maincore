@@ -13,14 +13,21 @@ implements  \MainPorts\SingleTonImplement
     private static $instance;
 
     private static $Routes;
-    private static $MatchRequest;
-    private static $Request;
+    private static $UrlMatches;
+    private static $UrlRequest;
 
     private function __construct()
     {
         self::$Routes = Routes::getInstance();
-        self::$MatchRequest = MatchRequests::getInstance(self::$Routes);
-        self::$Request = Request::getInstance(self::$MatchRequest);
+        self::$UrlMatches = UrlMatches::getInstance(self::$Routes);
+        self::$UrlRequest = UrlRequest::getInstance(
+            self::$Routes,
+            self::$UrlMatches
+        );
+
+        if (!empty($_POST)) {
+            // TO DO
+        }
     }
 
     public function instanceOf(string $class)

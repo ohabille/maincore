@@ -11,8 +11,8 @@
 
 namespace GrendelRequests;
 
-class MatchRequests
-implements  \MainPorts\Requests\MatchRequestsImplement,
+class UrlMatches
+implements  \MainPorts\Requests\UrlMatchImplement,
             \MainPorts\SingleTonImplement
 {
     use \MainTraits\Instance;
@@ -25,23 +25,23 @@ implements  \MainPorts\Requests\MatchRequestsImplement,
     /**
      * @var \MainPorts\Requests\RoutesImplement
      */
-    private $_conf;
+    private $_routes;
     /**
      * @var array
      */
     private $_matches;
 
-    private function __construct(\MainPorts\Requests\RoutesImplement $conf)
+    private function __construct(\MainPorts\Requests\RoutesImplement $routes)
     {
-        $this->_conf = $conf;
+        $this->_routes = $routes;
         $this->_matches = $this->readStepsUri();
     }
 
     public static function constructClass(
-        \MainPorts\Requests\RoutesImplement $conf
+        \MainPorts\Requests\RoutesImplement $routes
     ) : \MainPorts\SingleTonImplement
     {
-        return new self::$class($conf);
+        return new self::$class($routes);
     }
 
     /**
@@ -52,7 +52,7 @@ implements  \MainPorts\Requests\MatchRequestsImplement,
     private function readStepsUri() : array
     {
         preg_match_all(
-            "#".$this->_conf->getMatchPattern()."#",
+            "#".$this->_routes->getMatchPattern()."#",
             strip_tags(htmlentities($_SERVER['REQUEST_URI'], ENT_QUOTES)),
             $match
         );
@@ -64,9 +64,9 @@ implements  \MainPorts\Requests\MatchRequestsImplement,
      * Retourne l'instance de la class Routes
      * @return \MainPorts\Requests\RoutesImplement
      */
-    public function getConf() : \MainPorts\Requests\RoutesImplement
+    public function getRoutes() : \MainPorts\Requests\RoutesImplement
     {
-        return $this->_conf;
+        return $this->_routes;
     }
 
     /**

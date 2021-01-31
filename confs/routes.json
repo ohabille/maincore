@@ -1,24 +1,15 @@
 {
-    "config" : [
-        "request",
-        "slug"
-    ],
-    "pattern" : "(\\/([_\\-a-zA-Z0-9]+))",
-    "default" : "home",
-    "routes" : {
-        "home" : {
-            "request" : "(home|accueil)"
-        },
-        "notFound" : {
-            "request" : "notFound"
-        },
-        "articles" : {
-            "request" : "articles",
-            "slug" : "page-([0-9]*)"
-        },
-        "article" : {
-            "request" : "article",
-            "slug" : "([_a-zA-Z0-9]+)"
-        }
+    "home" : {
+        "request" : "(home|accueil)"
+    },
+    "notFound" : {
+        "request" : "notFound"
+    },
+    "articles" : {
+        "request" : "articles",
+        "slug" : "page-([0-9]*)"
+    },
+    "article" : {
+        "request" : "article"
     }
 }
