@@ -30,8 +30,17 @@ implements  \MainPorts\Requests\RoutesImplement,
 
     private function __construct()
     {
-        $this->_conf = getConf('routesConf');
-        $this->_routes = getConf('routes');
+        $this->_conf = getConf('Routes/routesConf');
+        $this->_routes = getConf('Routes/routes');
+    }
+
+    /**
+     * Retourne les clefs de requète
+     * @return array
+     */
+    public function getKeys() : array
+    {
+        return $this->_conf->{'keys'};
     }
 
     /**

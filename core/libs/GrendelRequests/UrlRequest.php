@@ -70,12 +70,11 @@ implements  \MainPorts\Requests\UrlRequestImplement,
     private function findRequest() : string
     {
         while (false !== $this->_routes->getCurrentRoute()) {
-            if (!$this->readRoutes()) {
-                $this->_routes->nextRoute();
-                continue;
-            }
+            if ($this->findRoute())
+                return key($this->_routes->getRoutes());
 
-            return key($this->_routes->getRoutes());
+            $this->_routes->nextRoute();
+            continue;
         }
 
         return $this->_routes->getNotFound();
@@ -85,7 +84,7 @@ implements  \MainPorts\Requests\UrlRequestImplement,
      * vérifie l'existence de la requète url dans les routes disponible
      * @return bool
      */
-    private function readRoutes() : bool
+    private function findRoute() : bool
     {
         $pattern = current(
             $this->_routes->getRoutes()
@@ -93,7 +92,7 @@ implements  \MainPorts\Requests\UrlRequestImplement,
 
         return 0 != preg_match(
             "#^".$pattern."$#",
-            $this->_matches->getMatches()[0]
+            $this->_matches->getMatches()['request']
         );
     }
 

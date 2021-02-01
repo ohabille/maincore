@@ -35,7 +35,6 @@ implements  \MainPorts\Requests\UrlMatchImplement,
     {
         $this->_routes = $routes;
         $this->setMatches();
-        // $this->_matches = $this->readStepsUri();
     }
 
     public static function constructClass(
@@ -48,10 +47,14 @@ implements  \MainPorts\Requests\UrlMatchImplement,
     private function setMatches() : void
     {
         $matches = $this->readStepsUri();
-        $keys = $this->_routes->getArgs()->{'keys'};
+
+        $keys = $this->_routes->getKeys();
 
         foreach ($matches as $k=>$val)
             $this->_matches[$keys[$k]] = $val;
+
+        if (is_null($this->_matches)) 
+            $this->_matches[current($keys)] = $this->_routes->getDefaultRoute();
     }
 
     /**
@@ -66,8 +69,6 @@ implements  \MainPorts\Requests\UrlMatchImplement,
             strip_tags(htmlentities($_SERVER['REQUEST_URI'], ENT_QUOTES)),
             $match
         );
-
-
 
         return $match[count($match) - 1];
     }

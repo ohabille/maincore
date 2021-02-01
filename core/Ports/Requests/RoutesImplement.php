@@ -5,6 +5,11 @@ namespace MainPorts\Requests;
 interface RoutesImplement
 {
     /**
+     * Retourne les clefs de requète
+     * @return stdClass $_conf->{'keys'}
+     */
+    public function getKeys() : array;
+    /**
      * Retourne les noms des arguments des routes
      * @return stdClass $_conf->{'args'}
      */

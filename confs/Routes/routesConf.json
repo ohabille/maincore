@@ -1,9 +1,9 @@
 {
+    "keys" : [
+        "request",
+        "slug"
+    ],
     "args" : {
-        "keys" : [
-            "request",
-            "slug"
-        ],
         "slug" : "([_a-zA-Z0-9]+)"
     },
     "pattern" : "(\\/([_\\-a-zA-Z0-9]+))",
