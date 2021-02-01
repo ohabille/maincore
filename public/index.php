@@ -11,7 +11,7 @@ $grendelRequest = GrendelRequests::getInstance();
 
 // dump($grendelRequest->instanceOf('Routes')->getRoutes());
 // dump($grendelRequest->instanceOf('UrlMatches')->getMatches());
-// dump($grendelRequest->instanceOf('UrlRequest')->getRequest());
+dump($grendelRequest->instanceOf('UrlRequest')->getRequest());
 dump($grendelRequest->instanceOf('UrlArgs')->getArgs());
 
 ?>

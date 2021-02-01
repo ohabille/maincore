@@ -49,23 +49,31 @@ implements  \MainPorts\SingleTonImplement
     {
         $this->_arg = key($this->_routes->getArgs());
 
-
-        $this->_args = isset($this->_matches[$this->_arg]) ?
-            $this->findArg(): [];
+        $this->_args = $this->findArg();
     }
 
     private function findArg() : array
     {
-        $pattern = isset($this->_route->{$this->_arg}) ?
-            $this->_route->{$this->_arg}: current($this->_routes);
-
-        $test = preg_match(
-            '#'.$pattern.'#',
-            $this->_matches[$this->_arg],
+        if (0 != preg_match(
+            '#'.$this->getPattern().'#',
+            $this->getMatchArg(),
             $match
-        );
+        )) return !empty($match) ? self::cleanMatch($match): $match;
 
-        return empty($match) ? self::cleanMatch($match): $match;
+        return [];
+    }
+
+    private function getPattern()
+    {
+        return isset($this->_route->{$this->_arg}) ?
+        $this->_route->{$this->_arg}:
+        current($this->_routes->getArgs());
+    }
+
+    private function getMatchArg()
+    {
+        return isset($this->_matches[$this->_arg]) ?
+            $this->_matches[$this->_arg]: '';
     }
 
     private static function cleanMatch(array $match) : array
