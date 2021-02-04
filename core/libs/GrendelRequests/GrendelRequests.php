@@ -27,8 +27,10 @@ implements  \MainPorts\SingleTonImplement
         );
         self::$UrlArgs = UrlArgs::getInstance(
             self::$Routes,
-            self::$UrlMatches->getMatches(),
-            self::$UrlRequest->getRequest()
+            self::$UrlMatches,
+            self::$UrlRequest
+            // self::$UrlMatches->getMatches(),
+            // self::$UrlRequest->getRequest()
         );
 
         if (!empty($_POST)) {

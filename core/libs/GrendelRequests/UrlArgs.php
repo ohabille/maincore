@@ -38,11 +38,13 @@ implements  \MainPorts\SingleTonImplement
 
     private static function constructClass(
         \MainPorts\Requests\RoutesImplement $routes,
-        array $matches,
-        string $request
+        \MainPorts\Requests\UrlMatchImplement $matches,
+        \MainPorts\Requests\UrlRequestImplement $request
     ) : \MainPorts\SingleTonImplement
     {
-        return new self::$class($routes, $matches, $request);
+        return new self::$class(
+            $routes, $matches->getMatches(), $request->getRequest()
+        );
     }
 
     private function setArgs() : void
