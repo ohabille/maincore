@@ -36,7 +36,7 @@ implements  \MainPorts\SingleTonImplement
         $this->setArgs();
     }
 
-    private static function constructClass(
+    private static function setInstance(
         \MainPorts\Requests\RoutesImplement $routes,
         \MainPorts\Requests\UrlMatchImplement $matches,
         \MainPorts\Requests\UrlRequestImplement $request
@@ -56,11 +56,13 @@ implements  \MainPorts\SingleTonImplement
 
     private function findArg() : array
     {
-        if (0 != preg_match(
+        $test = preg_match(
             '#'.$this->getPattern().'#',
             $this->getMatchArg(),
             $match
-        )) return !empty($match) ? self::cleanMatch($match): $match;
+        );
+        if (0 != $test)
+            return !empty($match) ? self::cleanMatch($match): $match;
 
         return [];
     }
@@ -68,8 +70,8 @@ implements  \MainPorts\SingleTonImplement
     private function getPattern()
     {
         return isset($this->_route->{$this->_arg}) ?
-        $this->_route->{$this->_arg}:
-        current($this->_routes->getArgs());
+            $this->_route->{$this->_arg}:
+            current($this->_routes->getArgs());
     }
 
     private function getMatchArg()

@@ -31,6 +31,7 @@ implements \MainPorts\FuncsImplement,
      */
     private static function readStd($std) : array
     {
+        $conf = [];
         while (false !== current($std)) {
             $conf[key($std)] = self::getCurrent($std);
             next($std);
@@ -54,7 +55,7 @@ implements \MainPorts\FuncsImplement,
     /**
      * Vérifie si la variable transmise est un object stdClass ou un array
      * @var    stdClass/array $std : l'objet stdClass ou un array
-     * @return bool 
+     * @return bool
      */
     private static function isReadable($std) : bool
     {

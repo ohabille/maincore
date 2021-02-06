@@ -1,8 +1,5 @@
 {
-    "keys" : [
-        "request",
-        "slug"
-    ],
+    "requestKey" : "request",
     "args" : {
         "slug" : "([_a-zA-Z0-9]+)"
     },

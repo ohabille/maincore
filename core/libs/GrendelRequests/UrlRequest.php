@@ -44,7 +44,7 @@ implements  \MainPorts\Requests\UrlRequestImplement,
         $this->setRequest();
     }
 
-    public static function constructClass(
+    public static function setInstance(
         \MainPorts\Requests\RoutesImplement $routes,
         \MainPorts\Requests\UrlMatchImplement $matches
     ) : \MainPorts\SingleTonImplement

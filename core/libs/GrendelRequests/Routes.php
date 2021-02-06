@@ -34,13 +34,25 @@ implements  \MainPorts\Requests\RoutesImplement,
         $this->_routes = getConf('Routes/routes');
     }
 
+    private function getRequestKey() : string
+    {
+        return $this->_conf->{'requestKey'};
+    }
+
     /**
      * Retourne les clefs de requète
      * @return array
      */
     public function getKeys() : array
     {
-        return $this->_conf->{'keys'};
+        $keys = array_merge(
+            [$this->getRequestKey()],
+            array_keys(stdToArray($this->getArgs()))
+        );
+
+        reset($this->_conf->{'args'});
+
+        return $keys;
     }
 
     /**

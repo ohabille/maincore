@@ -37,7 +37,7 @@ implements  \MainPorts\Requests\UrlMatchImplement,
         $this->setMatches();
     }
 
-    public static function constructClass(
+    public static function setInstance(
         \MainPorts\Requests\RoutesImplement $routes
     ) : \MainPorts\SingleTonImplement
     {
@@ -53,7 +53,7 @@ implements  \MainPorts\Requests\UrlMatchImplement,
         foreach ($matches as $k=>$val)
             $this->_matches[$keys[$k]] = $val;
 
-        if (is_null($this->_matches)) 
+        if (is_null($this->_matches))
             $this->_matches[current($keys)] = $this->_routes->getDefaultRoute();
     }
 

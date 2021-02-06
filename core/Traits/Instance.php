@@ -31,15 +31,6 @@ trait Instance
      */
     public static function setInstance() : \MainPorts\SingleTonImplement
     {
-        if (0 < func_num_args()) {
-            return call_user_func_array(
-                [self::$class, 'constructClass'],
-                func_get_args()
-            );
-        }
-
         return new self::$class;
     }
-
-    public static function constructClass() {}
 }
