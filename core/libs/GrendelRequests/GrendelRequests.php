@@ -36,8 +36,23 @@ implements  \MainPorts\SingleTonImplement
         }
     }
 
-    public function instanceOf(string $class)
+    public function getRoutes()
     {
-        return self::${$class};
+        return self::$Routes->getRoutes();
+    }
+
+    public function getMatches()
+    {
+        return self::$UrlMatches->getMatches();
+    }
+
+    public function getRequest()
+    {
+        return self::$UrlRequest->getRequest();
+    }
+
+    public function getArgs()
+    {
+        return self::$UrlArgs->getArgs();
     }
 }
