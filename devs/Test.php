@@ -13,22 +13,22 @@ class Test implements \MainPorts\SingleTonImplement
     /**
      * @var string
      */
-    private $_test;
+    private $_controller;
 
-    private function __construct(string $test)
+    private function __construct(string $controller)
     {
-        $this->_test = $test;
+        $this->_controller = $controller;
     }
 
-    public static function constructClass(
-        string $test
+    public static function setInstance(
+        string $controller
     ) : \MainPorts\SingleTonImplement
     {
-        return new self::$class($test);
+        return new self::$class($controller);
     }
 
-    public function getTest() : string
+    public function getController() : string
     {
-        return $this->_test;
+        return $this->_controller;
     }
   }
