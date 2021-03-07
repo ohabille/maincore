@@ -1,23 +1,23 @@
 {
-    "home" : {
+    "Home" : {
         "request" : "(home|accueil)",
         "slug" : ""
     },
-    "notFound" : {
+    "NotFound" : {
         "request" : "notFound"
     },
-    "articles" : {
+    "Articles" : {
         "request" : "articles",
         "slug" : "(page|last)(\\-([0-9]+))?"
     },
-    "article" : {
+    "Article" : {
         "request" : "article"
     },
-    "categories" : {
+    "Categories" : {
         "request" : "categories",
         "slug" : ""
     },
-    "categorie" : {
+    "Categorie" : {
         "request": "([_a-zA-Z0-9]+)",
         "slug" : "(page|last)(\\-([0-9]+))?"
     }

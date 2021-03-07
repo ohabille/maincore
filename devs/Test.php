@@ -10,27 +10,27 @@ class Test implements \MainPorts\SingleTonImplement
      * @var \MainPorts\SingleTonImplement
      */
     private static $instance;
+    private static $dataNamespace = '\\User\\DatasConstructors\\';
     /**
-     * @var string
+     * @var object
      */
     private $_controller;
 
-    private function __construct(\GrendelRequests\GrendelRequests $grendel)
+    private function __construct(
+        \MainPorts\Controllers\RequestImplements $request
+    )
     {
-        $this->_controller = $grendel->getRequest();
+        $constructor = self::$dataNamespace.$request->getRequest();
 
-        dump($this->_controller);
+        $this->_controller = new $constructor($request->getArgs());
+
+        dump($this->_controller->getDatas());
     }
 
     public static function setInstance(
-        \GrendelRequests\GrendelRequests $grendel
+        \MainPorts\Controllers\RequestImplements $request
     ) : \MainPorts\SingleTonImplement
     {
-        return new self::$class($grendel);
-    }
-
-    public function getController() : string
-    {
-        return $this->_controller;
+        return new self::$class($request);
     }
   }

@@ -3,7 +3,8 @@
 namespace GrendelRequests;
 
 class GrendelRequests
-implements  \MainPorts\SingleTonImplement
+implements  \MainPorts\SingleTonImplement,
+            \MainPorts\Controllers\RequestImplements
 {
     use \MainTraits\Instance;
 
@@ -46,12 +47,12 @@ implements  \MainPorts\SingleTonImplement
         return self::$UrlMatches->getMatches();
     }
 
-    public function getRequest()
+    public function getRequest() : string
     {
         return self::$UrlRequest->getRequest();
     }
 
-    public function getArgs()
+    public function getArgs() : array
     {
         return self::$UrlArgs->getArgs();
     }

@@ -8,10 +8,10 @@ require_once '../core/initCore.php';
 
 // $servicesConf = parseConf('devs/injection');
 
-$grendelRequest = GrendelRequests::getInstance();
+$request = GrendelRequests::getInstance();
 
-dump($grendelRequest->getArgs());
+// dump($request->getArgs());
 
-$test = Test::getInstance($grendelRequest);
+$test = Test::getInstance($request);
 
 ?>
