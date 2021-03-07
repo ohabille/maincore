@@ -15,16 +15,18 @@ class Test implements \MainPorts\SingleTonImplement
      */
     private $_controller;
 
-    private function __construct(string $controller)
+    private function __construct(\GrendelRequests\GrendelRequests $grendel)
     {
-        $this->_controller = $controller;
+        $this->_controller = $grendel->getRequest();
+
+        dump($this->_controller);
     }
 
     public static function setInstance(
-        string $controller
+        \GrendelRequests\GrendelRequests $grendel
     ) : \MainPorts\SingleTonImplement
     {
-        return new self::$class($controller);
+        return new self::$class($grendel);
     }
 
     public function getController() : string
