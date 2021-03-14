@@ -11,7 +11,7 @@
     },
     "articles" : {
         "request" : "articles",
-        "slug" : "(page|last)(\\-([0-9]+))?"
+        "slug" : "(first|page|last)(\\-([0-9]+))?"
     },
     "article" : {
         "request" : "article"
@@ -21,6 +21,6 @@
     },
     "categorie" : {
         "request": "([_a-zA-Z0-9]+)",
-        "slug" : "(page|last)(\\-([0-9]+))?"
+        "slug" : "(first|page|last)(\\-([0-9]+))?"
     }
 }
