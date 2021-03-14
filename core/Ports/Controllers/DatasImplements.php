@@ -8,5 +8,5 @@ interface DatasImplements
      * Retourne les données initialisées
      * @return array [description]
      */
-    public function getDatas() : array;
+    public function getDatas() : \stdClass;
 }

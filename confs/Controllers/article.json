@@ -1,0 +1,7 @@
+{
+    "Controller" : "Article",
+    "datas" : {
+        "pageTitle" : "article",
+        "title" : "Article"
+    }
+}

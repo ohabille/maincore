@@ -2,7 +2,7 @@
 
 namespace User\DatasConstructors;
 
-class Home extends MainConstructor
+class Article extends MainConstructor
 implements \MainPorts\Controllers\DatasImplements
 {
     public function __construct(\stdclass $primaryDatas, array $args)

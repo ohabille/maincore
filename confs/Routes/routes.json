@@ -1,23 +1,25 @@
 {
-    "Home" : {
+    "home" : {
         "request" : "(home|accueil)",
         "slug" : ""
     },
-    "NotFound" : {
+    "notFound" : {
         "request" : "notFound"
     },
-    "Articles" : {
+    "contact" : {
+        "request" : "contact"
+    },
+    "articles" : {
         "request" : "articles",
         "slug" : "(page|last)(\\-([0-9]+))?"
     },
-    "Article" : {
+    "article" : {
         "request" : "article"
     },
-    "Categories" : {
-        "request" : "categories",
-        "slug" : ""
+    "categories" : {
+        "request" : "categories"
     },
-    "Categorie" : {
+    "categorie" : {
         "request": "([_a-zA-Z0-9]+)",
         "slug" : "(page|last)(\\-([0-9]+))?"
     }

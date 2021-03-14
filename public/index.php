@@ -1,7 +1,7 @@
 <?php
 
 use \GrendelRequests\GrendelRequests;
-use \User\Test;
+use \User\Test as Controller;
 
 // chargement du fichier d'initialisation
 require_once '../core/initCore.php';
@@ -10,8 +10,9 @@ require_once '../core/initCore.php';
 
 $request = GrendelRequests::getInstance();
 
+// dump($request->getRequest());
 // dump($request->getArgs());
 
-$test = Test::getInstance($request);
+$test = Controller::getInstance($request);
 
 ?>
