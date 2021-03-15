@@ -10,31 +10,9 @@ class Test implements \MainPorts\SingleTonImplement
      * @var \MainPorts\SingleTonImplement
      */
     private static $instance;
-    /**
-     * @var string
-     */
-    private static $dataNamespace = '\\User\\DatasConstructors\\';
-    /**
-     * @var \stdClass
-     */
-    private $_conf;
-    /**
-     * @var object
-     */
-    private $_controller;
 
-    private function __construct(
-        \MainPorts\Controllers\RequestImplements $request
-    )
+    private function __construct()
     {
-        $this->_conf = getConf('Controllers/'.$request->getRequest());
-
-        $constructor = self::$dataNamespace.$this->_conf->{'Controller'};
-
-        $this->_controller = new $constructor(
-            $this->_conf->{'datas'},
-            $request->getArgs()
-        );
     }
 
     public static function setInstance(
