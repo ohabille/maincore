@@ -9,6 +9,8 @@ implements \MainPorts\Controllers\DatasImplements
     {
         parent::__construct($primaryDatas);
 
-        dump($args);
+        $db = new \User\Test('articles');
+
+        dump($db->getSomeEntries($this->_ctrlConf->{'nbrPPage'}, 2));
     }
 }

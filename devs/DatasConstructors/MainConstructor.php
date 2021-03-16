@@ -11,12 +11,17 @@ abstract class MainConstructor
     /**
      * @var \stdClass
      */
+    protected $_controllerConf;
+    /**
+     * @var \stdClass
+     */
     protected $_datas;
 
     public function __construct(\stdClass $primaryDatas)
     {
         $this->_conf = getConf('Controllers/main');
-        $this->_datas = $primaryDatas;
+        $this->_ctrlConf = $primaryDatas;
+        $this->_datas = $primaryDatas->{'datas'};
 
         $this->_datas->{'pageTitle'} = $this->_conf->{'mainTitle'}
             .'-'.$this->_datas->{'pageTitle'};

@@ -32,11 +32,9 @@ class Controller implements \MainPorts\SingleTonImplement
         $constructor = self::$dataNamespace.$this->_conf->{'Controller'};
 
         $this->_constructor = new $constructor(
-            $this->_conf->{'datas'},
+            $this->_conf,
             $request->getArgs()
         );
-
-        dump($this->_constructor->getDatas());
     }
 
     public static function setInstance(
