@@ -11,6 +11,7 @@ implements \MainPorts\Controllers\DatasImplements
 
         $db = new \User\Test('articles');
 
-        dump($db->getSomeEntries($this->_ctrlConf->{'nbrPPage'}, 2));
+        $test = $db->getSomeEntries($this->_ctrlConf->{'nbrPPage'});
+        dump($test);
     }
 }

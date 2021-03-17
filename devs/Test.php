@@ -4,53 +4,44 @@ namespace User;
 
 class Test
 {
+    private $_dbName;
     private $_db;
     private $_mounth;
 
     public function __construct(string $dbName)
     {
-        $this->_db = parseConf('db/'.$dbName.'/years');
+        $this->_dbName = $dbName;
+        $this->_db = $this->getDb();
     }
 
     public function getTotal() : int
     {
-        return array_sum($this->findAllInDb('nbr'));
+        return array_sum(array_values($this->_db));
     }
 
-    public function findAllInDb(string $key, string $node = '_db') : array
+    public function getSomeEntries(int $limit, int $step = 1) : array
     {
-        $return = [];
+        $nbr = 0;
+        $entries = [];
 
-        foreach ($this->{$node} as $k=>$val)
-            $return[$k] = $val->{$key};
+        dump($this->filterMounths($limit, $step));
 
-        return $return;
+        return $entries;
     }
 
-    public function getSomeEntries(int $limit, int $step = 1)
+    private function filterMounths(int $limit, int $step) : array
     {
         $start = $limit * ($step - 1) + 1;
-        dump($start);
         $end = $start + $limit;
-        dump($end);
         $nbr = 0;
         $mounths = [];
 
         foreach ($this->_db as $k=>$val) {
-            $nbr += $val->{'nbr'};
+            $nbr += $val;
 
             if ($nbr < $start) continue;
 
-            foreach ($val->{'mounths'} as $mounth) {
-                if ($nbr > $end) {
-                    dd($nbr);
-                    // $nbr -= $;
-                }
-
-                $mounths[] = $k.'-'.$mounth;
-                dump($nbr);
-                if ($nbr > $end) break;
-            }
+            $mounths[] = $k;
 
             if ($nbr > $end) break;
         }
@@ -58,13 +49,8 @@ class Test
         return $mounths;
     }
 
-    private function getAllKeys(string $node = '_db')
+    private function getDb(string $node = 'years') : array
     {
-        $return = [];
-
-        foreach ($this->{$node} as $k=>$val)
-            $return[] = $k;
-
-        return $return;
+        return stdToArray(parseConf('db/'.$this->_dbName.'/'.$node));;
     }
   }
