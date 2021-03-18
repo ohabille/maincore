@@ -11,12 +11,16 @@ class Test
     public function __construct(string $dbName)
     {
         $this->_dbName = $dbName;
-        $this->_db = $this->getDb();
+        $this->_db = $this->getNode();
     }
 
     public function getTotal() : int
     {
-        return array_sum(array_values($this->_db));
+        $nbr = 0;
+
+        foreach ($this->_db as $val) $nbr += $val->{'nbr'};
+
+        return $nbr;
     }
 
     public function getSomeEntries(int $limit, int $step = 1) : array
@@ -24,33 +28,44 @@ class Test
         $nbr = 0;
         $entries = [];
 
-        dump($this->filterMounths($limit, $step));
+        dump($this->selectYears($limit, $step));
 
         return $entries;
     }
 
-    private function filterMounths(int $limit, int $step) : array
+    private function selectYears(int $limit, int $step) : array
     {
-        $start = $limit * ($step - 1) + 1;
-        $end = $start + $limit;
+        $start = self::getStart($limit, $step);
+        $end = self::getEnd($start, $limit);
         $nbr = 0;
-        $mounths = [];
+        $years = [];
 
         foreach ($this->_db as $k=>$val) {
-            $nbr += $val;
+            $nbr += $val->{'nbr'};
 
             if ($nbr < $start) continue;
 
-            $mounths[] = $k;
+            $years[] = $k;
+            dump($this->_db->{$k}->{'mounths'});
 
-            if ($nbr > $end) break;
+            if ($nbr >= $end) break;
         }
 
-        return $mounths;
+        return $years;
     }
 
-    private function getDb(string $node = 'years') : array
+    private static function getStart(int $limit, int $step) : int
     {
-        return stdToArray(parseConf('db/'.$this->_dbName.'/'.$node));;
+        return $limit * ($step - 1) + 1;
+    }
+
+    private static function getEnd(int $start, int $limit) : int
+    {
+        return $start + $limit;
+    }
+
+    private function getNode(string $node = 'years') : \stdClass
+    {
+        return parseConf('db/'.$this->_dbName.'/'.$node);
     }
   }
