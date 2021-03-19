@@ -6,12 +6,17 @@ class Test
 {
     private $_dbName;
     private $_db;
-    private $_mounth;
+    private $_select = [];
 
     public function __construct(string $dbName)
     {
         $this->_dbName = $dbName;
-        $this->_db = $this->getNode();
+        $this->setNode();
+    }
+
+    private function setNode(string $node = 'years') : void
+    {
+        $this->_db = parseConf('db/'.$this->_dbName.'/'.$node);
     }
 
     public function getTotal() : int
@@ -23,35 +28,35 @@ class Test
         return $nbr;
     }
 
-    public function getSomeEntries(int $limit, int $step = 1) : array
+    public function getSomeEntries(int $limit, int $step = 1) : void
     {
-        $nbr = 0;
-        $entries = [];
-
-        dump($this->selectYears($limit, $step));
-
-        return $entries;
+        $this->selectYears($limit, $step);
     }
 
-    private function selectYears(int $limit, int $step) : array
+    private function selectYears(int $limit, int $step) : void
     {
         $start = self::getStart($limit, $step);
         $end = self::getEnd($start, $limit);
         $nbr = 0;
-        $years = [];
 
-        foreach ($this->_db as $k=>$val) {
-            $nbr += $val->{'nbr'};
-
-            if ($nbr < $start) continue;
-
-            $years[] = $k;
-            dump($this->_db->{$k}->{'mounths'});
-
-            if ($nbr >= $end) break;
+        if (current($this->_db)->{'nbr'} < $start) {
+            dump(key($this->_db));
+            if (false !== next($this->_db)) {
+                $this->selectYears($limit, $step);
+            }
         }
 
-        return $years;
+        if ($nbr <= $limit && self::isCurrent($this->_db)) {
+            $this->_select[] = key($this->_db);
+
+            $limit -= current($this->_db)->{'nbr'};
+
+            echo 'write';
+            if (false !== next($this->_db)) {
+                dump(key($this->_db));
+                $this->selectYears($limit, $step);
+            }
+        }
     }
 
     private static function getStart(int $limit, int $step) : int
@@ -64,8 +69,13 @@ class Test
         return $start + $limit;
     }
 
-    private function getNode(string $node = 'years') : \stdClass
+    private static function isCurrent(\stdClass $objet) : bool
     {
-        return parseConf('db/'.$this->_dbName.'/'.$node);
+        return false === current($objet) ? false : true;
+    }
+
+    public function getSelect() : array
+    {
+        return $this->_select;
     }
   }
