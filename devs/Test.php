@@ -35,65 +35,90 @@ class Test
         return $nbr;
     }
 
-    public function getSomeEntries(int $limit, int $step = 1) : void
+    public function selectSomesEntries(int $limit, int $step = 1) : void
     {
-        $start = self::getStart($limit, $step);
-        $this->selectYears($start, self::getEnd($start, $limit));
-    }
+        dump('step : '.$step.', limit : '.$limit);
+        $start = $this->selectDb($this->getStart($limit, $step));
 
-    private static function getStart(int $limit, int $step) : int
-    {
-        return $limit * ($step - 1) + 1;
-    }
-
-    private static function getEnd(int $start, int $limit) : int
-    {
-        return $start + $limit;
-    }
-
-    private function selectYears(int $start, int $end) : void
-    {
-        $nbr = count(get_object_vars($this->_select));
-        $limit = $end - $start;
-
-        $nbrEntries = current($this->_node)->{'nbr'};
-
-        if ($nbrEntries < $start) {
-            // echo '<br />'.$start.' to '.$end;
-            $start -= $nbrEntries;
-            $end -= $nbrEntries;
+        if ($start > 0) {
+            $this->selectEntries($start, $limit + $start);
         }
-        else {
-            // echo '<br />'.$start.' to '.$end.' : '
-            // .key($this->_mainNode).'-'.key($this->_node);
-
-            $db = parseConf(
-                'db/'.$this->_dbName.'/'
-                .key($this->_mainNode).'-'
-                .key($this->_node)
-            );
-
-            $first = $start - 1;
-            $nbrEntries = count(get_object_vars($db));
-            $length = $nbrEntries < $end ?
-                $end - ($end - $nbrEntries) - $first: $end;
-            dump(array_slice(
-                get_object_vars($db), $start - 1, $length, true
-            ));
-        }
-
-        $this->setNext();
-
-        if (false !== current($this->_mainNode))
-            $this->selectYears($start, $end);
     }
 
-    private function setNext() : void
+    private function getStart(int $limit, int $step) : int
     {
-        if (false === next($this->_node)) {
-            if (false !== next($this->_mainNode))
+        return 1 + ($limit * $step) - $limit;
+    }
+
+    private function selectDb(int $start) : int
+    {
+        $nbr = current($this->_mainNode)->{'nbr'};
+
+        if ($nbr < $start) {
+            $start -= $nbr;
+            if (false !== next($this->_mainNode)) {
                 $this->setNode();
+                return $this->selectDb($start);
+            }
+            else return 0;
         }
+
+        $nbr = current($this->_node)->{'nbr'};
+
+        if ($nbr < $start) {
+            $start -= $nbr;
+            if (false !== next($this->_node))
+                return $this->selectDb($start);
+            else return 0;
+        }
+
+        return $start;
+    }
+
+    private function selectEntries(int $start, int $limit) : bool
+    {
+        dump('start : '.$start.', limit : '.$limit);
+        dump(key($this->_mainNode).'-'.key($this->_node));
+        $db = parseConf(
+            'db/'.$this->_dbName.'/'
+            .key($this->_mainNode).'-'
+            .key($this->_node)
+        );
+
+        $nbr = getNbrOf($db);
+        dump($nbr - $start -1);
+        $end = $nbr > $limit ?
+            abs($limit - $nbr):
+            ;
+
+        // for ($i = 1; $i <= $nbr; $i++) {
+        //     if ($start > $i) {
+        //         if (false === next($db)) break;
+        //         else continue;
+        //     }
+        //
+        //     $this->_select->{key($db)} = current($db);
+        //     if (false === next($db)) break;
+        //
+        //     if ($i + $start > $limit) break;
+        // }
+        //
+        // $nbr = getNbrOf($this->_select);
+        //
+        // if ($nbr < $limit) {
+        //     $limit -= $nbr;
+        //     $start -= $nbr;
+        //
+        //     if (false === next($this->_node)) {
+        //         if (false !== next($this->_mainNode))
+        //             $this->setNode();
+        //         else return true;
+        //     }
+        //
+        //     return $this->selectEntries($start, $limit);
+        // }
+        //
+        // return true;
     }
 
     public function getSelect() : \stdClass

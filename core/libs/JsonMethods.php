@@ -2,7 +2,7 @@
 
 namespace MainLib;
 
-class ParseJsConfs
+class JsonMethods
 implements  \MainPorts\FuncsImplement,
             \MainPorts\SingleTonImplement,
             \MainPorts\ParseConfsImplement
@@ -38,5 +38,15 @@ implements  \MainPorts\FuncsImplement,
     public function getConf(string $filePath) : \stdClass
     {
         return parseConf('confs/'.$filePath);
+    }
+
+    /**
+     * Retourne le nombre d'entrées
+     * @param  stdClass $obj L'objet source
+     * @return int           Le nombre d'entrées
+     */
+    public static function getNbrOf(\stdClass $obj) : int
+    {
+        return count(get_object_vars($obj));
     }
 }

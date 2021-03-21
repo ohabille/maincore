@@ -1,9 +1,10 @@
 {
-    "parseConfs" : {
-        "namespace" : "\\MainLib\\ParseJsConfs",
+    "jsonMethods" : {
+        "namespace" : "\\MainLib\\JsonMethods",
         "methods" : [
             "parseConf",
-            "getConf"
+            "getConf",
+            "getNbrOf"
         ]
     },
     "stdToArray" : {
