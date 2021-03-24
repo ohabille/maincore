@@ -37,12 +37,9 @@ class Test
 
     public function selectSomesEntries(int $limit, int $step = 1) : void
     {
-        dump('step : '.$step.', limit : '.$limit);
         $start = $this->selectDb($this->getStart($limit, $step));
 
-        if ($start > 0) {
-            $this->selectEntries($start, $limit + $start);
-        }
+        if ($start > 0) $this->selectEntries($start, $limit);
     }
 
     private function getStart(int $limit, int $step) : int
@@ -77,48 +74,47 @@ class Test
 
     private function selectEntries(int $start, int $limit) : bool
     {
-        dump('start : '.$start.', limit : '.$limit);
-        dump(key($this->_mainNode).'-'.key($this->_node));
-        $db = parseConf(
+        $this->setCurrentDb();
+
+        $this->goToStart($start);
+
+        $nbr = getNbrOf($this->_select);
+
+        $end = $limit - $nbr;
+
+        for ($i = 0; $i < $end; $i++) {
+            $this->_select->{key($this->_db)} = current($this->_db);
+
+            if (false === next($this->_db) || $i === $limit) break;
+        }
+
+        if ($start > 1) $start--;
+
+        if ($nbr < $limit) {
+            if (false === next($this->_node)) {
+                if (false !== next($this->_mainNode)) $this->setNode();
+                else return false;
+            }
+
+            return $this->selectEntries($start, $limit);
+        }
+
+        return true;
+    }
+
+    private function setCurrentDB() : void
+    {
+        $this->_db = parseConf(
             'db/'.$this->_dbName.'/'
             .key($this->_mainNode).'-'
             .key($this->_node)
         );
+    }
 
-        $nbr = getNbrOf($db);
-        dump($nbr - $start -1);
-        $end = $nbr > $limit ?
-            abs($limit - $nbr):
-            ;
-
-        // for ($i = 1; $i <= $nbr; $i++) {
-        //     if ($start > $i) {
-        //         if (false === next($db)) break;
-        //         else continue;
-        //     }
-        //
-        //     $this->_select->{key($db)} = current($db);
-        //     if (false === next($db)) break;
-        //
-        //     if ($i + $start > $limit) break;
-        // }
-        //
-        // $nbr = getNbrOf($this->_select);
-        //
-        // if ($nbr < $limit) {
-        //     $limit -= $nbr;
-        //     $start -= $nbr;
-        //
-        //     if (false === next($this->_node)) {
-        //         if (false !== next($this->_mainNode))
-        //             $this->setNode();
-        //         else return true;
-        //     }
-        //
-        //     return $this->selectEntries($start, $limit);
-        // }
-        //
-        // return true;
+    private function goToStart(int $start) : void
+    {
+        for ($i = 1; $i < $start; $i++)
+            if (false === next($this->_db)) break;
     }
 
     public function getSelect() : \stdClass
