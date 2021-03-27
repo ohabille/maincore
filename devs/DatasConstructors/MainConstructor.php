@@ -17,13 +17,13 @@ abstract class MainConstructor
      */
     protected $ctrlConf;
 
-    public function __construct(\stdClass $primaryDatas)
+    public function __construct(\stdClass $CtrlConf)
     {
         $this->_conf = getConf('Controllers/main');
 
-        $this->_ctrlConf = $primaryDatas;
+        $this->_datas = $CtrlConf->{'datas'};
 
-        $this->_datas = $primaryDatas->{'datas'};
+        $this->_ctrlConf = $CtrlConf;
 
         $this->_datas->{'pageTitle'} = $this->_conf->{'mainTitle'}
             .'-'.$this->_datas->{'pageTitle'};

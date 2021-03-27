@@ -4,6 +4,7 @@
         "MainTraits",
         "MainLib",
         "GrendelRequests",
+        "GrendelDb",
         "User",
         "App"
     ],
@@ -11,6 +12,7 @@
     "MainTraits" : "core/Traits/",
     "MainLib" : "core/libs/",
     "GrendelRequests" : "core/libs/GrendelRequests/",
+    "GrendelDb" : "core/libs/GrendelDb/",
     "User" : "devs/",
     "App" : "devs/App/"
 }
