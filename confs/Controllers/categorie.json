@@ -1,5 +1,6 @@
 {
     "Controller" : "Categorie",
+    "nbrPPage" : 5,
     "datas" : {
         "pageTitle" : "catégorie",
         "title" : "Catégorie"

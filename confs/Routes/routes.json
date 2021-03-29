@@ -1,26 +1,40 @@
 {
     "home" : {
         "request" : "(home|accueil)",
-        "slug" : ""
+        "slug" : "",
+        "menu" : true,
+        "name" : "Home"
     },
     "notFound" : {
-        "request" : "notFound"
+        "request" : "notFound",
+        "menu" : false,
+        "name" : "Not Found"
     },
     "contact" : {
-        "request" : "contact"
+        "request" : "contact",
+        "menu" : true,
+        "name" : "Contact"
     },
     "articles" : {
         "request" : "articles",
-        "slug" : "(first|page|last)(\\-([0-9]+))?"
+        "slug" : "(first|page|last)(\\-([0-9]+))?",
+        "menu" : true,
+        "name" : "Article"
     },
     "article" : {
-        "request" : "article"
+        "request" : "article",
+        "menu" : false,
+        "name" : "Articles"
     },
     "categories" : {
-        "request" : "categories"
+        "request" : "categories",
+        "menu" : true,
+        "name" : "Categories"
     },
     "categorie" : {
         "request": "([_a-zA-Z0-9]+)",
-        "slug" : "(first|page|last)(\\-([0-9]+))?"
+        "slug" : "(first|page|last)(\\-([0-9]+))?",
+        "menu" : false,
+        "name" : "Categorie"
     }
 }

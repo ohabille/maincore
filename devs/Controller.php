@@ -35,6 +35,10 @@ class Controller implements \MainPorts\SingleTonImplement
             $this->_conf,
             $request->getArgs()
         );
+
+        foreach ($request->getRoutes() as $val) {
+            if ($val->{'menu'}) dump($val->{'name'});
+        }
     }
 
     public static function setInstance(
