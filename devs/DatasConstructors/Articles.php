@@ -14,8 +14,6 @@ implements \MainPorts\Controllers\DatasImplements
     {
         parent::__construct($CtrlConf);
 
-        echo $this->_datas->{'pageTitle'};
-
         $db = new Db('articles');
 
         $pager = new Pager(
@@ -32,7 +30,6 @@ implements \MainPorts\Controllers\DatasImplements
         foreach (range(2, $pager->getNbrsteps() - 1) as $val)
             echo '<a href="'.$link.'page-'.$val.'">'.$val.'</a> - ';
         echo '<a href="'.$link.'last">last</a>';
-        // Temporaires
 
         dump($select->getSelect());
     }

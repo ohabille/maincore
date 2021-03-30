@@ -32,6 +32,9 @@ abstract class MainConstructor
             empty($this->_datas->{'title'}) ?
             $this->_conf->{'mainTitle'}:
             $this->_datas->{'title'};
+
+        // Temporaire
+        echo $this->_datas->{'pageTitle'};
     }
 
     public function getDatas() : \stdClass

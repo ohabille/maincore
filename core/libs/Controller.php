@@ -38,7 +38,6 @@ class Controller implements \MainPorts\SingleTonImplement
                 .$val->{'name'}.'</a><br />';
             }
         }
-        // Temporaire
 
         $this->_constructor = new $constructor(
             $this->_conf,
