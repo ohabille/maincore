@@ -6,7 +6,8 @@ use \GrendelDb\Db;
 use \MainLib\Pager;
 use \GrendelDb\Select;
 
-class Articles extends MainConstructor
+class Articles
+extends \MainLib\MainConstructor
 implements \MainPorts\Controllers\DatasImplements
 {
     public function __construct(\stdclass $CtrlConf, array $args)

@@ -2,7 +2,8 @@
 
 namespace User\DatasConstructors;
 
-class NotFound extends MainConstructor
+class NotFound
+extends \MainLib\MainConstructor
 implements \MainPorts\Controllers\DatasImplements
 {
     public function __construct(\stdclass $primaryDatas, array $args)

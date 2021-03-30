@@ -1,6 +1,6 @@
 <?php
 
-namespace User;
+namespace MainLib;
 
 class Controller implements \MainPorts\SingleTonImplement
 {
@@ -31,14 +31,19 @@ class Controller implements \MainPorts\SingleTonImplement
 
         $constructor = self::$dataNamespace.$this->_conf->{'Controller'};
 
+        // Temporaire
+        foreach ($request->getRoutes() as $val) {
+            if ($val->{'menu'}) {
+                echo '<a href="'.$val->{'url'}.'">'
+                .$val->{'name'}.'</a><br />';
+            }
+        }
+        // Temporaire
+
         $this->_constructor = new $constructor(
             $this->_conf,
             $request->getArgs()
         );
-
-        foreach ($request->getRoutes() as $val) {
-            if ($val->{'menu'}) dump($val->{'name'});
-        }
     }
 
     public static function setInstance(

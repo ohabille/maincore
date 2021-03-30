@@ -1,6 +1,6 @@
 <?php
 
-namespace User\DatasConstructors;
+namespace MainLib;
 
 abstract class MainConstructor
 {

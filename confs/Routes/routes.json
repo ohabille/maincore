@@ -3,38 +3,45 @@
         "request" : "(home|accueil)",
         "slug" : "",
         "menu" : true,
+        "url" : "home",
         "name" : "Home"
     },
     "notFound" : {
         "request" : "notFound",
         "menu" : false,
+        "url" : "notFound",
         "name" : "Not Found"
     },
     "contact" : {
         "request" : "contact",
         "menu" : true,
+        "url" : "contact",
         "name" : "Contact"
     },
     "articles" : {
         "request" : "articles",
         "slug" : "(first|page|last)(\\-([0-9]+))?",
         "menu" : true,
-        "name" : "Article"
+        "url" : "articles",
+        "name" : "Articles"
     },
     "article" : {
         "request" : "article",
         "menu" : false,
-        "name" : "Articles"
+        "url" : "article",
+        "name" : "Article"
     },
     "categories" : {
         "request" : "categories",
         "menu" : true,
-        "name" : "Categories"
+        "url" : "categories",
+        "name" : "Catégories"
     },
     "categorie" : {
         "request": "([_a-zA-Z0-9]+)",
         "slug" : "(first|page|last)(\\-([0-9]+))?",
         "menu" : false,
-        "name" : "Categorie"
+        "url" : "categorie",
+        "name" : "Catégorie"
     }
 }
