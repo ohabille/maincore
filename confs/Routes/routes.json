@@ -4,44 +4,81 @@
         "slug" : "",
         "menu" : true,
         "url" : "home",
-        "name" : "Home"
+        "name" : "Home",
+        "Controller" : "Home",
+        "datas" : {
+            "pageTitle" : "home",
+            "title" : ""
+        }
     },
     "notFound" : {
         "request" : "notFound",
         "menu" : false,
         "url" : "notFound",
-        "name" : "Not Found"
+        "name" : "Not Found",
+        "Controller" : "NotFound",
+        "datas" : {
+            "pageTitle" : "not found",
+            "title" : "This page not found"
+        }
     },
     "contact" : {
         "request" : "contact",
         "menu" : true,
         "url" : "contact",
-        "name" : "Contact"
+        "name" : "Contact",
+        "Controller" : "Contact",
+        "datas" : {
+            "pageTitle" : "contact",
+            "title" : "Contact"
+        }
     },
     "articles" : {
         "request" : "articles",
         "slug" : "(first|page|last)(\\-([0-9]+))?",
         "menu" : true,
         "url" : "articles",
-        "name" : "Articles"
+        "name" : "Articles",
+        "Controller" : "Articles",
+        "nbrPPage" : 5,
+        "datas" : {
+            "pageTitle" : "articles",
+            "title" : "Articles"
+        }
     },
     "article" : {
         "request" : "article",
         "menu" : false,
         "url" : "article",
-        "name" : "Article"
+        "name" : "Article",
+        "Controller" : "Article",
+        "datas" : {
+            "pageTitle" : "article",
+            "title" : "Article"
+        }
     },
     "categories" : {
         "request" : "categories",
         "menu" : true,
         "url" : "categories",
-        "name" : "Catégories"
+        "name" : "Catégories",
+        "Controller" : "Categories",
+        "datas" : {
+            "pageTitle" : "catégories",
+            "title" : "Catégories"
+        }
     },
     "categorie" : {
         "request": "([_a-zA-Z0-9]+)",
         "slug" : "(first|page|last)(\\-([0-9]+))?",
         "menu" : false,
         "url" : "categorie",
-        "name" : "Catégorie"
+        "name" : "Catégorie",
+        "Controller" : "Categorie",
+        "nbrPPage" : 5,
+        "datas" : {
+            "pageTitle" : "catégorie",
+            "title" : "Catégorie"
+        }
     }
 }

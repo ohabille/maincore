@@ -27,22 +27,25 @@ class Controller implements \MainPorts\SingleTonImplement
         \MainPorts\Controllers\RequestImplements $request
     )
     {
-        $this->_conf = getConf('Controllers/'.$request->getRequest());
+        $this->_conf = $request->getRoutes()->{$request->getRequest()};
 
         $constructor = self::$dataNamespace.$this->_conf->{'Controller'};
-
-        // Temporaire
-        foreach ($request->getRoutes() as $val) {
-            if ($val->{'menu'}) {
-                echo '<a href="'.$val->{'url'}.'">'
-                .$val->{'name'}.'</a><br />';
-            }
-        }
 
         $this->_constructor = new $constructor(
             $this->_conf,
             $request->getArgs()
         );
+
+        // Temporaire
+        echo $this->_constructor->getDatas()->{'title'}.'<br />';
+
+        foreach ($request->getRoutes() as $val) {
+            if (!$val->{'menu'}) continue;
+
+            echo '<a href="'.$this->_constructor->getDatas()->{'host'}.'">'
+                .$val->{'name'}
+                .'</a> ';
+        }
     }
 
     public static function setInstance(

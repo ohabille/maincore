@@ -1,8 +1,0 @@
-{
-    "Controller" : "Articles",
-    "nbrPPage" : 5,
-    "datas" : {
-        "pageTitle" : "articles",
-        "title" : "Articles"
-    }
-}
