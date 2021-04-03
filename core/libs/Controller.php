@@ -2,6 +2,8 @@
 
 namespace MainLib;
 
+use \GrendelTpl\Skeleton;
+
 class Controller implements \MainPorts\SingleTonImplement
 {
     use \MainTraits\Instance;
@@ -46,6 +48,8 @@ class Controller implements \MainPorts\SingleTonImplement
                 .$val->{'name'}
                 .'</a> ';
         }
+
+        $tpl = new Skeleton($this->_conf->{'url'});
     }
 
     public static function setInstance(

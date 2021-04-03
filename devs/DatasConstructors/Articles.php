@@ -24,7 +24,7 @@ implements \MainPorts\Controllers\DatasImplements
 
         $select = new select($db, $pager);
 
-        // Temporaires
+        // Temporaire
         $link = $this->_datas->{'host'}.'articles/';
         echo '<br /><a href="'.$link.'first">first</a> - ';
         foreach (range(2, $pager->getNbrsteps() - 1) as $val)

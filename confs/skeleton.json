@@ -1,0 +1,7 @@
+{
+    "skeleton" : "\\[\\[\\hskeleton\\h(/?[a-zA-Z]+)+\\h\\]\\]",
+    "start" : "\\[\\[\\hblock\\h([A-Z]+)\\h\\]\\]",
+    "blank" : "(\\R?[[:blank:]]*)",
+    "end" : "\\[\\[\\hendblock\\h\\]\\]",
+    "brick" : "\\[\\#\\hbrick\\h([/_[:alnum:]]+)\\h\\#\\]"
+}

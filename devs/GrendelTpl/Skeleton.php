@@ -1,20 +1,18 @@
 <?php
 
-namespace User;
+namespace GrendelTpl;
 
-class Test
+use \GrendelTpl\SkeletonPatterns as Patterns;
+
+class Skeleton
 {
-    /**
-     * @var \stdClass
-     */
-    private static $patterns;
+    private $_view;
 
     public function __construct(string $view)
     {
-        self::$patterns = getConf('skeleton');
-
         $content = self::getTpls($view);
-        dump(self::isSkeleton($content));
+
+        dump(Patterns::getInstance()->findPattern('skeleton', $content));
     }
 
     /**

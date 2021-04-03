@@ -5,6 +5,7 @@
         "MainLib",
         "GrendelRequests",
         "GrendelDb",
+        "GrendelTpl",
         "User",
         "App"
     ],
@@ -13,6 +14,7 @@
     "MainLib" : "core/libs/",
     "GrendelRequests" : "core/libs/GrendelRequests/",
     "GrendelDb" : "core/libs/GrendelDb/",
+    "GrendelTpl" : "devs/GrendelTpl/",
     "User" : "devs/",
     "App" : "devs/App/"
 }
