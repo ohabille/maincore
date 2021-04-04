@@ -2,55 +2,51 @@
 
 namespace User;
 
-class Test
+class Test implements \MainPorts\SingleTonImplement
 {
+    use \MainTraits\Instance;
+
     /**
-     * @var \stdClass
+     * @var \MainPorts\SingleTonImplement
      */
-    private static $patterns;
+    private static $instance;
+    private static $conf;
 
-    public function __construct(string $view)
+    private function __construct()
     {
-        self::$patterns = getConf('skeleton');
-
-        $content = self::getTpls($view);
-        dump(self::isSkeleton($content));
+        self::$conf = getConf('articleConf');
     }
 
-    /**
-     * [getTpl description]
-     * @param  string $fileName : Le nom du template
-     * @return string           : Le contenu du template
-     */
-    private static function getTpls(string $fileName)
+    public function getContent(string $file) : string
     {
-        $file = ROOTDIRS.'devs/tpls/'.$fileName.'.tpl';
-    	return (file_exists($file) ? file_get_contents($file): '');
-    }
-
-    /**
-     * Vérifie si le template dépends d'un autre template
-     * @param  string  $content : Le contenu du template
-     * @return boolean
-     */
-    private static function isSkeleton(string $content)
-    {
-    	return (
-            0 < preg_match(
-                self::makePattern(self::$patterns->{'skeleton'}), $content
-            ) ?
-            true: false
+        return file_get_contents(
+            ROOTDIRS.self::$conf->{'dir'}.$file.self::$conf->{'ext'}
         );
     }
 
-    /**
-     * Retourne la pattern avec les délimiteurs
-     * @param  string $pattern  : Le pattern
-     * @param  string $opt      : Les options de recherche PCRE
-     * @return string           : Le pattern délimité
-     */
-    private static function makePattern(string $pattern, string $opt = '')
+    public function getTime(int $time) : array
     {
-        return '#'.$pattern.'#'.$opt;
+        return $this->formatTime(getdate($time));
     }
-  }
+
+    private function formatTime(array $time) : array
+    {
+        $date = [];
+
+        foreach (self::$conf->{'time'} as $form)
+            if (isset($time[$form])) $date[$form] = $time[$form];
+
+        return $date;
+    }
+
+    public function getSections(string $content) : array
+    {
+        $mask = implode('|', self::$conf->{'balises'});
+        $pattern = '#\[('.$mask.')\](.*)\[\/('.$mask.')\]#';
+
+        if (0 === preg_match_all($pattern, $content, $matches))
+            return (['texte'=>$content]);
+
+        return array_combine($matches[1], $matches[2]);
+    }
+}

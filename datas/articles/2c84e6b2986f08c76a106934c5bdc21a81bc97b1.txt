@@ -1,0 +1,4 @@
+[titre]Fais toi saigner les oreilles[/titre]
+[illustration][/illustration]
+[accroche]Bien que ce soit de l'art, ce n'est pas comme le cochon, il y a énormément de truc à jeter dans la musique, à commencer par les musiciens.[/accroche]
+[texte][/texte]

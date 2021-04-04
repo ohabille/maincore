@@ -2,7 +2,7 @@
 
 namespace MainLib;
 
-use \GrendelTpl\GrendelSkeleton;
+use \GrendelTpl\GrendelSkeleton as Skeleton;
 
 class Controller implements \MainPorts\SingleTonImplement
 {
@@ -19,23 +19,19 @@ class Controller implements \MainPorts\SingleTonImplement
     /**
      * @var \stdClass
      */
-    private $_conf;
-    /**
-     * @var object
-     */
-    private $_constructor;
+    private $_route;
 
     private function __construct(
         \MainPorts\Controllers\RequestImplements $request
     )
     {
-        $this->_conf = $request->getRoutes()->{$request->getRequest()};
+        $this->_route = $request->getRoutes()->{$request->getRequest()};
 
-        $constructor = self::$dataNamespace.$this->_conf->{'Controller'};
+        $datas = self::$dataNamespace.$this->_route->{'Controller'};
 
-        $skeleton = new GrendelSkeleton(
-            $this->_conf->{'template'},
-            new $constructor($request)
+        $skeleton = new Skeleton(
+            $this->_route->{'template'},
+            new $datas($request)
         );
 
         $skeleton->readTemplate();

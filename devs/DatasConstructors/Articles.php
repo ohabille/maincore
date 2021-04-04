@@ -2,9 +2,10 @@
 
 namespace User\DatasConstructors;
 
-use \GrendelDb\Db;
-use \MainLib\Pager;
-use \GrendelDb\Select;
+use \GrendelDb\Db,
+    \MainLib\Pager,
+    \GrendelDb\Select,
+    \User\Test as ArticleDatas;
 
 class Articles
 extends \MainLib\MainConstructor
@@ -25,5 +26,19 @@ implements \MainPorts\Controllers\DatasImplements
         );
 
         $select = new select($db, $pager);
+
+        $methods = ArticleDatas::getInstance();
+
+        foreach ($select->getSelect() as $k=>$dbData) {
+            $this->_datas->{'articles'}[] = $k;
+            $this->_datas->{$k} = json_decode(json_encode(
+                array_merge(
+                    $methods->getTime((int) $k),
+                    $methods->getSections($methods->getContent($dbData->{'file'}))
+                )
+            ));
+        }
+
+        dd($this->_datas);
     }
 }

@@ -1,0 +1,16 @@
+{
+    "dir" : "datas/articles/",
+    "ext" : ".txt",
+    "balises" : [
+        "titre",
+        "illustration",
+        "accroche",
+        "texte"
+    ],
+    "time" : [
+        "weekday",
+        "mday",
+        "month",
+        "year"
+    ]
+}
