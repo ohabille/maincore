@@ -66,10 +66,10 @@
         "url" : "categories",
         "Controller" : "Categories",
         "template" : "categories",
-        "name" : "Catégories",
+        "name" : "Cat&eacute;gories",
         "datas" : {
-            "pageTitle" : "catégories",
-            "title" : "Catégories"
+            "pageTitle" : "cat&eacute;gories",
+            "title" : "Cat&eacute;gories"
         }
     },
     "categorie" : {
@@ -81,8 +81,8 @@
         "template" : "categorie",
         "nbrPPage" : 5,
         "datas" : {
-            "pageTitle" : "catégorie",
-            "title" : "Catégorie"
+            "pageTitle" : "cat&eacute;gorie",
+            "title" : "Cat&eacute;gorie"
         }
     }
 }

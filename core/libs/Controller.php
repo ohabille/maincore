@@ -2,8 +2,7 @@
 
 namespace MainLib;
 
-use \GrendelTpl\Skeleton,
-    \GrendelTpl\SkeletonDatas;
+use \GrendelTpl\GrendelSkeleton;
 
 class Controller implements \MainPorts\SingleTonImplement
 {
@@ -34,14 +33,12 @@ class Controller implements \MainPorts\SingleTonImplement
 
         $constructor = self::$dataNamespace.$this->_conf->{'Controller'};
 
-        $skeleton = new Skeleton($this->_conf->{'template'});
-
-        $tpl = new SkeletonDatas(
-            new $constructor($request),
-            $skeleton
+        $skeleton = new GrendelSkeleton(
+            $this->_conf->{'template'},
+            new $constructor($request)
         );
 
-        echo $skeleton->getView();
+        $skeleton->readTemplate();
     }
 
     public static function setInstance(

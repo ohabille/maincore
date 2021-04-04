@@ -4,89 +4,40 @@ namespace GrendelTpl;
 
 use \GrendelTpl\SkeletonPatterns as Patterns;
 
-class SkeletonDatas
+class SkeletonDatas implements \MainPorts\SingleTonImplement
 {
-    private $_skeleton;
-    private $_controller;
+    use \MainTraits\Instance;
 
-    public function __construct(
-        \MainPorts\Controllers\DatasImplements $controller,
-        \MainPorts\Skeleton\SkeletonImplement $skeleton
-    )
+    /**
+     * instance de la classe
+     * @var \MainPorts\SingleTonImplement
+     */
+    protected static $instance;
+
+    private static function findDatas(string $view)
     {
-        $this->_controller = $controller;
-        $this->_skeleton = $skeleton;
+        if (!Patterns::getInstance()
+            ->isPattern('datas', $view)
+        ) return [];
 
-        $this->findCommands();
-
-        $this->findDatas();
+        return Patterns::getInstance()
+            ->findAllPatterns('datas', $view);
     }
 
-    private function findCommands()
+    public static function setDatas(\stdClass $datas, string $view)
     {
-        if (Patterns::getInstance()
-            ->isPattern('cmdsList', $this->_skeleton->getView())
-        ) {
-            $this->applyCommands(
-                Patterns::getInstance()
-                    ->findAllPatterns('cmdsList', $this->_skeleton->getView())
-            );
-        }
-    }
+        $findDatas = self::findDatas($view);
 
-    private function applyCommands(array $cmds)
-    {
-        foreach ($cmds[1] as $k=>$cmd) {
-            $task = '\GrendelTpl\Command'.ucfirst($cmd);
-
-            preg_match(
-                Patterns::getInstance()->getContentPattern(
-                    $cmd, $cmds[3][$k]
-                ),
-                $this->_skeleton->getView(),
-                $match
-            );
-
-            $this->_skeleton->setView(
-                str_replace(
-                    $match[0],
-                    $task::getInstance()::getCmdResult(
-                        $this->_controller->getDatas(),
-                        $match[1],
-                        $cmds[3][$k]
-                    ),
-                    $this->_skeleton->getView()
-                )
-            );
-        }
-    }
-
-    private function findDatas()
-    {
-        if (Patterns::getInstance()
-            ->isPattern('datas', $this->_skeleton->getView())
-        ) {
-            $this->getDatas(Patterns::getInstance()
-                ->findAllPatterns(
-                    'datas',
-                    $this->_skeleton->getView()
-                )
-            );
-        }
-    }
-
-    private function getDatas(array $findDatas)
-    {
         foreach ($findDatas[1] as $k=>$data) {
-            $this->_skeleton->setView(
-                str_replace(
-                    $findDatas[0][$k],
-                    isset($this->_controller->getDatas()->{$data}) ?
-                        $this->_controller->getDatas()->{$data}:
-                        $data,
-                    $this->_skeleton->getView()
-                )
+            $view = str_replace(
+                $findDatas[0][$k],
+                isset($datas->{$data}) ?
+                    $datas->{$data}:
+                    $data,
+                $view
             );
         }
+
+        return $view;
     }
 }

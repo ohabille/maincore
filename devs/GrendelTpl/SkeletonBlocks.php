@@ -8,18 +8,15 @@ class SkeletonBlocks
 {
     private $_blocks;
     private $_content;
-    private $_view;
 
     public function __construct(string $view)
     {
-        $this->_view = $view;
-
         $this->_blocks = Patterns::getInstance()->findAllPatterns('block', $view);
     }
 
-    public function findBlock(string $name) : array
+    public function findBlock(string $name, string $view) : array
     {
-        $matches = $this->findBlockContent($name, $this->_view);
+        $matches = $this->findBlockContent($name, $view);
 
         $this->_content = $matches[1];
 

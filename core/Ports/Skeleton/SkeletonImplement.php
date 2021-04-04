@@ -7,10 +7,10 @@ interface SkeletonImplement
     /**
      * @param string $view : Template
      */
-    public function setView(string $view) : void;
+    public function setSkeleton(string $view) : void;
 
     /**
      * @return string $_view : Template
      */
-    public function getView() : string;
+    public function getSkeleton() : string;
 }

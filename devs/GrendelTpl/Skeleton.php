@@ -7,11 +7,11 @@ use \GrendelTpl\SkeletonPatterns as Patterns,
 
 class Skeleton implements \MainPorts\Skeleton\SkeletonImplement
 {
-    private $_view;
+    private $_skeleton;
 
     public function __construct(string $name)
     {
-        $this->_view = $this->findSkeleton(getTemplate($name));
+        $this->_skeleton = $this->findSkeleton(getTemplate($name));
     }
 
     private function findSkeleton(string $content) : string
@@ -19,13 +19,13 @@ class Skeleton implements \MainPorts\Skeleton\SkeletonImplement
         if (!Patterns::getInstance()->isPattern('skeleton', $content))
             return $content;
 
-        return $this->getSkeleton(
+        return $this->writeSkeleton(
             Patterns::getInstance()->findPattern('skeleton', $content)[1],
             $content
         );
     }
 
-    private function getSkeleton(string $name, string $content) : string
+    private function writeSkeleton(string $name, string $content) : string
     {
         $skeleton = $this->findSkeleton(getTemplate($name));
 
@@ -37,7 +37,7 @@ class Skeleton implements \MainPorts\Skeleton\SkeletonImplement
             $dtc = $blocks->findBlockContent($block, $content);
 
             $skeleton = str_replace(
-                $blocks->findBlock($block),
+                $blocks->findBlock($block, $skeleton),
                 empty($dtc) ? $blocks->getContent(): $dtc[1],
                 $skeleton
             );
@@ -46,13 +46,13 @@ class Skeleton implements \MainPorts\Skeleton\SkeletonImplement
         return $skeleton;
     }
 
-    public function setView(string $view) : void
+    public function setSkeleton(string $skeleton) : void
     {
-        $this->_view = $view;
+        $this->_skeleton = $skeleton;
     }
 
-    public function getView() : string
+    public function getSkeleton() : string
     {
-        return $this->_view;
+        return $this->_skeleton;
     }
   }
