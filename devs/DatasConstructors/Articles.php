@@ -23,14 +23,5 @@ implements \MainPorts\Controllers\DatasImplements
         );
 
         $select = new select($db, $pager);
-
-        // Temporaire
-        $link = $this->_datas->{'host'}.'articles/';
-        echo '<br /><a href="'.$link.'first">first</a> - ';
-        foreach (range(2, $pager->getNbrsteps() - 1) as $val)
-            echo '<a href="'.$link.'page-'.$val.'">'.$val.'</a> - ';
-        echo '<a href="'.$link.'last">last</a>';
-
-        dump($select->getSelect());
     }
 }

@@ -29,5 +29,11 @@
             "shellRed",
             "getShellColor"
         ]
+    },
+    "template" : {
+        "namespace" : "\\MainLib\\Template",
+        "methods" : [
+            "getTemplate"
+        ]
     }
 }

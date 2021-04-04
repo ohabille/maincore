@@ -7,6 +7,7 @@ implements  \MainPorts\FuncsImplement,
             \MainPorts\SingleTonImplement
 {
     use \MainTraits\MainFuncs;
+
     /**
      * instance de la classe
      * @var \MainPorts\SingleTonImplement

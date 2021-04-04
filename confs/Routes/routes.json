@@ -4,8 +4,9 @@
         "slug" : "",
         "menu" : true,
         "url" : "home",
-        "name" : "Home",
         "Controller" : "Home",
+        "template" : "home",
+        "name" : "Accueil",
         "datas" : {
             "pageTitle" : "home",
             "title" : ""
@@ -15,8 +16,8 @@
         "request" : "notFound",
         "menu" : false,
         "url" : "notFound",
-        "name" : "Not Found",
         "Controller" : "NotFound",
+        "template" : "notFound",
         "datas" : {
             "pageTitle" : "not found",
             "title" : "This page not found"
@@ -26,8 +27,9 @@
         "request" : "contact",
         "menu" : true,
         "url" : "contact",
-        "name" : "Contact",
         "Controller" : "Contact",
+        "template" : "contact",
+        "name" : "Contact",
         "datas" : {
             "pageTitle" : "contact",
             "title" : "Contact"
@@ -38,8 +40,9 @@
         "slug" : "(first|page|last)(\\-([0-9]+))?",
         "menu" : true,
         "url" : "articles",
-        "name" : "Articles",
         "Controller" : "Articles",
+        "template" : "articles",
+        "name" : "Articles",
         "nbrPPage" : 5,
         "datas" : {
             "pageTitle" : "articles",
@@ -50,8 +53,8 @@
         "request" : "article",
         "menu" : false,
         "url" : "article",
-        "name" : "Article",
         "Controller" : "Article",
+        "template" : "article",
         "datas" : {
             "pageTitle" : "article",
             "title" : "Article"
@@ -61,8 +64,9 @@
         "request" : "categories",
         "menu" : true,
         "url" : "categories",
-        "name" : "Catégories",
         "Controller" : "Categories",
+        "template" : "categories",
+        "name" : "Catégories",
         "datas" : {
             "pageTitle" : "catégories",
             "title" : "Catégories"
@@ -73,8 +77,8 @@
         "slug" : "(first|page|last)(\\-([0-9]+))?",
         "menu" : false,
         "url" : "categorie",
-        "name" : "Catégorie",
         "Controller" : "Categorie",
+        "template" : "categorie",
         "nbrPPage" : 5,
         "datas" : {
             "pageTitle" : "catégorie",

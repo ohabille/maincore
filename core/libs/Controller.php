@@ -2,7 +2,8 @@
 
 namespace MainLib;
 
-use \GrendelTpl\Skeleton;
+use \GrendelTpl\Skeleton,
+    \GrendelTpl\SkeletonDatas;
 
 class Controller implements \MainPorts\SingleTonImplement
 {
@@ -33,23 +34,14 @@ class Controller implements \MainPorts\SingleTonImplement
 
         $constructor = self::$dataNamespace.$this->_conf->{'Controller'};
 
-        $this->_constructor = new $constructor(
-            $this->_conf,
-            $request->getArgs()
+        $skeleton = new Skeleton($this->_conf->{'template'});
+
+        $tpl = new SkeletonDatas(
+            new $constructor($request),
+            $skeleton
         );
 
-        // Temporaire
-        echo $this->_constructor->getDatas()->{'title'}.'<br />';
-
-        foreach ($request->getRoutes() as $val) {
-            if (!$val->{'menu'}) continue;
-
-            echo '<a href="'.$this->_constructor->getDatas()->{'host'}.'">'
-                .$val->{'name'}
-                .'</a> ';
-        }
-
-        $tpl = new Skeleton($this->_conf->{'url'});
+        echo $skeleton->getView();
     }
 
     public static function setInstance(

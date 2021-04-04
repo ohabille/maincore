@@ -1,7 +1,31 @@
 {
-    "skeleton" : "\\[\\[\\hskeleton\\h(/?[a-zA-Z]+)+\\h\\]\\]",
-    "start" : "\\[\\[\\hblock\\h([A-Z]+)\\h\\]\\]",
-    "blank" : "(\\R?[[:blank:]]*)",
-    "end" : "\\[\\[\\hendblock\\h\\]\\]",
-    "brick" : "\\[\\#\\hbrick\\h([/_[:alnum:]]+)\\h\\#\\]"
+    "template" : {
+        "dir" : "devs/tpls/",
+        "ext" : ".tpl"
+    },
+    "patterns" : {
+        "optContent" : "U",
+        "content" : "([[:ascii:]]*)",
+        "blank" : "(\\R?[[:blank:]]*)",
+        "skeleton" : "\\[\\[\\hskeleton\\h(/?[a-zA-Z]+)+\\h\\]\\]",
+        "block" : "\\[\\[\\hblock\\h([A-Z]+)\\h\\]\\]",
+        "endBlock" : "\\[\\[\\hendblock\\h\\]\\]",
+        "cmdsList" : "\\{\\?\\h(for|if)(\\h([a-zA-Z]+))+\\h\\?\\}",
+        "for" : "\\{\\?\\hfor\\h([a-zA-Z]+)\\h\\?\\}",
+        "endFor" : "\\{\\?\\hendFor\\h\\?\\}",
+        "for=" : "\\{\\?\\hfor=\\h\\?\\}",
+        "forData" : "\\{\\?\\hforData\\h\\?\\}",
+        "if" : "\\{\\?\\hif\\h([a-zA-Z]+)\\h\\?\\}",
+        "else" : "\\{\\?\\helse\\h\\?\\}",
+        "endIf" : "\\{\\?\\hendIf\\h\\?\\}",
+        "datas" : "\\{\\?\\h=([a-zA-Z]+)\\h\\?\\}",
+        "brick" : "\\[\\#\\hbrick\\h([/_[:alnum:]]+)\\h\\#\\]"
+    },
+    "commands" : {
+        "for" : {
+            "masq" : "([a-zA-Z]+)",
+            "cmd" : "for",
+            "endCmd" : "endFor"
+        }
+    }
 }

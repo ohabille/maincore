@@ -2,53 +2,57 @@
 
 namespace GrendelTpl;
 
-use \GrendelTpl\SkeletonPatterns as Patterns;
+use \GrendelTpl\SkeletonPatterns as Patterns,
+    \GrendelTpl\SkeletonBlocks as Blocks;
 
-class Skeleton
+class Skeleton implements \MainPorts\Skeleton\SkeletonImplement
 {
     private $_view;
 
-    public function __construct(string $view)
+    public function __construct(string $name)
     {
-        $content = self::getTpls($view);
-
-        dump(Patterns::getInstance()->findPattern('skeleton', $content));
+        $this->_view = $this->findSkeleton(getTemplate($name));
     }
 
-    /**
-     * [getTpl description]
-     * @param  string $fileName : Le nom du template
-     * @return string           : Le contenu du template
-     */
-    private static function getTpls(string $fileName)
+    private function findSkeleton(string $content) : string
     {
-        $file = ROOTDIRS.'devs/tpls/'.$fileName.'.tpl';
-    	return (file_exists($file) ? file_get_contents($file): '');
-    }
+        if (!Patterns::getInstance()->isPattern('skeleton', $content))
+            return $content;
 
-    /**
-     * Vérifie si le template dépends d'un autre template
-     * @param  string  $content : Le contenu du template
-     * @return boolean
-     */
-    private static function isSkeleton(string $content)
-    {
-    	return (
-            0 < preg_match(
-                self::makePattern(self::$patterns->{'skeleton'}), $content
-            ) ?
-            true: false
+        return $this->getSkeleton(
+            Patterns::getInstance()->findPattern('skeleton', $content)[1],
+            $content
         );
     }
 
-    /**
-     * Retourne la pattern avec les délimiteurs
-     * @param  string $pattern  : Le pattern
-     * @param  string $opt      : Les options de recherche PCRE
-     * @return string           : Le pattern délimité
-     */
-    private static function makePattern(string $pattern, string $opt = '')
+    private function getSkeleton(string $name, string $content) : string
     {
-        return '#'.$pattern.'#'.$opt;
+        $skeleton = $this->findSkeleton(getTemplate($name));
+
+        $blocks = new Blocks($skeleton);
+
+        if (!$blocks->isBlocks()) return $skeleton;
+
+        foreach ($blocks->getBlocksNames() as $k=>$block) {
+            $dtc = $blocks->findBlockContent($block, $content);
+
+            $skeleton = str_replace(
+                $blocks->findBlock($block),
+                empty($dtc) ? $blocks->getContent(): $dtc[1],
+                $skeleton
+            );
+        }
+
+        return $skeleton;
+    }
+
+    public function setView(string $view) : void
+    {
+        $this->_view = $view;
+    }
+
+    public function getView() : string
+    {
+        return $this->_view;
     }
   }
