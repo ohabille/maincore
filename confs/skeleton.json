@@ -4,8 +4,8 @@
         "ext" : ".tpl"
     },
     "patterns" : {
-        "optContent" : "U",
-        "content" : "([[:ascii:]]*)",
+        "optContent" : "Us",
+        "content" : "(.*)",
         "blank" : "(\\R?[[:blank:]]*)",
         "skeleton" : "\\[\\[\\hskeleton\\h(/?[a-zA-Z]+)+\\h\\]\\]",
         "block" : "\\[\\[\\hblock\\h([A-Z]+)\\h\\]\\]",
@@ -15,6 +15,7 @@
         "endFor" : "\\{\\?\\hendFor\\h\\?\\}",
         "for=" : "\\{\\?\\hfor=\\h\\?\\}",
         "forData" : "\\{\\?\\hforData\\h\\?\\}",
+        "dataName" : "\\{\\?\\hdataName\\h([a-zA-Z]+)\\h\\?\\}",
         "if" : "\\{\\?\\hif\\h([a-zA-Z]+)\\h\\?\\}",
         "else" : "\\{\\?\\helse\\h\\?\\}",
         "endIf" : "\\{\\?\\hendIf\\h\\?\\}",

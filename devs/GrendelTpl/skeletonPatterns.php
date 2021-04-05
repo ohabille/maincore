@@ -34,7 +34,8 @@ class SkeletonPatterns implements \MainPorts\SingleTonImplement
                 '([a-zA-Z]+)', $name, $cmd
             )
             .$this->getPattern('content')
-            .$this->getPattern('end'.ucfirst($cmd))
+            .$this->getPattern('end'.ucfirst($cmd)),
+            $this->getPattern('optContent')
         );
     }
 

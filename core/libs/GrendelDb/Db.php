@@ -34,7 +34,7 @@ class Db implements \MainPorts\DatasBases\DbImplement
      */
     public function setNode() : void
     {
-        $this->_node = current($this->_mainNode)->{'mounths'};
+        $this->_node = current($this->_mainNode)->{'months'};
     }
 
     public function getTotal() : int

@@ -2,6 +2,8 @@
 
 namespace MainLib;
 
+use \User\Test as Datas;
+
 abstract class MainConstructor
 {
     /**
@@ -28,9 +30,8 @@ abstract class MainConstructor
         $this->_datas->{'pageTitle'} = $conf->{'mainTitle'}
             .'-'.$this->_datas->{'pageTitle'};
 
-        $this->_datas->{'title'} = empty($this->_datas->{'title'}) ?
-            $conf->{'mainTitle'}:
-            $this->_datas->{'title'};
+        if (empty($this->_datas->{'title'}))
+            $this->_datas->{'title'} = $conf->{'mainTitle'};
 
         foreach ($request->getRoutes() as $k=>$route) {
             if (!$route->{'menu'}) continue;

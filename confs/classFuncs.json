@@ -4,6 +4,7 @@
         "methods" : [
             "parseConf",
             "getConf",
+            "formatConf",
             "getNbrOf"
         ]
     },

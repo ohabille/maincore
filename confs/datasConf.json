@@ -1,0 +1,39 @@
+{
+    "article" : {
+        "dir" : "datas/articles/",
+        "ext" : ".txt",
+        "time" : [
+            "weekday",
+            "mday",
+            "month",
+            "year"
+        ],
+        "balises" : [
+            "titre",
+            "illustration",
+            "accroche",
+            "texte"
+        ],
+        "dataKeys" : [
+            "titreurl",
+            "authorid",
+            "categorie"
+        ]
+    },
+    "author" : {
+        "dir" : "datas/authors/",
+        "ext" : ".txt",
+        "time" : [
+            "weekday",
+            "mday",
+            "month",
+            "year"
+        ],
+        "balises" : [
+            "name"
+        ],
+        "dataKeys" : [
+            "titreurl"
+        ]
+    }
+}

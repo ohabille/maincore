@@ -41,6 +41,16 @@ implements  \MainPorts\FuncsImplement,
     }
 
     /**
+     * Convertit un array en objet json
+     * @param  array    $data : l'array
+     * @return stdClass       : l'objet json
+     */
+    public function formatConf(array $data) : \stdClass
+    {
+        return json_decode(json_encode($data));
+    }
+
+    /**
      * Retourne le nombre d'entrées
      * @param  stdClass $obj L'objet source
      * @return int           Le nombre d'entrées
