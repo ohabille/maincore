@@ -30,7 +30,7 @@ implements \MainPorts\Controllers\DatasImplements
         $methods = new Datas();
 
         foreach ($select->getSelect() as $k=>$conf) {
-            $methods->setConf('article');
+            $methods->setConf('articles');
 
             $this->_datas->{'articles'}[] = $k;
 
@@ -40,6 +40,10 @@ implements \MainPorts\Controllers\DatasImplements
                     $methods->getSections($methods->getContent($conf->{'file'}))
                 )
             );
+
+            $this->_datas->{$k}->{'titreurl'} = $conf->{'titreurl'};
+
+            $this->_datas->{$k}->{'authorid'} = $conf->{'authorid'};
 
             $methods->setConf('author');
 

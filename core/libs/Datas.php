@@ -54,11 +54,31 @@ class Datas
     public function getSections(string $content) : array
     {
         $mask = implode('|', $this->_conf->{'balises'});
-        $pattern = '#\[('.$mask.')\](.*)\[\/('.$mask.')\]#Us';
+        $pattern = $this->getSectionPattern($mask, $content);
 
         if (0 === preg_match_all($pattern, $content, $matches))
             return [$content];
 
         return array_combine($matches[1], $matches[2]);
+    }
+
+    public function getsectioncontent(string $section, string $file) : string
+    {
+        $content = $this->getContent($file);
+        $pattern = $this->getSectionPattern($section, $content);
+
+        if (0 === preg_match($pattern, $content, $matches)) return '';
+
+        return $matches[2];
+    }
+
+    private function getSectionPattern(string $mask, string $content) : string
+    {
+        return '#\[('.$mask.')\](.*)\[\/('.$mask.')\]#Us';
+    }
+
+    public function getConf() : \stdClass
+    {
+        return $this->_conf;
     }
 }

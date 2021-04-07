@@ -75,4 +75,11 @@ class Db implements \MainPorts\DatasBases\DbImplement
 
         return true;
     }
+
+    public function resetNode() : void
+    {
+        reset($this->_mainNode);
+
+        $this->setNode();
+    }
   }

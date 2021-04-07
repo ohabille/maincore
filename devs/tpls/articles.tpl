@@ -3,16 +3,18 @@
     [[ block CONTENT ]]
         {? for articles ?}
         <p>
-            <strong>{? dataName titre ?}</strong>
-        </p>
-        <p>
-            par {? dataName author ?}, le {? dataName weekday ?} {? dataName mday ?} {? dataName month ?} {? dataName year ?}
-        </p>
-        <p>
-            {? dataName accroche ?}
-        </p>
-        <p>
-            {? dataName texte ?}
+            <div>
+                <strong>{? dataName titre ?}</strong>
+            </div>
+            <div>
+                par {? dataName author ?}, le {? dataName weekday ?} {? dataName mday ?} {? dataName month ?} {? dataName year ?}
+            </div>
+            <div>
+                {? dataName accroche ?}
+            </div>
+            <div>
+                <a href="{? =host ?}article/{? dataName titreurl ?}">Lire la suite</a>
+            </div>
         </p>
         {? endFor ?}
     [[ endblock ]]
