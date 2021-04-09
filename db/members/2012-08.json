@@ -1,12 +1,14 @@
 {
     "1345071550" : {
         "file" : "test",
-        "authorid" : "test",
+        "memberid" : "test",
+        "titreurl" : "test",
         "status" : 2
     },
     "1345033750" : {
         "file" : "ohabille",
-        "authorid" : "ohabille",
+        "memberid" : "ohabille",
+        "titreurl" : "ohabille",
         "status" : 1
     }
 }

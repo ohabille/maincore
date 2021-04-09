@@ -51,8 +51,10 @@ class Datas
         return $datas;
     }
 
-    public function getSections(string $content) : array
+    public function getSections(string $file) : array
     {
+        $content = $this->getContent($file);
+
         $mask = implode('|', $this->_conf->{'balises'});
         $pattern = $this->getSectionPattern($mask, $content);
 

@@ -4,10 +4,11 @@
         {? for articles ?}
         <p>
             <div>
-                <strong>{? dataName titre ?}</strong>
+                <strong>{? dataName titre ?}</strong> <em><a href="{? =host ?}categorie/{? dataName categorieid ?}">{? dataName categorie ?}</a></em><br />
+                <a href="{? =host ?}member/{? dataName memberid ?}">{? dataName member ?}</a>
             </div>
             <div>
-                par {? dataName author ?}, le {? dataName weekday ?} {? dataName mday ?} {? dataName month ?} {? dataName year ?}
+                par {? dataName member ?}, le {? dataName weekday ?} {? dataName mday ?} {? dataName month ?} {? dataName year ?}
             </div>
             <div>
                 {? dataName accroche ?}

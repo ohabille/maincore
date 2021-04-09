@@ -37,19 +37,27 @@ implements \MainPorts\Controllers\DatasImplements
             $this->_datas->{$k} = formatConf(
                 array_merge(
                     $methods->getTime((int) $k),
-                    $methods->getSections($methods->getContent($conf->{'file'}))
+                    $methods->getSections($conf->{'file'})
                 )
             );
 
             $this->_datas->{$k}->{'titreurl'} = $conf->{'titreurl'};
 
-            $this->_datas->{$k}->{'authorid'} = $conf->{'authorid'};
+            $methods->setConf('categorie');
 
-            $methods->setConf('author');
+            $this->_datas->{$k}->{'categorieid'} = $conf->{'categorie'};
 
-            $this->_datas->{$k}->{'author'} = $methods->getSections(
-                $methods->getContent($conf->{'authorid'})
-            )['name'];
+            $this->_datas->{$k}->{'categorie'} = $methods->getsectioncontent(
+                'name', $conf->{'categorie'}
+            );
+
+            $methods->setConf('member');
+
+            $this->_datas->{$k}->{'memberid'} = $conf->{'memberid'};
+
+            $this->_datas->{$k}->{'member'} = $methods->getsectioncontent(
+                'name', $conf->{'memberid'}
+            );
         }
     }
 }

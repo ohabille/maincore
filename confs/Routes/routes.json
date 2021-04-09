@@ -62,6 +62,7 @@
     },
     "categories" : {
         "request" : "categories",
+        "slug" : "(first|page|last)(\\-([0-9]+))?",
         "menu" : true,
         "url" : "categories",
         "Controller" : "Categories",
@@ -73,16 +74,27 @@
         }
     },
     "categorie" : {
-        "request": "([_a-zA-Z0-9]+)",
-        "slug" : "(first|page|last)(\\-([0-9]+))?",
+        "request": "categorie",
+        "slug" : "([_a-zA-Z0-9]+)?",
         "menu" : false,
         "url" : "categorie",
         "Controller" : "Categorie",
         "template" : "categorie",
-        "nbrPPage" : 5,
         "datas" : {
             "pageTitle" : "cat&eacute;gorie",
             "title" : "Cat&eacute;gorie"
+        }
+    },
+    "member" : {
+        "request": "member",
+        "slug" : "([_a-zA-Z0-9]+)?",
+        "menu" : false,
+        "url" : "membre",
+        "Controller" : "Member",
+        "template" : "member",
+        "datas" : {
+            "pageTitle" : "membre",
+            "title" : "Membre"
         }
     }
 }

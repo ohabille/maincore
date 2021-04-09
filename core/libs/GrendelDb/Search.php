@@ -32,22 +32,47 @@ class Search
     {
         $this->setCurrentDb();
 
-        if (isset(current($this->_db)->{$from})) {
-            $test = current($this->_db)->{$from};
+        if (!$this->findInDb($from, $needle)) {
+            if (!$this->_mainDb->nextNode()) return false;
 
-            if ($test === $needle) {
+            return $this->searchInDb($from, $needle);
+        }
+
+        $this->_mainDb->resetNode();
+
+        return true;
+
+        // if (isset(current($this->_db)->{$from})) {
+        //     $test = current($this->_db)->{$from};
+        //
+        //     if ($test === $needle) {
+        //         $this->_find->{key($this->_db)} = current($this->_db);
+        //
+        //         return true;
+        //     }
+        //     else {
+        //         if (!$this->_mainDb->nextNode()) return false;
+        //
+        //         return $this->searchInDb($from, $needle);
+        //     }
+        // }
+        //
+        // $this->_mainDb->resetNode();
+        //
+        // return false;
+    }
+
+    private function findInDb(string $from, string $needle) : bool
+    {
+        if (!$this->isInDb($from)) return false;
+
+        do {
+            if (current($this->_db)->{$from} == $needle) {
                 $this->_find->{key($this->_db)} = current($this->_db);
 
                 return true;
             }
-            else {
-                if (!$this->_mainDb->nextNode()) return false;
-
-                return $this->searchInDb($from, $needle);
-            }
-        }
-
-        $this->_mainDb->resetNode();
+        } while (false !== next($this->_db));
 
         return false;
     }

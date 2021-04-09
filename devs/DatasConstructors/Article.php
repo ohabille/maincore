@@ -16,35 +16,44 @@ implements \MainPorts\Controllers\DatasImplements
     {
         parent::__construct($request);
 
-        $article = new Search(new Db('articles'));
+        $search = new Search(new Db('articles'));
 
-        if ($article->searchInDb('titreurl', $request->getArgs()[0]))
-            $this->setDatas($article->getFind());
+        if ($search->searchInDb('titreurl', $request->getArgs()[0]))
+            $this->setDatas($search->getFind(), new Datas());
 
         // dd($this->_datas);
     }
 
-    private function setDatas(\stdClass $article)
+    private function setDatas(
+        \stdClass $search,
+        \MainLib\Datas $methods
+    ) : void
     {
-        $methods = new Datas();
-
         $methods->setConf('article');
 
         $datas = array_merge(
-            $methods->getTime((int) key($article)),
-            $methods->getSections(
-                $methods->getContent(current($article)->{'file'})
-            )
+            $methods->getTime((int) key($search)),
+            $methods->getSections(current($search)->{'file'})
         );
+
+        // dd(formatConf($datas));
 
         foreach ($datas as $k=>$data) $this->_datas->{$k} = $data;
 
-        $methods->setConf('author');
+        $methods->setConf('categorie');
 
-        $this->_datas->{'authorid'} = current($article)->{'authorid'};
+        $this->_datas->{'categorieid'} = current($search)->{'categorie'};
 
-        $this->_datas->{'author'} = $methods->getSections(
-            $methods->getContent(current($article)->{'authorid'})
-        )['name'];
+        $this->_datas->{'categorie'} = $methods->getsectioncontent(
+            'name', current($search)->{'categorie'}
+        );
+
+        $methods->setConf('member');
+
+        $this->_datas->{'memberid'} = current($search)->{'memberid'};
+
+        $this->_datas->{'member'} = $methods->getsectioncontent(
+            'name', current($search)->{'memberid'}
+        );
     }
 }

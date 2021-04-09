@@ -3,10 +3,10 @@
     [[ block CONTENT ]]
         <p>
             <div>
-                <strong>{? =titre ?}</strong>
+                <strong>{? =titre ?}</strong> <em><a href="{? =host ?}categorie/{? =categorieid ?}">{? =categorie ?}</a></em>
             </div>
             <div>
-                par <a href="{? =host ?}auteur/{? =authorid ?}">{? =author ?}</a>
+                par <a href="{? =host ?}member/{? =memberid ?}">{? =member ?}</a>
                 , le {? =weekday ?} {? =mday ?} {? =month ?} {? =year ?}
             </div>
             <div>

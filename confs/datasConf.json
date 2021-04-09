@@ -15,7 +15,7 @@
         ],
         "dataKeys" : [
             "titreurl",
-            "authorid",
+            "memberid",
             "categorie"
         ]
     },
@@ -36,12 +36,28 @@
         ],
         "dataKeys" : [
             "titreurl",
-            "authorid",
+            "memberid",
             "categorie"
         ]
     },
-    "author" : {
-        "dir" : "datas/authors/",
+    "categorie" : {
+        "dir" : "datas/categories/",
+        "ext" : ".txt",
+        "time" : [
+            "weekday",
+            "mday",
+            "month",
+            "year"
+        ],
+        "balises" : [
+            "name"
+        ],
+        "dataKeys" : [
+            "titreurl"
+        ]
+    },
+    "member" : {
+        "dir" : "datas/members/",
         "ext" : ".txt",
         "time" : [
             "weekday",
