@@ -10,6 +10,8 @@ class Categorie
 extends \MainLib\MainConstructor
 implements \MainPorts\Controllers\DatasImplements
 {
+    use \MainTraits\Datas;
+
     public function __construct(
         \MainPorts\Controllers\RequestImplements $request
     )
@@ -18,23 +20,12 @@ implements \MainPorts\Controllers\DatasImplements
 
         $search = new Search(new Db('categories'));
 
-        if ($search->searchInDb('titreurl', $request->getArgs()[0]))
-            $this->setDatas($search->getFind(), new Datas());
+        if ($search->searchInDb('titre', $request->getArgs()[0]))
+            $this->_datas->{'categorie'} = $this->findDatasContent(
+                new Datas(), 'categorie',
+                current($search->getFind())->{'file'}
+            );
 
         // dd($this->_datas);
-    }
-
-    private function setDatas(
-        \stdClass $search,
-        \MainLib\Datas $methods
-    ) : void
-    {
-        $methods->setConf('categorie');
-
-        $datas = $methods->getSections(current($search)->{'file'});
-
-        // dd(formatConf($datas));
-
-        foreach ($datas as $k=>$data) $this->_datas->{$k} = $data;
     }
 }

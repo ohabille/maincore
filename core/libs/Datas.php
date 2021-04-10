@@ -12,6 +12,11 @@ class Datas
         self::$confs = getConf('datasConf');
     }
 
+    public function isConf(string $name) : bool
+    {
+        return isset(self::$confs->{$name});
+    }
+
     public function setConf(string $name) : void
     {
         $this->_conf = self::$confs->{$name};

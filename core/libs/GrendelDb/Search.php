@@ -41,25 +41,6 @@ class Search
         $this->_mainDb->resetNode();
 
         return true;
-
-        // if (isset(current($this->_db)->{$from})) {
-        //     $test = current($this->_db)->{$from};
-        //
-        //     if ($test === $needle) {
-        //         $this->_find->{key($this->_db)} = current($this->_db);
-        //
-        //         return true;
-        //     }
-        //     else {
-        //         if (!$this->_mainDb->nextNode()) return false;
-        //
-        //         return $this->searchInDb($from, $needle);
-        //     }
-        // }
-        //
-        // $this->_mainDb->resetNode();
-        //
-        // return false;
     }
 
     private function findInDb(string $from, string $needle) : bool

@@ -14,8 +14,8 @@
             "accroche"
         ],
         "dataKeys" : [
-            "titreurl",
-            "memberid",
+            "titre",
+            "member",
             "categorie"
         ]
     },
@@ -35,8 +35,7 @@
             "texte"
         ],
         "dataKeys" : [
-            "titreurl",
-            "memberid",
+            "member",
             "categorie"
         ]
     },
@@ -53,7 +52,7 @@
             "name"
         ],
         "dataKeys" : [
-            "titreurl"
+            "titre"
         ]
     },
     "member" : {
@@ -69,7 +68,7 @@
             "name"
         ],
         "dataKeys" : [
-            "titreurl"
+            "titre"
         ]
     }
 }

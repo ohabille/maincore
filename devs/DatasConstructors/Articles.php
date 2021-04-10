@@ -11,6 +11,8 @@ class Articles
 extends \MainLib\MainConstructor
 implements \MainPorts\Controllers\DatasImplements
 {
+    use \MainTraits\Datas;
+
     public function __construct(
         \MainPorts\Controllers\RequestImplements $request
     )
@@ -27,37 +29,38 @@ implements \MainPorts\Controllers\DatasImplements
 
         $select = new select($db, $pager);
 
-        $methods = new Datas();
+        $this->setSelectedDatas(new Datas(), $select->getSelect());
+    }
 
-        foreach ($select->getSelect() as $k=>$conf) {
+    private function setSelectedDatas(
+        \MainLib\Datas $methods,
+        \stdClass $selected
+    ) : void
+    {
+        foreach ($selected as $k=>$select) {
             $methods->setConf('articles');
 
             $this->_datas->{'articles'}[] = $k;
 
-            $this->_datas->{$k} = formatConf(
-                array_merge(
-                    $methods->getTime((int) $k),
-                    $methods->getSections($conf->{'file'})
-                )
-            );
-
-            $this->_datas->{$k}->{'titreurl'} = $conf->{'titreurl'};
-
-            $methods->setConf('categorie');
-
-            $this->_datas->{$k}->{'categorieid'} = $conf->{'categorie'};
-
-            $this->_datas->{$k}->{'categorie'} = $methods->getsectioncontent(
-                'name', $conf->{'categorie'}
-            );
-
-            $methods->setConf('member');
-
-            $this->_datas->{$k}->{'memberid'} = $conf->{'memberid'};
-
-            $this->_datas->{$k}->{'member'} = $methods->getsectioncontent(
-                'name', $conf->{'memberid'}
+            $this->_datas->{$k} = $this->findDatas(
+                $methods, $select, $k, 'articles'
             );
         }
+    }
+
+    private function findDatas(
+        \MainLib\Datas $methods,
+        \stdClass $select,
+        string $key,
+        string $name
+    ) : \stdClass
+    {
+        return formatConf(
+            array_merge(
+                $methods->getTime((int) $key),
+                $methods->getSections($select->{'file'}),
+                $this->getDatasproperties($select, $methods, $name),
+            )
+        );
     }
 }

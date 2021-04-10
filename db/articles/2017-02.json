@@ -1,15 +1,15 @@
 {
     "1487421000" : {
         "file" : "35f648ed056aa37e2474bc780dde1638410d75a7",
-        "memberid" : "test",
-        "titreurl" : "patate_pourrie",
+        "member" : "test",
+        "titre" : "patate_pourrie",
         "status" : 1,
         "categorie" : "prout"
     },
     "1487407500" : {
         "file" : "37d0d881287c2c87b9b1381cba643a0d101d8c74",
-        "memberid" : "test",
-        "titreurl" : "caca_boudin",
+        "member" : "test",
+        "titre" : "caca_boudin",
         "status" : 1,
         "categorie" : "cacaboudin"
     }

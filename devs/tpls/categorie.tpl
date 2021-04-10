@@ -3,7 +3,7 @@
     [[ block CONTENT ]]
         <p>
             <div>
-                <strong>{? =name ?}</strong>
+                <strong>{? =categorie/name ?}</strong>
             </div>
         </p>
     [[ endblock ]]
