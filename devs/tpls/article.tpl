@@ -3,23 +3,23 @@
     [[ block CONTENT ]]
         <p>
             <div>
-                <strong>{? =titre ?}</strong> <em>
-                    <a href="{? =host ?}categorie/{? =categorieid ?}">
-                        {? =categorie ?}
+                <strong>{? =article/titre ?}</strong> <em>
+                    <a href="{? =host ?}categorie/{? =article/categorieurl ?}">
+                        {? =article/categorie ?}
                     </a>
                 </em>
             </div>
             <div>
-                par <a href="{? =host ?}member/{? =memberid ?}">
-                    {? =member ?}
+                par <a href="{? =host ?}member/{? =article/memberurl ?}">
+                    {? =article/member ?}
                 </a>
-                , le {? =weekday ?} {? =mday ?} {? =month ?} {? =year ?}
+                , le {? =article/weekday ?} {? =article/mday ?} {? =article/month ?} {? =article/year ?}
             </div>
             <div>
-                {? =accroche ?}
+                {? =article/accroche ?}
             </div>
             <div>
-                {? =texte ?}
+                {? =article/texte ?}
             </div>
         </p>
     [[ endblock ]]

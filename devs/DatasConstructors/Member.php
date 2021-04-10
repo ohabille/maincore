@@ -25,7 +25,6 @@ implements \MainPorts\Controllers\DatasImplements
                 new Datas(), 'member', current($search->getFind())->{'file'}
             );
 
-
         // dd($this->_datas);
     }
 }

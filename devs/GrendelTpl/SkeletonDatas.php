@@ -31,11 +31,10 @@ class SkeletonDatas implements \MainPorts\SingleTonImplement
         foreach ($findDatas[1] as $k=>$data) {
             $rpl = isset($datas->{$data}) ? $datas->{$data}: $data;
 
-            $rpl = (
-                    !empty($findDatas[3][$k]) && isset($rpl->{$findDatas[3][$k]})
-                ) ?
-                $rpl->{$findDatas[3][$k]}:
-                $rpl;
+            if (!empty($findDatas[3][$k]))
+                $rpl = isset($rpl->{$findDatas[3][$k]}) ?
+                    $rpl->{$findDatas[3][$k]}:
+                    $findDatas[3][$k];
 
             $view = str_replace(
                 $findDatas[0][$k],

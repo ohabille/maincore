@@ -30,6 +30,8 @@ implements \MainPorts\Controllers\DatasImplements
         $select = new select($db, $pager);
 
         $this->setSelectedDatas(new Datas(), $select->getSelect());
+
+        // dd($this->_datas);
     }
 
     private function setSelectedDatas(
@@ -46,21 +48,5 @@ implements \MainPorts\Controllers\DatasImplements
                 $methods, $select, $k, 'articles'
             );
         }
-    }
-
-    private function findDatas(
-        \MainLib\Datas $methods,
-        \stdClass $select,
-        string $key,
-        string $name
-    ) : \stdClass
-    {
-        return formatConf(
-            array_merge(
-                $methods->getTime((int) $key),
-                $methods->getSections($select->{'file'}),
-                $this->getDatasproperties($select, $methods, $name),
-            )
-        );
     }
 }

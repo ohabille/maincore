@@ -19,28 +19,19 @@ implements \MainPorts\Controllers\DatasImplements
         parent::__construct($request);
 
         $search = new Search(new Db('articles'));
+        $methods = new Datas;
 
-        if ($search->searchInDb('titre', $request->getArgs()[0]))
-            $this->setSelectedDatas(
-                new Datas(),
-                $search->getFind()
+        if ($search->searchInDb('titre', $request->getArgs()[0])) {
+            $methods->setConf('article');
+
+            $this->_datas->{'article'} = $this->findDatas(
+                $methods,
+                current($search->getFind()),
+                key($search->getFind()),
+                'article'
             );
+        }
+
         // dd($this->_datas);
-    }
-
-    private function setSelectedDatas(
-        \MainLib\Datas $methods,
-        \stdClass $select
-    ) : void
-    {
-        $methods->setConf('article');
-
-        $datas = array_merge(
-            $methods->getTime((int) key($select)),
-            $methods->getSections(current($select)->{'file'}),
-            $this->getDatasproperties(current($select), $methods, 'article')
-        );
-
-        foreach ($datas as $k=>$data) $this->_datas->{$k} = $data;
     }
 }

@@ -12,8 +12,6 @@ trait Datas
     {
         $methods->setConf($key);
 
-        // dd(formatConf($datas));
-
         return formatConf(
             $methods->getSections($file)
         );
@@ -54,5 +52,21 @@ trait Datas
         }
 
         return $properties;
+    }
+
+    private function findDatas(
+        \MainLib\Datas $methods,
+        \stdClass $select,
+        string $key,
+        string $name
+    ) : \stdClass
+    {
+        return formatConf(
+            array_merge(
+                $methods->getTime((int) $key),
+                $methods->getSections($select->{'file'}),
+                $this->getDatasproperties($select, $methods, $name),
+            )
+        );
     }
 }

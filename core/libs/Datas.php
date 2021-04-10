@@ -76,6 +76,9 @@ class Datas
 
         if (0 === preg_match($pattern, $content, $matches)) return '';
 
+        $data = new \stdClass;
+        // $data->{$matches[]}
+        // dd($matches);
         return $matches[2];
     }
 
