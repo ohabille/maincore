@@ -25,7 +25,7 @@ implements \MainPorts\Controllers\DatasImplements
                 new Datas(),
                 $search->getFind()
             );
-        dd($this->_datas);
+        // dd($this->_datas);
     }
 
     private function setSelectedDatas(
