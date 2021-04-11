@@ -1,6 +1,6 @@
 <?php
 
-namespace User\DatasConstructors;
+namespace Constructors;
 
 use \GrendelDb\Db,
     \MainLib\Pager,
@@ -27,7 +27,5 @@ implements \MainInterfaces\Controllers\DatasImplements
         $select = new select($db, $pager);
 
         $this->setSelectedDatas($select->getSelect(), 'articles');
-
-        // dd($this->_datas);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace User\DatasConstructors;
+namespace Constructors;
 
 class Home
 extends \MainLib\MainConstructor

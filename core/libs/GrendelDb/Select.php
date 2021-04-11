@@ -5,7 +5,6 @@ namespace GrendelDb;
 class Select implements \MainInterfaces\DatasBases\DbSelectImplement
 {
     private $_mainDb;
-    private $_pager;
     private $_db;
     private $_select;
 
@@ -15,7 +14,6 @@ class Select implements \MainInterfaces\DatasBases\DbSelectImplement
     )
     {
         $this->_mainDb = $mainDb;
-        $pager = $pager;
 
         $this->_select = new \stdClass();
         $this->selectSomesEntries($pager);

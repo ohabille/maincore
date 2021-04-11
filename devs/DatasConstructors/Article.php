@@ -1,6 +1,6 @@
 <?php
 
-namespace User\DatasConstructors;
+namespace Constructors;
 
 use \GrendelDb\Db,
     \GrendelDb\Search;
@@ -21,12 +21,10 @@ implements \MainInterfaces\Controllers\DatasImplements
             self::$methods->setConf('article');
 
             $this->_datas->{'article'} = $this->findDatas(
-                current($search->getSelect()),
-                key($search->getSelect()),
+                $search->getCurrent(),
+                $search->getKeyCurrent(),
                 'article'
             );
         }
-
-        // dd($this->_datas);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace User\DatasConstructors;
+namespace Constructors;
 
 use \GrendelDb\Db,
     \GrendelDb\Search;
@@ -19,9 +19,7 @@ implements \MainInterfaces\Controllers\DatasImplements
 
         if ($search->searchInDb('titre', $request->getArgs()[0]))
             $this->_datas->{'categorie'} = $this->findDatasContent(
-                'categorie', current($search->getSelect())->{'file'}
+                'categorie', $search->getCurrent()->{'file'}
             );
-
-        // dd($this->_datas);
     }
 }

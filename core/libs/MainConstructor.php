@@ -2,7 +2,7 @@
 
 namespace MainLib;
 
-use \MainLib\DatasReader as Datas;
+use \Connectors\DatasReaderConnector as Datas;
 
 abstract class MainConstructor
 {

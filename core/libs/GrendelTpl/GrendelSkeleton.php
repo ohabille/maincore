@@ -7,6 +7,7 @@ use \GrendelTpl\Skeleton,
     \GrendelTpl\SkeletonPatterns as Patterns;
 
 class GrendelSkeleton
+implements  \MainInterfaces\Skeleton\ModelSkeletonImplement
 {
     private $_view;
     private $_skeleton;
@@ -69,12 +70,26 @@ class GrendelSkeleton
         }
     }
 
+    /**
+     * @param string $view : Template
+     */
     public function setSkeleton(string $view) : void
     {
-        $this->_view = $view;
+        $this->_skeleton->setSkeleton($view);
     }
 
-    public function readTemplate()
+    /**
+     * @return string $_view : Template
+     */
+    public function getSkeleton() : string
+    {
+        return $this->_skeleton->getSkeleton();
+    }
+
+    /**
+     * Affiche le template
+     */
+    public function readTemplate() : void
     {
         echo $this->_skeleton->getSkeleton();
     }

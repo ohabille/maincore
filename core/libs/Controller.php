@@ -2,7 +2,7 @@
 
 namespace MainLib;
 
-use \GrendelTpl\GrendelSkeleton as Skeleton;
+use \Connectors\ViewConnector as Skeleton;
 
 class Controller implements \MainInterfaces\SingleTonImplement
 {
@@ -15,7 +15,7 @@ class Controller implements \MainInterfaces\SingleTonImplement
     /**
      * @var string
      */
-    private static $dataNamespace = '\\User\\DatasConstructors\\';
+    private static $modelNamespace = '\\Constructors\\';
     /**
      * @var \stdClass
      */
@@ -27,11 +27,11 @@ class Controller implements \MainInterfaces\SingleTonImplement
     {
         $this->_route = $request->getRoutes()->{$request->getRequest()};
 
-        $datas = self::$dataNamespace.$this->_route->{'Controller'};
+        $model = self::$modelNamespace.$this->_route->{'Controller'};
 
-        $skeleton = new Skeleton(
-            $this->_route->{'template'},
-            new $datas($request)
+        $skeleton = Skeleton::getInstance(
+                $this->_route->{'template'},
+                new $model($request)
         );
 
         $skeleton->readTemplate();

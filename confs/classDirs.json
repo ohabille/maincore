@@ -1,5 +1,6 @@
 {
     "paths" : [
+        "Connectors",
         "MainInterfaces",
         "MainTraits",
         "MainLib",
@@ -7,14 +8,15 @@
         "GrendelDb",
         "GrendelTpl",
         "User",
-        "App"
+        "Constructors"
     ],
+    "Connectors" : "core/Connectors/",
     "MainInterfaces" : "core/Interfaces/",
     "MainTraits" : "core/Traits/",
     "MainLib" : "core/libs/",
     "GrendelRequests" : "core/libs/GrendelRequests/",
     "GrendelDb" : "core/libs/GrendelDb/",
-    "GrendelTpl" : "devs/GrendelTpl/",
+    "GrendelTpl" : "core/libs/GrendelTpl/",
     "User" : "devs/",
-    "App" : "devs/App/"
+    "Constructors" : "devs/DatasConstructors/"
 }

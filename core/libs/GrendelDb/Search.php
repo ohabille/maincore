@@ -2,18 +2,17 @@
 
 namespace GrendelDb;
 
-use \MainLib\DatasReader as Datas;
+use \Connectors\DatasReaderConnectors as Datas;
 
 class Search
 implements  \MainInterfaces\SingleTonImplement,
-            \MainInterfaces\DatasBases\DbSelectImplement
+            \MainInterfaces\DatasBases\DbSearchImplement
 {
     use \MainTraits\Instance;
 
     private static $instance;
     private $_mainDb;
     private $_db;
-    private $_dataMethods;
     private $_find;
 
     private function __construct(
@@ -32,7 +31,31 @@ implements  \MainInterfaces\SingleTonImplement,
         return new self::$class($mainDb);
     }
 
-    public function isInDb(string $from)
+    private function setCurrentDB() : void
+    {
+        $this->_db = parseConf(
+            'db/'.$this->_mainDb->getDbName().'/'
+            .$this->_mainDb->getKeyMainNode().'-'
+            .$this->_mainDb->getKeyNode()
+        );
+    }
+
+    private function findInDb(string $from, string $needle) : bool
+    {
+        if (!$this->isInDb($from)) return false;
+
+        do {
+            if (current($this->_db)->{$from} == $needle) {
+                $this->_find->{key($this->_db)} = current($this->_db);
+
+                return true;
+            }
+        } while (false !== next($this->_db));
+
+        return false;
+    }
+
+    public function isInDb(string $from) : bool
     {
         $this->setCurrentDb();
 
@@ -54,27 +77,11 @@ implements  \MainInterfaces\SingleTonImplement,
         return true;
     }
 
-    private function findInDb(string $from, string $needle) : bool
-    {
-        if (!$this->isInDb($from)) return false;
-
-        do {
-            if (current($this->_db)->{$from} == $needle) {
-                $this->_find->{key($this->_db)} = current($this->_db);
-
-                return true;
-            }
-        } while (false !== next($this->_db));
-
-        return false;
-    }
-
     public function isInDatas(string $from) : bool
     {
-        Datas::getInstance()->setConf($this->_mainDb->getDbName());
+        $dataConf = Datas::getConf($this->_mainDb->getDbName(), 'balises');
 
-        if (!in_array($from, Datas::getInstance()->getConf()->{'balises'}))
-            return false;
+        if (!in_array($from, $dataConf)) return false;
 
         return true;
     }
@@ -83,7 +90,7 @@ implements  \MainInterfaces\SingleTonImplement,
     {
         $this->setCurrentDb();
 
-        $content = Datas::getInstance()->getsectioncontent(
+        $content = Datas::getsectioncontent(
             $from, current($this->_db)->{'file'}
         );
 
@@ -104,16 +111,17 @@ implements  \MainInterfaces\SingleTonImplement,
         return false;
     }
 
-    private function setCurrentDB() : void
+    public function getKeyCurrent() : string
     {
-        $this->_db = parseConf(
-            'db/'.$this->_mainDb->getDbName().'/'
-            .$this->_mainDb->getKeyMainNode().'-'
-            .$this->_mainDb->getKeyNode()
-        );
+        return key($this->_find);
     }
 
-    public function getSelect() : \stdClass
+    public function getCurrent() : \stdClass
+    {
+        return current($this->_find);
+    }
+
+    public function getFind() : \stdClass
     {
         return $this->_find;
     }
