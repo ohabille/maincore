@@ -10,7 +10,7 @@ trait Instance
     * Retourne une instance unique de la classe appelée
     * @return object : L'instance de la classe
     */
-    public static function getInstance() : \MainPorts\SingleTonImplement
+    public static function getInstance() : \MainInterfaces\SingleTonImplement
     {
         if (is_null(self::$class))
             self::$class = get_called_class();
@@ -27,9 +27,9 @@ trait Instance
 
     /**
      * Retourne l'instance de la classe
-     * @return \MainPorts\SingleTonImplement : instance de la classe
+     * @return \MainInterfaces\SingleTonImplement : instance de la classe
      */
-    public static function setInstance() : \MainPorts\SingleTonImplement
+    public static function setInstance() : \MainInterfaces\SingleTonImplement
     {
         return new self::$class;
     }

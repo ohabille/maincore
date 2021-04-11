@@ -2,14 +2,33 @@
 
 namespace MainLib;
 
-class Datas
+class DatasReader
+implements  \MainInterfaces\SingleTonImplement,
+            \MainInterfaces\DatasReaderImplement
 {
+    use \MainTraits\Instance;
+
+    private static $instance;
     private static $confs;
     private $_conf;
 
-    public function __construct()
+    private function __construct()
     {
         self::$confs = getConf('datasConf');
+    }
+
+    private function getSectionPattern(string $mask, string $content) : string
+    {
+        return '#\[('.$mask.')\](.*)\[\/('.$mask.')\]#Us';
+    }
+
+    private function getContent(string $file) : string
+    {
+        return file_get_contents(
+            ROOTDIRS.$this->_conf->{'dir'}
+            .$file
+            .$this->_conf->{'ext'}
+        );
     }
 
     public function isConf(string $name) : bool
@@ -22,38 +41,15 @@ class Datas
         $this->_conf = self::$confs->{$name};
     }
 
-    public function getContent(string $file) : string
-    {
-        return file_get_contents(
-            ROOTDIRS.$this->_conf->{'dir'}
-            .$file
-            .$this->_conf->{'ext'}
-        );
-    }
-
     public function getTime(int $time) : array
     {
-        return $this->readDateKeys(getdate($time));
-    }
-
-    private function readDateKeys(array $time) : array
-    {
+        $time = getdate($time);
         $date = [];
 
         foreach ($this->_conf->{'time'} as $form)
             if (isset($time[$form])) $date[$form] = $time[$form];
 
         return $date;
-    }
-
-    public function readDataKeys(\stdClass $data) : array
-    {
-        $datas = [];
-
-        foreach ($this->_conf->{'dataKeys'} as $key)
-            if (isset($data->{$key})) $datas[$key] = $data->{$key};
-
-        return $datas;
     }
 
     public function getSections(string $file) : array
@@ -77,14 +73,8 @@ class Datas
         if (0 === preg_match($pattern, $content, $matches)) return '';
 
         $data = new \stdClass;
-        // $data->{$matches[]}
-        // dd($matches);
-        return $matches[2];
-    }
 
-    private function getSectionPattern(string $mask, string $content) : string
-    {
-        return '#\[('.$mask.')\](.*)\[\/('.$mask.')\]#Us';
+        return $matches[2];
     }
 
     public function getConf() : \stdClass

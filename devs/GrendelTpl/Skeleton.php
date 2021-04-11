@@ -5,7 +5,7 @@ namespace GrendelTpl;
 use \GrendelTpl\SkeletonPatterns as Patterns,
     \GrendelTpl\SkeletonBlocks as Blocks;
 
-class Skeleton implements \MainPorts\Skeleton\SkeletonImplement
+class Skeleton implements \MainInterfaces\Skeleton\SkeletonImplement
 {
     private $_skeleton;
 

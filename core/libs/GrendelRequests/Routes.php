@@ -7,14 +7,14 @@
 namespace GrendelRequests;
 
 class Routes
-implements  \MainPorts\Requests\RoutesImplement,
-            \MainPorts\SingleTonImplement
+implements  \MainInterfaces\Requests\RoutesImplement,
+            \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\Instance;
 
     /**
      * Instance de la classe
-     * @var \MainPorts\SingleTonImplement
+     * @var \MainInterfaces\SingleTonImplement
      */
     private static $instance;
     /**

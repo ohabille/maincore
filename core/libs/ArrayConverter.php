@@ -3,14 +3,14 @@
 namespace MainLib;
 
 class ArrayConverter
-implements \MainPorts\FuncsImplement,
-            \MainPorts\SingleTonImplement
+implements \MainInterfaces\FuncsImplement,
+            \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\MainFuncs;
 
     /**
      * Instance de la classe
-     * @var \MainPorts\SingleTonImplement
+     * @var \MainInterfaces\SingleTonImplement
      */
     protected static $instance;
 

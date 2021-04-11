@@ -3,14 +3,14 @@
 namespace MainLib;
 
 class ShellColors
-implements  \MainPorts\FuncsImplement, 
-            \MainPorts\SingleTonImplement
+implements  \MainInterfaces\FuncsImplement, 
+            \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\MainFuncs;
 
     /**
      * instance de la classe
-     * @var \MainPorts\SingleTonImplement
+     * @var \MainInterfaces\SingleTonImplement
      */
     protected static $instance;
 

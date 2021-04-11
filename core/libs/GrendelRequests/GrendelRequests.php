@@ -3,13 +3,13 @@
 namespace GrendelRequests;
 
 class GrendelRequests
-implements  \MainPorts\SingleTonImplement,
-            \MainPorts\Controllers\RequestImplements
+implements  \MainInterfaces\SingleTonImplement,
+            \MainInterfaces\Controllers\RequestImplements
 {
     use \MainTraits\Instance;
 
     /**
-     * @var \MainPorts\SingleTonImplement
+     * @var \MainInterfaces\SingleTonImplement
      */
     private static $instance;
 

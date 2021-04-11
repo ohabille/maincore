@@ -12,18 +12,18 @@
 namespace GrendelRequests;
 
 class UrlMatches
-implements  \MainPorts\Requests\UrlMatchImplement,
-            \MainPorts\SingleTonImplement
+implements  \MainInterfaces\Requests\UrlMatchImplement,
+            \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\Instance;
 
     /**
-     * @var \MainPorts\SingleTonImplement
+     * @var \MainInterfaces\SingleTonImplement
      */
     private static $instance;
 
     /**
-     * @var \MainPorts\Requests\RoutesImplement
+     * @var \MainInterfaces\Requests\RoutesImplement
      */
     private $_routes;
     /**
@@ -31,15 +31,15 @@ implements  \MainPorts\Requests\UrlMatchImplement,
      */
     private $_matches;
 
-    private function __construct(\MainPorts\Requests\RoutesImplement $routes)
+    private function __construct(\MainInterfaces\Requests\RoutesImplement $routes)
     {
         $this->_routes = $routes;
         $this->setMatches();
     }
 
     public static function setInstance(
-        \MainPorts\Requests\RoutesImplement $routes
-    ) : \MainPorts\SingleTonImplement
+        \MainInterfaces\Requests\RoutesImplement $routes
+    ) : \MainInterfaces\SingleTonImplement
     {
         return new self::$class($routes);
     }

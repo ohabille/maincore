@@ -3,15 +3,15 @@
 namespace MainLib;
 
 class JsonMethods
-implements  \MainPorts\FuncsImplement,
-            \MainPorts\SingleTonImplement,
-            \MainPorts\ParseConfsImplement
+implements  \MainInterfaces\FuncsImplement,
+            \MainInterfaces\SingleTonImplement,
+            \MainInterfaces\ParseConfsImplement
 {
     use \MainTraits\MainFuncs;
 
     /**
      * instance de la classe
-     * @var \MainPorts\SingleTonImplement
+     * @var \MainInterfaces\SingleTonImplement
      */
     protected static $instance;
 

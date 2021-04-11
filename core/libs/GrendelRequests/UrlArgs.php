@@ -3,7 +3,7 @@
 namespace GrendelRequests;
 
 class UrlArgs
-implements  \MainPorts\SingleTonImplement
+implements  \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\Instance;
 
@@ -24,7 +24,7 @@ implements  \MainPorts\SingleTonImplement
     private $_args;
 
     private function __construct(
-        \MainPorts\Requests\RoutesImplement $routes,
+        \MainInterfaces\Requests\RoutesImplement $routes,
         array $matches,
         string $request
     )
@@ -37,10 +37,10 @@ implements  \MainPorts\SingleTonImplement
     }
 
     private static function setInstance(
-        \MainPorts\Requests\RoutesImplement $routes,
-        \MainPorts\Requests\UrlMatchImplement $matches,
-        \MainPorts\Requests\UrlRequestImplement $request
-    ) : \MainPorts\SingleTonImplement
+        \MainInterfaces\Requests\RoutesImplement $routes,
+        \MainInterfaces\Requests\UrlMatchImplement $matches,
+        \MainInterfaces\Requests\UrlRequestImplement $request
+    ) : \MainInterfaces\SingleTonImplement
     {
         return new self::$class(
             $routes, $matches->getMatches(), $request->getRequest()

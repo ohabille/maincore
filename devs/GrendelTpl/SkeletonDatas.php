@@ -4,13 +4,13 @@ namespace GrendelTpl;
 
 use \GrendelTpl\SkeletonPatterns as Patterns;
 
-class SkeletonDatas implements \MainPorts\SingleTonImplement
+class SkeletonDatas implements \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\Instance;
 
     /**
      * instance de la classe
-     * @var \MainPorts\SingleTonImplement
+     * @var \MainInterfaces\SingleTonImplement
      */
     protected static $instance;
 

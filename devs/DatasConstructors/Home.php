@@ -4,10 +4,10 @@ namespace User\DatasConstructors;
 
 class Home
 extends \MainLib\MainConstructor
-implements \MainPorts\Controllers\DatasImplements
+implements \MainInterfaces\Controllers\DatasImplements
 {
     public function __construct(
-        \MainPorts\Controllers\RequestImplements $request
+        \MainInterfaces\Controllers\RequestImplements $request
     )
     {
         parent::__construct($request);

@@ -3,31 +3,26 @@
 namespace User\DatasConstructors;
 
 use \GrendelDb\Db,
-    \GrendelDb\Search,
-    \MainLib\Datas;
+    \GrendelDb\Search;
 
 class Article
 extends \MainLib\MainConstructor
-implements \MainPorts\Controllers\DatasImplements
+implements \MainInterfaces\Controllers\DatasImplements
 {
-    use \MainTraits\Datas;
-
     public function __construct(
-        \MainPorts\Controllers\RequestImplements $request
+        \MainInterfaces\Controllers\RequestImplements $request
     )
     {
         parent::__construct($request);
 
-        $search = new Search(new Db('articles'));
-        $methods = new Datas;
+        $search = Search::getInstance(new Db('articles'));
 
         if ($search->searchInDb('titre', $request->getArgs()[0])) {
-            $methods->setConf('article');
+            self::$methods->setConf('article');
 
             $this->_datas->{'article'} = $this->findDatas(
-                $methods,
-                current($search->getFind()),
-                key($search->getFind()),
+                current($search->getSelect()),
+                key($search->getSelect()),
                 'article'
             );
         }

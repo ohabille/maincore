@@ -2,7 +2,7 @@
 
 namespace GrendelTpl;
 
-class SkeletonPatterns implements \MainPorts\SingleTonImplement
+class SkeletonPatterns implements \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\Instance;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace MainPorts\Skeleton;
+namespace MainInterfaces\Skeleton;
 
 interface SkeletonImplement
 {

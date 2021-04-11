@@ -1,6 +1,6 @@
 {
     "paths" : [
-        "MainPorts",
+        "MainInterfaces",
         "MainTraits",
         "MainLib",
         "GrendelRequests",
@@ -9,7 +9,7 @@
         "User",
         "App"
     ],
-    "MainPorts" : "core/Ports/",
+    "MainInterfaces" : "core/Interfaces/",
     "MainTraits" : "core/Traits/",
     "MainLib" : "core/libs/",
     "GrendelRequests" : "core/libs/GrendelRequests/",

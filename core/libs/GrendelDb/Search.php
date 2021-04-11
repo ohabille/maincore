@@ -2,23 +2,34 @@
 
 namespace GrendelDb;
 
-use \MainLib\Datas;
+use \MainLib\DatasReader as Datas;
 
 class Search
-// implements \MainPorts\DatasBases\DbSelectImplement
+implements  \MainInterfaces\SingleTonImplement,
+            \MainInterfaces\DatasBases\DbSelectImplement
 {
+    use \MainTraits\Instance;
+
+    private static $instance;
     private $_mainDb;
     private $_db;
     private $_dataMethods;
     private $_find;
 
-    public function __construct(
-        \MainPorts\DatasBases\DbImplement $mainDb
+    private function __construct(
+        \MainInterfaces\DatasBases\DbImplement $mainDb
     )
     {
         $this->_mainDb = $mainDb;
 
         $this->_find = new \stdClass();
+    }
+
+    public static function setInstance(
+        \MainInterfaces\DatasBases\DbImplement $mainDb
+    ) : \MainInterfaces\SingleTonImplement
+    {
+        return new self::$class($mainDb);
     }
 
     public function isInDb(string $from)
@@ -60,11 +71,9 @@ class Search
 
     public function isInDatas(string $from) : bool
     {
-        $this->_dataMethods = new Datas();
+        Datas::getInstance()->setConf($this->_mainDb->getDbName());
 
-        $this->_dataMethods->setConf($this->_mainDb->getDbName());
-
-        if (!in_array($from, $this->_dataMethods->getConf()->{'balises'}))
+        if (!in_array($from, Datas::getInstance()->getConf()->{'balises'}))
             return false;
 
         return true;
@@ -74,7 +83,7 @@ class Search
     {
         $this->setCurrentDb();
 
-        $content = $this->_dataMethods->getsectioncontent(
+        $content = Datas::getInstance()->getsectioncontent(
             $from, current($this->_db)->{'file'}
         );
 
@@ -104,7 +113,7 @@ class Search
         );
     }
 
-    public function getFind() : \stdClass
+    public function getSelect() : \stdClass
     {
         return $this->_find;
     }

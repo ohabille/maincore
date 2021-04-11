@@ -7,24 +7,24 @@
 namespace GrendelRequests;
 
 class UrlRequest
-implements  \MainPorts\Requests\UrlRequestImplement,
-            \MainPorts\SingleTonImplement
+implements  \MainInterfaces\Requests\UrlRequestImplement,
+            \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\Instance;
 
     /**
-     * @var \MainPorts\SingleTonImplement
+     * @var \MainInterfaces\SingleTonImplement
      */
     private static $instance;
 
     /**
      * Instance de classe
-     * @var \MainPorts\Requests\RoutesImplement
+     * @var \MainInterfaces\Requests\RoutesImplement
      */
     private $_routes;
     /**
      * Instance de classe
-     * @var \MainPorts\Requests\UrlMatchImplement
+     * @var \MainInterfaces\Requests\UrlMatchImplement
      */
     private $_matches;
     /**
@@ -34,8 +34,8 @@ implements  \MainPorts\Requests\UrlRequestImplement,
     private $_request;
 
     private function __construct(
-        \MainPorts\Requests\RoutesImplement $routes,
-        \MainPorts\Requests\UrlMatchImplement $matches
+        \MainInterfaces\Requests\RoutesImplement $routes,
+        \MainInterfaces\Requests\UrlMatchImplement $matches
     )
     {
         $this->_routes = $routes;
@@ -45,9 +45,9 @@ implements  \MainPorts\Requests\UrlRequestImplement,
     }
 
     public static function setInstance(
-        \MainPorts\Requests\RoutesImplement $routes,
-        \MainPorts\Requests\UrlMatchImplement $matches
-    ) : \MainPorts\SingleTonImplement
+        \MainInterfaces\Requests\RoutesImplement $routes,
+        \MainInterfaces\Requests\UrlMatchImplement $matches
+    ) : \MainInterfaces\SingleTonImplement
     {
         return new self::$class($routes, $matches);
     }

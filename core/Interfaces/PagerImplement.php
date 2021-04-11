@@ -1,6 +1,6 @@
 <?php
 
-namespace MainPorts;
+namespace MainInterfaces;
 
 interface PagerImplement
 {

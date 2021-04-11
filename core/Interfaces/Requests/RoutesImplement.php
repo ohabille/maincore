@@ -1,6 +1,6 @@
 <?php
 
-namespace MainPorts\Requests;
+namespace MainInterfaces\Requests;
 
 interface RoutesImplement
 {

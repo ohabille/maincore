@@ -3,27 +3,23 @@
 namespace User\DatasConstructors;
 
 use \GrendelDb\Db,
-    \GrendelDb\Search,
-    \MainLib\Datas;
+    \GrendelDb\Search;
 
 class Categorie
 extends \MainLib\MainConstructor
-implements \MainPorts\Controllers\DatasImplements
+implements \MainInterfaces\Controllers\DatasImplements
 {
-    use \MainTraits\Datas;
-
     public function __construct(
-        \MainPorts\Controllers\RequestImplements $request
+        \MainInterfaces\Controllers\RequestImplements $request
     )
     {
         parent::__construct($request);
 
-        $search = new Search(new Db('categories'));
+        $search = Search::getInstance(new Db('categories'));
 
         if ($search->searchInDb('titre', $request->getArgs()[0]))
             $this->_datas->{'categorie'} = $this->findDatasContent(
-                new Datas(), 'categorie',
-                current($search->getFind())->{'file'}
+                'categorie', current($search->getSelect())->{'file'}
             );
 
         // dd($this->_datas);

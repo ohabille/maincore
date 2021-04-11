@@ -2,7 +2,7 @@
 
 namespace GrendelDb;
 
-class Db implements \MainPorts\DatasBases\DbImplement
+class Db implements \MainInterfaces\DatasBases\DbImplement
 {
     /**
      * Le nom de la base de données

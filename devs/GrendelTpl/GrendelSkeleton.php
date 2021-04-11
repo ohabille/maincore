@@ -14,7 +14,7 @@ class GrendelSkeleton
 
     public function __construct(
         string $templateName,
-        \MainPorts\Controllers\DatasImplements $datas
+        \MainInterfaces\Controllers\DatasImplements $datas
     )
     {
         $this->_skeleton = new Skeleton($templateName);

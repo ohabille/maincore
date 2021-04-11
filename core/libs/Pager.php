@@ -2,7 +2,7 @@
 
 namespace MainLib;
 
-class Pager implements \MainPorts\PagerImplement
+class Pager implements \MainInterfaces\PagerImplement
 {
     /**
      * Le nombre de sauts total

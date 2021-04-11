@@ -4,12 +4,12 @@ namespace MainLib;
 
 use \GrendelTpl\GrendelSkeleton as Skeleton;
 
-class Controller implements \MainPorts\SingleTonImplement
+class Controller implements \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\Instance;
 
     /**
-     * @var \MainPorts\SingleTonImplement
+     * @var \MainInterfaces\SingleTonImplement
      */
     private static $instance;
     /**
@@ -22,7 +22,7 @@ class Controller implements \MainPorts\SingleTonImplement
     private $_route;
 
     private function __construct(
-        \MainPorts\Controllers\RequestImplements $request
+        \MainInterfaces\Controllers\RequestImplements $request
     )
     {
         $this->_route = $request->getRoutes()->{$request->getRequest()};
@@ -38,8 +38,8 @@ class Controller implements \MainPorts\SingleTonImplement
     }
 
     public static function setInstance(
-        \MainPorts\Controllers\RequestImplements $request
-    ) : \MainPorts\SingleTonImplement
+        \MainInterfaces\Controllers\RequestImplements $request
+    ) : \MainInterfaces\SingleTonImplement
     {
         return new self::$class($request);
     }

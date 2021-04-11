@@ -4,17 +4,14 @@ namespace User\DatasConstructors;
 
 use \GrendelDb\Db,
     \MainLib\Pager,
-    \GrendelDb\Select,
-    \MainLib\Datas;
+    \GrendelDb\Select;
 
 class Articles
 extends \MainLib\MainConstructor
-implements \MainPorts\Controllers\DatasImplements
+implements \MainInterfaces\Controllers\DatasImplements
 {
-    use \MainTraits\Datas;
-
     public function __construct(
-        \MainPorts\Controllers\RequestImplements $request
+        \MainInterfaces\Controllers\RequestImplements $request
     )
     {
         parent::__construct($request);
@@ -29,24 +26,8 @@ implements \MainPorts\Controllers\DatasImplements
 
         $select = new select($db, $pager);
 
-        $this->setSelectedDatas(new Datas(), $select->getSelect());
+        $this->setSelectedDatas($select->getSelect(), 'articles');
 
         // dd($this->_datas);
-    }
-
-    private function setSelectedDatas(
-        \MainLib\Datas $methods,
-        \stdClass $selected
-    ) : void
-    {
-        foreach ($selected as $k=>$select) {
-            $methods->setConf('articles');
-
-            $this->_datas->{'articles'}[] = $k;
-
-            $this->_datas->{$k} = $this->findDatas(
-                $methods, $select, $k, 'articles'
-            );
-        }
     }
 }

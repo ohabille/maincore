@@ -3,23 +3,23 @@
 namespace MainLib;
 
 class Template
-implements  \MainPorts\FuncsImplement,
-            \MainPorts\SingleTonImplement
+implements  \MainInterfaces\FuncsImplement,
+            \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\MainFuncs;
 
     /**
      * instance de la classe
-     * @var \MainPorts\SingleTonImplement
+     * @var \MainInterfaces\SingleTonImplement
      */
     protected static $instance;
     private static $conf;
 
     /**
      * Retourne l'instance de la classe
-     * @return \MainPorts\SingleTonImplement : instance de la classe
+     * @return \MainInterfaces\SingleTonImplement : instance de la classe
      */
-    public static function setInstance() : \MainPorts\SingleTonImplement
+    public static function setInstance() : \MainInterfaces\SingleTonImplement
     {
         self::$conf = getConf('skeleton')->{'template'};
 

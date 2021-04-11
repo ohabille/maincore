@@ -2,21 +2,24 @@
 
 namespace MainLib;
 
-use \User\Test as Datas;
+use \MainLib\DatasReader as Datas;
 
 abstract class MainConstructor
 {
-    /**
-     * @var \stdClass
-     */
-    protected $_datas;
+    use \MainTraits\DatasConstructor;
+
     /**
      * @var \stdClass
      */
     protected $_ctrlConf;
+    /**
+     * @var \stdClass
+     */
+    protected $_datas;
+    protected static $methods;
 
     public function __construct(
-        \MainPorts\Controllers\RequestImplements $request
+        \MainInterfaces\Controllers\RequestImplements $request
     )
     {
         $conf = getConf('mainDatas');
@@ -24,6 +27,8 @@ abstract class MainConstructor
         $this->_ctrlConf = $request->getRoutes()->{$request->getRequest()};
 
         $this->_datas = $this->_ctrlConf->{'datas'};
+
+        self::$methods = Datas::getInstance();
 
         $this->_datas->{'host'} = $conf->{'host'};
 
@@ -38,6 +43,20 @@ abstract class MainConstructor
 
             $this->_datas->{'menu'}[] = $route->{'url'};
             $this->_datas->{'menu'.$route->{'url'}} = $route->{'name'};
+        }
+    }
+
+    protected function setSelectedDatas(
+        \stdClass $selected,
+        string $name
+    ) : void
+    {
+        foreach ($selected as $k=>$select) {
+            self::$methods->setConf($name);
+
+            $this->_datas->{$name}[] = $k;
+
+            $this->_datas->{$k} = $this->findDatas($select, $k, $name);
         }
     }
 
