@@ -1,6 +1,6 @@
 <?php
 
-namespace MainLib;
+namespace GrendelDatas;
 
 class DatasReader
 implements  \MainInterfaces\SingleTonImplement,
@@ -14,7 +14,12 @@ implements  \MainInterfaces\SingleTonImplement,
 
     private function __construct()
     {
-        self::$confs = getConf('datasConf');
+        self::$confs = parseConf(GRENDELDATAS_DIR.'datasConf');
+    }
+
+    public function getMainDatas() : \stdClass
+    {
+        return parseConf(GRENDELDATAS_DIR.'mainDatas');
     }
 
     private function getSectionPattern(string $mask, string $content) : string

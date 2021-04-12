@@ -2,7 +2,7 @@
 
 namespace Connectors;
 
-use \MainLib\DatasReader as Datas;
+use \GrendelDatas\DatasReader as Datas;
 
 class DatasReaderConnector
 {

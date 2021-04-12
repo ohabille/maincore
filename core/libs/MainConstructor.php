@@ -22,13 +22,13 @@ abstract class MainConstructor
         \MainInterfaces\Controllers\RequestImplements $request
     )
     {
-        $conf = getConf('mainDatas');
-
         $this->_ctrlConf = $request->getRoutes()->{$request->getRequest()};
 
         $this->_datas = $this->_ctrlConf->{'datas'};
 
         self::$methods = Datas::getInstance();
+
+        $conf = self::$methods->getMainDatas();
 
         $this->_datas->{'host'} = $conf->{'host'};
 
