@@ -1,6 +1,6 @@
 <?php
 
-namespace MainLib;
+namespace MainMethods;
 
 class FilesMethods
 implements  \MainInterfaces\FuncsImplement,

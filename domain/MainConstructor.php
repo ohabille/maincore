@@ -1,6 +1,6 @@
 <?php
 
-namespace MainLib;
+namespace Domain;
 
 use \Connectors\DatasReaderConnector as Datas;
 

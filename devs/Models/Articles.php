@@ -1,13 +1,13 @@
 <?php
 
-namespace Constructors;
+namespace Models;
 
 use \GrendelDb\Db,
-    \MainLib\Pager,
+    \Domain\Pager,
     \GrendelDb\Select;
 
 class Articles
-extends \MainLib\MainConstructor
+extends \Domain\MainConstructor
 implements \MainInterfaces\Controllers\DatasImplements
 {
     public function __construct(

@@ -1,12 +1,12 @@
 {
     "FilesMethods" : {
-        "namespace" : "\\MainLib\\FilesMethods",
+        "namespace" : "\\MainMethods\\FilesMethods",
         "methods" : [
             "readContentFile"
         ]
     },
     "jsonMethods" : {
-        "namespace" : "\\MainLib\\JsonMethods",
+        "namespace" : "\\MainMethods\\JsonMethods",
         "methods" : [
             "parseConf",
             "getConf",
@@ -15,20 +15,20 @@
         ]
     },
     "stdToArray" : {
-        "namespace" : "\\MainLib\\ArrayConverter",
+        "namespace" : "\\MainMethods\\ArrayConverter",
         "methods" : [
             "stdToArray"
         ]
     },
     "dumps" : {
-        "namespace" : "\\MainLib\\Dumps",
+        "namespace" : "\\MainMethods\\Dumps",
         "methods" : [
             "dump",
             "dd"
         ]
     },
     "shellColors" : {
-        "namespace" : "\\MainLib\\ShellColors",
+        "namespace" : "\\MainMethods\\ShellColors",
         "methods" : [
             "shellLightGreen",
             "shellBrown",

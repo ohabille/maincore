@@ -1,6 +1,6 @@
 <?php
 
-namespace MainLib;
+namespace MainMethods;
 
 class JsonMethods
 implements  \MainInterfaces\FuncsImplement,

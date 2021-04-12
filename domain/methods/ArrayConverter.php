@@ -1,6 +1,6 @@
 <?php
 
-namespace MainLib;
+namespace MainMethods;
 
 class ArrayConverter
 implements \MainInterfaces\FuncsImplement,

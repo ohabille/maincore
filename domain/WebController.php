@@ -1,10 +1,10 @@
 <?php
 
-namespace MainLib;
+namespace Domain;
 
 use \Connectors\ViewConnector as Skeleton;
 
-class Controller implements \MainInterfaces\SingleTonImplement
+class WebController implements \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\Instance;
 
@@ -12,10 +12,6 @@ class Controller implements \MainInterfaces\SingleTonImplement
      * @var \MainInterfaces\SingleTonImplement
      */
     private static $instance;
-    /**
-     * @var string
-     */
-    private static $modelNamespace = '\\Constructors\\';
     /**
      * @var \stdClass
      */
@@ -27,7 +23,7 @@ class Controller implements \MainInterfaces\SingleTonImplement
     {
         $this->_route = $request->getRoutes()->{$request->getRequest()};
 
-        $model = self::$modelNamespace.$this->_route->{'Controller'};
+        $model = '\\Models\\'.$this->_route->{'Model'};
 
         $skeleton = Skeleton::getInstance(
                 $this->_route->{'template'},

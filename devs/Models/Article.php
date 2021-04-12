@@ -1,12 +1,12 @@
 <?php
 
-namespace Constructors;
+namespace Models;
 
 use \GrendelDb\Db,
     \GrendelDb\Search;
 
 class Article
-extends \MainLib\MainConstructor
+extends \Domain\MainConstructor
 implements \MainInterfaces\Controllers\DatasImplements
 {
     public function __construct(

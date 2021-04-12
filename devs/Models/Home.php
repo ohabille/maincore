@@ -1,9 +1,9 @@
 <?php
 
-namespace Constructors;
+namespace Models;
 
 class Home
-extends \MainLib\MainConstructor
+extends \Domain\MainConstructor
 implements \MainInterfaces\Controllers\DatasImplements
 {
     public function __construct(

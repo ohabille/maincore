@@ -1,9 +1,9 @@
 <?php
 
-namespace Constructors;
+namespace Models;
 
-class Categories
-extends \MainLib\MainConstructor
+class NotFound
+extends \Domain\MainConstructor
 implements \MainInterfaces\Controllers\DatasImplements
 {
     public function __construct(

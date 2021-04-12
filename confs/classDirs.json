@@ -1,24 +1,26 @@
 {
     "paths" : [
+        "Domain",
         "Connectors",
         "MainInterfaces",
         "MainTraits",
-        "MainLib",
+        "MainMethods",
         "GrendelRequests",
         "GrendelDb",
         "GrendelDatas",
         "GrendelTpl",
         "User",
-        "Constructors"
+        "Models"
     ],
-    "Connectors" : "core/Connectors/",
-    "MainInterfaces" : "core/Interfaces/",
-    "MainTraits" : "core/Traits/",
-    "MainLib" : "core/libs/",
-    "GrendelRequests" : "core/libs/GrendelRequests/",
-    "GrendelDb" : "core/libs/GrendelDb/",
-    "GrendelDatas" : "core/libs/GrendelDatas/",
-    "GrendelTpl" : "core/libs/GrendelTpl/",
+    "Domain" : "domain/",
+    "Connectors" : "domain/Connectors/",
+    "MainInterfaces" : "domain/Interfaces/",
+    "MainTraits" : "domain/Traits/",
+    "MainMethods" : "domain/methods/",
+    "GrendelRequests" : "libs/GrendelRequests/",
+    "GrendelDb" : "libs/GrendelDb/",
+    "GrendelDatas" : "libs/GrendelDatas/",
+    "GrendelTpl" : "libs/GrendelTpl/",
     "User" : "devs/",
-    "Constructors" : "devs/DatasConstructors/"
+    "Models" : "devs/Models/"
 }

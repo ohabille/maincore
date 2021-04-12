@@ -1,6 +1,6 @@
 <?php
 
-namespace MainLib;
+namespace Domain;
 
 class Pager implements \MainInterfaces\PagerImplement
 {
