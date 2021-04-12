@@ -5,7 +5,7 @@ namespace MainLib;
 class JsonMethods
 implements  \MainInterfaces\FuncsImplement,
             \MainInterfaces\SingleTonImplement,
-            \MainInterfaces\ParseConfsImplement
+            \MainInterfaces\JsonMethodsImplement
 {
     use \MainTraits\MainFuncs;
 
@@ -24,9 +24,12 @@ implements  \MainInterfaces\FuncsImplement,
     {
         $file = ROOTDIRS.$filePath.'.json';
 
-        if (!file_exists($file)) return json_decode("{}");
+        $content = readContentFile($file);
 
-        return json_decode(file_get_contents($file));
+        return json_decode(
+            !empty($content) ?
+            $content: '{}'
+        );
     }
 
     /**

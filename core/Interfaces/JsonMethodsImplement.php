@@ -2,7 +2,7 @@
 
 namespace MainInterfaces;
 
-interface parseConfsImplement
+interface JsonMethodsImplement
 {
     /**
      * Retourne les données d'un fichier *.json
@@ -18,4 +18,18 @@ interface parseConfsImplement
      *                             ou un object stdClass
      */
     public function getConf(string $filePath) : \stdClass;
+
+    /**
+     * Convertit un array en objet json
+     * @param  array    $data : l'array
+     * @return stdClass       : l'objet json
+     */
+    public function formatConf(array $data) : \stdClass;
+
+    /**
+     * Retourne le nombre d'entrées
+     * @param  stdClass $obj L'objet source
+     * @return int           Le nombre d'entrées
+     */
+    public static function getNbrOf(\stdClass $obj) : int;
 }

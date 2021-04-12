@@ -1,4 +1,10 @@
 {
+    "FilesMethods" : {
+        "namespace" : "\\MainLib\\FilesMethods",
+        "methods" : [
+            "readContentFile"
+        ]
+    },
     "jsonMethods" : {
         "namespace" : "\\MainLib\\JsonMethods",
         "methods" : [
