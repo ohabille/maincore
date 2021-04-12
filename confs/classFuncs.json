@@ -37,8 +37,8 @@
             "getShellColor"
         ]
     },
-    "template" : {
-        "namespace" : "\\MainLib\\Template",
+    "skeleton" : {
+        "namespace" : "\\GrendelTpl\\SkeletonMethods",
         "methods" : [
             "getTemplate"
         ]

@@ -12,8 +12,8 @@ class SkeletonPatterns implements \MainInterfaces\SingleTonImplement
 
     private function __construct()
     {
-        $this->_patterns = getConf('skeleton')->{'patterns'};
-        $this->_commands = getConf('skeleton')->{'commands'};
+        $this->_patterns = parseConf(GRENDELTPL_DIR.'skeleton')->{'patterns'};
+        $this->_commands = parseConf(GRENDELTPL_DIR.'skeleton')->{'commands'};
     }
 
     public function getUniquePattern(
