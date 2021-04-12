@@ -20,3 +20,9 @@ foreach ($classes as $class) {
     $class->{'namespace'}::getInstance()
         ->setMethodsAlias($class->{'methods'});
 }
+
+$dirs = getConf('classDirs');
+
+foreach ($dirs->{'paths'} as $path) {
+    define(strtoupper($path).'_DIR', $dirs->{$path});
+}
