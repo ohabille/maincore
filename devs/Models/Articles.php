@@ -3,7 +3,7 @@
 namespace Models;
 
 use \GrendelDb\Db,
-    \Domain\Pager,
+    \GrendelPager\Pager,
     \GrendelDb\Select;
 
 class Articles

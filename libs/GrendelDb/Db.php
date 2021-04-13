@@ -24,7 +24,7 @@ class Db implements \MainInterfaces\DatasBases\DbImplement
     {
         $this->_dbName = $dbName;
 
-        $this->_mainNode = parseConf('db/'.$this->_dbName.'/years');
+        $this->_mainNode = parseConf(__DIR__.'/db/'.$this->_dbName.'/years');
 
         $this->setNode();
     }

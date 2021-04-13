@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain;
+namespace GrendelPager;
 
 class Pager implements \MainInterfaces\PagerImplement
 {

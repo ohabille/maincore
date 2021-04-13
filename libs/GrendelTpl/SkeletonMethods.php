@@ -16,7 +16,7 @@ implements  \MainInterfaces\FuncsImplement,
 
     public function getTemplate(string $fileName) : string
     {
-        $conf = parseConf(GRENDELTPL_DIR.'skeleton')->{'template'};
+        $conf = parseConf(__DIR__.'/jsons/skeleton')->{'template'};
 
         $file = ROOTDIRS.$conf->{'dir'}.$fileName.$conf->{'ext'};
 

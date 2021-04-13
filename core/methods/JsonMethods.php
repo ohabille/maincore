@@ -22,9 +22,7 @@ implements  \MainInterfaces\FuncsImplement,
      */
     public function parseConf(string $filePath) : \stdClass
     {
-        $file = ROOTDIRS.$filePath.'.json';
-
-        $content = readContentFile($file);
+        $content = readContentFile($filePath.'.json');
 
         return json_decode(
             !empty($content) ?
@@ -40,7 +38,7 @@ implements  \MainInterfaces\FuncsImplement,
      */
     public function getConf(string $filePath) : \stdClass
     {
-        return parseConf('confs/'.$filePath);
+        return parseConf(ROOTDIRS.'confs/'.$filePath);
     }
 
     /**

@@ -47,9 +47,7 @@ class ClassAutoLoad
     private function setAutoLoadJson() : void
     {
         $this->_paths =  json_decode(
-            file_get_contents(
-                ROOTDIRS.'confs/classDirs.json'
-            )
+            file_get_contents(ROOTDIRS.'confs/classDirs.json')
         );
     }
 
@@ -84,8 +82,7 @@ class ClassAutoLoad
                 $this->_match[0],
                 $this->_paths->{$this->_match[1]},
                 $this->_className
-            )
-            .'.php';
+            ).'.php';
     }
 
     /**

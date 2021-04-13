@@ -30,8 +30,8 @@ implements  \MainInterfaces\Requests\RoutesImplement,
 
     private function __construct()
     {
-        $this->_conf = parseConf(GRENDELREQUESTS_DIR.'routesConf');
-        $this->_routes = parseConf(GRENDELREQUESTS_DIR.'routes');
+        $this->_conf = parseConf(__DIR__.'/jsons/routesConf');
+        $this->_routes = parseConf(__DIR__.'/jsons/routes');
     }
 
     private function getRequestKey() : string

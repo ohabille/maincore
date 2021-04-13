@@ -14,12 +14,12 @@ implements  \MainInterfaces\SingleTonImplement,
 
     private function __construct()
     {
-        self::$confs = parseConf(GRENDELDATAS_DIR.'datasConf');
+        self::$confs = parseConf(__DIR__.'/jsons/datasConf');
     }
 
     public function getMainDatas() : \stdClass
     {
-        return parseConf(GRENDELDATAS_DIR.'mainDatas');
+        return parseConf(__DIR__.'/jsons/mainDatas');
     }
 
     private function getSectionPattern(string $mask, string $content) : string
@@ -29,8 +29,8 @@ implements  \MainInterfaces\SingleTonImplement,
 
     private function getContent(string $file) : string
     {
-        return file_get_contents(
-            ROOTDIRS.$this->_conf->{'dir'}
+        return readContentFile(
+            __DIR__.'/'.$this->_conf->{'dir'}
             .$file
             .$this->_conf->{'ext'}
         );

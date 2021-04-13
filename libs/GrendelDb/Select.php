@@ -71,8 +71,8 @@ class Select implements \MainInterfaces\DatasBases\DbSelectImplement
 
     private function setCurrentDB() : void
     {
-        $this->_db = parseConf(
-            'db/'.$this->_mainDb->getDbName().'/'
+        $this->_db = parseConf(__DIR__.'/db/'
+            .$this->_mainDb->getDbName().'/'
             .$this->_mainDb->getKeyMainNode().'-'
             .$this->_mainDb->getKeyNode()
         );

@@ -6,7 +6,7 @@ use \Connectors\DatasReaderConnector as Datas;
 
 abstract class MainConstructor
 {
-    use \MainTraits\DatasConstructor;
+    use \DomainTraits\DatasConstructor;
 
     /**
      * @var \stdClass

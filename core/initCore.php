@@ -1,8 +1,5 @@
 <?php
 
-// Déclaration du fichier racine
-define('ROOTDIRS', '../');
-
 /**
  * Chargement du fichier autoLoad.php
  * @var string : Le fichier
@@ -19,10 +16,4 @@ $classes = json_decode(
 foreach ($classes as $class) {
     $class->{'namespace'}::getInstance()
         ->setMethodsAlias($class->{'methods'});
-}
-
-$dirs = getConf('classDirs');
-
-foreach ($dirs->{'paths'} as $path) {
-    define(strtoupper($path).'_DIR', $dirs->{$path});
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace MainTraits;
+namespace DomainTraits;
 
 trait DatasConstructor
 {
