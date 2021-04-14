@@ -2,7 +2,8 @@
 
 namespace Domain;
 
-use \Connectors\ViewConnector as Skeleton;
+use \GrendelRequests\GrendelRequests as Requests,
+    \Connectors\ViewConnector as Skeleton;
 
 class WebController implements \MainInterfaces\SingleTonImplement
 {
@@ -17,26 +18,21 @@ class WebController implements \MainInterfaces\SingleTonImplement
      */
     private $_route;
 
-    private function __construct(
-        \MainInterfaces\Controllers\RequestImplements $request
-    )
+    private function __construct()
     {
+        $request = Requests::getInstance();
+
         $this->_route = $request->getRoutes()->{$request->getRequest()};
 
-        $model = '\\Models\\'.$this->_route->{'Model'};
+        $task = '\\Models\\'.$this->_route->{'Model'};
+
+        $model = new $task($request);
 
         $skeleton = Skeleton::getInstance(
                 $this->_route->{'template'},
-                new $model($request)
+                $model->getDatas()
         );
 
         $skeleton->readTemplate();
-    }
-
-    public static function setInstance(
-        \MainInterfaces\Controllers\RequestImplements $request
-    ) : \MainInterfaces\SingleTonImplement
-    {
-        return new self::$class($request);
     }
   }

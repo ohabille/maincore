@@ -15,7 +15,7 @@ implements  \MainInterfaces\Skeleton\ModelSkeletonImplement
 
     public function __construct(
         string $templateName,
-        \MainInterfaces\Controllers\DatasImplements $datas
+        \stdClass $datas
     )
     {
         $this->_skeleton = new Skeleton($templateName);
@@ -27,7 +27,7 @@ implements  \MainInterfaces\Skeleton\ModelSkeletonImplement
 
         $this->_skeleton->setSkeleton(
             Datas::getInstance()::setDatas(
-                $this->_datas->getDatas(),
+                $this->_datas,
                 $this->_skeleton->getSkeleton()
             )
         );
@@ -60,7 +60,7 @@ implements  \MainInterfaces\Skeleton\ModelSkeletonImplement
                 str_replace(
                     $match[0],
                     $task::getInstance()::getCmdResult(
-                        $this->_datas->getDatas(),
+                        $this->_datas,
                         $match[1],
                         $cmds[3][$k]
                     ),

@@ -1,6 +1,5 @@
 <?php
 
-use \GrendelRequests\GrendelRequests as Requests;
 use \Domain\WebController as Ctrl;
 
 // Déclaration du fichier racine
@@ -10,6 +9,6 @@ define('ROOTDIRS', '../');
 require_once ROOTDIRS.'core/initCore.php';
 
 //
-$controller = Ctrl::getInstance(Requests::getInstance());
+$controller = Ctrl::getInstance();
 
 ?>
