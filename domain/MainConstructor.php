@@ -19,7 +19,7 @@ abstract class MainConstructor
     protected static $methods;
 
     public function __construct(
-        \MainInterfaces\Controllers\RequestImplements $request
+        \DomainInterfaces\Controllers\RequestImplements $request
     )
     {
         $this->_ctrlConf = $request->getRoutes()->{$request->getRequest()};

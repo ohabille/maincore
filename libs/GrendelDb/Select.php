@@ -2,15 +2,15 @@
 
 namespace GrendelDb;
 
-class Select implements \MainInterfaces\DatasBases\DbSelectImplement
+class Select implements \DomainInterfaces\DatasBases\DbSelectImplement
 {
     private $_mainDb;
     private $_db;
     private $_select;
 
     public function __construct(
-        \MainInterfaces\DatasBases\DbImplement $mainDb,
-        \MainInterfaces\PagerImplement $pager
+        \DomainInterfaces\DatasBases\DbImplement $mainDb,
+        \DomainInterfaces\PagerImplement $pager
     )
     {
         $this->_mainDb = $mainDb;
@@ -20,7 +20,7 @@ class Select implements \MainInterfaces\DatasBases\DbSelectImplement
     }
 
     private function selectSomesEntries(
-        \MainInterfaces\PagerImplement $pager
+        \DomainInterfaces\PagerImplement $pager
     ) : void
     {
         $start = $this->selectDb($pager->getStart());

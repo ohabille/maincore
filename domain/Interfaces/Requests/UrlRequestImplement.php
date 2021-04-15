@@ -1,6 +1,6 @@
 <?php
 
-namespace MainInterfaces\Requests;
+namespace DomainInterfaces\Requests;
 
 interface UrlRequestImplement
 {

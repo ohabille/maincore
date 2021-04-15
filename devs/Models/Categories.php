@@ -4,10 +4,10 @@ namespace Models;
 
 class Categories
 extends \Domain\MainConstructor
-implements \MainInterfaces\Controllers\DatasImplements
+implements \DomainInterfaces\Controllers\DatasImplements
 {
     public function __construct(
-        \MainInterfaces\Controllers\RequestImplements $request
+        \DomainInterfaces\Controllers\RequestImplements $request
     )
     {
         parent::__construct($request);

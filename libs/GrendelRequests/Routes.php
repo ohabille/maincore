@@ -7,7 +7,7 @@
 namespace GrendelRequests;
 
 class Routes
-implements  \MainInterfaces\Requests\RoutesImplement,
+implements  \DomainInterfaces\Requests\RoutesImplement,
             \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\Instance;

@@ -1,6 +1,6 @@
 <?php
 
-namespace MainInterfaces\Controllers;
+namespace DomainInterfaces\Controllers;
 
 interface RequestImplements
 {

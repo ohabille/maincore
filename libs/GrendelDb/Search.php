@@ -6,7 +6,7 @@ use \Connectors\DatasReaderConnectors as Datas;
 
 class Search
 implements  \MainInterfaces\SingleTonImplement,
-            \MainInterfaces\DatasBases\DbSearchImplement
+            \DomainInterfaces\DatasBases\DbSearchImplement
 {
     use \MainTraits\Instance;
 
@@ -16,7 +16,7 @@ implements  \MainInterfaces\SingleTonImplement,
     private $_find;
 
     private function __construct(
-        \MainInterfaces\DatasBases\DbImplement $mainDb
+        \DomainInterfaces\DatasBases\DbImplement $mainDb
     )
     {
         $this->_mainDb = $mainDb;
@@ -25,7 +25,7 @@ implements  \MainInterfaces\SingleTonImplement,
     }
 
     public static function setInstance(
-        \MainInterfaces\DatasBases\DbImplement $mainDb
+        \DomainInterfaces\DatasBases\DbImplement $mainDb
     ) : \MainInterfaces\SingleTonImplement
     {
         return new self::$class($mainDb);

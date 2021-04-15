@@ -1,6 +1,6 @@
 <?php
 
-namespace MainInterfaces\DatasBases;
+namespace DomainInterfaces\DatasBases;
 
 interface DbSearchImplement
 {

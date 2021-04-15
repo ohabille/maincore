@@ -24,7 +24,7 @@ implements  \MainInterfaces\SingleTonImplement
     private $_args;
 
     private function __construct(
-        \MainInterfaces\Requests\RoutesImplement $routes,
+        \DomainInterfaces\Requests\RoutesImplement $routes,
         array $matches,
         string $request
     )
@@ -37,9 +37,9 @@ implements  \MainInterfaces\SingleTonImplement
     }
 
     private static function setInstance(
-        \MainInterfaces\Requests\RoutesImplement $routes,
-        \MainInterfaces\Requests\UrlMatchImplement $matches,
-        \MainInterfaces\Requests\UrlRequestImplement $request
+        \DomainInterfaces\Requests\RoutesImplement $routes,
+        \DomainInterfaces\Requests\UrlMatchImplement $matches,
+        \DomainInterfaces\Requests\UrlRequestImplement $request
     ) : \MainInterfaces\SingleTonImplement
     {
         return new self::$class(

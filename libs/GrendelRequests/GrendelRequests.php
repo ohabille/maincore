@@ -4,7 +4,7 @@ namespace GrendelRequests;
 
 class GrendelRequests
 implements  \MainInterfaces\SingleTonImplement,
-            \MainInterfaces\Controllers\RequestImplements
+            \DomainInterfaces\Controllers\RequestImplements
 {
     use \MainTraits\Instance;
 

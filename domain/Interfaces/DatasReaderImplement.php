@@ -1,6 +1,6 @@
 <?php
 
-namespace MainInterfaces;
+namespace DomainInterfaces;
 
 interface DatasReaderImplement
 {
