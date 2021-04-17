@@ -6,7 +6,7 @@
 
 namespace GrendelRequests;
 
-class UrlRequest
+class RouteRequest
 implements  \DomainInterfaces\Requests\UrlRequestImplement,
             \MainInterfaces\SingleTonImplement
 {
@@ -33,23 +33,12 @@ implements  \DomainInterfaces\Requests\UrlRequestImplement,
      */
     private $_request;
 
-    private function __construct(
-        \DomainInterfaces\Requests\RoutesImplement $routes,
-        \DomainInterfaces\Requests\UrlMatchImplement $matches
-    )
+    private function __construct()
     {
-        $this->_routes = $routes;
-        $this->_matches = $matches;
+        $this->_routes = Routes::getInstance();
+        $this->_matches = RoutesMatches::getInstance();
 
         $this->setRequest();
-    }
-
-    public static function setInstance(
-        \DomainInterfaces\Requests\RoutesImplement $routes,
-        \DomainInterfaces\Requests\UrlMatchImplement $matches
-    ) : \MainInterfaces\SingleTonImplement
-    {
-        return new self::$class($routes, $matches);
     }
 
     /**

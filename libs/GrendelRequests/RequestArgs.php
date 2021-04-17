@@ -2,7 +2,7 @@
 
 namespace GrendelRequests;
 
-class UrlArgs
+class RequestArgs
 implements  \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\Instance;
@@ -23,28 +23,14 @@ implements  \MainInterfaces\SingleTonImplement
      */
     private $_args;
 
-    private function __construct(
-        \DomainInterfaces\Requests\RoutesImplement $routes,
-        array $matches,
-        string $request
-    )
+    private function __construct()
     {
-        $this->_routes = $routes;
-        $this->_matches = $matches;
-        $this->_route = $routes->getRoutes()->{$request};
+        $request = RouteRequest::getInstance()->getRequest();
+        $this->_routes = Routes::getInstance();
+        $this->_matches = RoutesMatches::getInstance()->getMatches();
+        $this->_route = $this->_routes->getRoutes()->{$request};
 
         $this->setArgs();
-    }
-
-    private static function setInstance(
-        \DomainInterfaces\Requests\RoutesImplement $routes,
-        \DomainInterfaces\Requests\UrlMatchImplement $matches,
-        \DomainInterfaces\Requests\UrlRequestImplement $request
-    ) : \MainInterfaces\SingleTonImplement
-    {
-        return new self::$class(
-            $routes, $matches->getMatches(), $request->getRequest()
-        );
     }
 
     private function setArgs() : void

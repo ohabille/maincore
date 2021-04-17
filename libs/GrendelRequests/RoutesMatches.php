@@ -11,7 +11,7 @@
 
 namespace GrendelRequests;
 
-class UrlMatches
+class RoutesMatches
 implements  \DomainInterfaces\Requests\UrlMatchImplement,
             \MainInterfaces\SingleTonImplement
 {
@@ -31,17 +31,10 @@ implements  \DomainInterfaces\Requests\UrlMatchImplement,
      */
     private $_matches;
 
-    private function __construct(\DomainInterfaces\Requests\RoutesImplement $routes)
+    private function __construct()
     {
-        $this->_routes = $routes;
+        $this->_routes = Routes::getInstance();
         $this->setMatches();
-    }
-
-    public static function setInstance(
-        \DomainInterfaces\Requests\RoutesImplement $routes
-    ) : \MainInterfaces\SingleTonImplement
-    {
-        return new self::$class($routes);
     }
 
     private function setMatches() : void
@@ -66,7 +59,7 @@ implements  \DomainInterfaces\Requests\UrlMatchImplement,
     {
         preg_match_all(
             "#".$this->_routes->getMatchPattern()."#",
-            strip_tags(htmlentities($_SERVER['REQUEST_URI'], ENT_QUOTES)),
+            Requests::getInstance()->getRequest(),
             $match
         );
 
