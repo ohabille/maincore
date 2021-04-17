@@ -2,7 +2,8 @@
     "FilesMethods" : {
         "namespace" : "\\MainMethods\\FilesMethods",
         "methods" : [
-            "readContentFile"
+            "readContentFile",
+            "getMainDir"
         ]
     },
     "jsonMethods" : {

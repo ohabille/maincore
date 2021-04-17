@@ -18,20 +18,8 @@ implements  \MainInterfaces\FuncsImplement,
     {
         $conf = parseConf(__DIR__.'/jsons/skeleton')->{'template'};
 
-        $file = self::getMainDir().$conf->{'dir'}.$fileName.$conf->{'ext'};
+        $file = getMainDir().$conf->{'dir'}.$fileName.$conf->{'ext'};
 
     	return (file_exists($file) ? file_get_contents($file): '');
-    }
-
-    private static function getMainDir() : string
-    {
-        $mainApp = explode('/', getcwd());
-        $actualApp = explode('/', __DIR__);
-
-        $diff = array_diff($actualApp, $mainApp);
-
-        $key = array_search(array_shift($diff), $actualApp) - count($actualApp);
-
-        return implode('/', array_slice($actualApp, 0, $key)).'/';
     }
 }

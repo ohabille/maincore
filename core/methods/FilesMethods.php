@@ -32,4 +32,38 @@ implements  \MainInterfaces\FuncsImplement,
 
         return $content;
     }
+
+    /**
+     * Retourne le répertoire source du projet
+     * @return string : Le repertoire source
+     */
+    public static function getMainDir() : string
+    {
+        $i = count(
+            array_diff(
+                self::getArborescence(getcwd()),
+                self::getArborescence(__DIR__),
+            )
+        );
+
+        $srcDir = '';
+
+        while (0 < $i) {
+            $srcDir .= '../';
+            $i--;
+        }
+
+        return $srcDir;
+    }
+
+    /**
+     * Retourne un tableau d'arborescence
+     * @param  string $path : le chemin à analiser
+     * @return array        : Les répertoires
+     */
+    private static function getArborescence(string $path) : array
+    {
+        preg_match_all('#([A-Z]:)?((\\\\|/)[[:alnum:]]+)#', $path, $match);
+        return $match[2];
+    }
 }
