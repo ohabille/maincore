@@ -12,7 +12,7 @@ class SkeletonDatas implements \MainInterfaces\SingleTonImplement
      * instance de la classe
      * @var \MainInterfaces\SingleTonImplement
      */
-    protected static $instance;
+    private static $instance;
 
     private static function findDatas(string $view)
     {

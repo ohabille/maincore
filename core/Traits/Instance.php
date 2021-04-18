@@ -4,6 +4,10 @@ namespace MainTraits;
 
 trait Instance
 {
+    /**
+     * Le nom de la classe à instancier
+     * @var string
+     */
     private static $class;
 
     /**

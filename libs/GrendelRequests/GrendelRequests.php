@@ -3,8 +3,8 @@
 namespace GrendelRequests;
 
 class GrendelRequests
-implements  \MainInterfaces\SingleTonImplement,
-            \DomainInterfaces\Controllers\RequestImplements
+implements  \DomainInterfaces\Controllers\RequestImplements,
+            \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\Instance;
 

@@ -13,7 +13,7 @@ implements  \MainInterfaces\FuncsImplement,
      * instance de la classe
      * @var \MainInterfaces\SingleTonImplement
      */
-    protected static $instance;
+    private static $instance;
 
     /**
      * Retourne les données d'un fichier *.json

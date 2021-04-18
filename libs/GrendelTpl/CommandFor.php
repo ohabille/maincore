@@ -13,7 +13,7 @@ implements  \MainInterfaces\SingleTonImplement
      * instance de la classe
      * @var \MainInterfaces\SingleTonImplement
      */
-    protected static $instance;
+    private static $instance;
 
     public static function getCmdResult(
         \stdClass $data,

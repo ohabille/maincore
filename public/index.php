@@ -6,7 +6,7 @@ use \Domain\WebController as Ctrl;
 define('ROOTDIRS', '../');
 
 // chargement du fichier d'initialisation
-require_once ROOTDIRS.'core/initCore.php';
+require_once ROOTDIRS.'core/init.php';
 
 // Instanciation du controller
 $controller = Ctrl::getInstance();

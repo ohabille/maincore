@@ -3,7 +3,8 @@
 namespace MainMethods;
 
 class Dumps
-implements  \MainInterfaces\FuncsImplement,
+implements  \MainInterfaces\DumpsImplement,
+            \MainInterfaces\FuncsImplement,
             \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\MainFuncs;
@@ -12,7 +13,7 @@ implements  \MainInterfaces\FuncsImplement,
      * instance de la classe
      * @var \MainInterfaces\SingleTonImplement
      */
-    protected static $instance;
+    private static $instance;
 
     private $_patts = [
         '#(\[)("?(_|[a-z0-9])[a-zA-Z0-9]*"?)#',
@@ -21,8 +22,8 @@ implements  \MainInterfaces\FuncsImplement,
             .'(\()'
             .'([\\a-zA-Z]+)'
             .'(\))'
-            .'(\#[0-9]+)'.
-            '(\h\([0-9]+\))#',
+            .'(\#[0-9]+)'
+            .'(\h\([0-9]+\))#',
         '#\{#',
         '#\}#'
     ];
