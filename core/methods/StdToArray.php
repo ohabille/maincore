@@ -2,8 +2,9 @@
 
 namespace MainMethods;
 
-class ArrayConverter
-implements \MainInterfaces\FuncsImplement,
+class StdToArray
+implements \MainInterfaces\StdToArrayImplement,
+            \MainInterfaces\FuncsImplement,
             \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\MainFuncs;
@@ -12,7 +13,7 @@ implements \MainInterfaces\FuncsImplement,
      * Instance de la classe
      * @var \MainInterfaces\SingleTonImplement
      */
-    protected static $instance;
+    private static $instance;
 
     /**
      * Retourne un object stdClass convertit en array

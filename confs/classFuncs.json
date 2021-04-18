@@ -16,7 +16,7 @@
         ]
     },
     "stdToArray" : {
-        "namespace" : "\\MainMethods\\ArrayConverter",
+        "namespace" : "\\MainMethods\\StdToArray",
         "methods" : [
             "stdToArray"
         ]

@@ -12,7 +12,7 @@ implements  \MainInterfaces\FuncsImplement,
      * instance de la classe
      * @var \MainInterfaces\SingleTonImplement
      */
-    protected static $instance;
+    private static $instance;
 
     public function getTemplate(string $fileName) : string
     {

@@ -7,7 +7,7 @@
 namespace GrendelRequests;
 
 class RouteRequest
-implements  \DomainInterfaces\Requests\UrlRequestImplement,
+implements  \DomainInterfaces\Requests\RouteRequestImplement,
             \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\Instance;

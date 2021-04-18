@@ -12,7 +12,7 @@
 namespace GrendelRequests;
 
 class RoutesMatches
-implements  \DomainInterfaces\Requests\UrlMatchImplement,
+implements  \DomainInterfaces\Requests\RoutesMatchImplement,
             \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\Instance;

@@ -20,7 +20,7 @@ trait MainFuncs
             eval(
                 "function $func() {
                     return call_user_func_array(
-                        array($class::getInstance(), '$func'),
+                        [$class::getInstance(), '$func'],
                         func_get_args()
                     );
                 }"

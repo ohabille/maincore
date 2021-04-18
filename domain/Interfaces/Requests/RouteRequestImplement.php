@@ -2,7 +2,7 @@
 
 namespace DomainInterfaces\Requests;
 
-interface UrlRequestImplement
+interface RouteRequestImplement
 {
     /**
      * Retourne la requete

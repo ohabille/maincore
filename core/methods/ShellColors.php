@@ -3,7 +3,8 @@
 namespace MainMethods;
 
 class ShellColors
-implements  \MainInterfaces\FuncsImplement, 
+implements  \MainInterfaces\ShellColorsImplement,
+            \MainInterfaces\FuncsImplement,
             \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\MainFuncs;
@@ -12,7 +13,7 @@ implements  \MainInterfaces\FuncsImplement,
      * instance de la classe
      * @var \MainInterfaces\SingleTonImplement
      */
-    protected static $instance;
+    private static $instance;
 
     /**
      * Chaîne de déclaration d'une couleur

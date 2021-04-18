@@ -2,7 +2,7 @@
 
 namespace DomainInterfaces\Requests;
 
-interface UrlMatchImplement
+interface RoutesMatchImplement
 {
     /**
      * Retourne le résultat de la recherche de route
