@@ -9,10 +9,10 @@
  * ]
  */
 
-namespace GrendelRequests;
+namespace GrendelRoutes;
 
 class RoutesMatches
-implements  \DomainInterfaces\Requests\RoutesMatchImplement,
+implements  \DomainInterfaces\Routes\RoutesMatchImplement,
             \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\Instance;
@@ -23,7 +23,7 @@ implements  \DomainInterfaces\Requests\RoutesMatchImplement,
     private static $instance;
 
     /**
-     * @var \DomainInterfaces\Requests\RoutesImplement
+     * @var \DomainInterfaces\Routes\RoutesImplement
      */
     private $_routes;
     /**
@@ -31,15 +31,23 @@ implements  \DomainInterfaces\Requests\RoutesMatchImplement,
      */
     private $_matches;
 
-    private function __construct()
+    private function __construct(string $request)
     {
         $this->_routes = Routes::getInstance();
-        $this->setMatches();
+
+        $this->setMatches($request);
     }
 
-    private function setMatches() : void
+    public static function setInstance(
+        string $request
+    ) : \MainInterfaces\SingleTonImplement
     {
-        $matches = $this->readStepsUri();
+        return new self::$class($request);
+    }
+
+    private function setMatches(string $request) : void
+    {
+        $matches = $this->readStepsUri($request);
 
         $keys = $this->_routes->getKeys();
 
@@ -55,11 +63,11 @@ implements  \DomainInterfaces\Requests\RoutesMatchImplement,
      * et retourne le résultat sous forme d'un tableau
      * @return array : Le résultat de la comparaison
      */
-    private function readStepsUri() : array
+    private function readStepsUri(string $request) : array
     {
         preg_match_all(
             "#".$this->_routes->getMatchPattern()."#",
-            Requests::getInstance()->getRequest(),
+            $request,
             $match
         );
 

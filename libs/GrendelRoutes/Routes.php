@@ -4,10 +4,10 @@
  * Initialise la configuration des routes
  */
 
-namespace GrendelRequests;
+namespace GrendelRoutes;
 
 class Routes
-implements  \DomainInterfaces\Requests\RoutesImplement,
+implements  \DomainInterfaces\Routes\RoutesImplement,
             \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\Instance;

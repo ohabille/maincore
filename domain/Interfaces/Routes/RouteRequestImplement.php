@@ -1,6 +1,6 @@
 <?php
 
-namespace DomainInterfaces\Requests;
+namespace DomainInterfaces\Routes;
 
 interface RouteRequestImplement
 {

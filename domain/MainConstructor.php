@@ -11,7 +11,7 @@ abstract class MainConstructor
     /**
      * @var \stdClass
      */
-    protected $_ctrlConf;
+    protected $_params;
     /**
      * @var \stdClass
      */
@@ -19,12 +19,12 @@ abstract class MainConstructor
     protected static $methods;
 
     public function __construct(
-        \DomainInterfaces\Controllers\RequestImplements $request
+        \DomainInterfaces\Controllers\RoutesImplements $params
     )
     {
-        $this->_ctrlConf = $request->getRoutes()->{$request->getRequest()};
+        $this->_params = $params->getParams();
 
-        $this->_datas = $this->_ctrlConf->{'datas'};
+        $this->_datas = $this->_params->{'datas'};
 
         self::$methods = Datas::getInstance();
 
@@ -38,7 +38,7 @@ abstract class MainConstructor
         if (empty($this->_datas->{'title'}))
             $this->_datas->{'title'} = $conf->{'mainTitle'};
 
-        foreach ($request->getRoutes() as $k=>$route) {
+        foreach ($params->getRoutes() as $k=>$route) {
             if (!$route->{'menu'}) continue;
 
             $this->_datas->{'menu'}[] = $route->{'url'};

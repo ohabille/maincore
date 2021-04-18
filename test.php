@@ -1,6 +1,6 @@
 <?php
 
-use \GrendelRequests\GrendelRequests as Requests;
+use \GrendelRoutes\GrendelRoutes as Requests;
 
 // Déclaration du fichier racine
 define('ROOTDIRS', './');

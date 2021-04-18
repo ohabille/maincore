@@ -3,15 +3,8 @@
 namespace GrendelRequests;
 
 class Requests
-implements \DomainInterfaces\Requests\RequestsImplement,
-            \MainInterfaces\SingleTonImplement
+implements \DomainInterfaces\Requests\RequestsImplement
 {
-    use \MainTraits\Instance;
-
-    /**
-     * @var \MainInterfaces\SingleTonImplement
-     */
-    private static $instance;
     /**
      * @var string
      */
@@ -21,7 +14,7 @@ implements \DomainInterfaces\Requests\RequestsImplement,
      */
     private $_postRequest = [];
 
-    private function __construct()
+    public function __construct()
     {
         if (isset($_SERVER['argv'])) $this->parseArgv();
 

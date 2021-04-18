@@ -4,10 +4,10 @@
  * Initalise le nom de la requète
  */
 
-namespace GrendelRequests;
+namespace GrendelRoutes;
 
 class RouteRequest
-implements  \DomainInterfaces\Requests\RouteRequestImplement,
+implements  \DomainInterfaces\Routes\RouteRequestImplement,
             \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\Instance;
@@ -19,12 +19,12 @@ implements  \DomainInterfaces\Requests\RouteRequestImplement,
 
     /**
      * Instance de classe
-     * @var \DomainInterfaces\Requests\RoutesImplement
+     * @var \DomainInterfaces\Routes\RoutesImplement
      */
     private $_routes;
     /**
      * Instance de classe
-     * @var \DomainInterfaces\Requests\UrlMatchImplement
+     * @var \DomainInterfaces\Routes\UrlMatchImplement
      */
     private $_matches;
     /**

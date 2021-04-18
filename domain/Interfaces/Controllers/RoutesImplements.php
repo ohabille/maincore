@@ -2,13 +2,19 @@
 
 namespace DomainInterfaces\Controllers;
 
-interface RequestImplements
+interface RoutesImplements
 {
+    /**
+     * Retourne le json des routes
+     * @return stdClass : Les paramètres des routes
+     */
+    public function getRoutes() : \stdClass;
+
     /**
      * Retourne la requète principale
      * @return string
      */
-    public function getRequest() : string;
+    public function getParams() : \stdClass;
 
     /**
      * Retourne les arguments

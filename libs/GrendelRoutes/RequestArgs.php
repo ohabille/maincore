@@ -1,9 +1,9 @@
 <?php
 
-namespace GrendelRequests;
+namespace GrendelRoutes;
 
 class RequestArgs
-implements  \DomainInterfaces\Requests\RequestArgsImplement,
+implements  \DomainInterfaces\Routes\RequestArgsImplement,
             \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\Instance;
@@ -38,10 +38,10 @@ implements  \DomainInterfaces\Requests\RequestArgsImplement,
     {
         $this->_arg = key($this->_routes->getArgs());
 
-        $this->_args = $this->findArg();
+        $this->_args = $this->findArgs();
     }
 
-    private function findArg() : array
+    private function findArgs() : array
     {
         $test = preg_match(
             '#'.$this->getPattern().'#',

@@ -7,9 +7,9 @@ extends \Domain\MainConstructor
 implements \DomainInterfaces\Controllers\DatasImplements
 {
     public function __construct(
-        \DomainInterfaces\Controllers\RequestImplements $request
+        \DomainInterfaces\Controllers\RoutesImplements $params
     )
     {
-        parent::__construct($request);
+        parent::__construct($params);
     }
 }
