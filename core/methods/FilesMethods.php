@@ -41,8 +41,8 @@ implements  \MainInterfaces\FuncsImplement,
     {
         $i = count(
             array_diff(
-                self::getArborescence(getcwd()),
-                self::getArborescence(__DIR__),
+                self::getPath(getcwd()),
+                self::getPath(__DIR__),
             )
         );
 
@@ -61,9 +61,9 @@ implements  \MainInterfaces\FuncsImplement,
      * @param  string $path : le chemin à analiser
      * @return array        : Les répertoires
      */
-    private static function getArborescence(string $path) : array
+    private static function getPath(string $path) : array
     {
-        preg_match_all('#([A-Z]:)?((\\\\|/)[[:alnum:]]+)#', $path, $match);
-        return $match[2];
+        preg_match_all('#((\\\\|/)[[:alnum:]]+)#', $path, $match);
+        return $match[1];
     }
 }
