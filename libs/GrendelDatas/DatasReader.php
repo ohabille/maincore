@@ -17,7 +17,7 @@ implements  \MainInterfaces\SingleTonImplement,
         self::$confs = parseConf(__DIR__.'/jsons/datasConf');
     }
 
-    public function getMainDatas() : \stdClass
+    public function getMainDatas() : array
     {
         return parseConf(__DIR__.'/jsons/mainDatas');
     }
@@ -30,20 +30,20 @@ implements  \MainInterfaces\SingleTonImplement,
     private function getContent(string $file) : string
     {
         return readContentFile(
-            __DIR__.'/'.$this->_conf->{'dir'}
+            __DIR__.'/'.$this->_conf['dir']
             .$file
-            .$this->_conf->{'ext'}
+            .$this->_conf['ext']
         );
     }
 
     public function isConf(string $name) : bool
     {
-        return isset(self::$confs->{$name});
+        return isset(self::$confs[$name]);
     }
 
     public function setConf(string $name) : void
     {
-        $this->_conf = self::$confs->{$name};
+        $this->_conf = self::$confs[$name];
     }
 
     public function getTime(int $time) : array
@@ -51,7 +51,7 @@ implements  \MainInterfaces\SingleTonImplement,
         $time = getdate($time);
         $date = [];
 
-        foreach ($this->_conf->{'time'} as $form)
+        foreach ($this->_conf['time'] as $form)
             if (isset($time[$form])) $date[$form] = $time[$form];
 
         return $date;
@@ -61,7 +61,7 @@ implements  \MainInterfaces\SingleTonImplement,
     {
         $content = $this->getContent($file);
 
-        $mask = implode('|', $this->_conf->{'balises'});
+        $mask = implode('|', $this->_conf['balises']);
         $pattern = $this->getSectionPattern($mask, $content);
 
         if (0 === preg_match_all($pattern, $content, $matches))
@@ -77,12 +77,10 @@ implements  \MainInterfaces\SingleTonImplement,
 
         if (0 === preg_match($pattern, $content, $matches)) return '';
 
-        $data = new \stdClass;
-
         return $matches[2];
     }
 
-    public function getConf() : \stdClass
+    public function getConf() : array
     {
         return $this->_conf;
     }

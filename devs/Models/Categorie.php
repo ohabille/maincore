@@ -18,8 +18,8 @@ implements \DomainInterfaces\Controllers\DatasImplements
         $search = Search::getInstance(new Db('categories'));
 
         if ($search->searchInDb('titre', $params->getArgs()[0]))
-            $this->_datas->{'categorie'} = $this->findDatasContent(
-                'categorie', $search->getCurrent()->{'file'}
+            $this->_datas['categorie'] = $this->findDatasContent(
+                'categorie', $search->getCurrent()['file']
             );
     }
 }

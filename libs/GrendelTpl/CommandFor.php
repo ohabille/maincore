@@ -16,7 +16,7 @@ implements  \MainInterfaces\SingleTonImplement
     private static $instance;
 
     public static function getCmdResult(
-        \stdClass $data,
+        array $data,
         string $match,
         string $dataName
     )
@@ -26,13 +26,13 @@ implements  \MainInterfaces\SingleTonImplement
 
         do {
             $rpl .= Patterns::getInstance()->isPattern('for=', $match) ?
-                str_replace('{? for= ?}', $data->{$dataName}[$i], $match):
+                str_replace('{? for= ?}', $data[$dataName][$i], $match):
                 $match;
 
             if (Patterns::getInstance()->isPattern('forData', $rpl)) {
                 $rpl = str_replace(
                     '{? forData ?}',
-                    $data->{$dataName.$data->{$dataName}[$i]},
+                    $data[$dataName.$data[$dataName][$i]],
                     $rpl
                 );
             }
@@ -41,27 +41,27 @@ implements  \MainInterfaces\SingleTonImplement
                 $rpl = self::replaceDataName(
                     Patterns::getInstance()
                     ->findAllPatterns('dataName', $rpl)[1],
-                    $data->{$data->{$dataName}[$i]},
+                    $data[$data[$dataName][$i]],
                     $rpl
                 );
             }
 
             $i++;
-        } while ($i < count($data->{$dataName}));
+        } while ($i < count($data[$dataName]));
 
         return $rpl;
     }
 
     private static function replaceDataName(
-        array $matches, \stdClass $data, string $str
+        array $matches, array $data, string $str
     ) : string
     {
         foreach ($matches as $match) {
-            if (!isset($data->{$match})) continue;
+            if (!isset($data[$match])) continue;
 
             $str = str_replace(
                 '{? dataName '.$match.' ?}',
-                $data->{$match},
+                $data[$match],
                 $str
             );
         }

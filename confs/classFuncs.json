@@ -15,12 +15,6 @@
             "getNbrOf"
         ]
     },
-    "stdToArray" : {
-        "namespace" : "\\MainMethods\\StdToArray",
-        "methods" : [
-            "stdToArray"
-        ]
-    },
     "dumps" : {
         "namespace" : "\\MainMethods\\Dumps",
         "methods" : [

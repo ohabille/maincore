@@ -6,15 +6,15 @@ interface RoutesImplements
 {
     /**
      * Retourne le json des routes
-     * @return stdClass : Les paramètres des routes
+     * @return array : Les paramètres des routes
      */
-    public function getRoutes() : \stdClass;
+    public function getRoutes() : array;
 
     /**
      * Retourne la requète principale
      * @return string
      */
-    public function getParams() : \stdClass;
+    public function getParams() : array;
 
     /**
      * Retourne les arguments

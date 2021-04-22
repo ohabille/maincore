@@ -13,15 +13,13 @@ implements  \MainInterfaces\SingleTonImplement,
     private static $instance;
     private $_mainDb;
     private $_db;
-    private $_find;
+    private $_find = [];
 
     private function __construct(
         \DomainInterfaces\DatasBases\DbImplement $mainDb
     )
     {
         $this->_mainDb = $mainDb;
-
-        $this->_find = new \stdClass();
     }
 
     public static function setInstance(
@@ -45,8 +43,8 @@ implements  \MainInterfaces\SingleTonImplement,
         if (!$this->isInDb($from)) return false;
 
         do {
-            if (current($this->_db)->{$from} == $needle) {
-                $this->_find->{key($this->_db)} = current($this->_db);
+            if (current($this->_db)[$from] == $needle) {
+                $this->_find[key($this->_db)] = current($this->_db);
 
                 return true;
             }
@@ -59,7 +57,7 @@ implements  \MainInterfaces\SingleTonImplement,
     {
         $this->setCurrentDb();
 
-        return isset(current($this->_db)->{$from});
+        return isset(current($this->_db)[$from]);
     }
 
     public function searchInDb(string $from, string $needle) : bool
@@ -91,13 +89,13 @@ implements  \MainInterfaces\SingleTonImplement,
         $this->setCurrentDb();
 
         $content = Datas::getsectioncontent(
-            $from, current($this->_db)->{'file'}
+            $from, current($this->_db)['file']
         );
 
         if (empty($content)) return false;
 
         if ($needle === $content) {
-            $this->_find->{key($this->_db)} = current($this->_db);
+            $this->_find[key($this->_db)] = current($this->_db);
 
             return true;
         }
@@ -116,12 +114,12 @@ implements  \MainInterfaces\SingleTonImplement,
         return key($this->_find);
     }
 
-    public function getCurrent() : \stdClass
+    public function getCurrent() : array
     {
         return current($this->_find);
     }
 
-    public function getFind() : \stdClass
+    public function getFind() : array
     {
         return $this->_find;
     }

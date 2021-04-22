@@ -20,7 +20,7 @@ implements \DomainInterfaces\Controllers\DatasImplements
 
         $pager = new Pager(
             $db->getTotal(),
-            $this->_params->{'nbrPPage'},
+            $this->_params['nbrPPage'],
             $params->getArgs()
         );
 

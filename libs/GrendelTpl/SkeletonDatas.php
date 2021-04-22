@@ -24,16 +24,16 @@ class SkeletonDatas implements \MainInterfaces\SingleTonImplement
             ->findAllPatterns('datas', $view);
     }
 
-    public static function setDatas(\stdClass $datas, string $view)
+    public static function setDatas(array $datas, string $view)
     {
         $findDatas = self::findDatas($view);
 
         foreach ($findDatas[1] as $k=>$data) {
-            $rpl = isset($datas->{$data}) ? $datas->{$data}: $data;
+            $rpl = isset($datas[$data]) ? $datas[$data]: $data;
 
             if (!empty($findDatas[3][$k]))
-                $rpl = isset($rpl->{$findDatas[3][$k]}) ?
-                    $rpl->{$findDatas[3][$k]}:
+                $rpl = isset($rpl[$findDatas[3][$k]]) ?
+                    $rpl[$findDatas[3][$k]]:
                     $findDatas[3][$k];
 
             $view = str_replace(

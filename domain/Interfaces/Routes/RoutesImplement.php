@@ -6,36 +6,36 @@ interface RoutesImplement
 {
     /**
      * Retourne les clefs de requète
-     * @return stdClass $_conf->{'keys'}
+     * @return array $_conf['keys']
      */
     public function getKeys() : array;
     /**
      * Retourne les noms des arguments des routes
-     * @return stdClass $_conf->{'args'}
+     * @return array $_conf['args']
      */
-    public function getArgs() : \stdClass;
+    public function getArgs() : array;
 
     /**
      * Retourne le pattern de recherche des routes
-     * @return string $_conf->{'pattern'}
+     * @return string $_conf['pattern']
      */
     public function getMatchPattern() : string;
 
     /**
      * Retourne les routes disponibles
-     * @return stdClass $_routes
+     * @return array $_routes
      */
-    public function getRoutes() : \stdClass;
+    public function getRoutes() : array;
 
     /**
      * Retourne la route par défaut
-     * @return string $_conf->{'default'}
+     * @return string $_conf['default']
      */
     public function getDefaultRoute() : string;
 
     /**
      * Retourne la route courante
-     * @return stdClass|bool
+     * @return array|bool
      */
     public function getCurrentRoute();
 
@@ -51,7 +51,7 @@ interface RoutesImplement
 
     /**
      * Retourne la route norFound
-     * @return string $_conf->{'notFound'}
+     * @return string $_conf['notFound']
      */
     public function getNotFound() : string;
 }

@@ -19,8 +19,7 @@ implements  \DomainInterfaces\Routes\RequestArgsImplement,
     private $_matches;
     private $_arg;
     /**
-     * [private description]
-     * @var \stdClass
+     * @var array
      */
     private $_args;
 
@@ -29,7 +28,7 @@ implements  \DomainInterfaces\Routes\RequestArgsImplement,
         $request = RouteRequest::getInstance()->getRequest();
         $this->_routes = Routes::getInstance();
         $this->_matches = RoutesMatches::getInstance()->getMatches();
-        $this->_route = $this->_routes->getRoutes()->{$request};
+        $this->_route = $this->_routes->getRoutes()[$request];
 
         $this->setArgs();
     }
@@ -56,12 +55,12 @@ implements  \DomainInterfaces\Routes\RequestArgsImplement,
 
     private function getPattern()
     {
-        return isset($this->_route->{$this->_arg}) ?
-            $this->_route->{$this->_arg}:
+        return isset($this->_route[$this->_arg]) ?
+            $this->_route[$this->_arg]:
             current($this->_routes->getArgs());
     }
 
-    private function getMatchArg()
+    private function getMatchArg() : string
     {
         return isset($this->_matches[$this->_arg]) ?
             $this->_matches[$this->_arg]: '';

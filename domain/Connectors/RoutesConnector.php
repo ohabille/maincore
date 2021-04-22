@@ -27,18 +27,18 @@ implements  \DomainInterfaces\Controllers\RoutesImplements,
     }
 
     /**
-    * @return stdClass : Les paramètres des routes
+    * @return array : Les paramètres des routes
     */
-    public function getRoutes() : \stdClass
+    public function getRoutes() : array
     {
         return Routes::getInstance()->getRoutes();
     }
 
-    public function getParams() : \stdClass
+    public function getParams() : array
     {
         $name = Matches::getInstance()->getMatches()['request'];
 
-        return Routes::getInstance()->getRoutes()->{$name};
+        return Routes::getInstance()->getRoutes()[$name];
     }
 
     /**

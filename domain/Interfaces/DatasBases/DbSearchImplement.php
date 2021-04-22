@@ -14,10 +14,10 @@ interface DbSearchImplement
 
     public function getKeyCurrent() : string;
 
-    public function getCurrent() : \stdClass;
+    public function getCurrent() : array;
 
     /**
-     * @return stdClass : La base de données
+     * @return array : La base de données
      */
-    public function getFind() : \stdClass;
+    public function getFind() : array;
 }

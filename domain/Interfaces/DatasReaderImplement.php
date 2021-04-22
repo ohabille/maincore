@@ -26,5 +26,5 @@ interface DatasReaderImplement
 
     /**
     */
-    public function getConf() : \stdClass;
+    public function getConf() : array;
 }

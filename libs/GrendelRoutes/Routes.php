@@ -19,12 +19,12 @@ implements  \DomainInterfaces\Routes\RoutesImplement,
     private static $instance;
     /**
      * Configuration des routes
-     * @var \stdClass
+     * @var array
      */
     private $_conf;
     /**
      * Liste des routes
-     * @var \stdClass
+     * @var array
      */
     private $_routes;
 
@@ -36,7 +36,7 @@ implements  \DomainInterfaces\Routes\RoutesImplement,
 
     private function getRequestKey() : string
     {
-        return $this->_conf->{'requestKey'};
+        return $this->_conf['requestKey'];
     }
 
     /**
@@ -47,21 +47,21 @@ implements  \DomainInterfaces\Routes\RoutesImplement,
     {
         $keys = array_merge(
             [$this->getRequestKey()],
-            array_keys(stdToArray($this->getArgs()))
+            array_keys($this->getArgs())
         );
 
-        reset($this->_conf->{'args'});
+        reset($this->_conf['args']);
 
         return $keys;
     }
 
     /**
      * Retourne les noms des arguments des routes
-     * @return stdClass
+     * @return array
      */
-    public function getArgs() : \stdClass
+    public function getArgs() : array
     {
-        return $this->_conf->{'args'};
+        return $this->_conf['args'];
     }
 
     /**
@@ -70,30 +70,30 @@ implements  \DomainInterfaces\Routes\RoutesImplement,
      */
     public function getMatchPattern() : string
     {
-        return $this->_conf->{'pattern'};
+        return $this->_conf['pattern'];
     }
 
     /**
      * Retourne les routes disponibles
-     * @return stdClass $_routes
+     * @return array $_routes
      */
-    public function getRoutes() : \stdClass
+    public function getRoutes() : array
     {
         return $this->_routes;
     }
 
     /**
      * Retourne la route par défaut
-     * @return string $_conf->{'default'}
+     * @return string $_conf['default']
      */
     public function getDefaultRoute() : string
     {
-        return $this->_conf->{'default'};
+        return $this->_conf['default'];
     }
 
     /**
      * Retourne la route courante
-     * @return stdClass|bool
+     * @return array|bool
      */
     public function getCurrentRoute()
     {
@@ -122,6 +122,6 @@ implements  \DomainInterfaces\Routes\RoutesImplement,
      */
     public function getNotFound() : string
     {
-        return $this->_conf->{'notFound'};
+        return $this->_conf['notFound'];
     }
 }

@@ -18,8 +18,8 @@ implements \DomainInterfaces\Controllers\DatasImplements
         $search = Search::getInstance(new Db('members'));
 
         if ($search->searchInDb('titre', $params->getArgs()[0]))
-            $this->_datas->{'member'} = $this->findDatasContent(
-                'member', $search->getCurrent()->{'file'}
+            $this->_datas['member'] = $this->findDatasContent(
+                'member', $search->getCurrent()['file']
             );
     }
 }

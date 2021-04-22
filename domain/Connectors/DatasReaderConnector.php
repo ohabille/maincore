@@ -15,7 +15,7 @@ class DatasReaderConnector
     {
         Datas::getInstance()->setConf($confName);
 
-        return Datas::getInstance()->getConf()->{$conf};
+        return Datas::getInstance()->getConf()[$conf];
     }
 
     public static function getsectioncontent(

@@ -12,8 +12,8 @@ class SkeletonPatterns implements \MainInterfaces\SingleTonImplement
 
     private function __construct()
     {
-        $this->_patterns = parseConf(__DIR__.'/jsons/skeleton')->{'patterns'};
-        $this->_commands = parseConf(__DIR__.'/jsons/skeleton')->{'commands'};
+        $this->_patterns = parseConf(__DIR__.'/jsons/skeleton')['patterns'];
+        $this->_commands = parseConf(__DIR__.'/jsons/skeleton')['commands'];
     }
 
     public function getUniquePattern(
@@ -23,7 +23,7 @@ class SkeletonPatterns implements \MainInterfaces\SingleTonImplement
         return str_replace(
             $masq,
             $masqName,
-            $this->_patterns->{$pattName}
+            $this->_patterns[$pattName]
         );
     }
 
@@ -58,7 +58,7 @@ class SkeletonPatterns implements \MainInterfaces\SingleTonImplement
     public function isPattern(string $pattern, string $content) : bool
     {
     	return 0 < preg_match(
-            $this->makePattern($this->_patterns->{$pattern}),
+            $this->makePattern($this->_patterns[$pattern]),
             $content
         ) ? true: false;
     }
@@ -66,7 +66,7 @@ class SkeletonPatterns implements \MainInterfaces\SingleTonImplement
     public function findPattern(string $pattern, string $content) : array
     {
         return 0 < preg_match(
-            $this->makePattern($this->_patterns->{$pattern}),
+            $this->makePattern($this->_patterns[$pattern]),
             $content,
             $matches
         ) ? $matches: [];
@@ -75,19 +75,19 @@ class SkeletonPatterns implements \MainInterfaces\SingleTonImplement
     public function findAllPatterns(string $pattern, string $content) : array
     {
         return 0 < preg_match_all(
-            $this->makePattern($this->_patterns->{$pattern}),
+            $this->makePattern($this->_patterns[$pattern]),
             $content,
             $matches
         ) ? $matches: [];
     }
 
-    public function getPatterns() : \stdClass
+    public function getPatterns() : array
     {
         return $this->_patterns;
     }
 
     public function getPattern(string $pattName) : string
     {
-        return $this->_patterns->{$pattName};
+        return $this->_patterns[$pattName];
     }
 }

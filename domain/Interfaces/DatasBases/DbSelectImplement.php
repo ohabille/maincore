@@ -5,7 +5,7 @@ namespace DomainInterfaces\DatasBases;
 interface DbSelectImplement
 {
     /**
-     * @return stdClass : La base de données
+     * @return array : La base de données
      */
-    public function getSelect() : \stdClass;
+    public function getSelect() : array;
 }

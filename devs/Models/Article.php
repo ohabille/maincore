@@ -3,7 +3,8 @@
 namespace Models;
 
 use \GrendelDb\Db,
-    \GrendelDb\Search;
+    \GrendelDb\Search,
+    \Connectors\RoutesConnector as Routes;
 
 class Article
 extends \Domain\MainConstructor
@@ -17,10 +18,10 @@ implements \DomainInterfaces\Controllers\DatasImplements
 
         $search = Search::getInstance(new Db('articles'));
 
-        if ($search->searchInDb('titre', $this->_params->getArgs()[0])) {
+        if ($search->searchInDb('titre', Routes::getInstance()->getArgs()[0])) {
             self::$methods->setConf('article');
 
-            $this->_datas->{'article'} = $this->findDatas(
+            $this->_datas['article'] = $this->findDatas(
                 $search->getCurrent(),
                 $search->getKeyCurrent(),
                 'article'

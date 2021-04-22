@@ -15,7 +15,7 @@ implements  \DomainInterfaces\Skeleton\ModelSkeletonImplement
 
     public function __construct(
         string $templateName,
-        \stdClass $datas
+        array $datas
     )
     {
         $this->_skeleton = new Skeleton($templateName);

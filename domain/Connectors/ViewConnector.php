@@ -8,7 +8,7 @@ class ViewConnector
 {
     public static function getInstance(
         string $templateName,
-        \stdClass $datas
+        array $datas
     ) : \DomainInterfaces\Skeleton\ModelSkeletonImplement
     {
         return new Skeleton($templateName, $datas);

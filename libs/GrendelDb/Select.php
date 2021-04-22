@@ -15,7 +15,7 @@ class Select implements \DomainInterfaces\DatasBases\DbSelectImplement
     {
         $this->_mainDb = $mainDb;
 
-        $this->_select = new \stdClass();
+        $this->_select = [];
         $this->selectSomesEntries($pager);
     }
 
@@ -48,12 +48,12 @@ class Select implements \DomainInterfaces\DatasBases\DbSelectImplement
 
         $this->goToStart($start);
 
-        $nbr = getNbrOf($this->_select);
+        $nbr = count($this->_select);
 
         $end = $limit - $nbr;
 
         for ($i = 0; $i < $end; $i++) {
-            $this->_select->{key($this->_db)} = current($this->_db);
+            $this->_select[key($this->_db)] = current($this->_db);
 
             if (false === next($this->_db) || $i === $limit) break;
         }
@@ -84,7 +84,7 @@ class Select implements \DomainInterfaces\DatasBases\DbSelectImplement
             if (false === next($this->_db)) break;
     }
 
-    public function getSelect() : \stdClass
+    public function getSelect() : array
     {
         return $this->_select;
     }

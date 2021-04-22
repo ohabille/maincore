@@ -18,46 +18,36 @@ implements  \MainInterfaces\FuncsImplement,
     /**
      * Retourne les données d'un fichier *.json
      * @param  string  $filePath : Le chemin du fichier
-     * @return stdClass          : Retourne un object stdClass
+     * @return array             : Retourne un object stdClass
      */
-    public function parseConf(string $filePath) : \stdClass
+    public function parseConf(string $filePath) : array
     {
         $content = readContentFile($filePath.'.json');
 
         return json_decode(
-            !empty($content) ?
-            $content: '{}'
+            !empty($content) ? $content: '{}',
+            true
         );
     }
 
     /**
      * Retourne les données d'un fichier confs/*.json
-     * @param  string  $filePath : Le chemin du fichier
-     * @return array/stdClass    : Retourne un tableau
-     *                             ou un object stdClass
+     * @param  string $filePath : Le chemin du fichier
+     * @return array            : Retourne un tableau
+     *                            ou un object stdClass
      */
-    public function getConf(string $filePath) : \stdClass
+    public function getConf(string $filePath) : array
     {
         return parseConf(ROOTDIRS.'confs/'.$filePath);
     }
 
     /**
      * Convertit un array en objet json
-     * @param  array    $data : l'array
-     * @return stdClass       : l'objet json
+     * @param  array  $data : l'array
+     * @return string       : l'objet json
      */
-    public function formatConf(array $data) : \stdClass
+    public function formatConf(array $data) : string
     {
-        return json_decode(json_encode($data));
-    }
-
-    /**
-     * Retourne le nombre d'entrées
-     * @param  stdClass $obj L'objet source
-     * @return int           Le nombre d'entrées
-     */
-    public static function getNbrOf(\stdClass $obj) : int
-    {
-        return count(get_object_vars($obj));
+        return json_encode($data);
     }
 }

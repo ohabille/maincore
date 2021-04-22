@@ -10,10 +10,10 @@ require_once 'autoLoad.php';
 $classes = json_decode(
     file_get_contents(
         ROOTDIRS.'confs/classFuncs.json'
-    )
+    ), true
 );
 
-foreach ($classes as $class) {
-    $class->{'namespace'}::getInstance()
-        ->setMethodsAlias($class->{'methods'});
-}
+
+foreach ($classes as $class)
+    $class['namespace']::getInstance()
+        ->setMethodsAlias($class['methods']);

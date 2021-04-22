@@ -10,7 +10,7 @@ class ClassAutoLoad
     private $_className;
     /**
      * la configuration des namespace
-     * @var \stdClass
+     * @var array
      */
     private $_paths;
     /**
@@ -47,7 +47,7 @@ class ClassAutoLoad
     private function setAutoLoadJson() : void
     {
         $this->_paths =  json_decode(
-            file_get_contents(ROOTDIRS.'confs/classDirs.json')
+            file_get_contents(ROOTDIRS.'confs/classDirs.json'), true
         );
     }
 
@@ -57,7 +57,7 @@ class ClassAutoLoad
     private function setDirClass() : void
     {
         preg_match(
-            '#('.implode('|', $this->_paths->{'paths'}).')\/#',
+            '#('.implode('|', $this->_paths['paths']).')\/#',
             $this->_className,
             $this->_match
         );
@@ -80,7 +80,7 @@ class ClassAutoLoad
         $this->_class = ROOTDIRS
             .str_replace(
                 $this->_match[0],
-                $this->_paths->{$this->_match[1]},
+                $this->_paths[$this->_match[1]],
                 $this->_className
             ).'.php';
     }

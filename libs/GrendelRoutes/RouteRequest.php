@@ -77,7 +77,7 @@ implements  \DomainInterfaces\Routes\RouteRequestImplement,
     {
         $pattern = current(
             $this->_routes->getRoutes()
-        )->{'request'};
+        )['request'];
 
         return 0 != preg_match(
             "#^".$pattern."$#",

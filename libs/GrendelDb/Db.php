@@ -11,12 +11,12 @@ class Db implements \DomainInterfaces\DatasBases\DbImplement
     private $_dbName;
     /**
      * La base de données primaire
-     * @var stdClass
+     * @var array
      */
     private $_mainNode;
     /**
      * La base de données secondaire
-     * @var stdClass
+     * @var array
      */
     private $_node;
 
@@ -34,14 +34,14 @@ class Db implements \DomainInterfaces\DatasBases\DbImplement
      */
     public function setNode() : void
     {
-        $this->_node = current($this->_mainNode)->{'months'};
+        $this->_node = current($this->_mainNode)['months'];
     }
 
     public function getTotal() : int
     {
         $nbr = 0;
 
-        foreach ($this->_mainNode as $val) $nbr += $val->{'nbr'};
+        foreach ($this->_mainNode as $val) $nbr += $val['nbr'];
 
         return $nbr;
     }
@@ -58,7 +58,7 @@ class Db implements \DomainInterfaces\DatasBases\DbImplement
 
     public function getNbrNode() : int
     {
-        return current($this->_node)->{'nbr'};
+        return current($this->_node)['nbr'];
     }
 
     public function getKeyNode() : string

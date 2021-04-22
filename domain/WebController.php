@@ -15,7 +15,7 @@ class WebController implements \MainInterfaces\SingleTonImplement
      */
     private static $instance;
     /**
-     * @var \stdClass
+     * @var array
      */
     private $_params;
 
@@ -25,12 +25,12 @@ class WebController implements \MainInterfaces\SingleTonImplement
 
         $this->_params = $routes->getParams();
 
-        $task = '\\Models\\'.$this->_params->{'Model'};
+        $task = '\\Models\\'.$this->_params['Model'];
 
         $model = new $task($routes);
 
         $skeleton = Skeleton::getInstance(
-                $this->_params->{'template'},
+                $this->_params['template'],
                 $model->getDatas()
         );
 
