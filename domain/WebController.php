@@ -21,16 +21,16 @@ class WebController implements \MainInterfaces\SingleTonImplement
 
     private function __construct()
     {
-        $routes = Routes::getInstance(Requests::getInstance()->getRequest());
+        $request = Requests::getInstance();
 
-        $this->_params = $routes->getParams();
+        $routes = Routes::getInstance($request->getRequest());
 
-        $task = '\\Models\\'.$this->_params['Model'];
+        $task = '\\Models\\'. $routes->getParams()['model'];
 
-        $model = new $task($routes);
+        $model = new $task($routes->getParams(), $request->getArgs());
 
         $skeleton = Skeleton::getInstance(
-                $this->_params['template'],
+                $routes->getParams()['template'],
                 $model->getDatas()
         );
 

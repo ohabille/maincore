@@ -11,17 +11,17 @@ extends \Domain\MainConstructor
 implements \DomainInterfaces\Controllers\DatasImplements
 {
     public function __construct(
-        \DomainInterfaces\Controllers\RoutesImplements $params
+        array $params, array $args
     )
     {
-        parent::__construct($params);
+        parent::__construct($params, $args);
 
         $db = new Db('articles');
 
         $pager = new Pager(
             $db->getTotal(),
             $this->_params['nbrPPage'],
-            $params->getArgs()
+            $args
         );
 
         $select = new select($db, $pager);

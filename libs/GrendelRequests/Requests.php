@@ -12,41 +12,67 @@ implements \DomainInterfaces\Requests\RequestsImplement
     /**
      * @var array
      */
+    private $_args = [];
+    /**
+     * @var array
+     */
     private $_postRequest = [];
 
     public function __construct()
     {
-        if (isset($_SERVER['argv'])) $this->parseArgv();
+        $task = isset($_SERVER['argv']) ? 'parseArgv': 'parseUri';
 
-        if (isset($_SERVER['REQUEST_URI'])) $this->parseUri();
+        $this->setRequests($this->$task());
 
         if (!empty($_POST)) $this->parsePostRequests();
     }
 
-    private function parseArgv()
+    private function parseArgv() : string
     {
-        $argv = $_SERVER['argv'];
+        $argv = array_slice($_SERVER['argv'], 1);
 
         if (1 < $_SERVER['argc']) {
-            array_shift($argv);
-
             array_walk(
                 $argv,
                 function (&$item) { $item = self::cleanRequest($item); }
             );
 
-            $this->_request = '/'.implode('/', $argv);
+            return '/'.implode('/', $argv);
         }
+
+        return '/';
     }
 
-    private function parseUri() : void
+    private function parseUri() : string
     {
-        $this->_request = self::cleanRequest($_SERVER['REQUEST_URI']);
+        return self::cleanRequest($_SERVER['REQUEST_URI']);
+    }
+
+    private function setRequests(string $request) : void
+    {
+        $argv = array_slice(explode('/', $request), 1);
+
+        $this->_request = $argv[0];
+
+        if (1 < count($argv)) {
+            for ($i = 1; $i < count($argv); $i++) {
+                $regex = preg_match(
+                    '#([_a-zA-Z]+)-([_a-zA-Z0-9]+)#',
+                    $argv[$i], $find
+                );
+
+                if (0 < $regex) $this->_args[$find[1]] = $find[2];
+                else $this->_args[$argv[$i - 1]] = $argv[$i];
+            }
+        }
     }
 
     private function parsePostRequests() : void
     {
-        $this->_postRequests = $_POST;
+        $this->_postRequests = array_map(
+            function ($item) { return self::cleanRequest($item); },
+            $_POST
+        );
     }
 
     private static function cleanRequest(string $request) : string
@@ -59,8 +85,8 @@ implements \DomainInterfaces\Requests\RequestsImplement
         return $this->_request;
     }
 
-    public function getPostRequests() : array
+    public function getArgs() : array
     {
-        return $this->_postRequests;
+        return $this->_args;
     }
 }

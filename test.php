@@ -1,18 +1,16 @@
 <?php
 
-use \GrendelRoutes\GrendelRoutes as Requests;
+use \GrendelRequests\Requests as Requests;
 
 // Déclaration du fichier racine
 define('ROOTDIRS', './');
 
 // chargement du fichier d'initialisation
-require_once ROOTDIRS.'core/initCore.php';
+require_once ROOTDIRS.'core/init.php';
 
-$request = Requests::getInstance();
+$request = new Requests;
 
 dump($request->getRequest());
-
-exec('php testScript.php test', $output);
-
-dump($output[0]);
+// exec('php testScript.php test', $output);
+// dump($output[0]);
 ?>

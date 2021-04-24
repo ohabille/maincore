@@ -10,15 +10,13 @@ class Article
 extends \Domain\MainConstructor
 implements \DomainInterfaces\Controllers\DatasImplements
 {
-    public function __construct(
-        \DomainInterfaces\Controllers\RoutesImplements $params
-    )
+    public function __construct(array $params, array $args)
     {
-        parent::__construct($params);
+        parent::__construct($params, $args);
 
         $search = Search::getInstance(new Db('articles'));
 
-        if ($search->searchInDb('titre', Routes::getInstance()->getArgs()[0])) {
+        if ($search->searchInDb('titre', $args[$params['request']])) {
             self::$methods->setConf('article');
 
             $this->_datas['article'] = $this->findDatas(

@@ -2,9 +2,7 @@
 
 namespace Connectors;
 
-use \GrendelRoutes\Routes,
-    \GrendelRoutes\RoutesMatches as Matches,
-    \GrendelRoutes\RequestArgs as Args;
+use \GrendelRoutes\Routes;
 
 class RoutesConnector
 implements  \DomainInterfaces\Controllers\RoutesImplements,
@@ -17,13 +15,18 @@ implements  \DomainInterfaces\Controllers\RoutesImplements,
      */
     private static $instance;
 
+    private $_route;
+
+    private function __construct(string $request)
+    {
+        $this->_route = new Routes($request);
+    }
+
     public static function setInstance(
         string $request
     ) : \MainInterfaces\SingleTonImplement
     {
-        Matches::getInstance($request);
-
-        return new self::$class;
+        return new self::$class($request);
     }
 
     /**
@@ -31,21 +34,11 @@ implements  \DomainInterfaces\Controllers\RoutesImplements,
     */
     public function getRoutes() : array
     {
-        return Routes::getInstance()->getRoutes();
+        return $this->_route->getRoutes();
     }
 
     public function getParams() : array
     {
-        $name = Matches::getInstance()->getMatches()['request'];
-
-        return Routes::getInstance()->getRoutes()[$name];
-    }
-
-    /**
-     * @return array : Les arguments de la requète
-     */
-    public function getArgs() : array
-    {
-        return Args::getInstance()->getArgs();
+        return $this->_route->getParams();
     }
 }

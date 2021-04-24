@@ -10,14 +10,14 @@ extends \Domain\MainConstructor
 implements \DomainInterfaces\Controllers\DatasImplements
 {
     public function __construct(
-        \DomainInterfaces\Controllers\RoutesImplements $params
+        array $params, array $args
     )
     {
-        parent::__construct($params);
+        parent::__construct($params, $args);
 
         $search = Search::getInstance(new Db('members'));
 
-        if ($search->searchInDb('titre', $params->getArgs()[0]))
+        if ($search->searchInDb('titre', $args[$params['request']]))
             $this->_datas['member'] = $this->findDatasContent(
                 'member', $search->getCurrent()['file']
             );

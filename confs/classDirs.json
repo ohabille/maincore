@@ -26,7 +26,7 @@
     "GrendelRequests" : "libs/GrendelRequests/",
     "GrendelRoutes" : "libs/GrendelRoutes/",
     "GrendelPager" : "libs/GrendelPager/",
-    "GrendelDb" : "libs/GrendelDb/",
+    "GrendelDb" : "GrendelDb/",
     "GrendelDatas" : "libs/GrendelDatas/",
     "GrendelTpl" : "libs/GrendelTpl/",
     "User" : "devs/",

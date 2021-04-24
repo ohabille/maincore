@@ -18,11 +18,9 @@ abstract class MainConstructor
     protected $_datas;
     protected static $methods;
 
-    public function __construct(
-        \DomainInterfaces\Controllers\RoutesImplements $params
-    )
+    public function __construct(array $params, array $args)
     {
-        $this->_params = $params->getParams();
+        $this->_params = $params;
 
         $this->_datas = $this->_params['datas'];
 
@@ -37,13 +35,6 @@ abstract class MainConstructor
 
         if (empty($this->_datas['title']))
             $this->_datas['title'] = $conf['mainTitle'];
-
-        foreach ($params->getRoutes() as $k=>$route) {
-            if (!$route['menu']) continue;
-
-            $this->_datas['menu'][] = $route['url'];
-            $this->_datas['menu'.$route['url']] = $route['name'];
-        }
     }
 
     protected function setSelectedDatas(

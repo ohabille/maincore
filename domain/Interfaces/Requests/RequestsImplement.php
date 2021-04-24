@@ -14,5 +14,5 @@ interface RequestsImplement
      * Retourne les paramètre transmis par $_POST
      * @return array [description]
      */
-    public function getPostRequests() : array;
+    public function getArgs() : array;
 }

@@ -4,7 +4,7 @@
         "slug" : "",
         "menu" : true,
         "url" : "home",
-        "Model" : "Home",
+        "model" : "Home",
         "template" : "home",
         "name" : "Accueil",
         "datas" : {
@@ -16,7 +16,7 @@
         "request" : "notFound",
         "menu" : false,
         "url" : "notFound",
-        "Model" : "NotFound",
+        "model" : "NotFound",
         "template" : "notFound",
         "datas" : {
             "pageTitle" : "not found",
@@ -27,7 +27,7 @@
         "request" : "contact",
         "menu" : true,
         "url" : "contact",
-        "Model" : "Contact",
+        "model" : "Contact",
         "template" : "contact",
         "name" : "Contact",
         "datas" : {
@@ -40,7 +40,7 @@
         "slug" : "(first|page|last)(\\-([0-9]+))?",
         "menu" : true,
         "url" : "articles",
-        "Model" : "Articles",
+        "model" : "Articles",
         "template" : "articles",
         "name" : "Articles",
         "nbrPPage" : 5,
@@ -53,7 +53,7 @@
         "request" : "article",
         "menu" : false,
         "url" : "article",
-        "Model" : "Article",
+        "model" : "Article",
         "template" : "article",
         "datas" : {
             "pageTitle" : "article",
@@ -65,7 +65,7 @@
         "slug" : "(first|page|last)(\\-([0-9]+))?",
         "menu" : true,
         "url" : "categories",
-        "Model" : "Categories",
+        "model" : "Categories",
         "template" : "categories",
         "name" : "Cat&eacute;gories",
         "datas" : {
@@ -78,7 +78,7 @@
         "slug" : "([_a-zA-Z0-9]+)?",
         "menu" : false,
         "url" : "categorie",
-        "Model" : "Categorie",
+        "model" : "Categorie",
         "template" : "categorie",
         "datas" : {
             "pageTitle" : "cat&eacute;gorie",
@@ -90,7 +90,7 @@
         "slug" : "([_a-zA-Z0-9]+)?",
         "menu" : false,
         "url" : "membre",
-        "Model" : "Member",
+        "model" : "Member",
         "template" : "member",
         "datas" : {
             "pageTitle" : "membre",
