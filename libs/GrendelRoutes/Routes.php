@@ -16,12 +16,12 @@ class Routes
         $this->setParams($request);
     }
 
-    private function setParams(string $request) : void
+    private function setParams(string $route) : void
     {
-        if (!$this->isRoute($request))
-            $request = $this->getDefaultRoute();
+        if (!$this->isRoute($route))
+            $route = $this->getDefaultRoute();
 
-        $this->_params = $this->getRoutes()[$request];
+        $this->_params = $this->getRoutes()[$route];
     }
 
     /**

@@ -17,10 +17,9 @@
 	[[ endblock ]]
 
 		<p>
-			<a href="{? =host ?}accueil">Accueil</a>
-			<a href="{? =host ?}articles">Articles</a>
-			<a href="{? =host ?}categories">Cat&eacute;gories</a>
-			<a href="{? =host ?}contact">Contact</a>
+		{? for pageMenu ?}
+			<a href="{? =host ?}{? dataName url ?}">{? dataName name ?}</a>
+        {? endFor ?}
 		</p>
 
 		<div id="content">

@@ -23,18 +23,6 @@
             "title" : "This page not found"
         }
     },
-    "contact" : {
-        "request" : "contact",
-        "menu" : true,
-        "url" : "contact",
-        "model" : "Contact",
-        "template" : "contact",
-        "name" : "Contact",
-        "datas" : {
-            "pageTitle" : "contact",
-            "title" : "Contact"
-        }
-    },
     "articles" : {
         "request" : "articles",
         "slug" : "(first|page|last)(\\-([0-9]+))?",
@@ -95,6 +83,18 @@
         "datas" : {
             "pageTitle" : "membre",
             "title" : "Membre"
+        }
+    },
+    "contact" : {
+        "request" : "contact",
+        "menu" : true,
+        "url" : "contact",
+        "model" : "Contact",
+        "template" : "contact",
+        "name" : "Contact",
+        "datas" : {
+            "pageTitle" : "contact",
+            "title" : "Contact"
         }
     }
 }

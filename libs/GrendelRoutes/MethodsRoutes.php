@@ -8,7 +8,7 @@ namespace GrendelRoutes;
 
 trait MethodsRoutes
 {
-    public function getConf() : array
+    public static function getConf() : array
     {
         return parseConf(__DIR__.'/jsons/routesConf');
     }
@@ -17,7 +17,7 @@ trait MethodsRoutes
      * Retourne les routes disponibles
      * @return array $_routes
      */
-    public function getRoutes() : array
+    public static function getRoutes() : array
     {
         return parseConf(__DIR__.'/jsons/routes');
     }
@@ -28,7 +28,7 @@ trait MethodsRoutes
     */
     public function getDefaultRoute() : string
     {
-        return $this->getConf()['default'];
+        return self::getConf()['default'];
     }
 
     /**
@@ -37,11 +37,11 @@ trait MethodsRoutes
      */
     public function getNotFound() : string
     {
-        return $this->getConf()['notFound'];
+        return self::getConf()['notFound'];
     }
 
     public function isRoute(string $route) : bool
     {
-        return isset($this->getRoutes()[$route]);
+        return isset(self::getRoutes()[$route]);
     }
 }

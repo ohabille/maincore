@@ -17,28 +17,28 @@ implements  \DomainInterfaces\Controllers\RoutesImplements,
 
     private $_route;
 
-    private function __construct(string $request)
+    private function __construct(string $route)
     {
-        $this->_route = new Routes($request);
+        $this->_route = new Routes($route);
     }
 
     public static function setInstance(
-        string $request
+        string $route
     ) : \MainInterfaces\SingleTonImplement
     {
-        return new self::$class($request);
-    }
-
-    /**
-    * @return array : Les paramètres des routes
-    */
-    public function getRoutes() : array
-    {
-        return $this->_route->getRoutes();
+        return new self::$class($route);
     }
 
     public function getParams() : array
     {
         return $this->_route->getParams();
+    }
+
+    /**
+     * @return array : Les paramètres des routes
+     */
+    public static function getRoutes() : array
+    {
+        return Routes::getRoutes();
     }
 }

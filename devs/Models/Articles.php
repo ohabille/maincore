@@ -27,5 +27,6 @@ implements \DomainInterfaces\Controllers\DatasImplements
         $select = new select($db, $pager);
 
         $this->setSelectedDatas($select->getSelect(), 'articles');
+        // dd($this->_datas);
     }
 }

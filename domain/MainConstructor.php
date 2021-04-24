@@ -2,7 +2,8 @@
 
 namespace Domain;
 
-use \Connectors\DatasReaderConnector as Datas;
+use \Connectors\DatasReaderConnector as Datas,
+    \Connectors\RoutesConnector as Routes;
 
 abstract class MainConstructor
 {
@@ -35,6 +36,15 @@ abstract class MainConstructor
 
         if (empty($this->_datas['title']))
             $this->_datas['title'] = $conf['mainTitle'];
+
+        foreach (Routes::getRoutes() as $k=>$route) {
+            if ($route['menu']) {
+                $this->_datas['pageMenu'][] = 'menu'.ucfirst($k);
+
+                $this->_datas['menu'.ucfirst($k)]['url'] = $route['url'];
+                $this->_datas['menu'.ucfirst($k)]['name'] = $route['name'];
+            }
+        }
     }
 
     protected function setSelectedDatas(
