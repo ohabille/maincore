@@ -1,6 +1,6 @@
 <?php
 
-namespace DomainInterfaces\Controllers;
+namespace DomainInterfaces\Connectors;
 
 interface RoutesImplements
 {

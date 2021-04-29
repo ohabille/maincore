@@ -2,8 +2,6 @@
 
 namespace GrendelDb;
 
-use \Connectors\DatasReaderConnectors as Datas;
-
 class Search
 implements  \MainInterfaces\SingleTonImplement,
             \DomainInterfaces\DatasBases\DbSearchImplement
@@ -73,40 +71,6 @@ implements  \MainInterfaces\SingleTonImplement,
         $this->_mainDb->resetNode();
 
         return true;
-    }
-
-    public function isInDatas(string $from) : bool
-    {
-        $dataConf = Datas::getConf($this->_mainDb->getDbName(), 'balises');
-
-        if (!in_array($from, $dataConf)) return false;
-
-        return true;
-    }
-
-    public function searchInDatas(string $from, string $needle) : bool
-    {
-        $this->setCurrentDb();
-
-        $content = Datas::getsectioncontent(
-            $from, current($this->_db)['file']
-        );
-
-        if (empty($content)) return false;
-
-        if ($needle === $content) {
-            $this->_find[key($this->_db)] = current($this->_db);
-
-            return true;
-        }
-        else {
-            if (!$this->_mainDb->nextNode()) return false;
-
-            return $this->searchInDatas($from, $needle);
-        }
-
-
-        return false;
     }
 
     public function getKeyCurrent() : string

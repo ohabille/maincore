@@ -5,7 +5,7 @@ namespace Connectors;
 use \GrendelRoutes\Routes;
 
 class RoutesConnector
-implements  \DomainInterfaces\Controllers\RoutesImplements,
+implements  \DomainInterfaces\Connectors\RoutesImplements,
             \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\Instance;

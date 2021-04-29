@@ -5,7 +5,7 @@ namespace Connectors;
 use \GrendelRequests\Requests;
 
 class RequestsConnector
-implements  \DomainInterfaces\Requests\RequestsImplement,
+implements  \DomainInterfaces\Connectors\RequestsImplement,
             \MainInterfaces\SingleTonImplement
 {
     use \MainTraits\Instance;

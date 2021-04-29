@@ -8,10 +8,6 @@ interface DbSearchImplement
 
     public function searchInDb(string $from, string $needle) : bool;
 
-    public function isInDatas(string $from) : bool;
-
-    public function searchInDatas(string $from, string $needle) : bool;
-
     public function getKeyCurrent() : string;
 
     public function getCurrent() : array;

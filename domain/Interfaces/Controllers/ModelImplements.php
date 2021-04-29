@@ -2,7 +2,7 @@
 
 namespace DomainInterfaces\Controllers;
 
-interface DatasImplements
+interface ModelImplements
 {
     /**
      * Retourne les données initialisées

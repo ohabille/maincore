@@ -3,7 +3,7 @@
 namespace GrendelRequests;
 
 class Requests
-implements \DomainInterfaces\Requests\RequestsImplement
+implements \DomainInterfaces\Connectors\RequestsImplement
 {
     /**
      * @var string
