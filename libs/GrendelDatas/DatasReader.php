@@ -30,7 +30,7 @@ implements  \MainInterfaces\SingleTonImplement,
     private function getContent(string $file) : string
     {
         return readContentFile(
-            __DIR__.'/'.$this->_conf['dir']
+            __DIR__.'/datas//'.$this->_conf['dir']
             .$file
             .$this->_conf['ext']
         );

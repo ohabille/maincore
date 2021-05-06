@@ -16,21 +16,38 @@ implements  \MainInterfaces\FuncsImplement,
     private static $instance;
 
     /**
-     * Retourne le contenu d'un fichier
+     * Lit un fichier et retourne son contenu
+     * @param  resource $stream : Le pointeur sur le fichier
+     * @return string           : Le contenu du fichier
+     */
+    private function getContentFile($stream)
+    {
+        $content = stream_get_contents($stream);
+
+        fclose($stream);
+
+        return false !== $content ? $content: '';
+    }
+
+    /**
+     * Ouvre un fichier et retourne son contenu ou un string vide
      * @param  string $file : Le path du fichier
      * @return string       : Le contenu du fichier
      */
     public function readContentFile(string $file) : string
     {
-        $content = '';
+        $stream = fopen($file, 'r');
 
-        if ($stream = fopen($file, 'r')) {
-            $content = stream_get_contents($stream);
-
-            fclose($stream);
-        }
-
-        return $content;
+        return false !== $stream ? $this->getContentFile($stream): '';
+        // $content = '';
+        //
+        // if ($stream = fopen($file, 'r')) {
+        //     $content = stream_get_contents($stream);
+        //
+        //     fclose($stream);
+        // }
+        //
+        // return $content;
     }
 
     /**

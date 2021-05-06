@@ -1,6 +1,6 @@
 {
     "articles" : {
-        "dir" : "datas/articles/",
+        "dir" : "articles/",
         "ext" : ".txt",
         "time" : [
             "weekday",
@@ -20,7 +20,7 @@
         ]
     },
     "article" : {
-        "dir" : "datas/articles/",
+        "dir" : "articles/",
         "ext" : ".txt",
         "time" : [
             "weekday",
@@ -40,7 +40,7 @@
         ]
     },
     "categorie" : {
-        "dir" : "datas/categories/",
+        "dir" : "categories/",
         "ext" : ".txt",
         "time" : [
             "weekday",
@@ -56,7 +56,7 @@
         ]
     },
     "member" : {
-        "dir" : "datas/members/",
+        "dir" : "members/",
         "ext" : ".txt",
         "time" : [
             "weekday",
