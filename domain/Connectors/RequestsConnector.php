@@ -21,7 +21,6 @@ implements  \DomainInterfaces\Connectors\ConnectorsImplement,
         \DomainInterfaces\Requests\RequestsImplement $request
     )
     {
-        // $this->_request = new Requests;
         $this->_request = $request;
     }
 

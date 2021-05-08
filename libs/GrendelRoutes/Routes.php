@@ -2,7 +2,7 @@
 
 namespace GrendelRoutes;
 
-class Routes
+class Routes implements \DomainInterfaces\Routes\RoutesImplements
 {
     use MethodsRoutes;
 

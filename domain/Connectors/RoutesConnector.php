@@ -6,11 +6,9 @@ use \GrendelRoutes\Routes,
     \Connectors\RequestsConnector as Requests;
 
 class RoutesConnector
-implements  \DomainInterfaces\Connectors\RoutesImplements,
-            \MainInterfaces\SingleTonImplement
+implements  \DomainInterfaces\Connectors\ConnectorsImplement,
+            \DomainInterfaces\Routes\RoutesImplements
 {
-    use \MainTraits\Instance;
-
     /**
      * @var \MainInterfaces\SingleTonImplement
      */
@@ -18,9 +16,22 @@ implements  \DomainInterfaces\Connectors\RoutesImplements,
 
     private $_route;
 
-    private function __construct()
+    private function __construct(
+        \DomainInterfaces\Routes\RoutesImplements $routes
+    )
     {
-        $this->_route = new Routes(Requests::getInst()->getRequest());
+        $this->_route = $routes;
+    }
+
+    public static function getInst(
+    ) : \DomainInterfaces\Connectors\ConnectorsImplement
+    {
+        if (is_null(self::$instance))
+            self::$instance = new RoutesConnector(
+                new Routes(Requests::getInst()->getRequest())
+            );
+
+        return self::$instance;
     }
 
     public function getParams() : array
