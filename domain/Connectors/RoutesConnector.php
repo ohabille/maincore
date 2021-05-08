@@ -2,7 +2,8 @@
 
 namespace Connectors;
 
-use \GrendelRoutes\Routes;
+use \GrendelRoutes\Routes,
+    \Connectors\RequestsConnector as Requests;
 
 class RoutesConnector
 implements  \DomainInterfaces\Connectors\RoutesImplements,
@@ -17,16 +18,9 @@ implements  \DomainInterfaces\Connectors\RoutesImplements,
 
     private $_route;
 
-    private function __construct(string $route)
+    private function __construct()
     {
-        $this->_route = new Routes($route);
-    }
-
-    private static function setInstance(
-        string $route
-    ) : \MainInterfaces\SingleTonImplement
-    {
-        return new self::$class($route);
+        $this->_route = new Routes(Requests::getInst()->getRequest());
     }
 
     public function getParams() : array

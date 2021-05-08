@@ -16,8 +16,7 @@ trait Instance
     */
     public static function getInst() : \MainInterfaces\SingleTonImplement
     {
-        if (is_null(self::$class))
-            self::$class = get_called_class();
+        if (is_null(self::$class)) self::$class = get_called_class();
 
         if (is_null(self::$instance)) {
             self::$instance = call_user_func_array(

@@ -1,7 +1,6 @@
 <?php
 
-use \Domain\WebController as Ctrl,
-    \Connectors\RequestsConnector as Requests,
+use \Connectors\RequestsConnector as Requests,
     \Connectors\RoutesConnector as Routes,
     \Connectors\ViewConnector as Skeleton;
 
@@ -12,17 +11,17 @@ define('ROOTDIRS', '../');
 require_once ROOTDIRS.'core/init.php';
 
 //
-$routes = Routes::getInst(Requests::getInst()->getRequest());
+$params = Routes::getInst()->getParams();
 
 //
-$task = '\\Models\\'. $routes->getParams()['model'];
+$task = '\\Models\\'. $params['model'];
 
 //
-$model = new $task($routes->getParams());
+$model = new $task($params);
 
 //
 Skeleton::getInst(
-        $routes->getParams()['template'],
+        $params['template'],
         $model->getDatas()
 )->readTemplate();
 
