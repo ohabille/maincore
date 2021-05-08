@@ -1,12 +1,12 @@
 <?php
 
-namespace DomainInterfaces\Connectors;
+namespace DomainInterfaces\Requests;
 
 interface RequestsImplement
 {
     /**
      * Retourne la requète transmise
-     * @return string [description]
+     * @return string la requète
      */
     public function getRequest() : string;
 }

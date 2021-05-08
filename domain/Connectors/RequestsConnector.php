@@ -5,23 +5,33 @@ namespace Connectors;
 use \GrendelRequests\Requests;
 
 class RequestsConnector
-implements  \DomainInterfaces\Connectors\RequestsImplement,
-            \MainInterfaces\SingleTonImplement
+implements  \DomainInterfaces\Connectors\ConnectorsImplement,
+            \DomainInterfaces\Requests\RequestsImplement
 {
-    use \MainTraits\Instance;
-
     /**
-     * @var \MainInterfaces\SingleTonImplement
+     * @var \Connectors\RequestsConnector
      */
-    private static $instance;
+    private static $instance = null;
     /**
-     * @var \GrendelRequests\Requests
+     * @var \DomainInterfaces\Connectors\RequestsImplement
      */
     private $_request;
 
-    private function __construct()
+    private function __construct(
+        \DomainInterfaces\Requests\RequestsImplement $request
+    )
     {
-        $this->_request = new Requests;
+        // $this->_request = new Requests;
+        $this->_request = $request;
+    }
+
+    public static function getInst(
+    ) : \DomainInterfaces\Connectors\ConnectorsImplement
+    {
+        if (is_null(self::$instance))
+            self::$instance = new RequestsConnector(new Requests);
+
+        return self::$instance;
     }
 
     /**
