@@ -20,7 +20,7 @@ implements  \MainInterfaces\SingleTonImplement,
         $this->_mainDb = $mainDb;
     }
 
-    public static function setInstance(
+    private static function setInstance(
         \DomainInterfaces\DatasBases\DbImplement $mainDb
     ) : \MainInterfaces\SingleTonImplement
     {

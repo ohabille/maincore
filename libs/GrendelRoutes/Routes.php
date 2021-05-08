@@ -18,8 +18,7 @@ class Routes
 
     private function setParams(string $route) : void
     {
-        if (!$this->isRoute($route))
-            $route = $this->getDefaultRoute();
+        if (!$this->isRoute($route)) $route = $this->getDefaultRoute();
 
         $this->_params = $this->getRoutes()[$route];
     }

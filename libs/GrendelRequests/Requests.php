@@ -52,6 +52,7 @@ class Requests
         $argv = array_slice(explode('/', $request), 1);
 
         $this->_request = $argv[0];
+        $this->_args['model'] = $argv[0];
 
         if (1 < count($argv)) {
             for ($i = 1; $i < count($argv); $i++) {

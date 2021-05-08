@@ -26,7 +26,7 @@ implements  \DomainInterfaces\Skeleton\ModelSkeletonImplement
         if (!empty($commands)) $this->applyCommands($commands);
 
         $this->_skeleton->setSkeleton(
-            Datas::getInstance()::setDatas(
+            Datas::getInst()::setDatas(
                 $this->_datas,
                 $this->_skeleton->getSkeleton()
             )
@@ -35,11 +35,11 @@ implements  \DomainInterfaces\Skeleton\ModelSkeletonImplement
 
     private function findCommands()
     {
-        if (!Patterns::getInstance()
+        if (!Patterns::getInst()
             ->isPattern('cmdsList', $this->_skeleton->getSkeleton())
         ) return [];
 
-        return Patterns::getInstance()
+        return Patterns::getInst()
             ->findAllPatterns('cmdsList', $this->_skeleton->getSkeleton());
     }
 
@@ -49,7 +49,7 @@ implements  \DomainInterfaces\Skeleton\ModelSkeletonImplement
             $task = '\GrendelTpl\Command'.ucfirst($cmd);
 
             preg_match(
-                Patterns::getInstance()->getContentPattern(
+                Patterns::getInst()->getContentPattern(
                     $cmd, $cmds[3][$k]
                 ),
                 $this->_skeleton->getSkeleton(),
@@ -59,7 +59,7 @@ implements  \DomainInterfaces\Skeleton\ModelSkeletonImplement
             $this->_skeleton->setSkeleton(
                 str_replace(
                     $match[0],
-                    $task::getInstance()::getCmdResult(
+                    $task::getInst()::getCmdResult(
                         $this->_datas,
                         $match[1],
                         $cmds[3][$k]

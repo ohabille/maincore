@@ -14,7 +14,7 @@ implements \DomainInterfaces\Controllers\ModelImplements
     {
         parent::__construct($params, $args);
 
-        $search = Search::getInstance(new Db('articles'));
+        $search = Search::getInst(new Db('articles'));
 
         if ($search->searchInDb('titre', $args[$params['request']])) {
             self::$methods->setConf('article');

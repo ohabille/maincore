@@ -16,11 +16,11 @@ class Skeleton implements \DomainInterfaces\Skeleton\SkeletonImplement
 
     private function findSkeleton(string $content) : string
     {
-        if (!Patterns::getInstance()->isPattern('skeleton', $content))
+        if (!Patterns::getInst()->isPattern('skeleton', $content))
             return $content;
 
         return $this->writeSkeleton(
-            Patterns::getInstance()->findPattern('skeleton', $content)[1],
+            Patterns::getInst()->findPattern('skeleton', $content)[1],
             $content
         );
     }

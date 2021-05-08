@@ -25,7 +25,7 @@ abstract class MainConstructor
 
         $this->_datas = $this->_params['datas'];
 
-        self::$methods = Datas::getInstance();
+        self::$methods = Datas::getInst();
 
         $conf = self::$methods->getMainDatas();
 
@@ -47,10 +47,7 @@ abstract class MainConstructor
         }
     }
 
-    protected function setSelectedDatas(
-        array $selected,
-        string $name
-    ) : void
+    protected function setSelectedDatas(array $selected, string $name) : void
     {
         foreach ($selected as $k=>$select) {
             self::$methods->setConf($name);

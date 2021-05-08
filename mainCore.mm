@@ -92,8 +92,8 @@
 <node TEXT="ImplementSingleTon.php" STYLE_REF="php file" FOLDED="true" ID="ID_253145381" CREATED="1607928784623" MODIFIED="1607928832774">
 <node TEXT="namespace DomainInterfaces" STYLE_REF="code" ID="ID_1469986901" CREATED="1607928841526" MODIFIED="1607928856749"/>
 <node TEXT="interface ImplementSingleTon" STYLE_REF="function" ID="ID_1983453708" CREATED="1607928872119" MODIFIED="1607928889584">
-<node TEXT="public static getInstance () : \DomainInterfaces\ImplementSingleTon" STYLE_REF="function" ID="ID_1482857806" CREATED="1606726961181" MODIFIED="1607928940576"/>
-<node TEXT="public static function setInstance() : \DomainInterfaces\ImplementSingleTon" STYLE_REF="function" ID="ID_1396520799" CREATED="1607928958854" MODIFIED="1607929010509"/>
+<node TEXT="public static getInst () : \DomainInterfaces\ImplementSingleTon" STYLE_REF="function" ID="ID_1482857806" CREATED="1606726961181" MODIFIED="1607928940576"/>
+<node TEXT="private static function setInstance() : \DomainInterfaces\ImplementSingleTon" STYLE_REF="function" ID="ID_1396520799" CREATED="1607928958854" MODIFIED="1607929010509"/>
 </node>
 </node>
 </node>
@@ -232,7 +232,7 @@
 <node TEXT="namespace MainTraits" STYLE_REF="code" ID="ID_261734255" CREATED="1606727328708" MODIFIED="1607242096905"/>
 <node TEXT="trait FuncSingleTon" STYLE_REF="function" ID="ID_240536870" CREATED="1606727445141" MODIFIED="1607242113904">
 <node TEXT="private static $class" STYLE_REF="property" ID="ID_1926652646" CREATED="1607929570654" MODIFIED="1607929588969"/>
-<node TEXT="public static function getInstance ()&#xa;: \DomainInterfaces\ImplementSingleTon" STYLE_REF="function" ID="ID_1820718423" CREATED="1606727469365" MODIFIED="1607929656518">
+<node TEXT="public static function getInst ()&#xa;: \DomainInterfaces\ImplementSingleTon" STYLE_REF="function" ID="ID_1820718423" CREATED="1606727469365" MODIFIED="1607929656518">
 <node TEXT="if ( is_null ( self::$instance ) )" STYLE_REF="function" ID="ID_242425035" CREATED="1606727518477" MODIFIED="1606727547657">
 <node TEXT="self::$class" STYLE_REF="property" ID="ID_1125016071" CREATED="1606727549301" MODIFIED="1608365043751">
 <node TEXT="get_called_class ()" STYLE_REF="code" ID="ID_1196070206" CREATED="1607929331639" MODIFIED="1607929345420"/>
@@ -251,7 +251,7 @@
 <node TEXT="self::$instance" STYLE_REF="property" ID="ID_1178736531" CREATED="1607929510639" MODIFIED="1607929523618"/>
 </node>
 </node>
-<node TEXT="public static function setInstance ()&#xa;: \DomainInterfaces\ImplementSingleTon" STYLE_REF="function" ID="ID_1180759820" CREATED="1607929542654" MODIFIED="1607929666223">
+<node TEXT="private static function setInstance ()&#xa;: \DomainInterfaces\ImplementSingleTon" STYLE_REF="function" ID="ID_1180759820" CREATED="1607929542654" MODIFIED="1607929666223">
 <node TEXT="return" STYLE_REF="code" ID="ID_773075626" CREATED="1607929983688" MODIFIED="1607929989178">
 <node TEXT="new self::$class" STYLE_REF="code" ID="ID_1549276109" CREATED="1607930004264" MODIFIED="1607930018817"/>
 </node>
@@ -287,7 +287,7 @@
 <node TEXT="include_once(autoLoad.php)" STYLE_REF="code" ID="ID_366872227" CREATED="1606725097577" MODIFIED="1607076852982" LINK="#ID_686778826"/>
 <node TEXT="$classes = json_decode ( file_get_contents(ROOTDIRS/confs/classFuncs.json ) )" STYLE_REF="code" ID="ID_567930570" CREATED="1606725136089" MODIFIED="1607240889654" LINK="#ID_88835333"/>
 <node TEXT="foreach ( $classes as $class)" STYLE_REF="function" ID="ID_765967781" CREATED="1606725238930" MODIFIED="1606777854510">
-<node TEXT="$class-&gt;{ namespace }::getInstance()-&gt;setMethodAlias( $class-&gt;{ methods } )" STYLE_REF="code" ID="ID_1102950385" CREATED="1606725301043" MODIFIED="1606777922353"/>
+<node TEXT="$class-&gt;{ namespace }::getInst()-&gt;setMethodAlias( $class-&gt;{ methods } )" STYLE_REF="code" ID="ID_1102950385" CREATED="1606725301043" MODIFIED="1606777922353"/>
 </node>
 </node>
 <node TEXT="autoLoad.php" STYLE_REF="php file" FOLDED="true" ID="ID_686778826" CREATED="1606725398906" MODIFIED="1607075180311">

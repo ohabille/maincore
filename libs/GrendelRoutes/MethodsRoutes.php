@@ -23,9 +23,9 @@ trait MethodsRoutes
     }
 
     /**
-    * Retourne la route par défaut
-    * @return string getConf()['default']
-    */
+     * Retourne la route par défaut
+     * @return string getConf()['default']
+     */
     public function getDefaultRoute() : string
     {
         return self::getConf()['default'];

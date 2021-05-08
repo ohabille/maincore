@@ -8,7 +8,7 @@ trait MainFuncs
 
     /**
      * Crée des alias des methodes de la classe appelée
-     * Ignore getInstance et setMethodsAlias
+     * Ignore getInst et setMethodsAlias
      * pour éviter les erreurs
      * @param $methods : ls méthodes à aliasser
      */
@@ -20,7 +20,7 @@ trait MainFuncs
             eval(
                 "function $func() {
                     return call_user_func_array(
-                        [$class::getInstance(), '$func'],
+                        [$class::getInst(), '$func'],
                         func_get_args()
                     );
                 }"

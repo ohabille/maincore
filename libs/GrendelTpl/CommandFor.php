@@ -25,11 +25,11 @@ implements  \MainInterfaces\SingleTonImplement
         $rpl = '';
 
         do {
-            $rpl .= Patterns::getInstance()->isPattern('for=', $match) ?
+            $rpl .= Patterns::getInst()->isPattern('for=', $match) ?
                 str_replace('{? for= ?}', $data[$dataName][$i], $match):
                 $match;
 
-            if (Patterns::getInstance()->isPattern('forData', $rpl)) {
+            if (Patterns::getInst()->isPattern('forData', $rpl)) {
                 $rpl = str_replace(
                     '{? forData ?}',
                     $data[$dataName.$data[$dataName][$i]],
@@ -37,9 +37,9 @@ implements  \MainInterfaces\SingleTonImplement
                 );
             }
 
-            if (Patterns::getInstance()->isPattern('dataName', $rpl)) {
+            if (Patterns::getInst()->isPattern('dataName', $rpl)) {
                 $rpl = self::replaceDataName(
-                    Patterns::getInstance()
+                    Patterns::getInst()
                     ->findAllPatterns('dataName', $rpl)[1],
                     $data[$data[$dataName][$i]],
                     $rpl

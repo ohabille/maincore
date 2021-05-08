@@ -6,22 +6,22 @@ use \GrendelDatas\DatasReader as Datas;
 
 class DatasReaderConnector
 {
-    public static function getInstance() : \DomainInterfaces\DatasReaderImplement
+    public static function getInst() : \DomainInterfaces\DatasReaderImplement
     {
-        return Datas::getInstance();
+        return Datas::getInst();
     }
 
     public static function getConf(string $confName, string $conf) : array
     {
-        Datas::getInstance()->setConf($confName);
+        Datas::getInst()->setConf($confName);
 
-        return Datas::getInstance()->getConf()[$conf];
+        return Datas::getInst()->getConf()[$conf];
     }
 
     public static function getsectioncontent(
         string $from, string $file
     ) : string
     {
-        return Datas::getInstance()->getsectioncontent($from, $file);
+        return Datas::getInst()->getsectioncontent($from, $file);
     }
 }

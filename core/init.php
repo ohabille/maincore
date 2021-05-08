@@ -15,5 +15,5 @@ $classes = json_decode(
 
 
 foreach ($classes as $class)
-    $class['namespace']::getInstance()
+    $class['namespace']::getInst()
         ->setMethodsAlias($class['methods']);

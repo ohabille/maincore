@@ -2,8 +2,7 @@
 
 namespace Domain;
 
-use \Connectors\RequestsConnector as Requests,
-    \Connectors\RoutesConnector as Routes,
+use \Connectors\RoutesConnector as Routes,
     \Connectors\ViewConnector as Skeleton;
 
 class WebController implements \MainInterfaces\SingleTonImplement
@@ -14,26 +13,39 @@ class WebController implements \MainInterfaces\SingleTonImplement
      * @var \MainInterfaces\SingleTonImplement
      */
     private static $instance;
-    /**
-     * @var array
-     */
-    private $_params;
+    private $_model;
 
-    private function __construct()
+    private function __construct(
+        \DomainInterfaces\Connectors\RequestsImplement $request,
+        \DomainInterfaces\Connectors\RoutesImplements $routes
+    )
     {
-        $request = Requests::getInstance();
-
-        $routes = Routes::getInstance($request->getRequest());
-
         $task = '\\Models\\'. $routes->getParams()['model'];
 
-        $model = new $task($routes->getParams(), $request->getArgs());
+        $this->_model = new $task($routes->getParams(), $request->getArgs());
 
-        $skeleton = Skeleton::getInstance(
+        $skeleton = Skeleton::getInst(
                 $routes->getParams()['template'],
-                $model->getDatas()
+                $this->_model->getDatas()
         );
 
         $skeleton->readTemplate();
+    }
+
+    /**
+     * Retourne l'instance de la classe
+     * @return \MainInterfaces\SingleTonImplement : instance de la classe
+     */
+    private static function setInstance(
+        \DomainInterfaces\Connectors\RequestsImplement $request,
+        \DomainInterfaces\Connectors\RoutesImplements $routes
+    ) : \MainInterfaces\SingleTonImplement
+    {
+        return new self::$class($request, $routes);
+    }
+
+    public function getDatas()
+    {
+        return $this->_model->getDatas();
     }
   }

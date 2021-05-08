@@ -15,7 +15,7 @@ implements \DomainInterfaces\Controllers\ModelImplements
     {
         parent::__construct($params, $args);
 
-        $search = Search::getInstance(new Db('categories'));
+        $search = Search::getInst(new Db('categories'));
 
         if ($search->searchInDb('titre', $args[$params['request']]))
             $this->_datas['categorie'] = $this->findDatasContent(

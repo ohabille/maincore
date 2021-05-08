@@ -11,7 +11,7 @@ class SkeletonBlocks
 
     public function __construct(string $view)
     {
-        $this->_blocks = Patterns::getInstance()->findAllPatterns('block', $view);
+        $this->_blocks = Patterns::getInst()->findAllPatterns('block', $view);
     }
 
     public function findBlock(string $name, string $view) : array
@@ -35,18 +35,18 @@ class SkeletonBlocks
     private function getBlockPattern(string $blockName) : string
     {
         $pattern = $this->getUniqueBlockPattern($blockName)
-            .Patterns::getInstance()->getPattern('content')
-            .Patterns::getInstance()->getPattern('endBlock');
+            .Patterns::getInst()->getPattern('content')
+            .Patterns::getInst()->getPattern('endBlock');
 
-        return Patterns::getInstance()->makePattern(
+        return Patterns::getInst()->makePattern(
             $pattern,
-            Patterns::getInstance()->getPattern('optContent')
+            Patterns::getInst()->getPattern('optContent')
         );
     }
 
     private function getUniqueBlockPattern(string $blockName) : string
     {
-        return Patterns::getInstance()->getUniquePattern(
+        return Patterns::getInst()->getUniquePattern(
             '([A-Z]+)', $blockName, 'block'
         );
     }

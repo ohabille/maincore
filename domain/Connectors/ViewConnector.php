@@ -6,7 +6,7 @@ use \GrendelTpl\GrendelSkeleton as Skeleton;
 
 class ViewConnector
 {
-    public static function getInstance(
+    public static function getInst(
         string $templateName,
         array $datas
     ) : \DomainInterfaces\Skeleton\ModelSkeletonImplement

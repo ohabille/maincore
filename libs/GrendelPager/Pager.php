@@ -48,18 +48,19 @@ class Pager implements \DomainInterfaces\PagerImplement
      */
     private function setStep(array $args) : void
     {
-        switch ($args[0]) {
+        $page = array_key_last($args);
+
+        switch ($page) {
             case 'first': break;
-            case 'page':
-                if (isset($args[2]))
-                    $this->_step = (int) $args[2];
-                if ($this->_step > $this->_nbrSteps)
-                    $this->_step = $this->_nbrSteps;
-            break;
             case 'last':
                 $this->_step = $this->_nbrSteps;
             break;
-            default: break;
+            default:
+                if (is_numeric ($page)) $this->_step = (int) $page;
+
+                if ($this->_step > $this->_nbrSteps)
+                    $this->_step = $this->_nbrSteps;
+            break;
         }
     }
 

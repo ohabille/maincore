@@ -16,11 +16,11 @@ class SkeletonDatas implements \MainInterfaces\SingleTonImplement
 
     private static function findDatas(string $view)
     {
-        if (!Patterns::getInstance()
+        if (!Patterns::getInst()
             ->isPattern('datas', $view)
         ) return [];
 
-        return Patterns::getInstance()
+        return Patterns::getInst()
             ->findAllPatterns('datas', $view);
     }
 

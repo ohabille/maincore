@@ -22,7 +22,7 @@ implements  \DomainInterfaces\Connectors\RoutesImplements,
         $this->_route = new Routes($route);
     }
 
-    public static function setInstance(
+    private static function setInstance(
         string $route
     ) : \MainInterfaces\SingleTonImplement
     {
