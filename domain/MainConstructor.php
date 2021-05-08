@@ -19,9 +19,9 @@ abstract class MainConstructor
     protected $_datas;
     protected static $methods;
 
-    public function __construct(array $params)
+    public function __construct()
     {
-        $this->_params = $params;
+        $this->_params = Routes::getInst()->getParams();
 
         $this->_datas = $this->_params['datas'];
 

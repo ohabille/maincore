@@ -9,15 +9,13 @@ class Categorie
 extends \Domain\MainConstructor
 implements \DomainInterfaces\Controllers\ModelImplements
 {
-    public function __construct(
-        array $params
-    )
+    public function __construct()
     {
-        parent::__construct($params);
+        parent::__construct();
 
         $search = Search::getInst(new Db('categories'));
 
-        if ($search->searchInDb('titre', $params['categorie']))
+        if ($search->searchInDb('titre', $this->_params['categorie']))
             $this->_datas['categorie'] = $this->findDatasContent(
                 'categorie', $search->getCurrent()['file']
             );

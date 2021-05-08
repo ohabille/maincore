@@ -10,18 +10,16 @@ class Articles
 extends \Domain\MainConstructor
 implements \DomainInterfaces\Controllers\ModelImplements
 {
-    public function __construct(
-        array $params
-    )
+    public function __construct()
     {
-        parent::__construct($params);
+        parent::__construct();
 
         $db = new Db('articles');
 
         $pager = new Pager(
             $db->getTotal(),
             $this->_params['nbrPPage'],
-            $params
+            $this->_params
         );
 
         $select = new select($db, $pager);

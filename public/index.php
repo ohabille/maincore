@@ -17,7 +17,7 @@ $params = Routes::getInst()->getParams();
 $task = '\\Models\\'. $params['model'];
 
 //
-$model = new $task($params);
+$model = new $task;
 
 //
 Skeleton::getInst(
