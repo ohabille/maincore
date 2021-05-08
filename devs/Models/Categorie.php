@@ -10,14 +10,14 @@ extends \Domain\MainConstructor
 implements \DomainInterfaces\Controllers\ModelImplements
 {
     public function __construct(
-        array $params, array $args
+        array $params
     )
     {
-        parent::__construct($params, $args);
+        parent::__construct($params);
 
         $search = Search::getInst(new Db('categories'));
 
-        if ($search->searchInDb('titre', $args[$params['request']]))
+        if ($search->searchInDb('titre', $params['categorie']))
             $this->_datas['categorie'] = $this->findDatasContent(
                 'categorie', $search->getCurrent()['file']
             );

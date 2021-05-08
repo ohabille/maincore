@@ -10,13 +10,13 @@ class Article
 extends \Domain\MainConstructor
 implements \DomainInterfaces\Controllers\ModelImplements
 {
-    public function __construct(array $params, array $args)
+    public function __construct(array $params)
     {
-        parent::__construct($params, $args);
+        parent::__construct($params);
 
         $search = Search::getInst(new Db('articles'));
 
-        if ($search->searchInDb('titre', $args[$params['request']])) {
+        if ($search->searchInDb('titre', $params['article'])) {
             self::$methods->setConf('article');
 
             $this->_datas['article'] = $this->findDatas(

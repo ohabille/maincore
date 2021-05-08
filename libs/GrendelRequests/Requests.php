@@ -7,15 +7,7 @@ class Requests
     /**
      * @var string
      */
-    private $_request = '';
-    /**
-     * @var array
-     */
-    private $_args = [];
-    /**
-     * @var array
-     */
-    private $_postRequest = [];
+    private $_request = '/';
 
     public function __construct()
     {
@@ -28,18 +20,12 @@ class Requests
 
     private function parseArgv() : string
     {
-        $argv = array_slice($_SERVER['argv'], 1);
-
-        if (1 < $_SERVER['argc']) {
-            array_walk(
-                $argv,
-                function (&$item) { $item = self::cleanRequest($item); }
-            );
-
-            return '/'.implode('/', $argv);
-        }
-
-        return '/';
+        return '/'.implode(
+            '/',
+            self::cleanTab(
+                array_slice($_SERVER['argv'], 1)
+            )
+        );
     }
 
     private function parseUri() : string
@@ -49,29 +35,42 @@ class Requests
 
     private function setRequests(string $request) : void
     {
-        $argv = array_slice(explode('/', $request), 1);
-
-        $this->_request = $argv[0];
-        $this->_args['model'] = $argv[0];
-
-        if (1 < count($argv)) {
-            for ($i = 1; $i < count($argv); $i++) {
-                $regex = preg_match(
-                    '#([_a-zA-Z]+)-([_a-zA-Z0-9]+)#',
-                    $argv[$i], $find
-                );
-
-                if (0 < $regex) $this->_args[$find[1]] = $find[2];
-                else $this->_args[$argv[$i - 1]] = $argv[$i];
-            }
-        }
+        $this->_request .= 'request'.$request;
     }
 
     private function parsePostRequests() : void
     {
-        $this->_postRequests = array_map(
-            function ($item) { return self::cleanRequest($item); },
-            $_POST
+        $this->writeRequest(
+            array_combine(
+                self::cleanTab(array_keys($_POST)),
+                self::cleanTab($_POST)
+            )
+        );
+    }
+
+    private function writeRequest(array $request) : void
+    {
+        for ($i = 0; $i < count($request); $i++) {
+            $key = array_keys($request)[$i];
+
+            if (is_array($request[$key])) {
+                $this->writeRequest($request[$key]);
+                continue;
+            }
+
+            $this->_test .= '/'.$key.'/'.$request[$key];
+        }
+    }
+
+    private static function cleanTab(array $tab) : array
+    {
+        return array_map(
+            function ($item) {
+                if (is_array($item)) return self::cleanTab($item);
+
+                return self::cleanRequest($item);
+            },
+            $tab
         );
     }
 
@@ -83,10 +82,5 @@ class Requests
     public function getRequest() : string
     {
         return $this->_request;
-    }
-
-    public function getArgs() : array
-    {
-        return $this->_args;
     }
 }

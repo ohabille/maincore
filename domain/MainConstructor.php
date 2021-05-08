@@ -19,7 +19,7 @@ abstract class MainConstructor
     protected $_datas;
     protected static $methods;
 
-    public function __construct(array $params, array $args)
+    public function __construct(array $params)
     {
         $this->_params = $params;
 

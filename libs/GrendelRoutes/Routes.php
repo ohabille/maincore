@@ -16,11 +16,22 @@ class Routes
         $this->setParams($request);
     }
 
-    private function setParams(string $route) : void
+    private function setParams(string $request) : void
     {
-        if (!$this->isRoute($route)) $route = $this->getDefaultRoute();
+        $argv = array_slice(explode('/', $request), 1);
 
-        $this->_params = $this->getRoutes()[$route];
+        for ($i = 0; $i < count($argv); $i += 2) {
+            $x = isset($argv[$i + 1]) ? $i: $i - 1;
+            $y = isset($argv[$i + 1]) ? $i + 1: $i;
+
+            $params[$argv[$x]] = $argv[$y];
+        }
+
+        $route = $this->isRoute($params['request']) ?
+            $params['request']:
+            $this->getDefaultRoute();
+
+        $this->_params = array_merge($params, $this->getRoutes()[$route]);
     }
 
     /**

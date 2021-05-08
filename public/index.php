@@ -12,25 +12,18 @@ define('ROOTDIRS', '../');
 require_once ROOTDIRS.'core/init.php';
 
 //
-$request = Requests::getInst();
-
-//
-// $routes = Routes::getInst($request->getRequest());
-$routes = Routes::getInst($request->getArgs()['model']);
+$routes = Routes::getInst(Requests::getInst()->getRequest());
 
 //
 $task = '\\Models\\'. $routes->getParams()['model'];
 
 //
-$model = new $task($routes->getParams(), $request->getArgs());
+$model = new $task($routes->getParams());
 
 //
 Skeleton::getInst(
         $routes->getParams()['template'],
         $model->getDatas()
 )->readTemplate();
-
-// Instanciation du controller
-// $controller = Ctrl::getInst($request, $routes);
 
 ?>

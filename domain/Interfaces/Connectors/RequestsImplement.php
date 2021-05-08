@@ -9,10 +9,4 @@ interface RequestsImplement
      * @return string [description]
      */
     public function getRequest() : string;
-
-    /**
-     * Retourne les paramètre transmis par $_POST
-     * @return array [description]
-     */
-    public function getArgs() : array;
 }

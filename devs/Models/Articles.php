@@ -11,22 +11,21 @@ extends \Domain\MainConstructor
 implements \DomainInterfaces\Controllers\ModelImplements
 {
     public function __construct(
-        array $params, array $args
+        array $params
     )
     {
-        parent::__construct($params, $args);
+        parent::__construct($params);
 
         $db = new Db('articles');
 
         $pager = new Pager(
             $db->getTotal(),
             $this->_params['nbrPPage'],
-            $args
+            $params
         );
 
         $select = new select($db, $pager);
 
         $this->setSelectedDatas($select->getSelect(), 'articles');
-        // dd($this->_datas);
     }
 }

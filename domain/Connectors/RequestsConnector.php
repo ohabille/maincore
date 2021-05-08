@@ -32,13 +32,4 @@ implements  \DomainInterfaces\Connectors\RequestsImplement,
     {
         return $this->_request->getRequest();
     }
-
-    /**
-     * Retourne les paramètre transmis par $_POST
-     * @return array [description]
-     */
-    public function getArgs() : array
-    {
-        return $this->_request->getArgs();
-    }
 }

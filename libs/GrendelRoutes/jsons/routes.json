@@ -25,7 +25,7 @@
     },
     "articles" : {
         "request" : "articles",
-        "slug" : "(first|page|last)(\\-([0-9]+))?",
+        "slug" : "(first|page|last)(\\/([0-9]+))?",
         "menu" : true,
         "url" : "articles",
         "model" : "Articles",
@@ -50,7 +50,7 @@
     },
     "categories" : {
         "request" : "categories",
-        "slug" : "(first|page|last)(\\-([0-9]+))?",
+        "slug" : "(first|page|last)(\\/([0-9]+))?",
         "menu" : true,
         "url" : "categories",
         "model" : "Categories",
