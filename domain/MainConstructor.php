@@ -7,7 +7,7 @@ use \Connectors\DatasReaderConnector as Datas,
 
 abstract class MainConstructor
 {
-    use \DomainTraits\DatasConstructor;
+    use \DomainTraits\Models\DatasConstructor;
 
     /**
      * @var array
