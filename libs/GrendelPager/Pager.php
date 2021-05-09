@@ -2,7 +2,7 @@
 
 namespace GrendelPager;
 
-class Pager implements \DomainInterfaces\PagerImplement
+class Pager implements \DomainInterfaces\Pager\PagerImplement
 {
     /**
      * Le nombre de sauts total

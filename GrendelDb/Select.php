@@ -10,7 +10,7 @@ class Select implements \DomainInterfaces\DatasBases\DbSelectImplement
 
     public function __construct(
         \DomainInterfaces\DatasBases\DbImplement $mainDb,
-        \DomainInterfaces\PagerImplement $pager
+        \DomainInterfaces\Pager\PagerImplement $pager
     )
     {
         $this->_mainDb = $mainDb;
@@ -20,7 +20,7 @@ class Select implements \DomainInterfaces\DatasBases\DbSelectImplement
     }
 
     private function selectSomesEntries(
-        \DomainInterfaces\PagerImplement $pager
+        \DomainInterfaces\Pager\PagerImplement $pager
     ) : void
     {
         $start = $this->selectDb($pager->getStart());

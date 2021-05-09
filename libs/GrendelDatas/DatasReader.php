@@ -4,7 +4,7 @@ namespace GrendelDatas;
 
 class DatasReader
 implements  \MainInterfaces\SingleTonImplement,
-            \DomainInterfaces\DatasReaderImplement
+            \DomainInterfaces\Datas\DatasReaderImplement
 {
     use \MainTraits\Instance;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace DomainInterfaces;
+namespace DomainInterfaces\Pager;
 
 interface PagerImplement
 {
