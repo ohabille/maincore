@@ -1,7 +1,6 @@
 {
     "home" : {
-        "request" : "(home|accueil)",
-        "slug" : "",
+        "request" : "home",
         "menu" : true,
         "url" : "home",
         "model" : "Home",
@@ -25,7 +24,6 @@
     },
     "articles" : {
         "request" : "articles",
-        "slug" : "(first|page|last)(\\/([0-9]+))?",
         "menu" : true,
         "url" : "articles",
         "model" : "Articles",
@@ -50,7 +48,6 @@
     },
     "categories" : {
         "request" : "categories",
-        "slug" : "(first|page|last)(\\/([0-9]+))?",
         "menu" : true,
         "url" : "categories",
         "model" : "Categories",
@@ -63,7 +60,6 @@
     },
     "categorie" : {
         "request": "categorie",
-        "slug" : "([_a-zA-Z0-9]+)?",
         "menu" : false,
         "url" : "categorie",
         "model" : "Categorie",
@@ -75,7 +71,6 @@
     },
     "member" : {
         "request": "member",
-        "slug" : "([_a-zA-Z0-9]+)?",
         "menu" : false,
         "url" : "membre",
         "model" : "Member",

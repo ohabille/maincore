@@ -35,6 +35,8 @@ class Requests implements \DomainInterfaces\Requests\RequestsImplement
 
     private function setRequests(string $request) : void
     {
+
+        if (empty($request) || '/' === $request) $request = '/';
         $this->_request .= 'request'.$request;
     }
 
@@ -58,7 +60,7 @@ class Requests implements \DomainInterfaces\Requests\RequestsImplement
                 continue;
             }
 
-            $this->_test .= '/'.$key.'/'.$request[$key];
+            $this->_request .= '/'.$key.'/'.$request[$key];
         }
     }
 

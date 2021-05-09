@@ -8,6 +8,6 @@ implements \DomainInterfaces\Controllers\ModelImplements
 {
     public function __construct()
     {
-        parent::__construct($params);
+        parent::__construct();
     }
 }
