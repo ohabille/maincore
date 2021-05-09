@@ -3,10 +3,10 @@
 namespace GrendelDb;
 
 class Search
-implements  \MainInterfaces\SingleTonImplement,
+implements  \CoreInterface\SingleTonImplement,
             \DomainInterfaces\DatasBases\DbSearchImplement
 {
-    use \MainTraits\Instance;
+    use \CoreTraits\Instance;
 
     private static $instance;
     private $_mainDb;
@@ -22,7 +22,7 @@ implements  \MainInterfaces\SingleTonImplement,
 
     private static function setInstance(
         \DomainInterfaces\DatasBases\DbImplement $mainDb
-    ) : \MainInterfaces\SingleTonImplement
+    ) : \CoreInterface\SingleTonImplement
     {
         return new self::$class($mainDb);
     }

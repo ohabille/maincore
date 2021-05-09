@@ -3,14 +3,14 @@
 namespace GrendelTpl;
 
 class SkeletonMethods
-implements  \MainInterfaces\FuncsImplement,
-            \MainInterfaces\SingleTonImplement
+implements  \CoreInterface\FuncsImplement,
+            \CoreInterface\SingleTonImplement
 {
-    use \MainTraits\MainFuncs;
+    use \CoreTraits\MainFuncs;
 
     /**
      * instance de la classe
-     * @var \MainInterfaces\SingleTonImplement
+     * @var \CoreInterface\SingleTonImplement
      */
     private static $instance;
 

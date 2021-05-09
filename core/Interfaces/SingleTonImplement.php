@@ -1,12 +1,12 @@
 <?php
 
-namespace MainInterfaces;
+namespace CoreInterface;
 
 interface SingleTonImplement
 {
     /**
      * Retourne l'instance unique de la classe
-     * @return \MainInterfaces\SingleTonImplement
+     * @return \CoreInterface\SingleTonImplement
      */
-    public static function getInst() : \MainInterfaces\SingleTonImplement;
+    public static function getInst() : \CoreInterface\SingleTonImplement;
 }

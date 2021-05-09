@@ -1,8 +1,8 @@
 {
     "paths" : [
-        "MainMethods",
-        "MainInterfaces",
-        "MainTraits",
+        "CoreMethods",
+        "CoreInterface",
+        "CoreTraits",
         "Domain",
         "DomainTraits",
         "Connectors",
@@ -16,9 +16,9 @@
         "User",
         "Models"
     ],
-    "MainMethods" : "core/methods/",
-    "MainInterfaces" : "core/Interfaces/",
-    "MainTraits" : "core/Traits/",
+    "CoreMethods" : "core/methods/",
+    "CoreInterface" : "core/Interfaces/",
+    "CoreTraits" : "core/Traits/",
     "Domain" : "domain/",
     "DomainTraits" : "domain/Traits/",
     "Connectors" : "domain/Connectors/",

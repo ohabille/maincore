@@ -1,17 +1,17 @@
 <?php
 
-namespace MainMethods;
+namespace CoreMethods;
 
 class FilesMethods
-implements  \MainInterfaces\FuncsImplement,
-            \MainInterfaces\SingleTonImplement,
-            \MainInterfaces\FilesMethodsImplement
+implements  \CoreInterface\FuncsImplement,
+            \CoreInterface\SingleTonImplement,
+            \CoreInterface\FilesMethodsImplement
 {
-    use \MainTraits\MainFuncs;
+    use \CoreTraits\MainFuncs;
 
     /**
      * instance de la classe
-     * @var \MainInterfaces\SingleTonImplement
+     * @var \CoreInterface\SingleTonImplement
      */
     private static $instance;
 

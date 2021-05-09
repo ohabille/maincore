@@ -1,17 +1,17 @@
 <?php
 
-namespace MainMethods;
+namespace CoreMethods;
 
 class ShellColors
-implements  \MainInterfaces\ShellColorsImplement,
-            \MainInterfaces\FuncsImplement,
-            \MainInterfaces\SingleTonImplement
+implements  \CoreInterface\ShellColorsImplement,
+            \CoreInterface\FuncsImplement,
+            \CoreInterface\SingleTonImplement
 {
-    use \MainTraits\MainFuncs;
+    use \CoreTraits\MainFuncs;
 
     /**
      * instance de la classe
-     * @var \MainInterfaces\SingleTonImplement
+     * @var \CoreInterface\SingleTonImplement
      */
     private static $instance;
 

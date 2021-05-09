@@ -10,7 +10,7 @@ implements  \DomainInterfaces\Connectors\ConnectorsImplement,
             \DomainInterfaces\Routes\RoutesImplements
 {
     /**
-     * @var \MainInterfaces\SingleTonImplement
+     * @var \CoreInterface\SingleTonImplement
      */
     private static $instance;
 

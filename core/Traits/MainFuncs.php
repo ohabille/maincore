@@ -1,6 +1,6 @@
 <?php
 
-namespace MainTraits;
+namespace CoreTraits;
 
 trait MainFuncs
 {

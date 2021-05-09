@@ -1,17 +1,17 @@
 <?php
 
-namespace MainMethods;
+namespace CoreMethods;
 
 class Dumps
-implements  \MainInterfaces\DumpsImplement,
-            \MainInterfaces\FuncsImplement,
-            \MainInterfaces\SingleTonImplement
+implements  \CoreInterface\DumpsImplement,
+            \CoreInterface\FuncsImplement,
+            \CoreInterface\SingleTonImplement
 {
-    use \MainTraits\MainFuncs;
+    use \CoreTraits\MainFuncs;
 
     /**
      * instance de la classe
-     * @var \MainInterfaces\SingleTonImplement
+     * @var \CoreInterface\SingleTonImplement
      */
     private static $instance;
 
