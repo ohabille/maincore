@@ -3,6 +3,11 @@
 class ClassAutoLoad
 {
     /**
+     * Instance de la classe
+     * @var ClassAutoLoad
+     */
+    private static $autoLoad = null;
+    /**
      * Le nom de la classe demandée
      * inclant le namespace
      * @var string
@@ -24,12 +29,32 @@ class ClassAutoLoad
      */
     private $_class;
 
-    public function __construct(string $className)
+
+    /**
+     * Retourne le fichier de la classe demandée
+     * @return string : Le chemin du fichier
+     */
+    public function getClassFile(string $className) : string
     {
         $this->formatClassPath($className);
         $this->setAutoLoadJson();
         $this->setDirClass();
         $this->setClassPath();
+
+        return $this->_class;
+    }
+
+    /**
+     * Instancie la classe si ce n'est pas déjà fait
+     * et retourne l'instance
+     * @return ClassAutoLoad : l'instance de la classe
+     */
+    public static function getAutoLoad() : ClassAutoLoad
+    {
+        if (is_null(self::$autoLoad))
+            self::$autoLoad = new ClassAutoLoad;
+
+        return self::$autoLoad;
     }
 
     /**
@@ -83,14 +108,5 @@ class ClassAutoLoad
                 $this->_paths[$this->_match[1]],
                 $this->_className
             ).'.php';
-    }
-
-    /**
-     * Retourne le fichier de la classe demandée
-     * @return string : Le chemin du fichier
-     */
-    public function getClassFile() : string
-    {
-        return $this->_class;
     }
 }

@@ -8,9 +8,7 @@ include_once('ClassAutoLoad.php');
  */
 function autoLoad(string $className) : void
 {
-    $class = new ClassAutoLoad($className);
-
-    require($class->getClassFile());
+    require(ClassAutoLoad::getAutoLoad()->getClassFile($className));
 }
 
 /**
