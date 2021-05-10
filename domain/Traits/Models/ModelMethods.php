@@ -2,7 +2,7 @@
 
 namespace DomainTraits\Models;
 
-trait DatasConstructor
+trait ModelMethods
 {
     protected function findDatasContent(string $key, string $file) : array
     {

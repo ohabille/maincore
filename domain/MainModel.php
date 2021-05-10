@@ -5,9 +5,9 @@ namespace Domain;
 use \Connectors\DatasReaderConnector as Datas,
     \Connectors\RoutesConnector as Routes;
 
-abstract class MainConstructor
+abstract class MainModel
 {
-    use \DomainTraits\Models\DatasConstructor;
+    use \DomainTraits\Models\ModelMethods;
 
     /**
      * @var array

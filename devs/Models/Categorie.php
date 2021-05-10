@@ -6,7 +6,7 @@ use \GrendelDb\Db,
     \GrendelDb\Search;
 
 class Categorie
-extends \Domain\MainConstructor
+extends \Domain\MainModel
 implements \DomainInterfaces\Models\ModelImplements
 {
     public function __construct()

@@ -7,7 +7,7 @@ use \GrendelDb\Db,
     \GrendelDb\Select;
 
 class Articles
-extends \Domain\MainConstructor
+extends \Domain\MainModel
 implements \DomainInterfaces\Models\ModelImplements
 {
     public function __construct()

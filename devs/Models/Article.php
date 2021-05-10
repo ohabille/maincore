@@ -7,7 +7,7 @@ use \GrendelDb\Db,
     \Connectors\RoutesConnector as Routes;
 
 class Article
-extends \Domain\MainConstructor
+extends \Domain\MainModel
 implements \DomainInterfaces\Models\ModelImplements
 {
     public function __construct()

@@ -3,7 +3,7 @@
 namespace Models;
 
 class Home
-extends \Domain\MainConstructor
+extends \Domain\MainModel
 implements \DomainInterfaces\Models\ModelImplements
 {
     public function __construct()
