@@ -1,13 +1,10 @@
 <?php
 
-namespace CoreMethods;
+namespace CoreMethods\FilesMethods;
 
-class FilesMethods
-implements  \CoreInterface\FuncsImplement,
-            \CoreInterface\SingleTonImplement,
-            \CoreInterface\FilesMethodsImplement
+class FilesMethods implements FilesMethodsImplement
 {
-    use \CoreTraits\MainFuncs;
+    use \Core\CoreFunctions\CoreFuncsTrait;
 
     /**
      * instance de la classe

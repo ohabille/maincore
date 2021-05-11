@@ -1,8 +1,8 @@
 <?php
 
-namespace CoreInterface;
+namespace CoreMethods\JsonMethods;
 
-interface JsonMethodsImplement
+interface JsonMethodsImplement extends \Core\CoreFunctions\CoreFuncsImplement
 {
     /**
      * Retourne les données d'un fichier *.json

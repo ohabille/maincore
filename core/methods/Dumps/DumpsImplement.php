@@ -1,8 +1,8 @@
 <?php
 
-namespace CoreInterface;
+namespace CoreMethods\Dumps;
 
-interface DumpsImplement
+interface DumpsImplement extends \Core\CoreFunctions\CoreFuncsImplement
 {
     /**
      * affiche les propriétées d'une variable

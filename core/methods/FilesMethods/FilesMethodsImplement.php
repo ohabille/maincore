@@ -1,8 +1,8 @@
 <?php
 
-namespace CoreInterface;
+namespace CoreMethods\FilesMethods;
 
-interface FilesMethodsImplement
+interface FilesMethodsImplement extends \Core\CoreFunctions\CoreFuncsImplement
 {
     /**
      * Retourne le contenu d'un fichier

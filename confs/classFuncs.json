@@ -1,13 +1,13 @@
 {
     "FilesMethods" : {
-        "namespace" : "\\CoreMethods\\FilesMethods",
+        "namespace" : "\\CoreMethods\\FilesMethods\\FilesMethods",
         "methods" : [
             "readContentFile",
             "getMainDir"
         ]
     },
     "jsonMethods" : {
-        "namespace" : "\\CoreMethods\\JsonMethods",
+        "namespace" : "\\CoreMethods\\JsonMethods\\JsonMethods",
         "methods" : [
             "parseConf",
             "getConf",
@@ -16,14 +16,14 @@
         ]
     },
     "dumps" : {
-        "namespace" : "\\CoreMethods\\Dumps",
+        "namespace" : "\\CoreMethods\\Dumps\\Dumps",
         "methods" : [
             "dump",
             "dd"
         ]
     },
     "shellColors" : {
-        "namespace" : "\\CoreMethods\\ShellColors",
+        "namespace" : "\\CoreMethods\\ShellColors\\ShellColors",
         "methods" : [
             "shellLightGreen",
             "shellBrown",

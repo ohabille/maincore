@@ -1,18 +1,18 @@
 <?php
 
-namespace CoreTraits;
+namespace Core\CoreFunctions;
 
-trait MainFuncs
+trait CoreFuncsTrait
 {
-    use Instance;
+    use \CoreTraits\Instance;
 
     /**
      * Crée des alias des methodes de la classe appelée
-     * Ignore getInst et setMethodsAlias
+     * Ignore getInst et setFunction
      * pour éviter les erreurs
      * @param $methods : ls méthodes à aliasser
      */
-    public function setMethodsAlias(array $methods) : void
+    public function setFunction(array $methods) : void
     {
         $class = get_called_class();
 

@@ -21,14 +21,4 @@ function autoLoad(string $className) : void
  */
 spl_autoload_register('autoLoad');
 
-// Lecture des classes de function
-$classes = json_decode(
-    file_get_contents(
-        ROOTDIRS.'confs/classFuncs.json'
-    ), true
-);
-
-
-foreach ($classes as $class)
-    $class['namespace']::getInst()
-        ->setMethodsAlias($class['methods']);
+\Core\CoreFunctions\CoreFunctions::setCoreFunctions();

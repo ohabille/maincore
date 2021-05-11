@@ -1,13 +1,10 @@
 <?php
 
-namespace CoreMethods;
+namespace CoreMethods\JsonMethods;
 
-class JsonMethods
-implements  \CoreInterface\FuncsImplement,
-            \CoreInterface\SingleTonImplement,
-            \CoreInterface\JsonMethodsImplement
+class JsonMethods implements JsonMethodsImplement
 {
-    use \CoreTraits\MainFuncs;
+    use \Core\CoreFunctions\CoreFuncsTrait;
 
     /**
      * instance de la classe

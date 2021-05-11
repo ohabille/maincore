@@ -1,8 +1,8 @@
 <?php
 
-namespace CoreInterface;
+namespace CoreMethods\ShellColors;
 
-interface ShellColorsImplement
+interface ShellColorsImplement extends \Core\CoreFunctions\CoreFuncsImplement
 {
     /**
      * retourne la chaine formatée en light green

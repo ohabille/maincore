@@ -1,5 +1,6 @@
 {
     "paths" : [
+        "Core",
         "CoreMethods",
         "CoreInterface",
         "CoreTraits",
@@ -16,6 +17,7 @@
         "User",
         "Models"
     ],
+    "Core" : "core/",
     "CoreMethods" : "core/methods/",
     "CoreInterface" : "core/Interfaces/",
     "CoreTraits" : "core/Traits/",
