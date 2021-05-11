@@ -2,18 +2,8 @@
 
 namespace DomainImplements\Skeleton;
 
-interface ModelSkeletonImplement
+interface ModelSkeletonImplement extends SkeletonImplement
 {
-    /**
-     * @param string $view : Template
-     */
-    public function setSkeleton(string $view) : void;
-
-    /**
-     * @return string $_view : Template
-     */
-    public function getSkeleton() : string;
-
     /**
      * Affiche le template
      */
