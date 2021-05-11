@@ -8,7 +8,7 @@ class SkeletonMethods implements \Core\CoreFuncs\CoreFuncsImplement
 
     /**
      * instance de la classe
-     * @var \CoreInterface\SingleTonImplement
+     * @var \CoreImplements\SingleTonImplement
      */
     private static $instance;
 

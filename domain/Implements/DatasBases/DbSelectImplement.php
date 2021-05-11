@@ -1,6 +1,6 @@
 <?php
 
-namespace DomainInterfaces\DatasBases;
+namespace DomainImplements\DatasBases;
 
 interface DbSelectImplement
 {

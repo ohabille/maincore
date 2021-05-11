@@ -3,8 +3,8 @@
 namespace GrendelDatas;
 
 class DatasReader
-implements  \CoreInterface\SingleTonImplement,
-            \DomainInterfaces\Datas\DatasReaderImplement
+implements  \CoreImplements\SingleTonImplement,
+            \DomainImplements\Datas\DatasReaderImplement
 {
     use \CoreTraits\Instance;
 

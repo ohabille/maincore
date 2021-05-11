@@ -8,7 +8,7 @@ class FilesMethods implements FilesMethodsImplement
 
     /**
      * instance de la classe
-     * @var \CoreInterface\SingleTonImplement
+     * @var \CoreImplements\SingleTonImplement
      */
     private static $instance;
 

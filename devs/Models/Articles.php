@@ -8,7 +8,7 @@ use \GrendelDb\Db,
 
 class Articles
 extends \Domain\MainModel
-implements \DomainInterfaces\Models\ModelImplements
+implements \DomainImplements\Models\ModelImplements
 {
     public function __construct()
     {

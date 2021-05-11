@@ -6,7 +6,7 @@ use \GrendelDatas\DatasReader as Datas;
 
 class DatasReaderConnector
 {
-    public static function getInst() : \DomainInterfaces\Datas\DatasReaderImplement
+    public static function getInst() : \DomainImplements\Datas\DatasReaderImplement
     {
         return Datas::getInst();
     }

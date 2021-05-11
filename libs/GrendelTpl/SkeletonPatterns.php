@@ -2,7 +2,7 @@
 
 namespace GrendelTpl;
 
-class SkeletonPatterns implements \CoreInterface\SingleTonImplement
+class SkeletonPatterns implements \CoreImplements\SingleTonImplement
 {
     use \CoreTraits\Instance;
 

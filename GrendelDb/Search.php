@@ -3,8 +3,8 @@
 namespace GrendelDb;
 
 class Search
-implements  \CoreInterface\SingleTonImplement,
-            \DomainInterfaces\DatasBases\DbSearchImplement
+implements  \CoreImplements\SingleTonImplement,
+            \DomainImplements\DatasBases\DbSearchImplement
 {
     use \CoreTraits\Instance;
 
@@ -14,15 +14,15 @@ implements  \CoreInterface\SingleTonImplement,
     private $_find = [];
 
     private function __construct(
-        \DomainInterfaces\DatasBases\DbImplement $mainDb
+        \DomainImplements\DatasBases\DbImplement $mainDb
     )
     {
         $this->_mainDb = $mainDb;
     }
 
     private static function setInstance(
-        \DomainInterfaces\DatasBases\DbImplement $mainDb
-    ) : \CoreInterface\SingleTonImplement
+        \DomainImplements\DatasBases\DbImplement $mainDb
+    ) : \CoreImplements\SingleTonImplement
     {
         return new self::$class($mainDb);
     }

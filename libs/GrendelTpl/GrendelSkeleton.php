@@ -7,7 +7,7 @@ use \GrendelTpl\Skeleton,
     \GrendelTpl\SkeletonPatterns as Patterns;
 
 class GrendelSkeleton
-implements  \DomainInterfaces\Skeleton\ModelSkeletonImplement
+implements  \DomainImplements\Skeleton\ModelSkeletonImplement
 {
     private $_view;
     private $_skeleton;

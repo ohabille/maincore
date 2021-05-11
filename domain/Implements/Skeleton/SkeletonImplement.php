@@ -1,6 +1,6 @@
 <?php
 
-namespace DomainInterfaces\Skeleton;
+namespace DomainImplements\Skeleton;
 
 interface SkeletonImplement
 {

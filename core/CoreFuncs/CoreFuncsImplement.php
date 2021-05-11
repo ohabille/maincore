@@ -2,7 +2,7 @@
 
 namespace Core\CoreFuncs;
 
-interface CoreFuncsImplement extends \CoreInterface\SingleTonImplement
+interface CoreFuncsImplement extends \CoreImplements\SingleTonImplement
 {
     /**
      * Créer des alias des méthodes de la classe

@@ -6,25 +6,25 @@ use \GrendelRoutes\Routes,
     \Connectors\RequestsConnector as Requests;
 
 class RoutesConnector
-implements  \DomainInterfaces\Connectors\ConnectorsImplement,
-            \DomainInterfaces\Routes\RoutesImplements
+implements  \DomainImplements\Connectors\ConnectorsImplement,
+            \DomainImplements\Routes\RoutesImplements
 {
     /**
-     * @var \CoreInterface\SingleTonImplement
+     * @var \CoreImplements\SingleTonImplement
      */
     private static $instance;
 
     private $_route;
 
     private function __construct(
-        \DomainInterfaces\Routes\RoutesImplements $routes
+        \DomainImplements\Routes\RoutesImplements $routes
     )
     {
         $this->_route = $routes;
     }
 
     public static function getInst(
-    ) : \DomainInterfaces\Connectors\ConnectorsImplement
+    ) : \DomainImplements\Connectors\ConnectorsImplement
     {
         if (is_null(self::$instance))
             self::$instance = new RoutesConnector(

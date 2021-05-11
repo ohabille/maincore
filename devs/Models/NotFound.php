@@ -4,7 +4,7 @@ namespace Models;
 
 class NotFound
 extends \Domain\MainModel
-implements \DomainInterfaces\Models\ModelImplements
+implements \DomainImplements\Models\ModelImplements
 {
     public function __construct()
     {

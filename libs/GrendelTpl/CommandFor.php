@@ -5,13 +5,13 @@ namespace GrendelTpl;
 use \GrendelTpl\SkeletonPatterns as Patterns;
 
 class CommandFor
-implements  \CoreInterface\SingleTonImplement
+implements  \CoreImplements\SingleTonImplement
 {
     use \CoreTraits\Instance;
 
     /**
      * instance de la classe
-     * @var \CoreInterface\SingleTonImplement
+     * @var \CoreImplements\SingleTonImplement
      */
     private static $instance;
 

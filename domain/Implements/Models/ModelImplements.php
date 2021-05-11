@@ -1,6 +1,6 @@
 <?php
 
-namespace DomainInterfaces\Models;
+namespace DomainImplements\Models;
 
 interface ModelImplements
 {
