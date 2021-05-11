@@ -2,7 +2,7 @@
 
 namespace CoreMethods\ShellColors;
 
-interface ShellColorsImplement extends \Core\CoreFunctions\CoreFuncsImplement
+interface ShellColorsImplement extends \Core\CoreFuncs\CoreFuncsImplement
 {
     /**
      * retourne la chaine formatée en light green

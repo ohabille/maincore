@@ -4,7 +4,7 @@ namespace CoreMethods\FilesMethods;
 
 class FilesMethods implements FilesMethodsImplement
 {
-    use \Core\CoreFunctions\CoreFuncsTrait;
+    use \Core\CoreFuncs\CoreFuncsTrait;
 
     /**
      * instance de la classe

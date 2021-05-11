@@ -2,7 +2,7 @@
 
 namespace CoreMethods\FilesMethods;
 
-interface FilesMethodsImplement extends \Core\CoreFunctions\CoreFuncsImplement
+interface FilesMethodsImplement extends \Core\CoreFuncs\CoreFuncsImplement
 {
     /**
      * Retourne le contenu d'un fichier

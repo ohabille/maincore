@@ -21,4 +21,4 @@ function autoLoad(string $className) : void
  */
 spl_autoload_register('autoLoad');
 
-\Core\CoreFunctions\CoreFunctions::setCoreFunctions();
+\Core\CoreFuncs\CoreFuncs::setCoreFuncs();

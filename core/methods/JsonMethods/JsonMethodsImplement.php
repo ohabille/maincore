@@ -2,7 +2,7 @@
 
 namespace CoreMethods\JsonMethods;
 
-interface JsonMethodsImplement extends \Core\CoreFunctions\CoreFuncsImplement
+interface JsonMethodsImplement extends \Core\CoreFuncs\CoreFuncsImplement
 {
     /**
      * Retourne les données d'un fichier *.json

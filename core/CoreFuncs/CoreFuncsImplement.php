@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\CoreFunctions;
+namespace Core\CoreFuncs;
 
 interface CoreFuncsImplement extends \CoreInterface\SingleTonImplement
 {

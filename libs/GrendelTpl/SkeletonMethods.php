@@ -2,9 +2,9 @@
 
 namespace GrendelTpl;
 
-class SkeletonMethods implements \Core\CoreFunctions\CoreFuncsImplement
+class SkeletonMethods implements \Core\CoreFuncs\CoreFuncsImplement
 {
-    use \Core\CoreFunctions\CoreFuncsTrait;
+    use \Core\CoreFuncs\CoreFuncsTrait;
 
     /**
      * instance de la classe

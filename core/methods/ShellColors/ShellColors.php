@@ -4,7 +4,7 @@ namespace CoreMethods\ShellColors;
 
 class ShellColors implements ShellColorsImplement
 {
-    use \Core\CoreFunctions\CoreFuncsTrait;
+    use \Core\CoreFuncs\CoreFuncsTrait;
 
     /**
      * instance de la classe

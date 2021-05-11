@@ -2,7 +2,7 @@
 
 namespace CoreMethods\Dumps;
 
-interface DumpsImplement extends \Core\CoreFunctions\CoreFuncsImplement
+interface DumpsImplement extends \Core\CoreFuncs\CoreFuncsImplement
 {
     /**
      * affiche les propriétées d'une variable

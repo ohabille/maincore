@@ -1,10 +1,10 @@
 <?php
 
-namespace Core\CoreFunctions;
+namespace Core\CoreFuncs;
 
-class CoreFunctions
+class CoreFuncs
 {
-    public static function setCoreFunctions() : void
+    public static function setCoreFuncs() : void
     {
         $classes = json_decode(
             file_get_contents(

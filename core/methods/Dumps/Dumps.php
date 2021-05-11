@@ -4,7 +4,7 @@ namespace CoreMethods\Dumps;
 
 class Dumps implements DumpsImplement
 {
-    use \Core\CoreFunctions\CoreFuncsTrait;
+    use \Core\CoreFuncs\CoreFuncsTrait;
 
     /**
      * instance de la classe

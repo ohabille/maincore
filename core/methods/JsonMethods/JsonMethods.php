@@ -4,7 +4,7 @@ namespace CoreMethods\JsonMethods;
 
 class JsonMethods implements JsonMethodsImplement
 {
-    use \Core\CoreFunctions\CoreFuncsTrait;
+    use \Core\CoreFuncs\CoreFuncsTrait;
 
     /**
      * instance de la classe
