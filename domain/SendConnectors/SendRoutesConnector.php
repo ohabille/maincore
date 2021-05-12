@@ -5,7 +5,7 @@ namespace SendConnectors;
 use \GetConnectors\GetRoutesConnectors as Route;
 
 class SendRoutesConnector
-implements SingleConnectorImplement
+implements \DomainImplements\Connectors\SingleConnectorImplement
 {
     /**
      * @var \CoreImplements\GetConnectorsImplement
