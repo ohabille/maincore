@@ -12,7 +12,7 @@ include_once('ClassAutoLoad.php');
  */
 function autoLoad(string $className) : void
 {
-    require(ClassAutoLoad::getAutoLoad()->getClassFile($className));
+    require ClassAutoLoad::getAutoLoad()->getClassFile($className);
 }
 
 /**

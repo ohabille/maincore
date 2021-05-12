@@ -1,16 +1,16 @@
 <?php
 
-namespace Connectors;
+namespace SendConnectors;
 
 use \GrendelRoutes\Routes,
-    \Connectors\RequestsConnector as Requests;
+    \SendConnectors\SendRequestsConnector as Requests;
 
-class RoutesConnector
-implements  \DomainImplements\Connectors\ConnectorsImplement,
+class SendRoutesConnector
+implements  \DomainImplements\SendConnectors\SendConnectorsImplement,
             \DomainImplements\Routes\RoutesImplements
 {
     /**
-     * @var \CoreImplements\SingleTonImplement
+     * @var \CoreImplements\SendConnectorsImplement
      */
     private static $instance;
 
@@ -24,10 +24,10 @@ implements  \DomainImplements\Connectors\ConnectorsImplement,
     }
 
     public static function getInst(
-    ) : \DomainImplements\Connectors\ConnectorsImplement
+    ) : \DomainImplements\SendConnectors\SendConnectorsImplement
     {
         if (is_null(self::$instance))
-            self::$instance = new RoutesConnector(
+            self::$instance = new SendRoutesConnector(
                 new Routes(Requests::getInst()->getRequest())
             );
 

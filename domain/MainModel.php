@@ -2,8 +2,8 @@
 
 namespace Domain;
 
-use \Connectors\DatasReaderConnector as Datas,
-    \Connectors\RoutesConnector as Routes;
+use \SendConnectors\SendDatasReaderConnector as Datas,
+    \SendConnectors\SendRoutesConnector as Routes;
 
 abstract class MainModel
 {

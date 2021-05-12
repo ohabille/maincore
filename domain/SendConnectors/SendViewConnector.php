@@ -1,10 +1,10 @@
 <?php
 
-namespace Connectors;
+namespace SendConnectors;
 
 use \GrendelTpl\GrendelSkeleton as Skeleton;
 
-class ViewConnector
+class SendViewConnector
 {
     public static function getInst(
         string $templateName,

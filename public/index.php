@@ -1,8 +1,7 @@
 <?php
 
-use \Connectors\RequestsConnector as Requests,
-    \Connectors\RoutesConnector as Routes,
-    \Connectors\ViewConnector as Skeleton;
+use \SendConnectors\SendRoutesConnector as Routes,
+    \SendConnectors\SendViewConnector as Skeleton;
 
 // Déclaration du fichier racine
 define('ROOTDIRS', '../');

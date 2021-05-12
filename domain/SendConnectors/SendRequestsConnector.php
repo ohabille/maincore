@@ -1,19 +1,19 @@
 <?php
 
-namespace Connectors;
+namespace SendConnectors;
 
 use \GrendelRequests\Requests;
 
-class RequestsConnector
-implements  \DomainImplements\Connectors\ConnectorsImplement,
+class SendRequestsConnector
+implements  \DomainImplements\SendConnectors\SendConnectorsImplement,
             \DomainImplements\Requests\RequestsImplement
 {
     /**
-     * @var \Connectors\RequestsConnector
+     * @var \SendConnectors\SendRequestsConnector
      */
     private static $instance = null;
     /**
-     * @var \DomainImplements\Connectors\RequestsImplement
+     * @var \DomainImplements\SendConnectors\RequestsImplement
      */
     private $_request;
 
@@ -25,10 +25,10 @@ implements  \DomainImplements\Connectors\ConnectorsImplement,
     }
 
     public static function getInst(
-    ) : \DomainImplements\Connectors\ConnectorsImplement
+    ) : \DomainImplements\SendConnectors\SendConnectorsImplement
     {
         if (is_null(self::$instance))
-            self::$instance = new RequestsConnector(new Requests);
+            self::$instance = new SendRequestsConnector(new Requests);
 
         return self::$instance;
     }
