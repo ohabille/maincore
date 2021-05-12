@@ -10,7 +10,7 @@ define('ROOTDIRS', '../');
 require_once ROOTDIRS.'core/init.php';
 
 //
-$params = Routes::getInst()->getParams();
+$params = Routes::getParams();
 
 //
 $task = '\\Models\\'. $params['model'];

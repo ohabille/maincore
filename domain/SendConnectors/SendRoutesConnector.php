@@ -2,41 +2,33 @@
 
 namespace SendConnectors;
 
-use \GrendelRoutes\Routes,
-    \SendConnectors\SendRequestsConnector as Requests;
+use \GetConnectors\GetRoutesConnectors as Route;
 
 class SendRoutesConnector
-implements  \DomainImplements\SendConnectors\SendConnectorsImplement,
-            \DomainImplements\Routes\RoutesImplements
 {
     /**
-     * @var \CoreImplements\SendConnectorsImplement
+     * @var \CoreImplements\GetConnectorsImplement
      */
     private static $instance;
 
-    private $_route;
-
-    private function __construct(
-        \DomainImplements\Routes\RoutesImplements $routes
-    )
-    {
-        $this->_route = $routes;
-    }
-
     public static function getInst(
-    ) : \DomainImplements\SendConnectors\SendConnectorsImplement
+    ) : \GetConnectors\GetRoutesConnectors
     {
-        if (is_null(self::$instance))
-            self::$instance = new SendRoutesConnector(
-                new Routes(Requests::getInst()->getRequest())
-            );
+        self::setInst();
 
         return self::$instance;
     }
 
-    public function getParams() : array
+    public static function setInst() : void
     {
-        return $this->_route->getParams();
+        if (is_null(self::$instance)) self::$instance = new Route();
+    }
+
+    public static function getParams() : array
+    {
+        self::setInst();
+
+        return self::$instance->getParams();
     }
 
     /**
@@ -44,6 +36,8 @@ implements  \DomainImplements\SendConnectors\SendConnectorsImplement,
      */
     public static function getRoutes() : array
     {
-        return Routes::getRoutes();
+        self::setInst();
+
+        return self::$instance::getRoutes();
     }
 }
