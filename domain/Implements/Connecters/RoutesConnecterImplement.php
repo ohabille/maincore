@@ -1,8 +1,8 @@
 <?php
 
-namespace DomainImplements\SendConnectors;
+namespace DomainImplements\Connecters;
 
-interface SendRoutesImplement
+interface RoutesConnecterImplement
 {
     /**
      * Retourne la requète principale

@@ -1,12 +1,12 @@
 <?php
 
-namespace DomainImplements\Connectors;
+namespace DomainImplements\Connecters;
 
 interface SingleConnectorImplement
 {
     /**
      * Retourne une instance de la classe
-     * @return \DomainImplements\Connectors\SingleConnectorImplement
+     * @return \DomainImplements\Connecters\SingleConnectorImplement
      */
     public static function getInst();
 }

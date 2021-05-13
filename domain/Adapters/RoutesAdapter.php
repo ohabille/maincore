@@ -1,12 +1,12 @@
 <?php
 
-namespace GetConnectors;
+namespace Adapters;
 
 use \GrendelRoutes\Routes,
-    \SendConnectors\SendRequestsConnector as Requests;
+    \Connecters\RequestsConnecter as Requests;
 
-class GetRoutesConnectors
-implements  \DomainImplements\GetConnectors\GetRoutesImplement
+class RoutesAdapter
+implements  \DomainImplements\Adapters\RoutesAdapterImplement
 {
     private $_route;
 

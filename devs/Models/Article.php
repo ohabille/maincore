@@ -4,7 +4,7 @@ namespace Models;
 
 use \GrendelDb\Db,
     \GrendelDb\Search,
-    \SendConnectors\SendRoutesConnector as Routes;
+    \Connecters\RoutesConnecter as Routes;
 
 class Article
 extends \Domain\MainModel

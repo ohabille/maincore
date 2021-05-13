@@ -1,10 +1,10 @@
 <?php
 
-namespace SendConnectors;
+namespace Connecters;
 
 use \GrendelDatas\DatasReader as Datas;
 
-class SendDatasReaderConnector
+class DatasReaderConnecter
 {
     public static function getInst() : \DomainImplements\Datas\DatasReaderImplement
     {

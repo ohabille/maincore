@@ -1,19 +1,19 @@
 <?php
 
-namespace SendConnectors;
+namespace Connecters;
 
-use \GetConnectors\GetRoutesConnectors as Route;
+use \Adapters\RoutesAdapter as Route;
 
-class SendRoutesConnector
-implements  \DomainImplements\Connectors\SingleConnectorImplement,
-            \DomainImplements\SendConnectors\SendRoutesImplement
+class RoutesConnecter
+implements  \DomainImplements\Connecters\SingleConnectorImplement,
+            \DomainImplements\Connecters\RoutesConnecterImplement
 {
     /**
-     * @var \GetConnectors\GetRoutesConnectors
+     * @var \Adapters\RoutesAdapter
      */
     private static $instance;
 
-    public static function getInst() : \GetConnectors\GetRoutesConnectors
+    public static function getInst() : \Adapters\RoutesAdapter
     {
         self::setInst();
 
