@@ -2,26 +2,21 @@
 
 namespace Connecters;
 
-use \GrendelDatas\DatasReader as Datas;
+use \Adapters\DatasReaderAdapter as Datas;
 
 class DatasReaderConnecter
 {
-    public static function getInst() : \DomainImplements\Datas\DatasReaderImplement
-    {
-        return Datas::getInst();
-    }
+    use \DomainTraits\ConnectersInstance;
 
-    public static function getConf(string $confName, string $conf) : array
-    {
-        Datas::getInst()->setConf($confName);
+    /**
+     * @var \Adapters\DatasReaderAdapter
+     */
+    private static $instance = null;
 
-        return Datas::getInst()->getConf()[$conf];
-    }
-
-    public static function getsectioncontent(
-        string $from, string $file
-    ) : string
+    /**
+     */
+    public static function setInst()
     {
-        return Datas::getInst()->getsectioncontent($from, $file);
+        if (is_null(self::$instance)) self::$instance = Datas::getInst();
     }
 }

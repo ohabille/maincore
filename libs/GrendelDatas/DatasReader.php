@@ -3,24 +3,9 @@
 namespace GrendelDatas;
 
 class DatasReader
-implements  \CoreImplements\SingleTonImplement,
-            \DomainImplements\Datas\DatasReaderImplement
+implements  \DomainImplements\Datas\DatasReaderImplement
 {
-    use \CoreTraits\Instance;
-
-    private static $instance;
-    private static $confs;
     private $_conf;
-
-    private function __construct()
-    {
-        self::$confs = parseConf(__DIR__.'/jsons/datasConf');
-    }
-
-    public function getMainDatas() : array
-    {
-        return parseConf(__DIR__.'/jsons/mainDatas');
-    }
 
     private function getSectionPattern(string $mask, string $content) : string
     {
@@ -36,14 +21,24 @@ implements  \CoreImplements\SingleTonImplement,
         );
     }
 
+    private function getDatasConf() : array
+    {
+        return parseConf(__DIR__.'/jsons/datasConf');
+    }
+
+    public function getMainDatas() : array
+    {
+        return parseConf(__DIR__.'/jsons/mainDatas');
+    }
+
     public function isConf(string $name) : bool
     {
-        return isset(self::$confs[$name]);
+        return isset($this->getDatasConf()[$name]);
     }
 
     public function setConf(string $name) : void
     {
-        $this->_conf = self::$confs[$name];
+        $this->_conf = $this->getDatasConf()[$name];
     }
 
     public function getTime(int $time) : array
