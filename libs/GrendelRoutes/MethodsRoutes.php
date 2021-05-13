@@ -8,14 +8,18 @@ namespace GrendelRoutes;
 
 trait MethodsRoutes
 {
+    /**
+     * Retourne la configuration des routes
+     * @return array : la configuration
+     */
     public static function getConf() : array
     {
         return parseConf(__DIR__.'/jsons/routesConf');
     }
 
     /**
-     * Retourne les routes disponibles
-     * @return array $_routes
+     * Retourne les paramètres des routes
+     * @return array : Les paramètres
      */
     public static function getRoutes() : array
     {

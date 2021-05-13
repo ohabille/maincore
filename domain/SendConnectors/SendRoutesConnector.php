@@ -5,10 +5,11 @@ namespace SendConnectors;
 use \GetConnectors\GetRoutesConnectors as Route;
 
 class SendRoutesConnector
-implements \DomainImplements\Connectors\SingleConnectorImplement
+implements  \DomainImplements\Connectors\SingleConnectorImplement,
+            \DomainImplements\SendConnectors\SendRoutesImplement
 {
     /**
-     * @var \CoreImplements\GetConnectorsImplement
+     * @var \GetConnectors\GetRoutesConnectors
      */
     private static $instance;
 
@@ -26,7 +27,7 @@ implements \DomainImplements\Connectors\SingleConnectorImplement
 
     public static function getParams() : array
     {
-        return self::getInst()->getParams();
+        return self::getInst()->getRouteParams();
     }
 
     /**

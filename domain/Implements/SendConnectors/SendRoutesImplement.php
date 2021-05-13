@@ -1,14 +1,14 @@
 <?php
 
-namespace DomainImplements\Routes;
+namespace DomainImplements\SendConnectors;
 
-interface RoutesImplements
+interface SendRoutesImplement
 {
     /**
      * Retourne la requète principale
      * @return string
      */
-    public function getParams() : array;
+    public static function getParams() : array;
 
     /**
      * @return array : Les paramètres des routes

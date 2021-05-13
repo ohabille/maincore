@@ -9,9 +9,4 @@ interface SingleConnectorImplement
      * @return \DomainImplements\Connectors\SingleConnectorImplement
      */
     public static function getInst();
-
-    /**
-     * Instanciation de la classe
-     */
-    public static function setInst() : void;
 }

@@ -21,7 +21,7 @@ abstract class MainModel
 
     public function __construct()
     {
-        $this->_params = Routes::getInst()->getParams();
+        $this->_params = Routes::getParams();
 
         $this->_datas = $this->_params['datas'];
 

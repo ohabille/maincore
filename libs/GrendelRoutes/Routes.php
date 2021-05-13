@@ -2,21 +2,26 @@
 
 namespace GrendelRoutes;
 
-class Routes implements \DomainImplements\Routes\RoutesImplements
+class Routes
+implements  \DomainImplements\Routes\RoutesImplement
 {
     use MethodsRoutes;
 
     /**
      * @var array
      */
-    private $_params;
+    private $_params = [];
 
     public function __construct(string $request)
     {
         $this->setParams($request);
     }
 
-    private function setParams(string $request) : void
+    /**
+     * Construit et retourne les paramètres d'une route
+     * @return array $_params
+     */
+    public function findRouteParams(string $request) : array
     {
         $argv = array_slice(explode('/', $request), 1);
 
@@ -31,14 +36,22 @@ class Routes implements \DomainImplements\Routes\RoutesImplements
             $params['request']:
             $this->getDefaultRoute();
 
-        $this->_params = array_merge($params, $this->getRoutes()[$route]);
+        return array_merge($params, $this->getRoutes()[$route]);
     }
 
     /**
-     * Retourne les étapes des routes
-     * @return array $_matches
+     * Construit les paramètres d'une route
      */
-    public function getParams() : array
+    public function setParams(string $request) : void
+    {
+        $this->_params = $this->findRouteParams($request);
+    }
+
+    /**
+     * Retourne les paramètres d'une route
+     * @return array $_params
+     */
+    public function getRouteParams() : array
     {
         return $this->_params;
     }

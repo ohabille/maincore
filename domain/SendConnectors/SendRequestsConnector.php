@@ -5,7 +5,7 @@ namespace SendConnectors;
 use \GrendelRequests\Requests;
 
 class SendRequestsConnector
-implements  \DomainImplements\SendConnectors\SendConnectorsImplement,
+implements  \DomainImplements\Connectors\SingleConnectorImplement,
             \DomainImplements\Requests\RequestsImplement
 {
     /**
@@ -25,7 +25,7 @@ implements  \DomainImplements\SendConnectors\SendConnectorsImplement,
     }
 
     public static function getInst(
-    ) : \DomainImplements\SendConnectors\SendConnectorsImplement
+    ) : \DomainImplements\Requests\RequestsImplement
     {
         if (is_null(self::$instance))
             self::$instance = new SendRequestsConnector(new Requests);
