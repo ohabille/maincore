@@ -4,43 +4,30 @@ namespace Connecters;
 
 use \DomainImplements\Connecters\SingleConnecterImplement,
     \DomainImplements\Requests\RequestsImplement,
-    \GrendelRequests\Requests;
+    \Adapters\RequestsAdapter as Requests;
 
 class RequestsConnecter
 implements  SingleConnecterImplement,
             RequestsImplement
 {
+    use \DomainTraits\ConnectersInstance;
+
     /**
-     * @var \Connecters\RequestsConnecter
+     * @var \Adapters\RequestsAdapter
      */
     private static $instance = null;
-    /**
-     * @var \DomainImplements\Connecters\RequestsImplement
-     */
-    private $_request;
 
-    private function __construct(
-        \DomainImplements\Requests\RequestsImplement $request
-    )
+    private static function setInst() : void
     {
-        $this->_request = $request;
-    }
-
-    public static function getInst(
-    ) : \DomainImplements\Requests\RequestsImplement
-    {
-        if (is_null(self::$instance))
-            self::$instance = new RequestsConnecter(new Requests);
-
-        return self::$instance;
+        if (is_null(self::$instance)) self::$instance = new Requests;
     }
 
     /**
-     * Retourne la requète transmise
-     * @return string [description]
+     * Retourne la requète
+     * @return string
      */
     public function getRequest() : string
     {
-        return $this->_request->getRequest();
+        return self::$instance->getRequest();
     }
 }

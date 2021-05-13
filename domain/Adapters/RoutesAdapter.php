@@ -9,11 +9,15 @@ use \DomainImplements\Adapters\RoutesAdapterImplement as RoutesImplement,
 class RoutesAdapter
 implements  RoutesImplement
 {
-    private $_route;
+    /**
+     * @var \GrendelRoutes\Routes
+     */
+    private $_routes;
 
-    public function __construct()
+    public function __construct(string $request)
     {
-        $this->_route = new Routes(Requests::getInst()->getRequest());
+        // $this->_routes = new Routes(Requests::getInst()->getRequest());
+        $this->_routes = new Routes($request);
     }
 
     /**
@@ -39,7 +43,7 @@ implements  RoutesImplement
      */
     public function getRouteParams() : array
     {
-        return $this->_route->getRouteParams();
+        return $this->_routes->getRouteParams();
     }
 
     /**
