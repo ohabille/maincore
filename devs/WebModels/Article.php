@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace WebModels;
 
 use \GrendelDb\Db,
     \GrendelDb\Search,
@@ -8,7 +8,7 @@ use \GrendelDb\Db,
 
 class Article
 extends \Domain\MainModel
-implements \DomainImplements\Models\ModelImplements
+implements \DomainImplements\WebModels\ModelImplements
 {
     public function __construct()
     {

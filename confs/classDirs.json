@@ -16,7 +16,7 @@
         "GrendelDatas",
         "GrendelTpl",
         "User",
-        "Models"
+        "WebModels"
     ],
     "Core" : "core/",
     "CoreMethods" : "core/Methods/",
@@ -34,5 +34,5 @@
     "GrendelDatas" : "libs/GrendelDatas/",
     "GrendelTpl" : "libs/GrendelTpl/",
     "User" : "devs/",
-    "Models" : "devs/Models/"
+    "WebModels" : "devs/WebModels/"
 }

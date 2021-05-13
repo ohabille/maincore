@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace WebModels;
 
 use \GrendelDb\Db,
     \GrendelPager\Pager,
@@ -8,7 +8,7 @@ use \GrendelDb\Db,
 
 class Articles
 extends \Domain\MainModel
-implements \DomainImplements\Models\ModelImplements
+implements \DomainImplements\WebModels\ModelImplements
 {
     public function __construct()
     {

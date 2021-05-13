@@ -1,6 +1,6 @@
 <?php
 
-namespace DomainTraits\Models;
+namespace DomainTraits\WebModels;
 
 trait ModelMethods
 {

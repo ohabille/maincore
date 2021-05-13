@@ -6,8 +6,9 @@ use \Connecters\DatasReaderConnecter as Datas,
     \Connecters\RoutesConnecter as Routes;
 
 abstract class MainModel
+implements  \DomainImplements\WebModels\ModelImplements
 {
-    use \DomainTraits\Models\ModelMethods;
+    use \DomainTraits\WebModels\ModelMethods;
 
     /**
      * @var array

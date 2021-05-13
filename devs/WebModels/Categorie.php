@@ -1,13 +1,13 @@
 <?php
 
-namespace Models;
+namespace WebModels;
 
 use \GrendelDb\Db,
     \GrendelDb\Search;
 
 class Categorie
 extends \Domain\MainModel
-implements \DomainImplements\Models\ModelImplements
+implements \DomainImplements\WebModels\ModelImplements
 {
     public function __construct()
     {

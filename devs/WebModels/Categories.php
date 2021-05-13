@@ -1,10 +1,10 @@
 <?php
 
-namespace Models;
+namespace WebModels;
 
 class Categories
 extends \Domain\MainModel
-implements \DomainImplements\Models\ModelImplements
+implements \DomainImplements\WebModels\ModelImplements
 {
     public function __construct()
     {
