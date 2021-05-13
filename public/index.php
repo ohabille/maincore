@@ -1,7 +1,7 @@
 <?php
 
 use \Connecters\RoutesConnecter as Routes,
-    \Domain\WebModels\WebModel as Model,
+    \Domain\Models\WebModel as Model,
     \Connecters\ViewConnecter as Skeleton;
 
 // Déclaration du fichier racine

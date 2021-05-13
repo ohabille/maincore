@@ -1,22 +1,22 @@
 <?php
 
-namespace Domain\WebModels;
+namespace Domain\Models;
 
 class WebModel
 {
     /**
-     * @var \DomainImplements\WebModels\ModelImplements
+     * @var \DomainImplements\Models\ModelImplements
      */
     private static $instance = null;
 
     /**
      * Construit (si nécessaire) l'instance de la classe et la retourne
      * @param  string $model : le nom du model
-     * @return \DomainImplements\WebModels\ModelImplements
+     * @return \DomainImplements\Models\ModelImplements
      */
     public static function getInst(
         string $model
-    ) : \DomainImplements\WebModels\ModelImplements
+    ) : \DomainImplements\Models\ModelImplements
     {
         if (is_null(self::$instance)) {
             $task = '\\WebModels\\'.$model;

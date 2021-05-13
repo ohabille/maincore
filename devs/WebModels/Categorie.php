@@ -7,7 +7,7 @@ use \GrendelDb\Db,
 
 class Categorie
 extends \Domain\MainModel
-implements \DomainImplements\WebModels\ModelImplements
+implements \DomainImplements\Models\ModelImplements
 {
     public function __construct()
     {

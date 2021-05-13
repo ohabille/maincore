@@ -1,6 +1,6 @@
 <?php
 
-namespace DomainImplements\WebModels;
+namespace DomainImplements\Models;
 
 interface ModelImplements
 {
