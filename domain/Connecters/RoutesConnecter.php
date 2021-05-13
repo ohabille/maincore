@@ -21,7 +21,7 @@ implements  SingleConnecterImplement,
     private static function setInst() : void
     {
         if (is_null(self::$instance))
-            self::$instance = new Route(Requests::getInst()->getRequest());
+            self::$instance = new Route(Requests::getRequest());
     }
 
     public static function getParams() : array

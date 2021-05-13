@@ -35,7 +35,6 @@ class Requests implements \DomainImplements\Requests\RequestsImplement
 
     private function setRequests(string $request) : void
     {
-
         if (empty($request) || '/' === $request) $request = '/';
         $this->_request .= 'request'.$request;
     }

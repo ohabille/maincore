@@ -7,8 +7,7 @@ use \DomainImplements\Connecters\SingleConnecterImplement,
     \Adapters\RequestsAdapter as Requests;
 
 class RequestsConnecter
-implements  SingleConnecterImplement,
-            RequestsImplement
+implements  SingleConnecterImplement
 {
     use \DomainTraits\ConnectersInstance;
 
@@ -26,8 +25,8 @@ implements  SingleConnecterImplement,
      * Retourne la requète
      * @return string
      */
-    public function getRequest() : string
+    public static function getRequest() : string
     {
-        return self::$instance->getRequest();
+        return self::getInst()->getRequest();
     }
 }
