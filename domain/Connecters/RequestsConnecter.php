@@ -2,11 +2,13 @@
 
 namespace Connecters;
 
-use \GrendelRequests\Requests;
+use \DomainImplements\Connecters\SingleConnecterImplement,
+    \DomainImplements\Requests\RequestsImplement,
+    \GrendelRequests\Requests;
 
 class RequestsConnecter
-implements  \DomainImplements\Connecters\SingleConnectorImplement,
-            \DomainImplements\Requests\RequestsImplement
+implements  SingleConnecterImplement,
+            RequestsImplement
 {
     /**
      * @var \Connecters\RequestsConnecter

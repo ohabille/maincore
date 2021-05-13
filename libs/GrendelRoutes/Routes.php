@@ -3,7 +3,7 @@
 namespace GrendelRoutes;
 
 class Routes
-implements  \DomainImplements\Routes\RoutesImplement
+implements  \DomainImplements\Routes\RoutesMethodsImplement
 {
     use MethodsRoutes;
 

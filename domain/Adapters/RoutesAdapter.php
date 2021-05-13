@@ -2,11 +2,12 @@
 
 namespace Adapters;
 
-use \GrendelRoutes\Routes,
+use \DomainImplements\Adapters\RoutesAdapterImplement as RoutesImplement,
+    \GrendelRoutes\Routes,
     \Connecters\RequestsConnecter as Requests;
 
 class RoutesAdapter
-implements  \DomainImplements\Adapters\RoutesAdapterImplement
+implements  RoutesImplement
 {
     private $_route;
 

@@ -2,11 +2,13 @@
 
 namespace Connecters;
 
-use \Adapters\RoutesAdapter as Route;
+use \Adapters\RoutesAdapter as Route,
+    \DomainImplements\Connecters\SingleConnecterImplement,
+    \DomainImplements\Connecters\RoutesConnecterImplement;
 
 class RoutesConnecter
-implements  \DomainImplements\Connecters\SingleConnectorImplement,
-            \DomainImplements\Connecters\RoutesConnecterImplement
+implements  SingleConnecterImplement,
+            RoutesConnecterImplement
 {
     /**
      * @var \Adapters\RoutesAdapter

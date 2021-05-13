@@ -2,11 +2,11 @@
 
 namespace DomainImplements\Connecters;
 
-interface SingleConnectorImplement
+interface SingleConnecterImplement
 {
     /**
      * Retourne une instance de la classe
-     * @return \DomainImplements\Connecters\SingleConnectorImplement
+     * @return \DomainImplements\Connecters\SingleConnecterImplement
      */
     public static function getInst();
 }

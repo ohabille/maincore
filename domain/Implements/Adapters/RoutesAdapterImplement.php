@@ -2,6 +2,6 @@
 
 namespace DomainImplements\Adapters;
 
-interface RoutesAdapterImplement extends \DomainImplements\Routes\RoutesImplement
+interface RoutesAdapterImplement extends \DomainImplements\Routes\RoutesMethodsImplement
 {
 }
