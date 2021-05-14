@@ -1,0 +1,74 @@
+@startuml
+actor User #888;line:888;
+
+package WebSite #999;line:999; {
+    usecase "page Home" as home #999;line:999;
+    usecase "page Articles" as articles #9EE;line:9EE;
+}
+User ==> home #line:444;
+User ==> articles #line:444;
+
+package Home #999;line:999; {
+    usecase "page Categories" as linkHomeCategories #595;line:595;
+    usecase "page Authors" as linkHomeAuthors #55F;line:55F;
+    usecase "last articles" as linkHomeArticles #9EE;line:9EE;
+    usecase "link article" as linkHomeArticle #9EE;line:9EE;
+}
+linkHomeArticles ==> linkHomeArticle #line:199;
+home ==> Home #line:444;
+
+package Articles #9EE;line:9EE; {
+    usecase "browse articles" as BrowseArticle #9EE;line:9EE;
+    usecase "link article" as linkBrowseArticle #9EE;line:9EE;
+    usecase "sort by categorie" as sortCategorie #595;line:595;
+    usecase "sort by author" as sortAuthor #55F;line:55F;
+}
+BrowseArticle ==> linkBrowseArticle #line:199;
+BrowseArticle <== sortCategorie #line:green;
+BrowseArticle <== sortAuthor #line:11F;
+articles ==> BrowseArticle #line:199;
+
+package Article #9EE;line:9EE; {
+    usecase "read article" as ReadArticle #9EE;line:9EE;
+    usecase "link categorie" as linkArticleCategorie #595;line:595;
+    usecase "link author" as linkArticleAuthor #55F;line:55F;
+}
+ReadArticle ==> linkArticleCategorie #line:199;
+ReadArticle ==> linkArticleAuthor #line:199;
+linkHomeArticle ==> ReadArticle #line:199;
+linkBrowseArticle ==> ReadArticle #line:199;
+
+
+package Categories #595;line:595; {
+    usecase "browse Categories" as BrowseCategories #595;line:595;
+    usecase "link Categories" as linkBrowseCategorie #595;line:595;
+}
+BrowseCategories ==> linkBrowseCategorie #line:green;
+linkHomeCategories ==> BrowseCategories #line:green;
+
+package Categorie #595;line:595; {
+    usecase "read categorie" as ReadCategorie #595;line:595;
+    usecase "browse Articles" as linkSortCategorie #595;line:595;
+}
+ReadCategorie ==> linkSortCategorie #line:green;
+linkBrowseCategorie ==> ReadCategorie #line:green;
+linkArticleCategorie ==> ReadCategorie #line:green;
+linkSortCategorie ==> sortCategorie #line:green;
+
+package Authors #55F;line:55F; {
+    usecase "browse author" as BrowseAuthor #55F;line:55F;
+    usecase "link author" as linkBrowseAuthor #55F;line:55F;
+}
+BrowseAuthor ==> linkBrowseAuthor #line:11F;
+linkHomeAuthors ==> BrowseAuthor #line:11F;
+
+package Author #55F;line:55F; {
+    usecase "read author" as ReadAuthor #55F;line:55F;
+    usecase "browse Articles" as linkSortAuthor #55F;line:55F;
+}
+ReadAuthor ==> linkSortAuthor #line:11F;
+linkBrowseAuthor ==> ReadAuthor #line:11F;
+linkArticleAuthor ==> ReadAuthor #line:11F;
+linkSortAuthor ==> sortAuthor #line:11F;
+
+@enduml

@@ -1,0 +1,39 @@
+@startuml
+left to right direction
+package Main #666;line:666; {
+    usecase "set Core Utilities" as coreUtilities #666;line:666;
+    usecase "autoload register" as autoloadRegister #0AA;line:0AA;
+    usecase "set native funcs" as setNatFuncs #5AF;line:5AF;
+}
+coreUtilities --> autoloadRegister #line:333;
+
+package ClassesList #0AA;line:0AA;text:white
+
+package Autoload #0AA;line:0AA; {
+    usecase "find require class" as findRequireClass #0AA;line:0AA;
+    usecase "Class Finded" as ClassFinded #0AA;line:0AA;
+    usecase "send class required" as sendClass #0AA;line:0AA;
+}
+Autoload <== autoloadRegister #line:0FF;
+findRequireClass ==> ClassesList #line:0FF;
+
+ClassesList ==> ClassFinded #line:0FF;
+ClassFinded ==> sendClass #line:0FF;
+
+package FuncsClassesList #5AF;line:5AF;
+
+package CoreFuncs #5AF;line:5AF; {
+    usecase "read class listed" as readListedClasses #5AF;line:5AF;
+    usecase "func Class Finded" as funcClassFinded #5AF;line:5AF;
+    usecase "load classes" as sendClasses #0AA;line:0AA;
+    usecase "declare funcs" as declareFuncs #5AF;line:5AF;
+}
+coreUtilities ==> setNatFuncs #line:333;
+setNatFuncs ==> readListedClasses #line:58A;
+sendClasses <== sendClass #line:0FF;
+sendClasses --> declareFuncs #line:0FF;
+readListedClasses ==> FuncsClassesList #line:58A;
+FuncsClassesList ==> funcClassFinded #line:58A;
+funcClassFinded ==> findRequireClass #line:58A;
+
+@enduml

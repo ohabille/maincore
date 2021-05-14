@@ -1,0 +1,43 @@
+@startjson
+{
+    "FilesMethods" : {
+        "namespace" : "\\CoreMethods\\FilesMethods\\FilesMethods",
+        "methods" : [
+            "readContentFile",
+            "getMainDir"
+        ]
+    },
+    "jsonMethods" : {
+        "namespace" : "\\CoreMethods\\JsonMethods\\JsonMethods",
+        "methods" : [
+            "parseConf",
+            "getConf",
+            "formatConf",
+            "getNbrOf"
+        ]
+    },
+    "dumps" : {
+        "namespace" : "\\CoreMethods\\Dumps\\Dumps",
+        "methods" : [
+            "dump",
+            "dd"
+        ]
+    },
+    "shellColors" : {
+        "namespace" : "\\CoreMethods\\ShellColors\\ShellColors",
+        "methods" : [
+            "shellLightGreen",
+            "shellBrown",
+            "shellLightRed",
+            "shellRed",
+            "getShellColor"
+        ]
+    },
+    "skeleton" : {
+        "namespace" : "\\GrendelTpl\\SkeletonMethods",
+        "methods" : [
+            "getTemplate"
+        ]
+    }
+}
+@endjson

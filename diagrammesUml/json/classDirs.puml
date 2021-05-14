@@ -1,0 +1,40 @@
+@startjson
+{
+    "paths" : [
+        "Core",
+        "CoreMethods",
+        "CoreImplements",
+        "CoreTraits",
+        "Domain",
+        "DomainImplements",
+        "DomainTraits",
+        "Connecters",
+        "Adapters",
+        "GrendelRequests",
+        "GrendelRoutes",
+        "GrendelPager",
+        "GrendelDb",
+        "GrendelDatas",
+        "GrendelTpl",
+        "User",
+        "WebModels"
+    ],
+    "Core" : "core/",
+    "CoreMethods" : "core/Methods/",
+    "CoreImplements" : "core/Implements/",
+    "CoreTraits" : "core/Traits/",
+    "Domain" : "domain/",
+    "DomainImplements" : "domain/Implements/",
+    "DomainTraits" : "domain/Traits/",
+    "Connecters" : "domain/Connecters/",
+    "Adapters" : "domain/Adapters/",
+    "GrendelRequests" : "libs/GrendelRequests/",
+    "GrendelRoutes" : "libs/GrendelRoutes/",
+    "GrendelPager" : "libs/GrendelPager/",
+    "GrendelDb" : "GrendelDb/",
+    "GrendelDatas" : "libs/GrendelDatas/",
+    "GrendelTpl" : "libs/GrendelTpl/",
+    "User" : "devs/",
+    "WebModels" : "devs/WebModels/"
+}
+@endjson
