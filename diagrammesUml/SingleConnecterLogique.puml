@@ -1,0 +1,13 @@
+@startuml
+:get instance;
+
+:set instance;
+
+if (is null instance) then (yes)
+:declare instance;
+
+else (not)
+endif
+
+:send instance;
+@enduml
