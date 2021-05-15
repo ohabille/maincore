@@ -1,39 +1,46 @@
 @startuml
-left to right direction
-package Main #666;line:666; {
-    usecase "set Core Utilities" as coreUtilities #666;line:666;
-    usecase "autoload register" as autoloadRegister #0AA;line:0AA;
-    usecase "set native funcs" as setNatFuncs #5AF;line:5AF;
+
+skinparam packageStyle rectangle
+
+rectangle Main #EEE;line:EEE; {
+
+    rectangle ClassesList #066;line:066;text:white
+
+    rectangle ClassAutoload #0AA;line:0AA; {
+        package FindRequireClass #066;line:066;text:white
+        ClassesList *==> FindRequireClass #line:066;
+
+        package ClassFinded #066;line:066;text:white
+        FindRequireClass => ClassFinded #line:066;
+
+        package SendClass #066;line:066;text:white
+        ClassFinded => SendClass #line:066;
+    }
+
+    rectangle Core #666;line:666; {
+        package AutoloadRegister #333;line:333;text:white
+        ClassAutoload <== AutoloadRegister #line:333;
+        SendClass ==> AutoloadRegister #line:066;
+
+        package SetCoreFuncs #333;line:333;text:white
+    }
+
+    rectangle FuncsClassesList #28F;line:28F;text:white
+
+    rectangle ClassCoreFuncs #5AF;line:5AF; {
+        package ReadListedClasses #28F;line:28F;
+        FuncsClassesList *==> ReadListedClasses #line:28F;
+
+        package GetClassesFinded #28F;line:28F;
+        ReadListedClasses => GetClassesFinded #line:28F;
+
+        package DeclareFuncs #28F;line:28F;
+        GetClassesFinded => DeclareFuncs #line:28F;
+        SetCoreFuncs <= DeclareFuncs #line:28F;
+    }
+    SetCoreFuncs ==> ClassCoreFuncs #line:333;
+    AutoloadRegister *== ClassCoreFuncs #line:333;
+
 }
-coreUtilities --> autoloadRegister #line:333;
-
-package ClassesList #0AA;line:0AA;text:white
-
-package Autoload #0AA;line:0AA; {
-    usecase "find require class" as findRequireClass #0AA;line:0AA;
-    usecase "Class Finded" as ClassFinded #0AA;line:0AA;
-    usecase "send class required" as sendClass #0AA;line:0AA;
-}
-Autoload <== autoloadRegister #line:0FF;
-findRequireClass ==> ClassesList #line:0FF;
-
-ClassesList ==> ClassFinded #line:0FF;
-ClassFinded ==> sendClass #line:0FF;
-
-package FuncsClassesList #5AF;line:5AF;
-
-package CoreFuncs #5AF;line:5AF; {
-    usecase "read class listed" as readListedClasses #5AF;line:5AF;
-    usecase "func Class Finded" as funcClassFinded #5AF;line:5AF;
-    usecase "load classes" as sendClasses #0AA;line:0AA;
-    usecase "declare funcs" as declareFuncs #5AF;line:5AF;
-}
-coreUtilities ==> setNatFuncs #line:333;
-setNatFuncs ==> readListedClasses #line:58A;
-sendClasses <== sendClass #line:0FF;
-sendClasses --> declareFuncs #line:0FF;
-readListedClasses ==> FuncsClassesList #line:58A;
-FuncsClassesList ==> funcClassFinded #line:58A;
-funcClassFinded ==> findRequireClass #line:58A;
 
 @enduml
