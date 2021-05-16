@@ -9,14 +9,9 @@ implements  \DomainImplements\Datas\DatasReaderImplement
 {
     private $_datas;
 
-    private function __construct()
+    public function __construct()
     {
         $this->_datas = new Datas;
-    }
-
-    public static function getInst()
-    {
-        return new DatasReaderAdapter;
     }
 
     public function getMainDatas() : array

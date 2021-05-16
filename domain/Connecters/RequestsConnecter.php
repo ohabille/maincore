@@ -2,12 +2,10 @@
 
 namespace Connecters;
 
-use \DomainImplements\Connecters\SingleConnecterImplement,
-    \DomainImplements\Requests\RequestsImplement,
-    \Adapters\RequestsAdapter as Requests;
+use \DomainImplements\Connecters\RequestsConnecterImplement;
 
 class RequestsConnecter
-implements  SingleConnecterImplement
+implements  RequestsConnecterImplement
 {
     use \DomainTraits\ConnectersInstance;
 
@@ -15,18 +13,17 @@ implements  SingleConnecterImplement
      * @var \Adapters\RequestsAdapter
      */
     private static $instance = null;
-
-    private static function setInst() : void
-    {
-        if (is_null(self::$instance)) self::$instance = new Requests;
-    }
+    /**
+     * @var string
+     */
+    private static $class = "\Adapters\RequestsAdapter";
 
     /**
      * Retourne la requète
      * @return string
      */
-    public static function getRequest() : string
+    public static function getPage() : string
     {
-        return self::getInst()->getRequest();
+        return self::getInst(self::$class)->getRequest();
     }
 }

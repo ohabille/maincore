@@ -2,8 +2,7 @@
 
 namespace Connecters;
 
-use \Adapters\RoutesAdapter as Route,
-    \DomainImplements\Connecters\SingleConnecterImplement,
+use \DomainImplements\Connecters\SingleConnecterImplement,
     \Connecters\RequestsConnecter as Requests,
     \DomainImplements\Connecters\RoutesConnecterImplement;
 
@@ -17,16 +16,14 @@ implements  SingleConnecterImplement,
      * @var \Adapters\RoutesAdapter
      */
     private static $instance;
-
-    private static function setInst() : void
-    {
-        if (is_null(self::$instance))
-            self::$instance = new Route(Requests::getRequest());
-    }
+    /**
+     * @var string
+     */
+    private static $class = '\Adapters\RoutesAdapter';
 
     public static function getParams() : array
     {
-        return self::getInst()->getRouteParams();
+        return self::getInst(self::$class)->getRouteParams();
     }
 
     /**
@@ -34,6 +31,6 @@ implements  SingleConnecterImplement,
      */
     public static function getRoutes() : array
     {
-        return self::getInst()::getRoutes();
+        return self::getInst(self::$class)::getRoutes();
     }
 }

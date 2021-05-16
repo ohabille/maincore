@@ -10,7 +10,7 @@ trait ConnectersInstance
     */
     public static function getInst()
     {
-        self::setInst();
+        if (is_null(self::$instance)) self::$instance = new self::$class;
 
         return self::$instance;
     }

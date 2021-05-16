@@ -14,10 +14,9 @@ implements  RoutesImplement
      */
     private $_routes;
 
-    public function __construct(string $request)
+    public function __construct()
     {
-        // $this->_routes = new Routes(Requests::getInst()->getRequest());
-        $this->_routes = new Routes($request);
+        $this->_routes = new Routes(Requests::getPage());
     }
 
     /**
