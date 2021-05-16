@@ -1,6 +1,8 @@
 @startuml
 
-class Controller #AA5;line:AA5;text:white
+class Controller #AA5;line:AA5;text:white {
+    RequestsConnecter::getRequest()
+}
 
 interface SingleConnecterImplement #55A;line:55A;text:white {
     interface singleton
