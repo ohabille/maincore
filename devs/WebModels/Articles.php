@@ -2,8 +2,8 @@
 
 namespace WebModels;
 
-use \GrendelDb\Db,
-    \GrendelPager\Pager,
+use \Adapters\Db\DbArticleAdapter as Db,
+    \Adapters\PagerAdapter as Pager,
     \GrendelDb\Select;
 
 class Articles
@@ -14,7 +14,7 @@ implements \DomainImplements\Models\ModelImplements
     {
         parent::__construct();
 
-        $db = new Db('articles');
+        $db = new Db;
 
         $pager = new Pager(
             $db->getTotal(),

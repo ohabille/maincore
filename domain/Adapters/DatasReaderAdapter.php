@@ -2,10 +2,11 @@
 
 namespace Adapters;
 
-use \GrendelDatas\DatasReader as Datas;
+use \DomainImplements\Adapters\DatasReaderAdapterImplement,
+    \GrendelDatas\DatasReader as Datas;
 
 class DatasReaderAdapter
-implements  \DomainImplements\Datas\DatasReaderImplement
+implements  DatasReaderAdapterImplement
 {
     private $_datas;
 

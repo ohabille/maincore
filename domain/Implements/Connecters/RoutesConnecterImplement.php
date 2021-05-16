@@ -2,9 +2,13 @@
 
 namespace DomainImplements\Connecters;
 
-use \DomainImplements\Routes\RoutesImplement;
+use \DomainImplements\Routes\RoutesImplement,
+    \DomainImplements\Connecters\SingleConnecterImplement;
 
-interface RoutesConnecterImplement extends RoutesImplement
+interface RoutesConnecterImplement
+extends RoutesImplement,
+        SingleConnecterImplement
+
 {
     /**
      * Retourne la requète principale

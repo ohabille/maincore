@@ -24,6 +24,6 @@ implements  RequestsConnecterImplement
      */
     public static function getPage() : string
     {
-        return self::getInst(self::$class)->getRequest();
+        return self::getInst()->getRequest();
     }
 }

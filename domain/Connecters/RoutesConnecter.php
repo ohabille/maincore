@@ -2,13 +2,10 @@
 
 namespace Connecters;
 
-use \DomainImplements\Connecters\SingleConnecterImplement,
-    \Connecters\RequestsConnecter as Requests,
-    \DomainImplements\Connecters\RoutesConnecterImplement;
+use \DomainImplements\Connecters\RoutesConnecterImplement;
 
 class RoutesConnecter
-implements  SingleConnecterImplement,
-            RoutesConnecterImplement
+implements  RoutesConnecterImplement
 {
     use \DomainTraits\ConnectersInstance;
 
@@ -23,7 +20,7 @@ implements  SingleConnecterImplement,
 
     public static function getParams() : array
     {
-        return self::getInst(self::$class)->getRouteParams();
+        return self::getInst()->getRouteParams();
     }
 
     /**
@@ -31,6 +28,6 @@ implements  SingleConnecterImplement,
      */
     public static function getRoutes() : array
     {
-        return self::getInst(self::$class)::getRoutes();
+        return self::getInst()::getRoutes();
     }
 }

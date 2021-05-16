@@ -3,8 +3,7 @@
 namespace Adapters;
 
 use \DomainImplements\Adapters\RoutesAdapterImplement as RoutesImplement,
-    \GrendelRoutes\Routes,
-    \Connecters\RequestsConnecter as Requests;
+    \GrendelRoutes\Routes;
 
 class RoutesAdapter
 implements  RoutesImplement
@@ -16,7 +15,9 @@ implements  RoutesImplement
 
     public function __construct()
     {
-        $this->_routes = new Routes(Requests::getPage());
+        $request = new RequestsAdapter();
+
+        $this->_routes = new Routes($request->getRequest());
     }
 
     /**

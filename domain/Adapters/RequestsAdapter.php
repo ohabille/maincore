@@ -2,11 +2,11 @@
 
 namespace Adapters;
 
-use \DomainImplements\Requests\RequestsImplement,
+use \DomainImplements\Adapters\RequestsAdapterImplement,
     \GrendelRequests\Requests;
 
 class RequestsAdapter
-implements  RequestsImplement
+implements  RequestsAdapterImplement
 {
     /**
      * @var \GrendelRequests\Requests

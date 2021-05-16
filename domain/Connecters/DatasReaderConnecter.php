@@ -2,7 +2,10 @@
 
 namespace Connecters;
 
+use \DomainImplements\Connecters\DatasReaderConnecterImplement;
+
 class DatasReaderConnecter
+implements DatasReaderConnecterImplement
 {
     use \DomainTraits\ConnectersInstance;
 

@@ -2,7 +2,7 @@
 
 namespace Domain;
 
-use \Connecters\DatasReaderConnecter as Datas,
+use \Adapters\DatasReaderAdapter as Datas,
     \Connecters\RoutesConnecter as Routes;
 
 abstract class MainModel
@@ -26,7 +26,7 @@ implements  \DomainImplements\Models\ModelImplements
 
         $this->_datas = $this->_params['datas'];
 
-        self::$methods = Datas::getInst();
+        self::$methods = new Datas;
 
         $conf = self::$methods->getMainDatas();
 
