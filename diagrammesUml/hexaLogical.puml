@@ -7,25 +7,24 @@ skinparam packageStyle rectangle
 actor User #444;line:444;
 
 package Controllers #444;line:444;text:white
-User <==> Controllers #line:444;
+User == Controllers #line:444;
 
 rectangle HexaSpace #AAA;line:AAA; {
     package ConnectersPort #22B;line:22B;text:white
-    Controllers <= ConnectersPort #line:22B;
 
     package Connecters #55F;line:55F;text:white
-    ConnectersPort *= Connecters #line:11F;
-    Controllers ==> Connecters #line:444;
+    ConnectersPort <|. Connecters #line:11F;
+    Controllers == Connecters #line:444;
 
     package Adapters #272;line:272;text:white
-    Connecters ==> Adapters #line:55F;
+    Connecters ==* Adapters #line:55F;
 
     package AdaptersPort #595;line:595;text:white
-    Connecters <= AdaptersPort #line:green;
-    Adapters =* AdaptersPort #line:595;
+    Connecters .|> AdaptersPort #line:green;
+    Adapters .|> AdaptersPort #line:595;
 }
 
 package ExternalLibs #444;line:444;text:white
-Adapters <==* ExternalLibs #line:444;
+Adapters ==* ExternalLibs #line:444;
 
 @enduml

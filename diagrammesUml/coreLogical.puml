@@ -1,6 +1,7 @@
 @startuml
 
 skinparam packageStyle rectangle
+skinparam roundCorner 10
 
 rectangle Main #EEE;line:EEE; {
 
@@ -8,7 +9,7 @@ rectangle Main #EEE;line:EEE; {
 
     rectangle ClassAutoload #0AA;line:0AA; {
         package FindRequireClass #066;line:066;text:white
-        ClassesList *==> FindRequireClass #line:066;
+        ClassesList ==> FindRequireClass #line:066;
 
         package ClassFinded #066;line:066;text:white
         FindRequireClass => ClassFinded #line:066;
@@ -17,30 +18,35 @@ rectangle Main #EEE;line:EEE; {
         ClassFinded => SendClass #line:066;
     }
 
-    rectangle Core #666;line:666; {
-        package AutoloadRegister #333;line:333;text:white
+    component Core #666;line:666; {
+        control AutoloadRegister #333;line:FFF;
         ClassAutoload <== AutoloadRegister #line:333;
-        SendClass ==> AutoloadRegister #line:066;
 
-        package SetCoreFuncs #333;line:333;text:white
+        control SetCoreFuncs #333;line:FFF;
     }
 
     rectangle FuncsClassesList #28F;line:28F;text:white
 
     rectangle ClassCoreFuncs #5AF;line:5AF; {
-        package ReadListedClasses #28F;line:28F;
-        FuncsClassesList *==> ReadListedClasses #line:28F;
+        package ReadListedClasses #28F;line:28F;text:white
+        FuncsClassesList ==> ReadListedClasses #line:28F;
 
-        package GetClassesFinded #28F;line:28F;
+        package GetClassesFinded #28F;line:28F;text:white
         ReadListedClasses => GetClassesFinded #line:28F;
 
-        package DeclareFuncs #28F;line:28F;
+        package DeclareFuncs #28F;line:28F;text:white
         GetClassesFinded => DeclareFuncs #line:28F;
-        SetCoreFuncs <= DeclareFuncs #line:28F;
     }
     SetCoreFuncs ==> ClassCoreFuncs #line:333;
-    AutoloadRegister *== ClassCoreFuncs #line:333;
 
+    component Funcs #AAA;line:AAA; {
+        hexagon "func()" as Func0 #05A;line:05A;text:white
+        hexagon "otherFunc()" as Func1 #05A;line:05A;text:white
+        hexagon "someOtherfunc()" as Func2 #05A;line:05A;text:white
+        DeclareFuncs ==> Func0 #line:05A;
+        DeclareFuncs ==> Func1 #line:05A;
+        DeclareFuncs ==> Func2 #line:05A;
+    }
 }
 
 @enduml

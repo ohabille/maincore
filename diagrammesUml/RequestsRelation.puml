@@ -1,15 +1,12 @@
 @startuml
 
-class Controller #AA5;line:AA5;text:white {
-    class controller
-}
+class Controller #AA5;line:AA5;text:white
 
 interface SingleConnecterImplement #55A;line:55A;text:white {
     interface singleton
 
     +static getInst()
 }
-Controller <== SingleConnecterImplement #line:5AA;
 
 class RequestsConnecter #88C;line:88C;text:white {
     class Connecter
@@ -19,15 +16,15 @@ class RequestsConnecter #88C;line:88C;text:white {
     +static getInst() : RequestsAdapter
     +static getRequest() : string
 }
-Controller ==> RequestsConnecter #line:AA5;
-SingleConnecterImplement *= RequestsConnecter #line:55A;
+SingleConnecterImplement <. RequestsConnecter #line:55A;
+Controller ==o RequestsConnecter #line:AA5;
 
 interface RequestsImplement #A55;line:A55;text:white {
     interface adaptater
 
     +getRequest() : string
 }
-RequestsConnecter <== RequestsImplement #line:A55;
+RequestsConnecter ..> RequestsImplement #line:A55;
 
 class RequestsAdapter #C88;line:C88;text:white {
     class adapter
@@ -35,8 +32,8 @@ class RequestsAdapter #C88;line:C88;text:white {
     -Request $_requests = null
     +getRequest() : string
 }
-RequestsImplement *= RequestsAdapter #line:C88;
-RequestsConnecter ==> RequestsAdapter
+RequestsImplement <. RequestsAdapter #line:A55;
+RequestsConnecter ==* RequestsAdapter #line:C88;
 
 class Requests #A5A;line:A5A;text:white {
     class externe
@@ -44,7 +41,6 @@ class Requests #A5A;line:A5A;text:white {
     -string $_request = '/'
     +getRequest() : string
 }
-RequestsAdapter ==> Requests #line:C88;
-RequestsAdapter <== Requests #line:A5A;
+RequestsAdapter ==* Requests #line:A5A;
 
 @enduml
