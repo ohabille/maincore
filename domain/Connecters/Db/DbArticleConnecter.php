@@ -1,8 +1,8 @@
 <?php
 
-namespace Adapters\Db;
+namespace Connecters\Db;
 
-class DbArticleAdapter extends DbAbstractAdapter
+class DbArticleConnecter extends DbAbstractConnecter
 {
     public function __construct()
     {

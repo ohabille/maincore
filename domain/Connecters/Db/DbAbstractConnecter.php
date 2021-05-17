@@ -1,21 +1,21 @@
 <?php
 
-namespace Adapters\Db;
+namespace Connecters\Db;
 
-use \GrendelDb\Db,
+use \Adapters\Db\DbAdapter as Db,
     \DomainImplements\DatasBases\DbImplement;
 
-abstract class DbAbstractAdapter
+abstract class DbAbstractConnecter
 implements DbImplement
 {
     /**
-     * @var \GrendelDb\Db
+     * @var DomainImplements\DatasBases
      */
     private $_db;
 
     public function __construct(string $dbName)
     {
-        $this->_db = new DB($dbName);
+        $this->_db = Db::getDb($dbName);
     }
 
     /**

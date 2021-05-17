@@ -5,7 +5,7 @@ namespace Connecters;
 use \DomainImplements\Connecters\RequestsConnecterImplement;
 
 class RequestsConnecter
-implements  RequestsConnecterImplement
+implements RequestsConnecterImplement
 {
     use \DomainTraits\ConnectersInstance;
 
