@@ -16,7 +16,8 @@
         "GrendelDatas",
         "GrendelTpl",
         "User",
-        "WebModels"
+        "WebModels",
+        "CenturyDb"
     ],
     "Core" : "core/",
     "CoreMethods" : "core/Methods/",
@@ -34,5 +35,6 @@
     "GrendelDatas" : "libs/GrendelDatas/",
     "GrendelTpl" : "libs/GrendelTpl/",
     "User" : "devs/",
-    "WebModels" : "devs/WebModels/"
+    "WebModels" : "devs/WebModels/",
+    "CenturyDb" : "CenturyDb/"
 }

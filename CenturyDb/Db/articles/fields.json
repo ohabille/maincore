@@ -1,0 +1,10 @@
+{
+    "fields" : [
+        "id",
+        "file",
+        "member",
+        "titre",
+        "status",
+        "categorie"
+    ]
+}
