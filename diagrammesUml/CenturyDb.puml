@@ -1,0 +1,37 @@
+@startuml
+
+abstract class AbstractCentury {
+    -static $centName = "century-";
+    #static $dbMulti = 100;
+    #$_dbName;
+    #$_century;
+
+    +__construct(string $dbName)
+    #isCenturyFileName(string $file) : bool
+    #isCenturyExists(string $century) : bool
+    #getCenturyId(int $century) : string
+    #getReverseId(string $centuryId) : int
+    #countCenturies() : int
+    #countCentury() : int
+    #readCentury() : array
+    +getTotal() : int
+}
+
+class CenturyMethods {
+    #isNextCentury() : bool
+    #setNextCentury() : bool
+    #setPreviousCentury() : bool
+    #getPreviousId() : string
+}
+
+class CenturyDb {
+    -$selected = [];
+
+    +__construct(string $dbName)
+    +selectEntries(int $page, int $nbrPPage) : array
+}
+
+AbstractCentury *-- CenturyDb
+CenturyMethods *-- CenturyDb
+
+@enduml
