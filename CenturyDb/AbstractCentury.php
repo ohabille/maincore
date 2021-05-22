@@ -4,14 +4,29 @@ namespace CenturyDb;
 
 abstract class AbstractCentury
 {
+    use Methods\CenturyReadMethods,
+        Methods\CenturyCountMethods;
+
     /**
      * @var string
      */
     protected static $centName = 'century-';
     /**
+     * @var string
+     */
+    protected static $centPattId = '[0-1a-f]+';
+    /**
+     * @var string
+     */
+    protected static $centTypeFile = '.json';
+    /**
      * @var int
      */
     protected static $dbMulti = 100;
+    /**
+     * @var string
+     */
+    protected static $dbDir = __DIR__.'/Db/';
     /**
      * @var string
      */
@@ -23,11 +38,7 @@ abstract class AbstractCentury
 
     public function __construct(string $dbName)
     {
-        $this->_dbName = __DIR__.'/Db/'.$dbName;
-
-        $this->_century = $this->getCenturyId(
-            $this->countCenturies()
-        );
+        $this->_dbName = $dbName;
     }
 
     /**
@@ -37,7 +48,7 @@ abstract class AbstractCentury
      */
     protected static function isCenturyFileName(string $fileName) : bool
     {
-        $patt = '#'.self::$centName.'([0-9a-f]*).json#';
+        $patt = '#'.self::$centName.self::$centPattId.self::$centTypeFile.'#';
 
         return 1 === preg_match($patt, $fileName);
     }
@@ -62,7 +73,7 @@ abstract class AbstractCentury
      */
     protected function getCenturyId(int $century) : string
     {
-        return dechex($century * self::$dbMulti);
+        return dechex($century);
     }
 
     /**
@@ -70,62 +81,24 @@ abstract class AbstractCentury
      * @param  string $centuryId : un id hexadecimal
      * @return int               : le multiple de 100
      */
-    protected function getReverseId(string $centuryId) : int
+    protected function getValueId(string $centuryId) : int
     {
         return hexdec($centuryId);
     }
 
     /**
-     * Compte le nombre de century
-     * @return int : Le nombre de century
+     * Récupère et retourne l'id de la century
+     * @param  string $centuryName Le
+     * @return string              [description]
      */
-    protected function countCenturies() : int
+    protected function extractCenturyId(string $centuryName) : string
     {
-        $i = 0;
+        $patt = "#".self::$centName
+            ."(".self::$centPattId.")"
+            .self::$centTypeFile."#";
 
-        if ($handle = opendir($this->_dbName)) {
-            while (false !== ($entry = readdir($handle))) {
-                if (!self::isCenturyFileName($entry))  continue;
+        preg_match($patt, $centuryName, $match);
 
-                $i++;
-            }
-
-            closedir($handle);
-        }
-
-        return $i;
-    }
-
-    /**
-     * Compte le nombre d'entrée d'une century
-     * @return int [description]
-     */
-    protected function countCentury() : int
-    {
-        return count($this->readCentury());
-    }
-
-    /**
-     * Lit le contenu d'une century
-     * @return array : les données de la century
-     */
-    protected function readCentury() : array
-    {
-        return parseConf(
-            $this->_dbName.'/'.self::$centName.$this->_century
-        );
-    }
-
-    /**
-     * Compte le nombre total du nombre d'entrées
-     * de la base de données
-     * @return int [description]
-     */
-    public function getTotal() : int
-    {
-        return
-        (
-            $this->countCenturies() * self::$dbMulti
-        ) - self::$dbMulti + $this->countCentury();
+        return $match[1];
     }
 }

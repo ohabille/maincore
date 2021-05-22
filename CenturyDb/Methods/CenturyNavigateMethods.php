@@ -1,21 +1,9 @@
 <?php
 
-namespace CenturyDb;
+namespace CenturyDb\Methods;
 
-trait CenturyMethods
+trait CenturyNavigateMethods
 {
-    /**
-     * Vérifie si il existe une century suivante
-     * @return bool
-     */
-    protected function isNextCentury() : bool
-    {
-        $modulo = $this->getReverseId($this->_century) % self::$dbMulti;
-        if (0 !== $modulo) return false;
-
-        return 100 < $this->getReverseId($this->_century);
-    }
-
     /**
      * Initialise la prochaine century d'entrées
      * si c'est possible
@@ -31,6 +19,15 @@ trait CenturyMethods
         $this->_century = next;
 
         return true;
+    }
+
+    /**
+    * Vérifie si il existe une century suivante
+    * @return bool
+    */
+    protected function isNextCentury() : bool
+    {
+        return self::$dbMulti < $this->getReverseId($this->_century);
     }
 
     /**

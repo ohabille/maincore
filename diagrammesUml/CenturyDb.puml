@@ -1,7 +1,14 @@
 @startuml
 
-abstract class AbstractCentury {
+title "CenturyDb"
+
+skinparam packageStyle rectangle
+skinparam roundCorner 10
+
+abstract class AbstractCentury #AA5;line:CC7; {
     -static $centName = "century-";
+    -static $$centPattId = "[0-9a-f]+";
+    -static $centTypeFile = ".json";
     #static $dbMulti = 100;
     #$_dbName;
     #$_century;
@@ -10,28 +17,57 @@ abstract class AbstractCentury {
     #isCenturyFileName(string $file) : bool
     #isCenturyExists(string $century) : bool
     #getCenturyId(int $century) : string
-    #getReverseId(string $centuryId) : int
-    #countCenturies() : int
-    #countCentury() : int
-    #readCentury() : array
+    #getValueId(string $centuryId) : int
+    #extractCenturyId(string $centuryName) : int
+}
+
+class CenturyCache #A5A;line:A5A; {
+    +static setCacheFile(string $cacheName, $value) : void
+    +static getCachePath(string $cacheName) : string
+    +static isCacheFile(string $cacheName) : bool
+    +static getCacheFile(string $cacheName) : string
+}
+
+class CenturyReadMethods #AEE;line:AEE; {
+    #readCenturies(string $task) : int
+    #getValueTask()
+    #readCentury(string $century) : array
+}
+
+class CenturyCountMethods #AEE;line:AEE; {
+    #countEntriesValue() : int
+    #countEntries(int $value, string $entry) : int
+    #countCentury(string $century) : int
     +getTotal() : int
 }
 
-class CenturyMethods {
-    #isNextCentury() : bool
+CenturyCache *-- CenturyCountMethods
+AbstractCentury --* CenturyCountMethods
+CenturyReadMethods *-- CenturyCountMethods
+
+class CenturiesSelect #CC7;line:AA5; {
+    #$_selected = [];
+
+    +__construct(string $dbName)
+    +getSelectedEntries(int $page, int $nbrPPage) : array
+}
+
+AbstractCentury *-- CenturiesSelect
+
+class CenturyNavigateMethods #AEE;line:AEE; {
     #setNextCentury() : bool
+    #isNextCentury() : bool
     #setPreviousCentury() : bool
     #getPreviousId() : string
 }
 
-class CenturyDb {
-    -$selected = [];
+CenturiesSelect --* CenturyNavigateMethods
 
-    +__construct(string $dbName)
-    +selectEntries(int $page, int $nbrPPage) : array
+class CenturySelectMethods #AEE;line:AEE; {
+    #getFirstCenturyValue() : string
+    #getFirstCentury(string $value, string $entry)
 }
 
-AbstractCentury *-- CenturyDb
-CenturyMethods *-- CenturyDb
+CenturiesSelect --* CenturySelectMethods
 
 @enduml

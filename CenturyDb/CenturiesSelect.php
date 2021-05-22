@@ -4,22 +4,29 @@ namespace CenturyDb;
 
 class CenturiesSelect extends AbstractCentury
 {
-    use CenturyMethods;
+    use Methods\CenturyNavigateMethods,
+        Methods\CenturySelectMethods;
 
     /**
      * @var array
      */
-    private $_selected = [];
+    protected $_selected = [];
 
     public function __construct(string $dbName)
     {
         parent::__construct($dbName);
+
+        $this->_century = $this->readCenturyDb('getFirstCentury');
     }
 
-    public function getSelectedEntries(int $page, int $nbrPPage) : array
+    /**
+     * Sélectionne un nombre d'entrée
+     * @param  int   $from : le numéro de la première entrée
+     * @param  int   $step : le nombre d'entrées à sélectionner
+     * @return array       : Les entrées sélectionnées
+     */
+    public function getSelectedEntries(int $from, int $step) : array
     {
-        
-
         return $this->_selected;
     }
 }

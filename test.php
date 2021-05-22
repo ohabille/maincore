@@ -11,6 +11,5 @@ require_once ROOTDIRS.'core/init.php';
 $Db = new Db('articles');
 
 dump($Db->getTotal());
-dump($Db->getSelectedEntries(1, 5));
 
 ?>
