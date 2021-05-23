@@ -8,17 +8,21 @@ skinparam roundCorner 10
 abstract class AbstractCentury #AA5;line:CC7; {
     -static $centName = "century-";
     -static $$centPattId = "[0-9a-f]+";
-    -static $centTypeFile = ".json";
     #static $dbMulti = 100;
+    #static $dbDir = __DIR__.'/Db/';
     #$_dbName;
     #$_century;
 
     +__construct(string $dbName)
-    #isCenturyFileName(string $file) : bool
+    #isCenturyDirName(string $file) : bool
+    #isEntryFileName(string $fileName) : bool
     #isCenturyExists(string $century) : bool
     #getCenturyId(int $century) : string
+    #getCenturyValue() : int
     #getValueId(string $centuryId) : int
     #extractCenturyId(string $centuryName) : int
+    #getFirstCenturyValue() : string
+    #getFirstCentury(string $value, string $entry)
 }
 
 class CenturyCache #A5A;line:A5A; {
@@ -29,30 +33,34 @@ class CenturyCache #A5A;line:A5A; {
 }
 
 class CenturyReadMethods #AEE;line:AEE; {
-    #readCenturies(string $task) : int
+    #readCenturyDb(string $task) : int
     #getValueTask()
     #readCentury(string $century) : array
 }
 
 class CenturyCountMethods #AEE;line:AEE; {
-    #countEntriesValue() : int
-    #countEntries(int $value, string $entry) : int
+    #countCenturiesValue() : int
+    #countCenturies(int $value, string $entry) : int
     #countCentury(string $century) : int
+    #calcTotal() : int
     +getTotal() : int
 }
-
 CenturyCache *-- CenturyCountMethods
 AbstractCentury --* CenturyCountMethods
 CenturyReadMethods *-- CenturyCountMethods
 
 class CenturiesSelect #CC7;line:AA5; {
+    #$_step;
     #$_selected = [];
 
     +__construct(string $dbName)
-    +getSelectedEntries(int $page, int $nbrPPage) : array
+    #setStep(int $step) : void
+    #calcStep(int $from) : int
+    #getSelectedEntries(int $from) : array
+    +getSelectedEntries(int $from, int $step) : array
 }
-
 AbstractCentury *-- CenturiesSelect
+CenturyCache *-- CenturiesSelect
 
 class CenturyNavigateMethods #AEE;line:AEE; {
     #setNextCentury() : bool
@@ -60,14 +68,14 @@ class CenturyNavigateMethods #AEE;line:AEE; {
     #setPreviousCentury() : bool
     #getPreviousId() : string
 }
-
 CenturiesSelect --* CenturyNavigateMethods
 
 class CenturySelectMethods #AEE;line:AEE; {
-    #getFirstCenturyValue() : string
-    #getFirstCentury(string $value, string $entry)
+    #calcCentury(int $from) : int
+    #calcStartEntry(int $from) : int
+    #selectInCentury(int $from, int $step) : array
+    #setSelectedEntries(int $from) : void
 }
-
 CenturiesSelect --* CenturySelectMethods
 
 @enduml

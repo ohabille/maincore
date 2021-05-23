@@ -5,25 +5,64 @@ namespace CenturyDb\Methods;
 trait CenturySelectMethods
 {
     /**
-     * @return string : Une string vide
+     * Calcule le century
+     * @param  int $from [description]
+     * @return int       [description]
      */
-    protected function getFirstCenturyValue() : string
+    protected function calcCentury(int $from) : int
     {
-        return "";
+        return (int) ceil($from / self::$dbMulti) * 100;
     }
 
     /**
-     * Récupère l'id d'une entrée
-     * et la retourne si la valeur fournie est vide
-     * ou false si la valeur fournie contient déjà un id
-     * @param  string $value : La valeur fournie
-     * @param  string $entry : L'entrée à analiser
-     * @return mixed
+     * Calcule le numéro de la première entrée à sélectionner
+     * @param  int $from : le numéro
+     * @return int       : la première entrée
      */
-    protected function getFirstCentury(string $value, string $entry)
+    protected function calcStartEntry(int $from) : int
     {
-        if (!empty($value)) return false;
+        return $this->getCenturyValue() - self::$dbMulti + $from - 1;
+    }
 
-        return $this->extractCenturyId($entry);
+    /**
+     * Sélectionne une partie d'une century
+     * @param  int   $from : le numéro de la première entrée
+     * @param  int   $step : le nombre d'entrées
+     * @return array       : la sélection d'entrées
+     */
+    protected function selectInCentury(int $from, int $step) : array
+    {
+        return array_slice(
+            $this->readCentury($this->_century),
+            $from,
+            $step
+        );
+    }
+
+    /**
+     * Sélectionne les entrées depuis le numéro fournit
+     * @param int $from : le numéro
+     */
+    protected function setSelectedEntries(int $from) : void
+    {
+        $this->_century = $this->getCenturyId(
+            $this->calcCentury($from)
+        );
+
+        $this->_selected = array_merge(
+            $this->_selected,
+            $this->selectInCentury(
+                $this->calcStartEntry($from),
+                $this->calcStep($from)
+            )
+        );
+
+        $entries = count($this->_selected);
+
+        if ($this->_step < $entries) {
+            $this->setStep($this->_step - $entries);
+
+            $this->setSelectedEntries($from + $entries);
+        }
     }
 }

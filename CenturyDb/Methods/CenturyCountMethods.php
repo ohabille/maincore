@@ -49,7 +49,9 @@ trait CenturyCountMethods
     {
         $nbrCenturies = $this->readCenturyDb('countCenturies') - self::$dbMulti;
 
-        $nbrEntries = $this->countCentury($this->_century);
+        $nbrEntries = $this->countCentury(
+            $this->readCenturyDb('getFirstCentury')
+        );
 
         return $nbrCenturies + $nbrEntries;
     }
