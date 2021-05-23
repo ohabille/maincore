@@ -15,7 +15,7 @@ trait CenturyReadMethods
 
         if ($handle = opendir(self::$dbDir.$this->_dbName)) {
             while (false !== ($entry = readdir($handle))) {
-                if (!self::isCenturyFileName($entry))  continue;
+                if (!self::isCenturyDirName($entry))  continue;
 
                 $result = $this->$task($value, $entry);
 
@@ -47,8 +47,9 @@ trait CenturyReadMethods
      */
     protected function readCentury(string $century) : array
     {
-        return parseConf(
-            self::$dbDir.$this->_dbName.'/'.self::$centName.$century
-        );
+        $dir = self::$dbDir.$this->_dbName.'/'
+            .self::$centName.$century;
+
+        return array_slice(scandir($dir), 2);
     }
 }

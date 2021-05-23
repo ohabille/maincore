@@ -14,7 +14,7 @@ abstract class AbstractCentury
     /**
      * @var string
      */
-    protected static $centPattId = '[0-1a-f]+';
+    protected static $centPattId = '([0-9a-f]+)';
     /**
      * @var string
      */
@@ -42,13 +42,25 @@ abstract class AbstractCentury
     }
 
     /**
-     * Vérifie si le $fileName est une nom de century
+     * Vérifie si le $dirName est un nom de century
+     * @param  string $dirName
+     * @return bool
+     */
+    protected static function isCenturyDirName(string $dirName) : bool
+    {
+        $patt = '#'.self::$centName.self::$centPattId.'#';
+
+        return 1 === preg_match($patt, $dirName);
+    }
+
+    /**
+     * Vérifie si le $fileName est un nom d'entry
      * @param  string $fileName
      * @return bool
      */
-    protected static function isCenturyFileName(string $fileName) : bool
+    protected static function isEntryFileName(string $fileName) : bool
     {
-        $patt = '#'.self::$centName.self::$centPattId.self::$centTypeFile.'#';
+        $patt = '#entry-.'.self::$centPattId.'#';
 
         return 1 === preg_match($patt, $fileName);
     }
@@ -94,8 +106,7 @@ abstract class AbstractCentury
     protected function extractCenturyId(string $centuryName) : string
     {
         $patt = "#".self::$centName
-            ."(".self::$centPattId.")"
-            .self::$centTypeFile."#";
+            .self::$centPattId."#";
 
         preg_match($patt, $centuryName, $match);
 

@@ -10,7 +10,7 @@ trait CenturyCountMethods
      * Retourne 0
      * @return int : 0
      */
-    protected function countEntriesValue() : int
+    protected function countCenturiesValue() : int
     {
         return 0;
     }
@@ -23,9 +23,9 @@ trait CenturyCountMethods
      * @param  string $entry : la century à parcourir
      * @return int          : le résultat
      */
-    protected function countEntries(int $value, string $entry) : int
+    protected function countCenturies(int $value, string $entry) : int
     {
-        $value += $this->countCentury(
+        $value += $this->getValueId(
             $this->extractCenturyId($entry)
         );
 
@@ -42,6 +42,19 @@ trait CenturyCountMethods
     }
 
     /**
+     * Calcule le total d'entries
+     * @return int : total
+     */
+    protected function calcTotal() : int
+    {
+        $nbrCenturies = $this->readCenturyDb('countCenturies') - self::$dbMulti;
+
+        $nbrEntries = $this->countCentury($this->_century);
+
+        return $nbrCenturies + $nbrEntries;
+    }
+
+    /**
      * Compte le nombre total du nombre d'entrées
      * de la base de données
      * @return int : Le nombre total
@@ -51,9 +64,7 @@ trait CenturyCountMethods
         $cacheName = $this->_dbName.'_total';
 
         if (!Cache::isCacheFile($cacheName))
-            Cache::setCacheFile(
-                $cacheName, $this->readCenturyDb('countEntries')
-            );
+            Cache::setCacheFile($cacheName, $this->calcTotal());
 
         return (int) Cache::getCacheFile($cacheName);
     }
