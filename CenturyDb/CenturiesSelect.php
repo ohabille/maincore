@@ -57,7 +57,7 @@ class CenturiesSelect extends AbstractCentury
      * @param  int   $from : le numéro de la première entrée
      * @return array       : Les entrées sélectionnées
      */
-    protected function getSelectedEntries(int $from) : array
+    public function getSelectedEntries(int $from) : array
     {
         $cacheName = $this->_dbName.'_select-'
             .$from.'-'.$this->_step;
