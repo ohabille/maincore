@@ -47,9 +47,31 @@ trait CenturyReadMethods
      */
     protected function readCentury(string $century) : array
     {
-        $dir = self::$dbDir.$this->_dbName.'/'
-            .self::$centName.$century;
+        $centuryDir = self::$centName.$century;
 
-        return array_slice(scandir($dir), 2);
+        return array_map(
+            function ($item) use ($centuryDir) {
+                return $centuryDir.'/'.$item;
+            },
+            array_slice(
+                scandir(self::$dbDir.$this->_dbName.'/'.$centuryDir),
+                2
+            )
+        );
+    }
+
+    /**
+     * Récupère et retourne les données de l'entrée
+     * @param  string $fileName : le fichier de l'entrée
+     * @return array            : les données de l'entrée
+     */
+    protected function readEntry(string $fileName) : array
+    {
+        return json_decode(
+            file_get_contents(
+                self::$dbDir.$this->_dbName.'/'.$fileName
+            ),
+            true
+        );
     }
 }

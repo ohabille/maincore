@@ -27,6 +27,7 @@
         "menu" : true,
         "url" : "articles",
         "model" : "Articles",
+        "db" : "articles",
         "template" : "articles",
         "name" : "Articles",
         "nbrPPage" : 5,
@@ -40,6 +41,7 @@
         "menu" : false,
         "url" : "article",
         "model" : "Article",
+        "db" : "articles",
         "template" : "article",
         "datas" : {
             "pageTitle" : "article",
@@ -51,6 +53,7 @@
         "menu" : true,
         "url" : "categories",
         "model" : "Categories",
+        "db" : "categories",
         "template" : "categories",
         "name" : "Cat&eacute;gories",
         "datas" : {
@@ -63,6 +66,7 @@
         "menu" : false,
         "url" : "categorie",
         "model" : "Categorie",
+        "db" : "categories",
         "template" : "categorie",
         "datas" : {
             "pageTitle" : "cat&eacute;gorie",
@@ -74,6 +78,7 @@
         "menu" : false,
         "url" : "membre",
         "model" : "Member",
+        "db" : "members",
         "template" : "member",
         "datas" : {
             "pageTitle" : "membre",

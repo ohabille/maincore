@@ -12,11 +12,11 @@ trait ModelMethods
     }
 
     protected function findDatas(
-        array $select, string $key, string $name
+        array $select, string $name
     ) : array
     {
         return array_merge(
-            self::$methods->getTime((int) $key),
+            self::$methods->getTime((int) $select['time']),
             self::$methods->getSections($select['file']),
             $this->getDatasproperties($select, $name),
         );

@@ -21,7 +21,6 @@ implements \DomainImplements\Models\ModelImplements
 
             $this->_datas['article'] = $this->findDatas(
                 $search->getCurrent(),
-                $search->getKeyCurrent(),
                 'article'
             );
         }
