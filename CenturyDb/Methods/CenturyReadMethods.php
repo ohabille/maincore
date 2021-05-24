@@ -9,15 +9,15 @@ trait CenturyReadMethods
      * @param  string $task : la methode de référence
      * @return ?            : La valeur générée
      */
-    protected function readCenturyDb(string $task)
+    protected function readCenturyDir(string $dir, string $task)
     {
         $value = $this->getValueTask($task);
 
-        if ($handle = opendir(self::$dbDir.$this->_dbName)) {
-            while (false !== ($entry = readdir($handle))) {
-                if (!self::isCenturyDirName($entry))  continue;
+        if ($handle = opendir(self::$dbDir.$dir)) {
+            while (false !== ($century = readdir($handle))) {
+                if (!self::isCenturyName($century))  continue;
 
-                $result = $this->$task($value, $entry);
+                $result = $this->$task($value, $century);
 
                 if (false === $result) break;
                 else $value = $result;
@@ -30,24 +30,24 @@ trait CenturyReadMethods
     }
 
     /**
-     * Appèle la methode qui retourne la valeur initiale d'un traitement
-     * @param  string $task : la methode de référence
-     * @return ?            : la valeur initiale
-     */
+    * Appèle la methode qui retourne la valeur initiale d'un traitement
+    * @param  string $task : la methode de référence
+    * @return ?            : la valeur initiale
+    */
     protected function getValueTask(string $task)
     {
-        $valueTask = $task.'Value';
+        $task .= 'Value';
 
-        return $this->$valueTask();
+        return $this->$task();
     }
 
     /**
      * Lit le contenu d'une century
      * @return array : les données de la century
      */
-    protected function readCentury(string $century) : array
+    protected function getCenturyEntries(string $id) : array
     {
-        $centuryDir = self::$centName.$century;
+        $centuryDir = self::$centName.$id;
 
         return array_map(
             function ($item) use ($centuryDir) {

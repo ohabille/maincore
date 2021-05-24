@@ -38,7 +38,7 @@ trait CenturyCountMethods
      */
     protected function countCentury(string $century) : int
     {
-        return count($this->readCentury($century));
+        return count($this->getCenturyEntries($century));
     }
 
     /**
@@ -47,10 +47,10 @@ trait CenturyCountMethods
      */
     protected function calcTotal() : int
     {
-        $nbrCenturies = $this->readCenturyDb('countCenturies') - self::$dbMulti;
+        $nbrCenturies = $this->readCenturyDir($this->_dbName, 'countCenturies') - self::$dbMulti;
 
         $nbrEntries = $this->countCentury(
-            $this->readCenturyDb('getFirstCentury')
+            $this->readCenturyDir($this->_dbName, 'getFirstCentury')
         );
 
         return $nbrCenturies + $nbrEntries;

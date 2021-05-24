@@ -33,7 +33,7 @@ trait CenturySelectMethods
     protected function selectInCentury(int $from, int $step) : array
     {
         return array_slice(
-            $this->readCentury($this->_century),
+            $this->getCenturyEntries($this->_century),
             $from,
             $step
         );
@@ -41,8 +41,8 @@ trait CenturySelectMethods
 
     /**
      * Retourne le nom de fichier du cache select
-     * @param  int    $from : l'identifiant du cache
-     * @return string       : Le nom du cache
+     * @param  int    $id : l'identifiant du cache
+     * @return string     : Le nom du cache
      */
     protected function getSelectCacheName(int $id) : string
     {

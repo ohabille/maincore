@@ -14,7 +14,7 @@ abstract class AbstractCentury #AA5;line:CC7; {
     #$_century;
 
     +__construct(string $dbName)
-    #isCenturyDirName(string $file) : bool
+    #isCenturyName(string $file) : bool
     #isEntryFileName(string $fileName) : bool
     #isCenturyExists(string $century) : bool
     #getCenturyId(int $century) : string
@@ -33,9 +33,9 @@ class CenturyCache #A5A;line:A5A; {
 }
 
 class CenturyReadMethods #AEE;line:AEE; {
-    #readCenturyDb(string $task) : int
+    #readCenturyDir(string $task) : int
     #getValueTask()
-    #readCentury(string $century) : array
+    #getCenturyEntries(string $century) : array
 }
 
 class CenturyCountMethods #AEE;line:AEE; {

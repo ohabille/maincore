@@ -14,6 +14,10 @@ abstract class AbstractCentury
     /**
      * @var string
      */
+    protected static $entName = 'entry-';
+    /**
+     * @var string
+     */
     protected static $centPattId = '([0-9a-f]+)';
     /**
      * @var int
@@ -42,23 +46,12 @@ abstract class AbstractCentury
      * @param  string $dirName
      * @return bool
      */
-    protected static function isCenturyDirName(string $dirName) : bool
+    protected static function isCenturyName(string $dirName) : bool
     {
-        $patt = '#'.self::$centName.self::$centPattId.'#';
+        $patt = '#(('.self::$centName.'|'.self::$entName.')'
+            .self::$centPattId.'(.json)?)#';
 
         return 1 === preg_match($patt, $dirName);
-    }
-
-    /**
-     * Vérifie si le $fileName est un nom d'entry
-     * @param  string $fileName
-     * @return bool
-     */
-    protected static function isEntryFileName(string $fileName) : bool
-    {
-        $patt = '#entry-.'.self::$centPattId.'#';
-
-        return 1 === preg_match($patt, $fileName);
     }
 
     /**

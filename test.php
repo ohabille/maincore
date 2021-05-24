@@ -1,6 +1,6 @@
 <?php
 
-use \CenturyDb\CenturiesSelect as Db;
+use \CenturyDb\CenturiesSearch as Db;
 
 // Déclaration du fichier racine
 define('ROOTDIRS', './');
@@ -8,8 +8,8 @@ define('ROOTDIRS', './');
 // chargement du fichier d'initialisation
 require_once ROOTDIRS.'core/init.php';
 
-$db = new Db('articles', 5);
+$db = new Db('articles', 1);
 
-dump($db->getSelect(5));
+dump($db->findFieldInDb('categorie', 'episodes'));
 
 ?>

@@ -4,6 +4,7 @@ namespace WebModels;
 
 use \GrendelDb\Db,
     \GrendelDb\Search,
+    \CenturyDb\CenturiesSearch,
     \Connecters\RoutesConnecter as Routes;
 
 class Article
