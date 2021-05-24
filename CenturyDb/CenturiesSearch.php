@@ -15,7 +15,7 @@ class CenturiesSearch extends CenturiesSelect
      */
     protected $_value;
 
-    public function __contruct(string $dbName, int $step)
+    public function __contruct(string $dbName, int $step = 1)
     {
         parent::__construct($dbName, $step);
     }
@@ -63,22 +63,18 @@ class CenturiesSearch extends CenturiesSelect
     {
         $file = $this->_century.'/'.$entry;
 
-        $fields = $this->readEntry($file);
+        if (!$this->checkFindedField($this->readEntry($file))) return true;
 
-        if (!$this->checkFindedField($fields)) return true;
+        $cacheName = $this->getSearchCacheName($this->_value);
 
-        $this->_selected[] = $file;
+        if ($this->CheckCacheSearch($cacheName))
+            $selected = $this->getCacheEntries($cacheName);
 
-        if (count($this->_selected) === $this->_step) {
-            Cache::setCacheFile(
-                $this->getSearchCacheName($this->_value),
-                json_encode($this->_selected)
-            );
+        $selected[] = $file;
 
-            $this->_selected = [];
+        Cache::setCacheFile($cacheName, json_encode($selected));
 
-            return false;
-        }
+        if (count($selected) === $this->_step) return false;
 
         return true;
     }
@@ -135,6 +131,6 @@ class CenturiesSearch extends CenturiesSelect
             $this->readCenturyDir($this->_dbName, 'findCentury');
         }
 
-        return $this->getCacheEntries($cacheName);
+        return $this->getCacheEntriesFields($cacheName);
     }
 }

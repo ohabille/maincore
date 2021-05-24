@@ -18,7 +18,7 @@ class CenturiesSelect extends AbstractCentury
      */
     protected $_selected = [];
 
-    public function __construct(string $dbName, int $step)
+    public function __construct(string $dbName, int $step = 1)
     {
         parent::__construct($dbName);
 
@@ -53,21 +53,30 @@ class CenturiesSelect extends AbstractCentury
     }
 
     /**
-     * Sélectionne et met en cache un nombre d'entrée définies
-     * Si la sélection n'existe pas déjà,
-     * et retourne le contenu du cache
-     * @param  int   $from : le numéro de la première entrée
-     * @return array       : Les entrées sélectionnées
+     * Retourne les données de entrées mises en cache
+     * @param  string $cacheName : Le nom du cache
+     * @return array             : Les entrées sélectionnées
      */
-    protected function getCacheEntries(string $cacheName) : array
+    protected function getCacheEntriesFields(string $cacheName) : array
     {
         $select = [];
 
-        $entries = json_decode(Cache::getCacheFile($cacheName), true);
+        // $entries = json_decode(Cache::getCacheFile($cacheName), true);
 
-        foreach ($entries as $file) $select[] = $this->readEntry($file);
+        foreach ($this->getCacheEntries($cacheName) as $file)
+            $select[] = $this->readEntry($file);
 
         return $select;
+    }
+
+    /**
+     * Retourne les entrées mise en cache
+     * @param  string $cacheName : Le nom du cache
+     * @return array             : Les entrées sélectionnées
+     */
+    protected function getCacheEntries(string $cacheName) : array
+    {
+        return json_decode(Cache::getCacheFile($cacheName), true);
     }
 
     /**
@@ -100,6 +109,6 @@ class CenturiesSelect extends AbstractCentury
 
         $this->CheckCacheSelect($cacheName, $from);
 
-        return $this->getCacheEntries($cacheName);
+        return $this->getCacheEntriesFields($cacheName);
     }
 }

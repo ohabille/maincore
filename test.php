@@ -8,7 +8,7 @@ define('ROOTDIRS', './');
 // chargement du fichier d'initialisation
 require_once ROOTDIRS.'core/init.php';
 
-$db = new Db('articles', 1);
+$db = new Db('articles');
 
 dump($db->findFieldInDb('categorie', 'episodes'));
 
