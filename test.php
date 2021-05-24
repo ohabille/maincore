@@ -10,6 +10,6 @@ require_once ROOTDIRS.'core/init.php';
 
 $db = new Db('articles', 5);
 
-dump($db->getSelectedEntries(5));
+dump($db->getSelect(5));
 
 ?>

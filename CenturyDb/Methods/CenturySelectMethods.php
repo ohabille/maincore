@@ -40,29 +40,69 @@ trait CenturySelectMethods
     }
 
     /**
+     * Retourne le nom de fichier du cache select
+     * @param  int    $from : l'identifiant du cache
+     * @return string       : Le nom du cache
+     */
+    protected function getSelectCacheName(int $id) : string
+    {
+        return $this->_dbName.'_select-'.$id.'-'.$this->_step;
+    }
+
+    /**
      * Sélectionne les entrées depuis le numéro fournit
      * @param int $from : le numéro
+     * @return array    : La sélection d'entrées
      */
-    protected function setSelectedEntries(int $from) : void
+    protected function getSelectedEntries(
+        int $from,
+        array $selected = []
+    ) : array
+    {
+        $selected = array_merge(
+            $selected,
+            $this->findEntries($from)
+        );
+
+        return $this->CheckNbrEntries($from, $selected);
+    }
+
+    /**
+     * Vérifie que le nombre d'entrées soit juste
+     * Relance une sélection si nécessaire
+     * @param int   $from     : le numéro de départ
+     * @return array          : La sélection d'entrées
+     */
+    protected function CheckNbrEntries(int $from, array $selected) : array
+    {
+        $entriesNbr = count($this->_selected);
+
+        if ($this->_step < $entriesNbr) {
+            $this->setStep($this->_step - $entriesNbr);
+
+            $selected = $this->getSelectedEntries(
+                $from + $entriesNbr,
+                $selected
+            );
+        }
+
+        return $selected;
+    }
+
+    /**
+     * Sélectionne les Entrées
+     * @param  int   $from [description]
+     * @return array       [description]
+     */
+    protected function findEntries(int $from) : array
     {
         $this->_century = $this->getCenturyId(
             $this->calcCentury($from)
         );
 
-        $this->_selected = array_merge(
-            $this->_selected,
-            $this->selectInCentury(
-                $this->calcStartEntry($from),
-                $this->calcStep($from)
-            )
+        return $this->selectInCentury(
+            $this->calcStartEntry($from),
+            $this->calcStep($from)
         );
-
-        $entries = count($this->_selected);
-
-        if ($this->_step < $entries) {
-            $this->setStep($this->_step - $entries);
-
-            $this->setSelectedEntries($from + $entries);
-        }
     }
 }

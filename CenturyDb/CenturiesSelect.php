@@ -59,18 +59,30 @@ class CenturiesSelect extends AbstractCentury
      * @param  int   $from : le numéro de la première entrée
      * @return array       : Les entrées sélectionnées
      */
-    protected function getSelectedEntries(int $from) : array
+    protected function getCacheEntries(int $from) : array
     {
-        $cacheName = $this->_dbName.'_select-'
-            .$from.'-'.$this->_step;
+        $cacheName = $this->getSelectCacheName($from);
 
-        if (!Cache::isCacheFile($cacheName)) {
-            $this->setSelectedEntries($from);
-
-            Cache::setCacheFile($cacheName, json_encode($this->_selected));
-        }
+        $this->CheckCacheSelect($cacheName, $from);
 
         return json_decode(Cache::getCacheFile($cacheName), true);
+    }
+
+    /**
+     * Vérifie l'existence d'un cache
+     * et l'édite si il n'existe pas
+     * @param string $cacheName : le nom de fichier du cache
+     * @param int    $id        : l'identifiant du cache
+     */
+    protected function CheckCacheSelect(string $cacheName, int $id) : void
+    {
+        if (!Cache::isCacheFile($cacheName))
+            Cache::setCacheFile(
+                $cacheName,
+                json_encode(
+                    $this->getSelectedEntries($id)
+                )
+            );
     }
 
     /**
@@ -82,8 +94,8 @@ class CenturiesSelect extends AbstractCentury
     {
         $select = [];
 
-        foreach ($this->getSelectedEntries($from) as $k=>$file) {
-            $select[$k] = $this->readEntry($file);
+        foreach ($this->getCacheEntries($from) as $k=>$file) {
+            $select[] = $this->readEntry($file);
         }
 
         return $select;
