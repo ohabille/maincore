@@ -18,6 +18,9 @@ implements  \DomainImplements\Models\ModelImplements
      * @var array
      */
     protected $_datas;
+    /**
+     * @var \DomainImplements\Adapters\DatasReaderAdapterImplement
+     */
     protected static $methods;
 
     public function __construct()
@@ -50,6 +53,7 @@ implements  \DomainImplements\Models\ModelImplements
 
     protected function setSelectedDatas(array $selected, string $name) : void
     {
+        // dd($selected);
         foreach ($selected as $k=>$select) {
             self::$methods->setConf($name);
 

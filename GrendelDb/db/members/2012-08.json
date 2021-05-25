@@ -2,13 +2,13 @@
     "1345071550" : {
         "file" : "test",
         "memberid" : "test",
-        "titre" : "test",
+        "title" : "test",
         "status" : 2
     },
     "1345033750" : {
         "file" : "ohabille",
         "memberid" : "ohabille",
-        "titre" : "ohabille",
+        "title" : "ohabille",
         "status" : 1
     }
 }

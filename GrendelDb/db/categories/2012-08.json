@@ -1,22 +1,22 @@
 {
     "1345071550" : {
         "file" : "episodes",
-        "titre" : "episodes",
+        "title" : "episodes",
         "categorieid" : "episodes"
     },
     "1345033750" : {
         "file" : "reflexions",
-        "titre" : "reflexions",
+        "title" : "reflexions",
         "categorieid" : "reflexions"
     },
     "1345071450" : {
         "file" : "prout",
-        "titre" : "prout",
+        "title" : "prout",
         "categorieid" : "prout"
     },
     "1345033650" : {
         "file" : "cacaboudin",
-        "titre" : "cacaboudin",
+        "title" : "cacaboudin",
         "categorieid" : "cacaboudin"
     }
 }

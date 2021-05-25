@@ -1,7 +1,7 @@
-[titre]Tri sélectif[/titre]
+[title]Tri sélectif[/title]
 [illustration][/illustration]
-[accroche]Comme « presque » tout le monde, j'ai des amis [Ami : (nom commun) notion arbitraire de lien social poussant à l'alcoolisme. Contrainte affective auto-immune . Bijou d'apparat virtuel.] et comme « presque » tout le monde, je me demande comment m'en débarrasser.[/accroche]
-[texte]Premièrement parce que j'en ai pas tout le temps besoin et qu'ils n'ont pas la politesse de le comprendre, deuxièmement parce qu'ils ne disposent pas de garantie qui permette de les échanger ou réparer la fonction défectueuse et troisièmement (parce qu'il faut un troisièmement après un deuxièmement, sinon il faut dire secondement mais le mot n'est pas super joli) parce qu'il faut se souvenir de leurs anniversaires et que certains attendent des cadeaux.
+[introduction]Comme « presque » tout le monde, j'ai des amis [Ami : (nom commun) notion arbitraire de lien social poussant à l'alcoolisme. Contrainte affective auto-immune . Bijou d'apparat virtuel.] et comme « presque » tout le monde, je me demande comment m'en débarrasser.[/introduction]
+[content]Premièrement parce que j'en ai pas tout le temps besoin et qu'ils n'ont pas la politesse de le comprendre, deuxièmement parce qu'ils ne disposent pas de garantie qui permette de les échanger ou réparer la fonction défectueuse et troisièmement (parce qu'il faut un troisièmement après un deuxièmement, sinon il faut dire secondement mais le mot n'est pas super joli) parce qu'il faut se souvenir de leurs anniversaires et que certains attendent des cadeaux.
 
 D'un point de vue de représentation sociale nous ne pouvons pas nous permettre de ne plus avoir d'amis. Il faut donc trier, comme les vêtements lors des changement de saisons ou les yaourts périmés dans le frigo. Notons bien que l'utilité de cette démarche est proportionnelle à notre capacité à nous faire des amis et que si cette dernière nous fait défaut, seul deux possibilités s'offrent à nous ; l'alcoolisme ou l'alcoolisme.
 
@@ -10,4 +10,4 @@ les déchets nocifs : Les inutiles qui regardent canal plus, ont trop d'amis et 
 les ordures ménagères : Les pas méchants mais dépressifs qui nous ont bien fait marrer mais qui maintenant nous font autant pitié qu'ils nous emmerdent, les vieux copains d'enfance avec des gosses et les occasionnels qui vous appellent pour débloquer leur ordinateur.
 Les Recyclables : Ceux qui ne vous rappellent pas que c'est bientôt leur anniversaire, qui ramène des bières de temps en temps et rigolent à vos blagues pourries.
 
-Les municipalités n'ayant pas encore fournit les containers, jetons les corps dans la nature, ça fera quelque chose à lire dans le journal.[/texte]
+Les municipalités n'ayant pas encore fournit les containers, jetons les corps dans la nature, ça fera quelque chose à lire dans le journal.[/content]

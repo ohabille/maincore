@@ -3,7 +3,7 @@
         "time" : "1487421000",
         "file" : "35f648ed056aa37e2474bc780dde1638410d75a7",
         "member" : "test",
-        "titre" : "patate_pourrie",
+        "title" : "patate_pourrie",
         "status" : 1,
         "categorie" : "prout"
     },
@@ -11,7 +11,7 @@
         "time" : "1487407500",
         "file" : "37d0d881287c2c87b9b1381cba643a0d101d8c74",
         "member" : "test",
-        "titre" : "caca_boudin",
+        "title" : "caca_boudin",
         "status" : 1,
         "categorie" : "cacaboudin"
     }

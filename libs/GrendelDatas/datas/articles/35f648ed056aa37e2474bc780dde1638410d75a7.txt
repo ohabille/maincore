@@ -1,4 +1,4 @@
-[titre]Patates Pourrie[/titre]
+[title]Patates Pourrie[/title]
 [illustration][/illustration]
-[accroche]Votre recherche vous a mené bien au delà des frontières de cette galaxie.[/accroche]
-[texte][/texte]
+[introduction]Votre recherche vous a mené bien au delà des frontières de cette galaxie.[/introduction]
+[content][/content]

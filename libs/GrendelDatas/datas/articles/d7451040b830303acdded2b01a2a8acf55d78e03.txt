@@ -1,4 +1,4 @@
-[titre]Fruits de mer[/titre]
+[title]Fruits de mer[/title]
 [illustration][/illustration]
-[accroche]Mon voisin vomi, baise sa copine et re-vomi ... Quand les moules sont pas fraîches, faut pas insister.[/accroche]
-[texte][/texte]
+[introduction]Mon voisin vomi, baise sa copine et re-vomi ... Quand les moules sont pas fraîches, faut pas insister.[/introduction]
+[content][/content]

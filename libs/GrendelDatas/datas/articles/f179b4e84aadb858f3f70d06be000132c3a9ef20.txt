@@ -1,8 +1,8 @@
-[titre]Pourquoi ? Comment ? Mais ou et donc or ni car.[/titre]
+[title]Pourquoi ? Comment ? Mais ou et donc or ni car.[/title]
 [illustration][/illustration]
-[accroche]Parce que fraise et pas cassis je serais tenté de dire.[/accroche]
-[texte]Mais surtout parce que mon nombrilisme pourra enfin s'exprimer ailleurs que dans les soirées où je remarque d'ailleurs avec un sentiment mêlé de satisfaction victorieuse et de pitié, que ma présence est de moins en moins requise. Serait-ce mes goût musicaux ou le mépris explicite pour les « œuvres » qui n'y auront jamais leur place, ma subtilité d'esprit et l'humour complexe qui en résulte ou cette manie détestable de parler sans savoir de tout de rien et surtout de moi ? Qu'importe, car tant va la cruche à l'eau en riant comme une dinde.
+[introduction]Parce que fraise et pas cassis je serais tenté de dire.[/introduction]
+[content]Mais surtout parce que mon nombrilisme pourra enfin s'exprimer ailleurs que dans les soirées où je remarque d'ailleurs avec un sentiment mêlé de satisfaction victorieuse et de pitié, que ma présence est de moins en moins requise. Serait-ce mes goût musicaux ou le mépris explicite pour les « œuvres » qui n'y auront jamais leur place, ma subtilité d'esprit et l'humour complexe qui en résulte ou cette manie détestable de parler sans savoir de tout de rien et surtout de moi ? Qu'importe, car tant va la cruche à l'eau en riant comme une dinde.
 
 Donc, Aujourd'hui nous sommes le 15 août, c'est la fin des vacances pour ainsi dire. L'ombre du quotidien journalier revient obscurcir le ciel et c'est certainement pour cette raison que les vacanciers du mois d’août sont si cons. Ils savent que demain ils faudra s'y remettre. Les chômeurs n'ont pas cette notion des choses et c'est pour cette raison qu'ils ne partent pas en vacances ; ils ne sauraient pas apprécier l'urgence de s'amuser avant de retourner bosser, l'angoisse de n'avoir pas une seule anecdote cocasse à raconter aux collègues et passer pour plus con que d'ordinaire. Les chômeurs ils ont vraiment du bol.
 
-Sinon j'ai lu que Napoléon est né un 15 aout et Sylvie Vartan aussi .. Comme quoi ...[/texte]
+Sinon j'ai lu que Napoléon est né un 15 aout et Sylvie Vartan aussi .. Comme quoi ...[/content]

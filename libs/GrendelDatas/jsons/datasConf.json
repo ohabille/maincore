@@ -9,12 +9,12 @@
             "year"
         ],
         "balises" : [
-            "titre",
+            "title",
             "illustration",
-            "accroche"
+            "introduction"
         ],
         "dataKeys" : [
-            "titre",
+            "title",
             "member",
             "categorie"
         ]
@@ -29,10 +29,10 @@
             "year"
         ],
         "balises" : [
-            "titre",
+            "title",
             "illustration",
-            "accroche",
-            "texte"
+            "introduction",
+            "content"
         ],
         "dataKeys" : [
             "member",
@@ -52,7 +52,7 @@
             "name"
         ],
         "dataKeys" : [
-            "titre"
+            "title"
         ]
     },
     "member" : {
@@ -68,7 +68,7 @@
             "name"
         ],
         "dataKeys" : [
-            "titre"
+            "title"
         ]
     }
 }

@@ -1,4 +1,4 @@
-[titre]Ne fais pas à autrui[/titre]
+[title]Ne fais pas à autrui[/title]
 [illustration][/illustration]
-[accroche]Ni au cochon[/accroche]
-[texte][/texte]
+[introduction]Ni au cochon[/introduction]
+[content][/content]

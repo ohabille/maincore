@@ -4,7 +4,7 @@
         {? for articles ?}
         <p>
             <div>
-                <strong>{? dataName titre ?}</strong> <em>
+                <strong>{? dataName title ?}</strong> <em>
                     <a href="{? =host ?}categorie/{? dataName categorieurl ?}">
                         {? dataName categorie ?}
                     </a>
@@ -15,10 +15,10 @@
                 par {? dataName member ?}, le {? dataName weekday ?} {? dataName mday ?} {? dataName month ?} {? dataName year ?}
             </div>
             <div>
-                {? dataName accroche ?}
+                {? dataName introduction ?}
             </div>
             <div>
-                <a href="{? =host ?}article/{? dataName titreurl ?}">Lire la suite</a>
+                <a href="{? =host ?}article/{? dataName titleurl ?}">Lire la suite</a>
             </div>
         </p>
         {? endFor ?}

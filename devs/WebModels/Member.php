@@ -15,7 +15,7 @@ implements \DomainImplements\Models\ModelImplements
 
         $search = Search::getInst(new Db('members'));
 
-        if ($search->searchInDb('titre', $this->_params['member']))
+        if ($search->searchInDb('title', $this->_params['member']))
             $this->_datas['member'] = $this->findDatasContent(
                 'member', $search->getCurrent()['file']
             );

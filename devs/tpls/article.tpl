@@ -16,10 +16,10 @@
                 , le {? =article/weekday ?} {? =article/mday ?} {? =article/month ?} {? =article/year ?}
             </div>
             <div>
-                {? =article/accroche ?}
+                {? =article/introduction ?}
             </div>
             <div>
-                {? =article/texte ?}
+                {? =article/content ?}
             </div>
         </p>
     [[ endblock ]]

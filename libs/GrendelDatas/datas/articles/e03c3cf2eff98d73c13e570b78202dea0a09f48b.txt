@@ -1,9 +1,9 @@
-[titre]Tagada[/titre]
+[title]Tagada[/title]
 [illustration]epaves.2.ohabille.jpeg[/illustration]
-[accroche]Voilà les Daltons[/accroche]
-[texte][strong]Tagada[/strong] tagada il n'y a
+[introduction]Voilà les Daltons[/introduction]
+[content][strong]Tagada[/strong] tagada il n'y a
 plus personne.
 
 [pre]
 echo &quot;prout&quot;;
-[/pre][/texte]
+[/pre][/content]

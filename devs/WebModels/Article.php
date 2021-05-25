@@ -17,7 +17,7 @@ implements \DomainImplements\Models\ModelImplements
 
         $search = Search::getInst(new Db('articles'));
 
-        if ($search->searchInDb('titre', $this->_params['article'])) {
+        if ($search->searchInDb('title', $this->_params['article'])) {
             self::$methods->setConf('article');
 
             $this->_datas['article'] = $this->findDatas(

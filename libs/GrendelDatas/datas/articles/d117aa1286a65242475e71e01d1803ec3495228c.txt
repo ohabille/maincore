@@ -1,4 +1,4 @@
-[titre]Le romantisme en action[/titre]
+[title]Le romantisme en action[/title]
 [illustration][/illustration]
-[accroche]Quoi de mieux que de lourds nuages gris poussés par des vents facétieux pour profiter d'une journée d'automne ? Traînant ses charentaises sur le lino, la robe de chambre ouverte sur un torse malingre et, café à la main, cigarette au coin des lèvres, contempler la pluie s'écraser sur la vitre d'un regard absent.[/accroche]
-[texte][/texte]
+[introduction]Quoi de mieux que de lourds nuages gris poussés par des vents facétieux pour profiter d'une journée d'automne ? Traînant ses charentaises sur le lino, la robe de chambre ouverte sur un torse malingre et, café à la main, cigarette au coin des lèvres, contempler la pluie s'écraser sur la vitre d'un regard absent.[/introduction]
+[content][/content]

@@ -3,7 +3,7 @@
         "time" : "1346281200",
         "file" : "f792f68da087d6b95fffd11e3b9a2e7e0e22fb29",
         "member" : "ohabille",
-        "titre" : "tri_selectif",
+        "title" : "tri_selectif",
         "status" : 1,
         "categorie" : "episodes"
     },
@@ -11,7 +11,7 @@
         "time" : "1345503600",
         "file" : "26ec8a9700fa217a787b50e80ab648d4872c1144",
         "member" : "test",
-        "titre" : "bon_sang_mais_c_est_bien_sur",
+        "title" : "bon_sang_mais_c_est_bien_sur",
         "status" : 1,
         "categorie" : "prout"
     },
@@ -19,7 +19,7 @@
         "time" : "1345465800",
         "file" : "2c84e6b2986f08c76a106934c5bdc21a81bc97b1",
         "member" : "ohabille",
-        "titre" : "fais_toi_saigner_les_oreilles",
+        "title" : "fais_toi_saigner_les_oreilles",
         "status" : 1,
         "categorie" : "reflexions"
     },
@@ -27,7 +27,7 @@
         "time" : "1345071600",
         "file" : "47b42d109e51550a656b53b386ad9310590a5e91",
         "member" : "test",
-        "titre" : "zero_zero_la_tete_a_toto",
+        "title" : "zero_zero_la_tete_a_toto",
         "status" : 1,
         "categorie" : "prout"
     },
@@ -35,7 +35,7 @@
         "time" : "1345033800",
         "file" : "f179b4e84aadb858f3f70d06be000132c3a9ef20",
         "member" : "ohabille",
-        "titre" : "pourquoi_comment_mais_est_donc_or_ni_car",
+        "title" : "pourquoi_comment_mais_est_donc_or_ni_car",
         "status" : 1,
         "categorie" : "episodes"
     }

@@ -15,7 +15,7 @@ implements \DomainImplements\Models\ModelImplements
 
         $search = Search::getInst(new Db('categories'));
 
-        if ($search->searchInDb('titre', $this->_params['categorie']))
+        if ($search->searchInDb('title', $this->_params['categorie']))
             $this->_datas['categorie'] = $this->findDatasContent(
                 'categorie', $search->getCurrent()['file']
             );

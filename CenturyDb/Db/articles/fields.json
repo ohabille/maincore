@@ -2,7 +2,7 @@
     "time" : "int",
     "file" : "string",
     "member" : "string",
-    "titre" : "string",
+    "title" : "string",
     "status" : "int",
     "categorie" : "string"
 }
