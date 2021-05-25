@@ -2,9 +2,7 @@
 
 namespace WebModels;
 
-use \GrendelDb\Db,
-    \GrendelDb\Search,
-    \CenturyDb\CenturiesSearch,
+use \Connecters\Db\DbConnecter as Db,
     \Connecters\RoutesConnecter as Routes;
 
 class Article
@@ -15,13 +13,13 @@ implements \DomainImplements\Models\ModelImplements
     {
         parent::__construct();
 
-        $search = Search::getInst(new Db('articles'));
+        $search = Db::getDbSearch('articles');
 
-        if ($search->searchInDb('title', $this->_params['article'])) {
+        if ($search->findEntry('title', $this->_params['article'])) {
             self::$methods->setConf('article');
 
             $this->_datas['article'] = $this->findDatas(
-                $search->getCurrent(),
+                $search->getFindEntry(),
                 'article'
             );
         }

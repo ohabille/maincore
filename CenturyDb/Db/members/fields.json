@@ -1,0 +1,7 @@
+{
+    "time" : "int",
+    "file" : "string",
+    "memberid" : "string",
+    "title" : "string",
+    "status" : "int",
+}

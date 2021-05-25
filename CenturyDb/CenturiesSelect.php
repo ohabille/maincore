@@ -61,8 +61,6 @@ class CenturiesSelect extends AbstractCentury
     {
         $select = [];
 
-        // $entries = json_decode(Cache::getCacheFile($cacheName), true);
-
         foreach ($this->getCacheEntries($cacheName) as $file)
             $select[] = $this->readEntry($file);
 

@@ -2,7 +2,8 @@
 
 namespace Connecters\Db;
 
-use \Adapters\Db\DbCenturySelectAdapter as SelectAdapter;
+use \Adapters\Db\DbCenturySelectAdapter as SelectAdapter,
+    \Adapters\Db\DbCenturySearchAdapter as SearchAdapter;
 
 class DbConnecter
 {
@@ -10,9 +11,11 @@ class DbConnecter
 
     public static function getDbSelect(string $dbName, int $step)
     {
-        if (is_null(self::$select))
-            self::$select =  new SelectAdapter($dbName, $step);
+        return new SelectAdapter($dbName, $step);
+    }
 
-        return self::$select;
+    public static function getDbSearch(string $dbName, int $step = 1)
+    {
+        return new SearchAdapter($dbName, $step);
     }
 }

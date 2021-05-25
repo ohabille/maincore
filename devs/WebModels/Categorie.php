@@ -2,8 +2,7 @@
 
 namespace WebModels;
 
-use \GrendelDb\Db,
-    \GrendelDb\Search;
+use \Connecters\Db\DbConnecter as Db;
 
 class Categorie
 extends \Domain\MainModel
@@ -13,11 +12,12 @@ implements \DomainImplements\Models\ModelImplements
     {
         parent::__construct();
 
-        $search = Search::getInst(new Db('categories'));
+        $search = Db::getDbSearch('categories');
 
-        if ($search->searchInDb('title', $this->_params['categorie']))
+        if ($search->findEntry('title', $this->_params['categorie']))
             $this->_datas['categorie'] = $this->findDatasContent(
-                'categorie', $search->getCurrent()['file']
+                'categorie',
+                $search->getFindEntry()['file']
             );
     }
 }

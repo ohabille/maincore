@@ -2,8 +2,7 @@
 
 namespace WebModels;
 
-use \GrendelDb\Db,
-    \GrendelDb\Search;
+use \Connecters\Db\DbConnecter as Db;
 
 class Member
 extends \Domain\MainModel
@@ -13,11 +12,12 @@ implements \DomainImplements\Models\ModelImplements
     {
         parent::__construct();
 
-        $search = Search::getInst(new Db('members'));
+        $search = Db::getDbSearch('members');
 
-        if ($search->searchInDb('title', $this->_params['member']))
+        if ($search->findEntry('title', $this->_params['member']))
             $this->_datas['member'] = $this->findDatasContent(
-                'member', $search->getCurrent()['file']
+                'member',
+                $search->getFindEntry()['file']
             );
     }
 }
