@@ -39,7 +39,7 @@ class CenturyCache
      * @param  string $cacheName : le nom de fichier
      * @return string            : Le contenu du cache
      */
-    public static function getCacheFile(string $cacheName) : string
+    public static function getCacheContent(string $cacheName) : string
     {
         return file_get_contents(self::getCachePath($cacheName));
     }

@@ -2,8 +2,6 @@
 
 namespace CenturyDb;
 
-use \CenturyDb\CenturyCache as Cache;
-
 class CenturiesSelect extends AbstractCentury
 {
     use Methods\CenturyNavigateMethods,
@@ -74,7 +72,7 @@ class CenturiesSelect extends AbstractCentury
      */
     protected function getCacheEntries(string $cacheName) : array
     {
-        return json_decode(Cache::getCacheFile($cacheName), true);
+        return json_decode($this->getCacheContent($cacheName), true);
     }
 
     /**
@@ -85,8 +83,8 @@ class CenturiesSelect extends AbstractCentury
      */
     protected function CheckCacheSelect(string $cacheName, int $id) : void
     {
-        if (!Cache::isCacheFile($cacheName))
-            Cache::setCacheFile(
+        if (!$this->isCacheExist($cacheName))
+            $this->editCacheFile(
                 $cacheName,
                 json_encode(
                     $this->getSelectedEntries($id)

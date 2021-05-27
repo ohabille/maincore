@@ -2,8 +2,6 @@
 
 namespace CenturyDb;
 
-use \CenturyDb\CenturyCache as Cache;
-
 class CenturiesSearch extends CenturiesSelect
 {
     /**
@@ -67,12 +65,12 @@ class CenturiesSearch extends CenturiesSelect
 
         $cacheName = $this->getSearchCacheName($this->_value);
 
-        if ($this->CheckCacheSearch($cacheName))
+        if ($this->isCacheExist($cacheName))
             $selected = $this->getCacheEntries($cacheName);
 
         $selected[] = $file;
 
-        Cache::setCacheFile($cacheName, json_encode($selected));
+        $this->editCacheFile($cacheName, json_encode($selected));
 
         if (count($selected) === $this->_step) return false;
 
@@ -104,17 +102,6 @@ class CenturiesSearch extends CenturiesSelect
     }
 
     /**
-     * Vérifie l'existence d'un cache
-     * et l'édite si il n'existe pas
-     * @param string $cacheName : le nom de fichier du cache
-     * @param int    $id        : l'identifiant du cache
-     */
-    protected function CheckCacheSearch(string $cacheName) : bool
-    {
-        return Cache::isCacheFile($cacheName);
-    }
-
-    /**
      * Effectue une recherche
      * @param string $field : Le champ à tester
      * @param string $value : la valuer recherchée
@@ -124,13 +111,15 @@ class CenturiesSearch extends CenturiesSelect
     {
         $cacheName = $this->getSearchCacheName($value);
 
-        if (!$this->checkCacheSearch($cacheName)) {
+        if (!$this->isCacheExist($cacheName)) {
             $this->_field = $field;
             $this->_value = $value;
 
             $this->readCenturyDir($this->_dbName, 'findCentury');
         }
 
-        return $this->getCacheEntriesFields($cacheName);
+        return $this->isCacheExist($cacheName) ?
+            $this->getCacheEntriesFields($cacheName):
+            [];
     }
 }

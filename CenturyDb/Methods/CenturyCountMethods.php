@@ -2,8 +2,6 @@
 
 namespace CenturyDb\Methods;
 
-use \CenturyDb\CenturyCache as Cache;
-
 trait CenturyCountMethods
 {
     /**
@@ -65,9 +63,9 @@ trait CenturyCountMethods
     {
         $cacheName = $this->_dbName.'_total';
 
-        if (!Cache::isCacheFile($cacheName))
-            Cache::setCacheFile($cacheName, $this->calcTotal());
+        if (!$this->isCacheexist($cacheName))
+            $this->editCacheFile($cacheName, strval($this->calcTotal()));
 
-        return (int) Cache::getCacheFile($cacheName);
+        return (int) $this->getCacheContent($cacheName);
     }
 }
