@@ -76,20 +76,18 @@ class CenturiesSelect extends AbstractCentury
     }
 
     /**
-     * Vérifie l'existence d'un cache
-     * et l'édite si il n'existe pas
+     * 'édite un fichier de cache select
      * @param string $cacheName : le nom de fichier du cache
      * @param int    $id        : l'identifiant du cache
      */
-    protected function CheckCacheSelect(string $cacheName, int $id) : void
+    protected function setCacheSelect(string $cacheName, int $id) : void
     {
-        if (!$this->isCacheExist($cacheName))
-            $this->editCacheFile(
-                $cacheName,
-                json_encode(
-                    $this->getSelectedEntries($id)
-                )
-            );
+        $this->editCacheFile(
+            $cacheName,
+            json_encode(
+                $this->getSelectedEntries($id)
+            )
+        );
     }
 
     /**
@@ -99,12 +97,12 @@ class CenturiesSelect extends AbstractCentury
      */
     public function getSelect(int $from) : array
     {
-        $select = [];
-
         $cacheName = $this->getSelectCacheName($from);
 
-        $this->CheckCacheSelect($cacheName, $from);
+        if (!$this->isCacheExist($cacheName))
+            $this->setCacheSelect($cacheName, $from);
 
-        return $this->getCacheEntriesFields($cacheName);
+        return $this->isCacheExist($cacheName) ?
+            $this->getCacheEntriesFields($cacheName): [];
     }
 }
