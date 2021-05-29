@@ -93,9 +93,9 @@ trait CenturyCountMethods
      * @param  int    $value : La valeur initiale
      * @return int          : le résultat
      */
-    protected function countFinded(int $value) : int
+    protected function countFinded() : int
     {
-        return $value + 1;
+        return func_get_arg(1) + 1;
     }
 
     /**

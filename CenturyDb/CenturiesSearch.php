@@ -37,7 +37,7 @@ class CenturiesSearch extends AbstractCentury
      * @param  string $century : la century en cours de lecture
      * @return bool            : true
      */
-    protected function findCentury(string $value, string $century) : bool
+    protected function findCentury(string $century) : bool
     {
         $this->_century = $century;
 
@@ -65,7 +65,7 @@ class CenturiesSearch extends AbstractCentury
      * @param  string $entry   : l'entrée
      * @return bool
      */
-    protected function findField(string $century, string $entry) : bool
+    protected function findField(string $entry) : bool
     {
         $file = $this->_century.'/'.$entry;
 

@@ -17,7 +17,7 @@ trait CenturyReadMethods
             while (false !== ($find = readdir($handle))) {
                 if (!self::isCenturyName($find))  continue;
 
-                $result = $this->$task($value, $find);
+                $result = $this->$task($find, $value);
 
                 if (false === $result) break;
                 else $value = $result;
