@@ -14,10 +14,10 @@ trait CenturyReadMethods
         $value = $this->getValueTask($task);
 
         if ($handle = opendir(self::$dbDir.$dir)) {
-            while (false !== ($century = readdir($handle))) {
-                if (!self::isCenturyName($century))  continue;
+            while (false !== ($find = readdir($handle))) {
+                if (!self::isCenturyName($find))  continue;
 
-                $result = $this->$task($value, $century);
+                $result = $this->$task($value, $find);
 
                 if (false === $result) break;
                 else $value = $result;
@@ -39,25 +39,6 @@ trait CenturyReadMethods
         $task .= 'Value';
 
         return $this->$task();
-    }
-
-    /**
-     * Lit le contenu d'une century
-     * @return array : les données de la century
-     */
-    protected function getCenturyEntries(string $id) : array
-    {
-        $centuryDir = self::$centName.$id;
-
-        return array_map(
-            function ($item) use ($centuryDir) {
-                return $centuryDir.'/'.$item;
-            },
-            array_slice(
-                scandir(self::$dbDir.$this->_dbName.'/'.$centuryDir),
-                2
-            )
-        );
     }
 
     /**

@@ -2,8 +2,10 @@
 
 namespace CenturyDb;
 
-class CenturiesSearch extends CenturiesSelect
+class CenturiesSearch extends AbstractCentury
 {
+    use Methods\CenturySelectMethods;
+
     /**
      * @var string
      */
@@ -15,7 +17,9 @@ class CenturiesSearch extends CenturiesSelect
 
     public function __contruct(string $dbName, int $step = 1)
     {
-        parent::__construct($dbName, $step);
+        parent::__construct($dbName);
+
+        $this->setStep($step);
     }
 
     /**
@@ -39,7 +43,11 @@ class CenturiesSearch extends CenturiesSelect
 
         $this->readCenturyDir($this->_dbName.'/'.$century, 'findField');
 
-        return count($this->_selected) === $this->_step ? false: true;
+        $selected = $this->checkCacheEntries(
+            $this->getSearchCacheName($this->_value)
+        );
+
+        return count($selected) === $this->_step ? false: true;
     }
 
     /**
@@ -65,8 +73,7 @@ class CenturiesSearch extends CenturiesSelect
 
         $cacheName = $this->getSearchCacheName($this->_value);
 
-        if ($this->isCacheExist($cacheName))
-            $selected = $this->getCacheEntries($cacheName);
+        $selected = $this->checkCacheEntries($cacheName);
 
         $selected[] = $file;
 

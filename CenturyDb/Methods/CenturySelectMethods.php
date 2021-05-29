@@ -5,38 +5,12 @@ namespace CenturyDb\Methods;
 trait CenturySelectMethods
 {
     /**
-     * Calcule le century
-     * @param  int $from [description]
-     * @return int       [description]
+     * Initialise le nombre d'ebtrées à sélectionner
+     * @param int $step [description]
      */
-    protected function calcCentury(int $from) : int
+    protected function setStep(int $step) : void
     {
-        return (int) ceil($from / self::$dbMulti) * 100;
-    }
-
-    /**
-     * Calcule le numéro de la première entrée à sélectionner
-     * @param  int $from : le numéro
-     * @return int       : la première entrée
-     */
-    protected function calcStartEntry(int $from) : int
-    {
-        return $this->getCenturyValue() - self::$dbMulti + $from - 1;
-    }
-
-    /**
-     * Sélectionne une partie d'une century
-     * @param  int   $from : le numéro de la première entrée
-     * @param  int   $step : le nombre d'entrées
-     * @return array       : la sélection d'entrées
-     */
-    protected function selectInCentury(int $from, int $step) : array
-    {
-        return array_slice(
-            $this->getCenturyEntries($this->_century),
-            $from,
-            $step
-        );
+        $this->_step = $step;
     }
 
     /**
@@ -46,63 +20,41 @@ trait CenturySelectMethods
      */
     protected function getSelectCacheName(int $id) : string
     {
-        return $this->_dbName.'_select-'.$id.'-'.$this->_step;
+        return $this->_dbName.'_select-'.$id.'_step-'.$this->_step;
     }
 
     /**
-     * Sélectionne les entrées depuis le numéro fournit
-     * @param int $from : le numéro
-     * @return array    : La sélection d'entrées
+     * Retourne les entrées mise en cache
+     * @param  string $cacheName : Le nom du cache
+     * @return array             : Les entrées sélectionnées
      */
-    protected function getSelectedEntries(
-        int $from,
-        array $selected = []
-    ) : array
+    protected function getCacheEntries(string $cacheName) : array
     {
-        $selected = array_merge(
-            $selected,
-            $this->findEntries($from)
-        );
-
-        return $this->CheckNbrEntries($from, $selected);
+        return json_decode($this->getCacheContent($cacheName), true);
     }
 
     /**
-     * Vérifie que le nombre d'entrées soit juste
-     * Relance une sélection si nécessaire
-     * @param int   $from     : le numéro de départ
-     * @return array          : La sélection d'entrées
+     * Retourne les données de entrées mises en cache
+     * @param  string $cacheName : Le nom du cache
+     * @return array             : Les entrées sélectionnées
      */
-    protected function CheckNbrEntries(int $from, array $selected) : array
+    protected function getCacheEntriesFields(string $cacheName) : array
     {
-        $entriesNbr = count($this->_selected);
+        foreach ($this->getCacheEntries($cacheName) as $k=>$file)
+            $select[$k] = $this->readEntry($file);
 
-        if ($this->_step < $entriesNbr) {
-            $this->setStep($this->_step - $entriesNbr);
-
-            $selected = $this->getSelectedEntries(
-                $from + $entriesNbr,
-                $selected
-            );
-        }
-
-        return $selected;
+        return $select;
     }
 
     /**
-     * Sélectionne les Entrées
-     * @param  int   $from [description]
-     * @return array       [description]
+     * Vérifie l'existence d'un cache et renvoie son contenu formaté
+     * ou un tableau vide si il n'existe pas
+     * @param  string $cacheName : Le nom du cache
+     * @return array             : Le contenu sous forme de tableau
      */
-    protected function findEntries(int $from) : array
+    protected function checkCacheEntries(string $cacheName) : array
     {
-        $this->_century = $this->getCenturyId(
-            $this->calcCentury($from)
-        );
-
-        return $this->selectInCentury(
-            $this->calcStartEntry($from),
-            $this->calcStep($from)
-        );
+        return $this->isCacheExist($cacheName) ?
+            $this->getCacheEntries($cacheName): [];
     }
 }

@@ -79,15 +79,6 @@ abstract class AbstractCentury
     }
 
     /**
-     * Convertit l'id du century initialisé en multiple de 100
-     * @return int : le multiple de 100
-     */
-    protected function getCenturyValue() : int
-    {
-        return hexdec($this->_century);
-    }
-
-    /**
      * Convertit un id hexadecimal en un multiple de 100
      * @param  string $centuryId : un id hexadecimal
      * @return int               : le multiple de 100
@@ -110,28 +101,5 @@ abstract class AbstractCentury
         preg_match($patt, $centuryName, $match);
 
         return $match[1];
-    }
-
-    /**
-     * @return string : Une string vide
-     */
-    protected function getFirstCenturyValue() : string
-    {
-        return "";
-    }
-
-    /**
-     * Récupère l'id d'une entrée
-     * et la retourne si la valeur fournie est vide
-     * ou false si la valeur fournie contient déjà un id
-     * @param  string $value : La valeur fournie
-     * @param  string $entry : L'entrée à analiser
-     * @return mixed
-     */
-    protected function getFirstCentury(string $value, string $entry)
-    {
-        if (!empty($value)) return false;
-
-        return $this->extractCenturyId($entry);
     }
 }
