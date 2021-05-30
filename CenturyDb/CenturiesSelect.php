@@ -20,7 +20,7 @@ class CenturiesSelect extends AbstractCentury
      */
     protected function setCacheSelect(string $cacheName, int $from) : void
     {
-        $century = $this->getCenturyId(
+        $century = $this->centuryId(
             $this->calcCentury($from)
         );
 
@@ -30,14 +30,9 @@ class CenturiesSelect extends AbstractCentury
 
         for ($i = $start; $i < $end; $i++)
             $select[] = self::$centName.$century.'/'
-                .self::$entName.$this->getCenturyId($i). '.json';
+                .self::$entName.$this->centuryId($i). '.json';
 
-        $this->editCacheFile(
-            $cacheName,
-            json_encode(
-                $select
-            )
-        );
+        $this->editCacheFile($cacheName, json_encode($select));
     }
 
     /**

@@ -10,6 +10,21 @@ trait CenturyCountMethods
     protected $_step = 1;
 
     /**
+     * Calcule le total d'entries
+     * @return int : total
+     */
+    protected function calcTotal() : int
+    {
+        $total = $this->findTotalCache('Centuries') * 100;
+
+        $total += $this->findTotalEntries($this->centuryId($total));
+
+        $total -= self::$dbMulti;
+
+        return $total;
+    }
+
+    /**
      * Calcule le century
      * @param  int $from [description]
      * @return int       [description]
@@ -96,21 +111,6 @@ trait CenturyCountMethods
     protected function countFinded() : int
     {
         return func_get_arg(1) + 1;
-    }
-
-    /**
-     * Calcule le total d'entries
-     * @return int : total
-     */
-    protected function calcTotal() : int
-    {
-        $total = $this->findTotalCache('Centuries') * 100;
-
-        $total += $this->findTotalEntries($this->getCenturyId($total));
-
-        $total -= self::$dbMulti;
-
-        return $total;
     }
 
     /**

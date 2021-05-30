@@ -47,12 +47,12 @@ abstract class AbstractCentury
      * @param  string $dirName
      * @return bool
      */
-    protected static function isCenturyName(string $dirName) : bool
+    protected static function isCenturyName(string $name) : bool
     {
         $patt = '#(('.self::$centName.'|'.self::$entName.')'
             .self::$centPattId.'(.json)?)#';
 
-        return 1 === preg_match($patt, $dirName);
+        return 1 === preg_match($patt, $name);
     }
 
     /**
@@ -73,7 +73,7 @@ abstract class AbstractCentury
      * @param  int    $century : un multiple de 100
      * @return string          : l'id hexadecimal
      */
-    protected function getCenturyId(int $century) : string
+    protected function centuryId(int $century) : string
     {
         return dechex($century);
     }
@@ -83,7 +83,7 @@ abstract class AbstractCentury
      * @param  string $centuryId : un id hexadecimal
      * @return int               : le multiple de 100
      */
-    protected function getValueId(string $centuryId) : int
+    protected function valueCentury(string $centuryId) : int
     {
         return hexdec($centuryId);
     }
@@ -95,8 +95,7 @@ abstract class AbstractCentury
      */
     protected function extractCenturyId(string $centuryName) : string
     {
-        $patt = "#".self::$centName
-            .self::$centPattId."#";
+        $patt = "#".self::$centName.self::$centPattId."#";
 
         preg_match($patt, $centuryName, $match);
 
