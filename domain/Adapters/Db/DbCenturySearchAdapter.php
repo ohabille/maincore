@@ -19,9 +19,10 @@ class DbCenturySearchAdapter
         return $this->_search->getTotal();
     }
 
-    public function findEntry(string $field, string $value) : bool
+    // public function findEntry(string $field, string $value) : bool
+    public function findEntry(array $filters) : bool
     {
-        $this->_find = $this->_search->findFieldInDb($field, $value)[0];
+        $this->_find = $this->_search->findFieldInDb($filter)[0];
 
         return !empty($this->_find);
     }

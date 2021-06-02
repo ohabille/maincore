@@ -5,6 +5,15 @@ namespace CenturyDb\Methods;
 trait CenturySelectMethods
 {
     /**
+     * @var int
+     */
+    protected $_step;
+    /**
+     * @var int
+     */
+    protected $_from;
+
+    /**
      * Initialise le nombre d'ebtrées à sélectionner
      * @param int $step [description]
      */

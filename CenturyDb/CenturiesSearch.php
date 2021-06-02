@@ -7,15 +7,11 @@ class CenturiesSearch extends AbstractCentury
     use Methods\CenturySelectMethods;
 
     /**
-     * @var string
+     * @var array
      */
-    protected $_field;
-    /**
-     * @var string
-     */
-    protected $_value;
+    protected $_filters;
 
-    public function __contruct(string $dbName, int $step = 1)
+    public function __construct(string $dbName, int $step = 1)
     {
         parent::__construct($dbName);
 
@@ -28,7 +24,7 @@ class CenturiesSearch extends AbstractCentury
      */
     protected function findCenturyValue() : string
     {
-        return '';
+        return 'findField';
     }
 
     /**
@@ -37,17 +33,19 @@ class CenturiesSearch extends AbstractCentury
      * @param  string $century : la century en cours de lecture
      * @return bool            : true
      */
-    protected function findCentury(string $century) : bool
+    protected function findCentury(string $century, string $task) : bool
     {
         $this->_century = $century;
 
-        $this->readCenturyDir($this->_dbName.'/'.$century, 'findField');
+        $this->readCenturyDir($this->_dbName.'/'.$century, $task);
+
+        $taskCache = $task.'CacheName';
 
         $selected = $this->checkCacheEntries(
-            $this->getSearchCacheName($this->_value)
+            $this->$taskCache()
         );
 
-        return count($selected) === $this->_step ? false: true;
+        return (count($selected) === $this->_step) ? false: true;
     }
 
     /**
@@ -71,7 +69,7 @@ class CenturiesSearch extends AbstractCentury
 
         if (!$this->checkFindedField($this->readEntry($file))) return true;
 
-        $cacheName = $this->getSearchCacheName($this->_value);
+        $cacheName = $this->findFieldCacheName();
 
         $selected = $this->checkCacheEntries($cacheName);
 
@@ -91,11 +89,15 @@ class CenturiesSearch extends AbstractCentury
      */
     protected function checkFindedField(array $fields) : bool
     {
-        if (!isset($fields[$this->_field])) return false;
+        $check = [];
 
-        if ($this->_value !== $fields[$this->_field]) return false;
+        foreach ($this->_filters as $k=>$val) {
+            if (!array_key_exists($k, $fields)) continue;
 
-        return true;
+            $check[$k] = $val === $fields[$k];
+        }
+
+        return !in_array(false, $check);
     }
 
     /**
@@ -103,27 +105,32 @@ class CenturiesSearch extends AbstractCentury
      * @param  int    $value : l'identifiant du cache
      * @return string       : Le nom du cache
      */
-    protected function getSearchCacheName(string $value) : string
+    protected function findFieldCacheName() : string
     {
-        return $this->_dbName.'_search-'.$value.'-'.$this->_step;
+        $str = $this->_dbName.'_search';
+
+        foreach ($this->_filters as $k=>$val)
+            $str .= '-'.$k.'='.$val;
+
+        return $str.'-from='.$this->_from.'-step='.$this->_step;
     }
 
     /**
      * Effectue une recherche
-     * @param string $field : Le champ à tester
-     * @param string $value : la valuer recherchée
-     * @return array
+     * @param array  $filters : Le filtre [field=>$value, field=>value]
+     * @param int    $step    : le nombre d'entrées à retenir
+     * @param int    $from    : le numéro d'entrée de départ
+     * @return array $select  : Les entrées sélectionnées
      */
-    public function findFieldInDb(string $field, string $value) : array
+    public function findFieldInDb(array $filters, int $from = 1) : array
     {
-        $cacheName = $this->getSearchCacheName($value);
+        $this->_filters = $filters;
+        $this->_from = $from;
 
-        if (!$this->isCacheExist($cacheName)) {
-            $this->_field = $field;
-            $this->_value = $value;
+        $cacheName = $this->findFieldCacheName();
 
+        if (!$this->isCacheExist($cacheName))
             $this->readCenturyDir($this->_dbName, 'findCentury');
-        }
 
         return $this->isCacheExist($cacheName) ?
             $this->getCacheEntriesFields($cacheName):

@@ -14,7 +14,7 @@ implements \DomainImplements\Models\ModelImplements
 
         $search = Db::getDbSearch('members');
 
-        if ($search->findEntry('title', $this->_params['member']))
+        if ($search->findEntry(['title'=>$this->_params['member']]))
             $this->_datas['member'] = $this->findDatasContent(
                 'member',
                 $search->getFindEntry()['file']

@@ -15,7 +15,7 @@ implements \DomainImplements\Models\ModelImplements
 
         $search = Db::getDbSearch('articles');
 
-        if ($search->findEntry('title', $this->_params['article'])) {
+        if ($search->findEntry(['title'=>$this->_params['article']])) {
             self::$methods->setConf('article');
 
             $this->_datas['article'] = $this->findDatas(

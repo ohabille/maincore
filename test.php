@@ -1,7 +1,7 @@
 <?php
 
-use \CenturyDb\CenturiesSelect as SelectDb;
-use \CenturyDb\CenturiesSearch as SearchDb;
+use \CenturyDb\CenturiesSelect as SelectDb,
+    \CenturyDb\CenturiesSearch as SearchDb;
 
 // Déclaration du fichier racine
 define('ROOTDIRS', './');
@@ -16,7 +16,12 @@ foreach ($dbSelect->getSelect() as $k=>$val) {
     dump($date);
 }
 
-$dbSearch = new SearchDb('articles');
-dump($dbSearch->findFieldInDb('categorie', 'episodes'));
+$dbSearch = new SearchDb('articles', 2);
+
+$filters = [
+    'categorie'=>'episodes'
+];
+
+dump($dbSearch->findFieldInDb($filters));
 
 ?>

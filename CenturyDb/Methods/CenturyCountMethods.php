@@ -5,11 +5,6 @@ namespace CenturyDb\Methods;
 trait CenturyCountMethods
 {
     /**
-    * @var int
-    */
-    protected $_step = 1;
-
-    /**
      * Calcule le total d'entries
      * @return int : total
      */
