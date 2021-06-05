@@ -4,9 +4,9 @@ namespace CenturyDb;
 
 abstract class AbstractCentury
 {
-    use Methods\CenturyReadMethods,
-        Methods\CenturyCountMethods,
-        Methods\CacheMethods;
+    use Methods\CacheMethods,
+        Methods\CenturyReadMethods,
+        Methods\CenturyCountMethods;
 
     /**
      * @var string

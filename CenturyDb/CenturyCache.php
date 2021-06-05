@@ -11,7 +11,15 @@ class CenturyCache
      */
     public static function setCacheFile(string $cacheName, $value) : void
     {
-        file_put_contents(self::getCachePath($cacheName), $value);
+        $file = self::getCachePath($cacheName);
+
+        if (file_exists($file)) $value = ",\n".$value;
+
+        $fo = fopen($file, 'a');
+
+        if (false !== $fo) fwrite($fo, $value);
+
+        fclose($fo);
     }
 
     /**

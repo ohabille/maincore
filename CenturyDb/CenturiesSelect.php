@@ -17,22 +17,47 @@ class CenturiesSelect extends AbstractCentury
      * 'édite un fichier de cache select
      * @param string $cacheName : le nom de fichier du cache
      * @param int    $id        : l'identifiant du cache
+     * @return bool             : La sélection d'entrées
      */
-    protected function setCacheSelect(string $cacheName, int $from) : void
+    protected function setCacheSelect(string $cacheName) : bool
     {
-        $century = $this->centuryId(
-            $this->calcCentury($from)
-        );
+        $nbr = $this->totalEntries($this->_century);
 
-        $start = $this->calcStartEntry($century, $from);
+        if ($nbr < 1) return false;
 
-        $end = $start + $this->_step;
+        $start = $this->calcStartEntry($this->_century, $this->_from);
 
-        for ($i = $start; $i < $end; $i++)
-            $select[] = self::$centName.$century.'/'
-                .self::$entName.$this->centuryId($i). '.json';
+        $end = $start + ($this->_step > $nbr ? $nbr: $this->_step);
 
-        $this->editCacheFile($cacheName, json_encode($select));
+        for ($i = $start; $i < $end; $i++) {
+            $file = self::$centName.$this->_century.'/'
+                .self::$entName.$this->centuryId($i).'.json';
+
+            $this->editCacheFile(
+                $cacheName,
+                '"'.str_replace('/', '\/', $file).'"'
+            );
+
+            $this->_step--;
+
+            if ($this->_step < 1) return true;
+
+            if (self::$dbMulti < $i + 1) break;
+        }
+
+        if ($i > self::$dbMulti) {
+            $this->_century -= $this->centuryId(
+                $this->valueCentury($this->_century) - self::$dbMulti
+            );
+
+            if ($this->valueCentury($this->_century) < 0) return false;
+
+            $this->_from = $this->valueCentury($this->_century) + 1;
+
+            $this->setCacheSelect($cacheName);
+        }
+
+        return true;
     }
 
     /**
@@ -42,12 +67,20 @@ class CenturiesSelect extends AbstractCentury
      */
     public function getSelect(int $from = 1) : array
     {
-        $cacheName = $this->getSelectCacheName($from);
+        $this->_filters = [];
 
-        if (!$this->isCacheExist($cacheName))
-            $this->setCacheSelect($cacheName, $from);
+        $this->_from = $from;
 
-        return $this->isCacheExist($cacheName) ?
-            $this->getCacheEntriesFields($cacheName): [];
+        $cacheName = $this->getSelectCacheName();
+
+        if (!$this->isCacheExist($cacheName)) {
+            $this->_century = $this->centuryId(
+                $this->calcCentury($this->_from)
+            );
+
+            $this->setCacheSelect($cacheName);
+        }
+
+        return $this->checkCacheEntries($cacheName);
     }
 }

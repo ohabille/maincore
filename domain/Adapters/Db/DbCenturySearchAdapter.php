@@ -22,7 +22,7 @@ class DbCenturySearchAdapter
     // public function findEntry(string $field, string $value) : bool
     public function findEntry(array $filters) : bool
     {
-        $this->_find = $this->_search->findFieldInDb($filter)[0];
+        $this->_find = $this->_search->findFieldInDb($filters)[0];
 
         return !empty($this->_find);
     }

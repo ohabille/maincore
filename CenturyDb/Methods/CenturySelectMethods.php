@@ -14,6 +14,11 @@ trait CenturySelectMethods
     protected $_from;
 
     /**
+     * @var array
+     */
+    protected $_filters;
+
+    /**
      * Initialise le nombre d'ebtrées à sélectionner
      * @param int $step [description]
      */
@@ -27,9 +32,10 @@ trait CenturySelectMethods
      * @param  int    $id : l'identifiant du cache
      * @return string     : Le nom du cache
      */
-    protected function getSelectCacheName(int $id) : string
+    protected function getSelectCacheName() : string
     {
-        return $this->_dbName.'_select-'.$id.'_step-'.$this->_step;
+        return $this->_dbName.'_select-'.$this->_from
+            .'_step-'.$this->_step;
     }
 
     /**
@@ -39,7 +45,8 @@ trait CenturySelectMethods
      */
     protected function getCacheEntries(string $cacheName) : array
     {
-        return json_decode($this->getCacheContent($cacheName), true);
+        $entries = '['.$this->getCacheContent($cacheName).']';
+        return json_decode($entries, true);
     }
 
     /**
@@ -64,6 +71,6 @@ trait CenturySelectMethods
     protected function checkCacheEntries(string $cacheName) : array
     {
         return $this->isCacheExist($cacheName) ?
-            $this->getCacheEntries($cacheName): [];
+            $this->getCacheEntriesFields($cacheName): [];
     }
 }

@@ -5,30 +5,62 @@ namespace CenturyDb\Methods;
 trait CenturyCountMethods
 {
     /**
-     * Calcule le total d'entries
-     * @return int : total
+     * Retourn un nom de fichier de cache de total
+     * @param  string $cacheName : le nom additionnel du cache
+     * @return string            : Le nom du cache
      */
-    protected function calcTotal() : int
+    protected function totalCacheName(string $cacheName = '') : string
     {
-        $total = $this->findTotalCache('Centuries') * 100;
+        return $this->_dbName.'_total'.$cacheName;
+    }
 
-        $total += $this->findTotalEntries($this->centuryId($total));
+    /**
+     * Retourne le total de centuries
+     * édite le cache si il n'existe pas
+     * @return int : le total de centuries
+     */
+    protected function getNbrCenturies() : int
+    {
+        $cacheName = $this->totalCacheName('_centuries');
 
-        $total -= self::$dbMulti;
+        if (!$this->isCacheExist($cacheName))
+            exec(
+                'php '.self::$dbDir.'cacheNbrCentury.php '
+                .$this->_dbName
+                .' '.$this->_dbName.'/'
+                .' _centuries 1'
+            );
 
-        return $total;
+        return (int) $this->getCacheContent($cacheName);
+    }
+
+    /**
+     * Calcule le total d'entries et édite le cache
+     * Si il n'existe pas déjà
+     */
+    protected function calcTotal() : void
+    {
+        $cacheName = $this->totalCacheName();
+
+        if (!$this->isCacheExist($cacheName)) {
+            $total = $this->getNbrCenturies() * 100;
+
+            $total += $this->totalEntries($this->centuryId($total));
+
+            $total -= self::$dbMulti;
+
+            $this->editCacheFile($cacheName, $total);
+        }
     }
 
     /**
      * Calcule le century
-     * @param  int $from [description]
-     * @return int       [description]
+     * @param  int $from : Le numéro de la première entrée
+     * @return int       : l'id de la century concernée
      */
     protected function calcCentury(int $from) : int
     {
-        $total = $this->findTotalCache('Centuries');
-
-        $difference = ($total * self::$dbMulti) - $from;
+        $difference = ($this->getNbrCenturies() * self::$dbMulti) - $from;
 
         $modulo = $difference % self::$dbMulti;
 
@@ -39,40 +71,15 @@ trait CenturyCountMethods
 
     /**
      * Calcule le numéro de la première entrée à sélectionner
-     * @param  int $from : le numéro
-     * @return int       : la première entrée
+     * @param  string $from : l'id de la century
+     * @param  int    $from : le numéro
+     * @return int          : la première entrée
      */
     protected function calcStartEntry(string $century, int $from) : int
     {
-        $nbrEntries = $this->findTotalEntries($century);
+        $nbrEntries = $this->totalEntries($century);
 
-        return self::$dbMulti - $nbrEntries + $from;
-    }
-
-    /**
-     * Vérifie si le cache existe et renvoie son contenu
-     * L'édite si il n'existe pas
-     * @param  string $cacheName : Le nom du cache
-     * @param  string $dir       : Le répertoire à parcourir
-     * @return int               : le total de fichiers dans le répertoire
-     */
-    protected function findTotalCache(
-        string $cacheName, string $dir = ''
-    ) : int
-    {
-        $cacheName = $this->_dbName.'_total_'.$cacheName;
-
-        if (!$this->isCacheExist($cacheName))
-            $this->editCacheFile(
-                $cacheName,
-                $this->readCenturyDir(
-                    $this->_dbName.'/'.$dir,
-                    'countFinded'
-                )
-            );
-
-        return $this->isCacheExist($cacheName) ?
-            (int) $this->getCacheContent($cacheName): 0;
+        return self::$dbMulti - $nbrEntries + ($from % self::$dbMulti);
     }
 
     /**
@@ -80,32 +87,20 @@ trait CenturyCountMethods
      * @param  string $century : Le century à parcourir
      * @return int             : le total des entrées
      */
-    protected function findTotalEntries(string $century) : int
+    protected function totalEntries(string $century) : int
     {
-        return $this->findTotalCache(
-            self::$centName.$century,
-            self::$centName.$century
-        );
-    }
+        $cacheName = $this->totalCacheName('_'.self::$centName.$century);
 
-    /**
-     * @return int : 0
-     */
-    protected function countFindedValue() : int
-    {
-        return 0;
-    }
+        if (!$this->isCacheExist($cacheName))
+            exec(
+                'php '.self::$dbDir.'cacheNbrCentury.php '
+                .$this->_dbName
+                .' '.$this->_dbName.'/'.self::$centName.$century.'/'
+                .' _'.self::$centName.$century
+            );
 
-    /**
-     * Compte le nombre d'entrées,
-     * l'ajoute à la valeur fourni
-     * et retourne le résultat
-     * @param  int    $value : La valeur initiale
-     * @return int          : le résultat
-     */
-    protected function countFinded() : int
-    {
-        return func_get_arg(1) + 1;
+        return $this->isCacheExist($cacheName) ?
+            (int) $this->getCacheContent($cacheName): 0;
     }
 
     /**
@@ -115,10 +110,10 @@ trait CenturyCountMethods
      */
     public function getTotal() : int
     {
-        $cacheName = $this->_dbName.'_total';
+        $cacheName = $this->totalCacheName();
 
         if (!$this->isCacheExist($cacheName))
-            $this->editCacheFile($cacheName, strval($this->calcTotal()));
+            $this->calcTotal();
 
         return $this->isCacheExist($cacheName) ?
             (int) $this->getCacheContent($cacheName): 0;

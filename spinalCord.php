@@ -1,10 +1,13 @@
 <?php
 
+// Déclaration du fichier racine
+define('ROOTDIRS', __DIR__.'/');
+
 /**
  * Chargement de la classe ClassAutoLoad
  * @var string : Le fichier
  */
-include_once('ClassAutoLoad.php');
+include_once('core/ClassAutoLoad.php');
 
 /**
  * Fonction de chargement du fichier de la classe

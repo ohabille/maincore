@@ -36,15 +36,6 @@ class FilesMethods implements FilesMethodsImplement
         $stream = fopen($file, 'r');
 
         return false !== $stream ? $this->getContentFile($stream): '';
-        // $content = '';
-        //
-        // if ($stream = fopen($file, 'r')) {
-        //     $content = stream_get_contents($stream);
-        //
-        //     fclose($stream);
-        // }
-        //
-        // return $content;
     }
 
     /**
