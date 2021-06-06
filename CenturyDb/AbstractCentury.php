@@ -2,6 +2,8 @@
 
 namespace CenturyDb;
 
+use \CenturyDb\Interfaces\CenturyDbImplements;
+
 abstract class AbstractCentury
 {
     use Methods\CacheMethods,
@@ -40,6 +42,19 @@ abstract class AbstractCentury
     public function __construct(string $dbName)
     {
         $this->_dbName = $dbName;
+    }
+
+    /**
+     * Initialise une connexion à un DB
+     * et retourne une instance de gestion
+     * @param  string              $dbName : Le nom de la base de données
+     * @return CenturyDbImplements         : Un instance de classe
+     */
+    public static function connectToDb(string $dbName) : CenturyDbImplements
+    {
+        $db = get_called_class();
+
+        return new $db($dbName);
     }
 
     /**

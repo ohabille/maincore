@@ -2,85 +2,40 @@
 
 namespace CenturyDb;
 
-class CenturiesSelect extends AbstractCentury
+use \CenturyDb\Interfaces\CenturySelectImplements as SelectImplements,
+    \CenturyDb\Interfaces\CenturyDbImplements;
+
+class CenturiesSelect
+extends AbstractCentury
+implements  CenturyDbImplements,
+            SelectImplements
 {
     use Methods\CenturySelectMethods;
 
-    public function __construct(string $dbName, int $step = 1)
+    public function __construct(string $dbName)
     {
         parent::__construct($dbName);
-
-        $this->setStep($step);
     }
 
     /**
-     * 'édite un fichier de cache select
-     * @param string $cacheName : le nom de fichier du cache
-     * @param int    $id        : l'identifiant du cache
-     * @return bool             : La sélection d'entrées
+     * Calcule le nombre d'entrées à parcourir
+     * @param  int $start : le numéro de la première entrée
+     * @return int        : Le nombre d'entrées
      */
-    protected function setCacheSelect(string $cacheName) : bool
+    public function calcEndSelect(int $start) : int
     {
         $nbr = $this->totalEntries($this->_century);
 
-        if ($nbr < 1) return false;
-
-        $start = $this->calcStartEntry($this->_century, $this->_from);
-
-        $end = $start + ($this->_step > $nbr ? $nbr: $this->_step);
-
-        for ($i = $start; $i < $end; $i++) {
-            $file = self::$centName.$this->_century.'/'
-                .self::$entName.$this->centuryId($i).'.json';
-
-            $this->editCacheFile(
-                $cacheName,
-                '"'.str_replace('/', '\/', $file).'"'
-            );
-
-            $this->_step--;
-
-            if ($this->_step < 1) return true;
-
-            if (self::$dbMulti < $i + 1) break;
-        }
-
-        if ($i > self::$dbMulti) {
-            $this->_century -= $this->centuryId(
-                $this->valueCentury($this->_century) - self::$dbMulti
-            );
-
-            if ($this->valueCentury($this->_century) < 0) return false;
-
-            $this->_from = $this->valueCentury($this->_century) + 1;
-
-            $this->setCacheSelect($cacheName);
-        }
-
-        return true;
+        return $start + ($this->_step > $nbr ? $nbr: $this->_step);
     }
 
     /**
-     * Retourne une sélection d'entrées
-     * @param  int   $from : la première entrée
-     * @return array       : La sélection d'entrées
+     * Initialise l'id du Century
      */
-    public function getSelect(int $from = 1) : array
+    public function setCentury() : void
     {
-        $this->_filters = [];
-
-        $this->_from = $from;
-
-        $cacheName = $this->getSelectCacheName();
-
-        if (!$this->isCacheExist($cacheName)) {
-            $this->_century = $this->centuryId(
-                $this->calcCentury($this->_from)
-            );
-
-            $this->setCacheSelect($cacheName);
-        }
-
-        return $this->checkCacheEntries($cacheName);
+        $this->_century = $this->centuryId(
+            $this->calcCentury($this->_from)
+        );
     }
 }

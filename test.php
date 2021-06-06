@@ -6,18 +6,21 @@ use \CenturyDb\CenturiesSelect as SelectDb,
 // chargement du fichier d'initialisation
 require_once 'spinalCord.php';
 
-$dbSelect = new SelectDb('articles', 5);
+$dbSelect = SelectDb::connectToDb('articles')->byStep(5);
 
 foreach ($dbSelect->getSelect() as $k=>$val) {
     $date = date('d/m/Y - H:i:s', (int) $val['time']);
     dump($date);
 }
 
-$dbSearch = new SearchDb('articles', 1);
-
 $filters = [
     'categorie'=>'episodes'
 ];
 
-dump($dbSearch->findFieldInDb($filters)[0]['title']);
+$dbSearch = SearchDb::connectToDb('articles')
+    ->withFilters($filters)
+    ->getSelect();
+
+dump($dbSearch[0]['title']);
+
 ?>

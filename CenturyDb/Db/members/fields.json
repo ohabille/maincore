@@ -1,7 +1,7 @@
 {
-    "time" : "int",
+    "time" : 0,
     "file" : "string",
     "memberid" : "string",
     "title" : "string",
-    "status" : "int",
+    "status" : 0
 }

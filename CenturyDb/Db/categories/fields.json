@@ -1,5 +1,5 @@
 {
-    "time" : "int",
+    "time" : 0,
     "file" : "string",
     "title" : "string",
     "categorieid" : "string"

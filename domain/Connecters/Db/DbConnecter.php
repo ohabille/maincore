@@ -9,13 +9,13 @@ class DbConnecter
 {
     private static $select = null;
 
-    public static function getDbSelect(string $dbName, int $step)
+    public static function getDbSelect(string $dbName, int $step = 1)
     {
         return new SelectAdapter($dbName, $step);
     }
 
-    public static function getDbSearch(string $dbName, int $step = 1)
+    public static function getDbSearch(string $dbName)
     {
-        return new SearchAdapter($dbName, $step);
+        return new SearchAdapter($dbName);
     }
 }
