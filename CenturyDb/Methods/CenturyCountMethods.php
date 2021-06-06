@@ -67,8 +67,7 @@ trait CenturyCountMethods
 
     /**
      * Calcule le numéro de la première entrée à sélectionner
-     * @param  string $from : l'id de la century
-     * @param  int    $from : le numéro
+     * @param  int    $from : le numéro donné
      * @return int          : la première entrée
      */
     protected function calcStartEntry(int $from) : int
