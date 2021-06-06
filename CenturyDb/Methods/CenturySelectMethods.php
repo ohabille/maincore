@@ -168,7 +168,7 @@ trait CenturySelectMethods
 
         if ($nbr < 1) return false;
 
-        $start = $this->calcStartEntry($this->_century, $this->_from);
+        $start = $this->calcStartEntry($this->_from);
 
         $end = $this->calcEndSelect($start);
 

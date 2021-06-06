@@ -60,13 +60,9 @@ trait CenturyCountMethods
      */
     protected function calcCentury(int $from) : int
     {
-        $difference = ($this->getNbrCenturies() * self::$dbMulti) - $from;
-
-        $modulo = $difference % self::$dbMulti;
-
-        $century = $from + $modulo;
-
-        return $century;
+        return (int) ceil(
+            ($this->getTotal() - $from) / self::$dbMulti
+        ) * self::$dbMulti;
     }
 
     /**
@@ -75,11 +71,9 @@ trait CenturyCountMethods
      * @param  int    $from : le numéro
      * @return int          : la première entrée
      */
-    protected function calcStartEntry(string $century, int $from) : int
+    protected function calcStartEntry(int $from) : int
     {
-        $nbrEntries = $this->totalEntries($century);
-
-        return self::$dbMulti - $nbrEntries + ($from % self::$dbMulti);
+        return $this->calcCentury($from) - $this->getTotal() + $from;
     }
 
     /**
